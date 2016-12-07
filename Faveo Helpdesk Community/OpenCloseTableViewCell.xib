@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="OpenCloseTableViewID" selectionStyle="default" indentationWidth="10" rowHeight="65" id="0BI-xP-JJu" customClass="OpenCloseTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0BI-xP-JJu" id="jJe-Cx-YmB">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BUT-EF-302">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4Z-0Q-qxJ">
+                                <rect key="frame" x="0.0" y="0.0" width="20" height="64.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="dTm-qW-0VL"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ticket number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Zq-Ph-4Cu">
+                                <rect key="frame" x="28" y="8" width="284" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject of the ticket" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1G-PQ-iko">
+                                <rect key="frame" x="28" y="30" width="284" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p4Z-0Q-qxJ" firstAttribute="top" secondItem="BUT-EF-302" secondAttribute="top" id="5HP-rg-fVU"/>
+                            <constraint firstItem="6Zq-Ph-4Cu" firstAttribute="leading" secondItem="p4Z-0Q-qxJ" secondAttribute="trailing" constant="8" id="7nV-Zh-9Ws"/>
+                            <constraint firstItem="6Zq-Ph-4Cu" firstAttribute="top" secondItem="BUT-EF-302" secondAttribute="top" constant="8" id="Kw8-FI-nh8"/>
+                            <constraint firstAttribute="bottom" secondItem="k1G-PQ-iko" secondAttribute="bottom" constant="18" id="RXp-Jj-Z2W"/>
+                            <constraint firstAttribute="bottom" secondItem="p4Z-0Q-qxJ" secondAttribute="bottom" id="TC3-gZ-VRj"/>
+                            <constraint firstItem="k1G-PQ-iko" firstAttribute="leading" secondItem="p4Z-0Q-qxJ" secondAttribute="trailing" constant="8" id="Y9w-HR-41m"/>
+                            <constraint firstAttribute="trailing" secondItem="6Zq-Ph-4Cu" secondAttribute="trailing" constant="8" id="lIx-kv-lXW"/>
+                            <constraint firstItem="p4Z-0Q-qxJ" firstAttribute="leading" secondItem="BUT-EF-302" secondAttribute="leading" id="lSs-mW-eLl"/>
+                            <constraint firstAttribute="trailing" secondItem="k1G-PQ-iko" secondAttribute="trailing" constant="8" id="xK4-4A-G6W"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="BUT-EF-302" secondAttribute="bottom" id="4jp-5p-R1v"/>
+                    <constraint firstAttribute="trailing" secondItem="BUT-EF-302" secondAttribute="trailing" id="OG9-fs-I1p"/>
+                    <constraint firstItem="BUT-EF-302" firstAttribute="top" secondItem="jJe-Cx-YmB" secondAttribute="top" id="fAT-99-8r7"/>
+                    <constraint firstItem="BUT-EF-302" firstAttribute="leading" secondItem="jJe-Cx-YmB" secondAttribute="leading" id="ugk-lz-IU4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="indicationView" destination="p4Z-0Q-qxJ" id="eqP-Ld-4oU"/>
+                <outlet property="ticketNumberLbl" destination="6Zq-Ph-4Cu" id="ONy-rJ-VgU"/>
+                <outlet property="ticketSubLbl" destination="k1G-PQ-iko" id="nIW-AC-beZ"/>
+            </connections>
+            <point key="canvasLocation" x="0.0" y="80.5"/>
+        </tableViewCell>
+    </objects>
+</document>

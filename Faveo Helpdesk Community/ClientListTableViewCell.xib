@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ClientDetailViewController"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="ClientListCellID" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KGk-i7-Jjw" customClass="ClientListTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n51-Gz-KNn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_pic" translatesAutoresizingMaskIntoConstraints="NO" id="Tao-A8-ngO">
+                                <rect key="frame" x="16" y="11" width="57" height="58"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="57" id="dvj-9c-wiB"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="x83-b6-fXu">
+                                <rect key="frame" x="81" y="38" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="DGF-qC-ucd"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="8wC-5v-j9h">
+                                <rect key="frame" x="81" y="55" width="16" height="16"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hdbhbahb@gmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEh-9k-nRs">
+                                <rect key="frame" x="105" y="36" width="211" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+91 9482189901" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hH2-UJ-QXg">
+                                <rect key="frame" x="105" y="54" width="211" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anuj" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsn-fo-koh">
+                                <rect key="frame" x="81" y="12" width="231" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="lsn-fo-koh" firstAttribute="leading" secondItem="x83-b6-fXu" secondAttribute="leading" id="0QK-aM-Zxd"/>
+                            <constraint firstItem="YEh-9k-nRs" firstAttribute="leading" secondItem="hH2-UJ-QXg" secondAttribute="leading" id="5Uc-wM-wvW"/>
+                            <constraint firstItem="x83-b6-fXu" firstAttribute="bottom" secondItem="YEh-9k-nRs" secondAttribute="bottom" id="6zl-k9-OWd"/>
+                            <constraint firstItem="x83-b6-fXu" firstAttribute="leading" secondItem="8wC-5v-j9h" secondAttribute="leading" id="71d-Fw-nBP"/>
+                            <constraint firstItem="x83-b6-fXu" firstAttribute="top" secondItem="lsn-fo-koh" secondAttribute="bottom" constant="8" symbolic="YES" id="COX-vb-ive"/>
+                            <constraint firstItem="YEh-9k-nRs" firstAttribute="trailing" secondItem="hH2-UJ-QXg" secondAttribute="trailing" id="GGV-dM-kWP"/>
+                            <constraint firstAttribute="trailing" secondItem="YEh-9k-nRs" secondAttribute="trailing" constant="4" id="HRx-EY-1nt"/>
+                            <constraint firstItem="YEh-9k-nRs" firstAttribute="leading" secondItem="x83-b6-fXu" secondAttribute="trailing" constant="8" symbolic="YES" id="J4B-og-fUT"/>
+                            <constraint firstItem="Tao-A8-ngO" firstAttribute="leading" secondItem="n51-Gz-KNn" secondAttribute="leading" constant="16" id="LaL-W9-NLT"/>
+                            <constraint firstItem="Tao-A8-ngO" firstAttribute="centerY" secondItem="n51-Gz-KNn" secondAttribute="centerY" id="PiP-iQ-IYC"/>
+                            <constraint firstItem="lsn-fo-koh" firstAttribute="trailing" secondItem="n51-Gz-KNn" secondAttribute="trailingMargin" id="Qax-r0-Evw"/>
+                            <constraint firstItem="hH2-UJ-QXg" firstAttribute="top" secondItem="YEh-9k-nRs" secondAttribute="bottom" id="RZk-Fs-6zB"/>
+                            <constraint firstItem="lsn-fo-koh" firstAttribute="leading" secondItem="Tao-A8-ngO" secondAttribute="trailing" constant="8" symbolic="YES" id="Use-rg-uV9"/>
+                            <constraint firstItem="8wC-5v-j9h" firstAttribute="centerY" secondItem="hH2-UJ-QXg" secondAttribute="centerY" id="VJQ-s3-1or"/>
+                            <constraint firstItem="8wC-5v-j9h" firstAttribute="top" secondItem="x83-b6-fXu" secondAttribute="bottom" constant="1" id="itb-GX-82n"/>
+                            <constraint firstItem="Tao-A8-ngO" firstAttribute="top" secondItem="n51-Gz-KNn" secondAttribute="top" constant="11" id="oWw-FY-lGD"/>
+                            <constraint firstItem="hH2-UJ-QXg" firstAttribute="bottom" secondItem="n51-Gz-KNn" secondAttribute="bottomMargin" id="vZj-if-R4v"/>
+                            <constraint firstItem="YEh-9k-nRs" firstAttribute="top" secondItem="lsn-fo-koh" secondAttribute="bottom" constant="6" id="ybz-QH-n15"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="n51-Gz-KNn" secondAttribute="trailing" id="Iez-yK-duq"/>
+                    <constraint firstItem="n51-Gz-KNn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="NEV-u6-DaE"/>
+                    <constraint firstItem="n51-Gz-KNn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SGU-A4-WnQ"/>
+                    <constraint firstItem="n51-Gz-KNn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Wcb-Xn-ZSi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="clientNameLabel" destination="lsn-fo-koh" id="bnk-EV-zPw"/>
+                <outlet property="emailIdLabel" destination="YEh-9k-nRs" id="p7j-XP-XxK"/>
+                <outlet property="phoneNumberLabel" destination="hH2-UJ-QXg" id="ZgE-SB-m0D"/>
+                <outlet property="profilePicView" destination="Tao-A8-ngO" id="XM2-oE-fd0"/>
+            </connections>
+            <point key="canvasLocation" x="379" y="202"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="default_pic" width="96" height="96"/>
+        <image name="email" width="16" height="16"/>
+        <image name="phone" width="16" height="16"/>
+    </resources>
+</document>
