@@ -1,8 +1,8 @@
 language: objective-c             
 osx_image: xcode8.1
-//xcode_workspace: Faveo Helpdesk Community.xcworkspace
-//xcode_scheme: Faveo Helpdesk Community
-//xcode_sdk: iphonesimulator -destination "name=iPhone SE"
+#-xcode_workspace: Faveo Helpdesk Community.xcworkspace
+#-xcode_scheme: Faveo Helpdesk Community
+#-xcode_sdk: iphonesimulator -destination "name=iPhone SE"
 
 script: xcodebuild
 -workspace Faveo Helpdesk Community.xcworkspace
