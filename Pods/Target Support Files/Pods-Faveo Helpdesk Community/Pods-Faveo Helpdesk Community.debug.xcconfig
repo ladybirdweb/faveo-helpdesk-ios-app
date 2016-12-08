@@ -1,0 +1,10 @@
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Crashlytics/iOS" "${PODS_ROOT}/Fabric/iOS"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/ActionSheetPicker-3.0" "${PODS_ROOT}/Headers/Public/CNPPopupController" "${PODS_ROOT}/Headers/Public/Crashlytics" "${PODS_ROOT}/Headers/Public/Fabric" "${PODS_ROOT}/Headers/Public/HexColors" "${PODS_ROOT}/Headers/Public/IQKeyboardManager" "${PODS_ROOT}/Headers/Public/MBProgressHUD"
+LIBRARY_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/ActionSheetPicker-3.0" "$PODS_CONFIGURATION_BUILD_DIR/CNPPopupController" "$PODS_CONFIGURATION_BUILD_DIR/HexColors" "$PODS_CONFIGURATION_BUILD_DIR/IQKeyboardManager" "$PODS_CONFIGURATION_BUILD_DIR/MBProgressHUD"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/ActionSheetPicker-3.0" -isystem "${PODS_ROOT}/Headers/Public/CNPPopupController" -isystem "${PODS_ROOT}/Headers/Public/Crashlytics" -isystem "${PODS_ROOT}/Headers/Public/Fabric" -isystem "${PODS_ROOT}/Headers/Public/HexColors" -isystem "${PODS_ROOT}/Headers/Public/IQKeyboardManager" -isystem "${PODS_ROOT}/Headers/Public/MBProgressHUD"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"ActionSheetPicker-3.0" -l"CNPPopupController" -l"HexColors" -l"IQKeyboardManager" -l"MBProgressHUD" -l"c++" -l"z" -framework "CoreGraphics" -framework "Crashlytics" -framework "Fabric" -framework "Foundation" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration" -framework "UIKit"
+PODS_BUILD_DIR = $BUILD_DIR
+PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_ROOT = ${SRCROOT}/Pods

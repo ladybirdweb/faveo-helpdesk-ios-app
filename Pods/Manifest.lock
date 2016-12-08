@@ -1,0 +1,31 @@
+PODS:
+  - ActionSheetPicker-3.0 (2.2.0)
+  - CNPPopupController (0.3.3)
+  - Crashlytics (3.8.3):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
+  - HexColors (4.0.0)
+  - IQKeyboardManager (4.0.7)
+  - MBProgressHUD (1.0.0)
+
+DEPENDENCIES:
+  - ActionSheetPicker-3.0
+  - CNPPopupController
+  - Crashlytics
+  - Fabric
+  - HexColors
+  - IQKeyboardManager
+  - MBProgressHUD (~> 1.0.0)
+
+SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
+  CNPPopupController: 59b06290762f68beab5fb0bbfa87eb4dcbefb7de
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  HexColors: 5f95843ef89aff6a72e1fd3a8ebabf205cc43379
+  IQKeyboardManager: 69002bb4fea60596b710e57d426abc00e5063630
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+
+PODFILE CHECKSUM: 2842d2a18596694dff25b69332ae32561411693c
+
+COCOAPODS: 1.1.1

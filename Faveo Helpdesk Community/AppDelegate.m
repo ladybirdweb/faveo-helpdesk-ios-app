@@ -10,6 +10,8 @@
 #import "LoginViewController.h"
 #import "InboxViewController.h"
 #import "HexColors.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 @property (nonatomic, strong) MBProgressHUD *progressView;
@@ -19,6 +21,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  
+    [Fabric with:@[[Crashlytics class]]];
     [self setApplicationApperance];
     
       UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
