@@ -111,6 +111,17 @@
                                                                      andCompletion:nil];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (indexPath.row == 9) {
+        return 0;
+    } else {
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+   
+}
+
 -(void)wipeDataInLogout{
     
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
