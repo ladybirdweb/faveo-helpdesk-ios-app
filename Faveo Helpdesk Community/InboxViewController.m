@@ -111,9 +111,7 @@
                         [self.tableView reloadData];
                     });
                 });
-                for (NSDictionary *tickets in  _mutableArray) {
-                    NSLog(@"Client-name--%@",[tickets objectForKey:@"first_name"]);
-                }
+                
             }
             NSLog(@"Thread-NO5-getInbox-closed");
             
@@ -248,9 +246,6 @@
             
             if (error || [msg containsString:@"Error"]) {
                 
-                LoadingTableViewCell *lc=[[LoadingTableViewCell alloc]init];
-               lc.loadingLbl.text=@"Failed!";
-                [lc.indicator setHidden:YES];
                 if (msg) {
                     
                     [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];

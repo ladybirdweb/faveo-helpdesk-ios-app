@@ -105,6 +105,8 @@
         callbackHandler:(callbackHandler)block{
     NSError *err;
      urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
 
     [request addValue:@"application/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];

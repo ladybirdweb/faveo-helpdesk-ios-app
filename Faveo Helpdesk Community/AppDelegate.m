@@ -65,8 +65,8 @@
 {
     
    // [[UINavigationBar appearance] setBarTintColor:[UIColor hx_colorWithHexString:@"#00aeef"]];
-    [[UINavigationBar appearance] setTintColor:[UIColor hx_colorWithHexString:@"#00aeef"]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor hx_colorWithHexString:@"#00aeef"]}];
+    [[UINavigationBar appearance] setTintColor:[UIColor hx_colorWithHexRGBAString:@"#00aeef"]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor hx_colorWithHexRGBAString:@"#00aeef"]}];
     
 //    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:8/255.0f green:16/255.0f blue:91/255.0f alpha:1.0f]];
 //    [[UINavigationBar appearance] setTintColor: [UIColor whiteColor]];
@@ -90,7 +90,7 @@
 - (void)showProgressView
 {
     MBProgressHUD *HUD =[MBProgressHUD showHUDAddedTo:self.window animated:YES];
-    HUD.labelText = @"Please wait";
+    HUD.label.text = @"Please wait";
     HUD.dimBackground = YES;
     self.progressView = HUD;
 }
@@ -98,7 +98,7 @@
 - (void)showProgressViewWithText:(NSString *)text
 {
     MBProgressHUD *HUD =[MBProgressHUD showHUDAddedTo:self.window animated:YES];
-    HUD.labelText = text;
+    HUD.label.text = text;
     HUD.dimBackground = YES;
     self.progressView = HUD;
 }

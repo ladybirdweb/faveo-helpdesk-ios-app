@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _loginButton.backgroundColor=[UIColor hx_colorWithHexString:@"#00aeef"];
+    _loginButton.backgroundColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
     utils=[[Utils alloc]init];
     userdefaults=[NSUserDefaults standardUserDefaults];
 }

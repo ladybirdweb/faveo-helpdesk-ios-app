@@ -66,10 +66,17 @@
         [webservices httpResponseGET:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
             
             if (error || [msg containsString:@"Error"]) {
- [refresh endRefreshing];
+                [refresh endRefreshing];
                 [[AppDelegate sharedAppdelegate] hideProgressView];
-                [utils showAlertWithMessage:@"Error" sendViewController:self];
-                NSLog(@"Thread-NO4-getClients-Refresh-error == %@",error.localizedDescription);
+                
+                if (msg) {
+                    
+                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
+                    
+                }else if(error)  {
+                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
+                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
+                }
                 return ;
             }
             
@@ -127,11 +134,15 @@
         [webservices getNextPageURL:_nextPageUrl callbackHandler:^(NSError *error,id json,NSString* msg) {
             
             if (error || [msg containsString:@"Error"]) {
-                LoadingTableViewCell *lc=[[LoadingTableViewCell alloc]init];
-                lc.loadingLbl.text=@"Failed!";
-                [lc.indicator setHidden:YES];
-                [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
+                
+                if (msg) {
+                    
+                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
+                    
+                }else if(error)  {
+                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
+                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
+                }
                 return ;
             }
             

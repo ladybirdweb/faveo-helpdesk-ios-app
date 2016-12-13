@@ -35,7 +35,7 @@
     NSLog(@"ConversationVC");
     _activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-100);
-    _activityIndicatorObject.color=[UIColor hx_colorWithHexString:@"#00aeef"];
+    _activityIndicatorObject.color=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
     [self.view addSubview:_activityIndicatorObject];
     [self addUIRefresh];
     utils=[[Utils alloc]init];
@@ -43,6 +43,7 @@
     userDefaults=[NSUserDefaults standardUserDefaults];
     [_activityIndicatorObject startAnimating];
     [self reload];
+     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view.
 }
 
@@ -60,14 +61,20 @@
         
         MyWebservices *webservices=[MyWebservices sharedInstance];
         [webservices httpResponseGET:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
-            
+
             if (error || [msg containsString:@"Error"]) {
-                 [self.refreshControl endRefreshing];
-                  [_activityIndicatorObject stopAnimating];
+                [self.refreshControl endRefreshing];
+                [_activityIndicatorObject stopAnimating];
                 [[AppDelegate sharedAppdelegate] hideProgressView];
-                [utils showAlertWithMessage:@"Error" sendViewController:self];
-                NSLog(@"Thread-NO4-getConversation-Refresh-error == %@",error.localizedDescription);
-                self.noDataLabel.text=@"Error";
+                if (msg) {
+                    
+                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
+                    
+                }else if(error)  {
+                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
+                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
+                }
+                
                 return ;
             }
             

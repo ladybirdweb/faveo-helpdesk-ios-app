@@ -43,7 +43,7 @@
     
     _activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-50);
-    _activityIndicatorObject.color=[UIColor hx_colorWithHexString:@"#00aeef"];
+    _activityIndicatorObject.color=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
     [self.view addSubview:_activityIndicatorObject];
     [self addUIRefresh];
     utils=[[Utils alloc]init];
@@ -66,6 +66,7 @@
     
     [_activityIndicatorObject startAnimating];
     [self reload];
+     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view.
 }
 

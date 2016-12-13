@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
       [self setTitle:@"About"];
-    _websiteButton.backgroundColor=[UIColor hx_colorWithHexString:@"#00aeef"];
+    _websiteButton.backgroundColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
     // Do any additional setup after loading the view.
 }
 
@@ -50,7 +50,7 @@
     
     NSURL *url = [NSURL URLWithString:@"http://www.faveohelpdesk.com/"];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
-        [[UIApplication sharedApplication] openURL:url];
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
     }else {
      
     }

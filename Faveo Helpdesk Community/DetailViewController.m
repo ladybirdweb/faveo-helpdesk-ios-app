@@ -62,10 +62,10 @@
     source_id=[[NSNumber alloc]init];
     status_id=[[NSNumber alloc]init];
     
-      _saveButton.backgroundColor=[UIColor hx_colorWithHexString:@"#00aeef"];
+      _saveButton.backgroundColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
     _activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-100);
-    _activityIndicatorObject.color=[UIColor hx_colorWithHexString:@"#00aeef"];
+    _activityIndicatorObject.color=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
     [self.view addSubview:_activityIndicatorObject];
     
     utils=[[Utils alloc]init];
@@ -76,7 +76,7 @@
     [self reload];
     
     [self readFromPlist];
-  
+   self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view.
 }
 
@@ -97,11 +97,24 @@
         [webservices httpResponseGET:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
             
             if (error) {
-                [self.refreshControl endRefreshing];
-                [_activityIndicatorObject stopAnimating];
-               
+                
                 [utils showAlertWithMessage:@"Error" sendViewController:self];
                 NSLog(@"Thread-NO4-getDetail-Refresh-error == %@",error.localizedDescription);
+                
+                return ;
+            }
+            if (error || [msg containsString:@"Error"]) {
+                
+                [self.refreshControl endRefreshing];
+                [_activityIndicatorObject stopAnimating];
+                
+                if (msg) {
+                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
+                    
+                }else if(error)  {
+                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
+                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
+                }
                 
                 return ;
             }
@@ -355,10 +368,18 @@
         
         [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
             [[AppDelegate sharedAppdelegate] hideProgressView];
+   
             if (error || [msg containsString:@"Error"]) {
                 
-                [utils showAlertWithMessage:msg sendViewController:self];
-                NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
+                if (msg) {
+                    
+                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
+                    
+                }else if(error)  {
+                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
+                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
+                }
+                
                 return ;
             }
             

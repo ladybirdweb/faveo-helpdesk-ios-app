@@ -58,8 +58,8 @@
     [self readFromPlist];
     [self setTitle:@"CreateTicket"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _submitButton.backgroundColor=[UIColor hx_colorWithHexString:@"#00aeef"];
-    
+    _submitButton.backgroundColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view.
 }
 
@@ -262,13 +262,13 @@
         [utils showAlertWithMessage:@"Name should have more than 2 characters" sendViewController:self];
     }else {
         NSLog(@"ticketCreated dept_id-%@, help_id-%@ ,sla_id-%@, pri_id-%@",dept_id,help_topic_id,sla_id,priority_id);
-        [self reload];
+        [self createTicket];
     }
     
 }
 
 
--(void)reload{
+-(void)createTicket{
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
@@ -290,16 +290,24 @@
         
         [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
             [[AppDelegate sharedAppdelegate] hideProgressView];
+            
             if (error || [msg containsString:@"Error"]) {
+              
+                if (msg) {
+                    
+                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
+                    
+                }else if(error)  {
+                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
+                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
+                }
                 
-                [utils showAlertWithMessage:msg sendViewController:self];
-                NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
                 return ;
             }
             
             if ([msg isEqualToString:@"tokenRefreshed"]) {
                 
-                [self reload];
+                [self createTicket];
                 NSLog(@"Thread--NO4-call-postCreateTicket");
                 return;
             }
