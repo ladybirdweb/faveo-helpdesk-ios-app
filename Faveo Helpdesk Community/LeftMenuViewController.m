@@ -139,6 +139,11 @@
         //TODO: Handle/Log error
     }
     
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *each in cookieStorage.cookies) {
+        [cookieStorage deleteCookie:each];
+    }
+    
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {

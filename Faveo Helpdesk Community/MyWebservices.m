@@ -103,7 +103,7 @@
 -(void)httpResponsePOST:(NSString *)urlString
               parameter:(id)parameter
         callbackHandler:(callbackHandler)block{
-    NSError *err;
+     NSError *err;
      urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     
@@ -128,6 +128,7 @@
    NSLog(@"Request body %@", [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding]);
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] ];
+    
     
     [[session dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
         if (error) {
@@ -180,6 +181,7 @@
     }] resume];
     
 }
+
 
 -(void)httpResponseGET:(NSString *)urlString
              parameter:(id)parameter

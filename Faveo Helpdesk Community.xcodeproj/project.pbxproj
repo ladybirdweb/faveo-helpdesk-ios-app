@@ -851,6 +851,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c03d3e99-3f12-4d27-ade7-98bc22b3403c";
 				PROVISIONING_PROFILE_SPECIFIER = "Faveo Helpdesk Community dev";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -869,6 +870,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "be1fbbcf-6898-42bf-ae4f-059cc09b3d8f";
 				PROVISIONING_PROFILE_SPECIFIER = "Faveo Heldpesk Community dis";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -79,8 +79,10 @@
             
                         NSString *url=[NSString stringWithFormat:@"%@api/v1/helpdesk/url?url=%@&api_key=%@",baseURL,[baseURL substringToIndex:[baseURL length]-1],API_KEY];
             
-                         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-            
+                        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+                        [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                        [request addValue:@"application/json" forHTTPHeaderField:@"Offer-type"];
+                        [request setTimeoutInterval:45.0];
                         [request setURL:[NSURL URLWithString:url]];  // add your url
                         [request setHTTPMethod:@"GET"];  // specify the JSON type to GET
             
