@@ -9,6 +9,10 @@ os: osx
 osx_image: xcode8.2.1
 cache:
   - cocoapods
+  
+  
+ script:
+  - xcodebuild [DEFAULT_OPTIONS] CODE_SIGNING_REQUIRED=NO
 #env:
   #matrix:
  #   - TEST_TYPE=iOS
