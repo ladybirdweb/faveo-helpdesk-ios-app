@@ -1,4 +1,4 @@
-platform:ios,'10.1'
+platform:ios,'10.2'
 
 target 'Faveo Helpdesk Community' do
 pod 'Fabric'
