@@ -16,7 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *clientNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 
+@property (strong,nonatomic) NSString *imageURL;
 -(void)setUserProfileimage:(NSString*)imageUrl;
 
 @property(nonatomic,strong) NSString * isClientActive;

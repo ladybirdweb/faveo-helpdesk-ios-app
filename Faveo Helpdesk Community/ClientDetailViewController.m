@@ -28,7 +28,6 @@
 }
 
 @property (nonatomic,retain) UIActivityIndicatorView *activityIndicatorObject;
-@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (nonatomic,strong) UILabel *noDataLabel;
 
 @end
@@ -40,6 +39,9 @@
     
     self.profileImageView.layer.cornerRadius = 26;
     self.profileImageView.clipsToBounds = YES;
+    self.profileImageView.layer.borderWidth=1.3f;
+    self.profileImageView.layer.borderColor=[[UIColor hx_colorWithHexRGBAString:@"#0288D1"] CGColor];
+    [self setUserProfileimage:_imageURL];
     
     _activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-50);
@@ -75,6 +77,7 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
+        [refresh endRefreshing];
         [_activityIndicatorObject stopAnimating];
         [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
@@ -172,9 +175,10 @@
     cell.ticketSubLbl.text=[finaldic objectForKey:@"title"];
 
     if ([[finaldic objectForKey:@"ticket_status_name"] isEqualToString:@"Open"]) {
-        cell.indicationView.layer.backgroundColor=[[UIColor greenColor] CGColor];
+        cell.indicationView.layer.backgroundColor=[[UIColor hx_colorWithHexRGBAString:SUCCESS_COLOR] CGColor];
     }else{
-        cell.indicationView.layer.backgroundColor=[[UIColor redColor] CGColor];
+        cell.indicationView.layer.backgroundColor=[[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] CGColor];
+        
     }
     return cell;
 }

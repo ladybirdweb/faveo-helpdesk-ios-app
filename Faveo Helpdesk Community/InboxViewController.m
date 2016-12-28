@@ -61,11 +61,11 @@
 -(void)reload{
     
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
-    {
-        //connection unavailable
+    {          //connection unavailable
         [[AppDelegate sharedAppdelegate] hideProgressView];
         [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
-        
+        [refresh endRefreshing];
+
     }else{
         
         //        [[AppDelegate sharedAppdelegate] showProgressView];

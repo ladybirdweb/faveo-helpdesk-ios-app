@@ -52,7 +52,7 @@
 -(void)reload{
     
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
-    {
+    { [refresh endRefreshing];
         //connection unavailable
         [[AppDelegate sharedAppdelegate] hideProgressView];
         [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
@@ -278,8 +278,8 @@
     }
     
     ClientDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"ClientDetailVCID"];
-   
-    [td setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
+    td.imageURL=[finaldic objectForKey:@"profile_pic"];
+
     
     if ([isActive isEqualToString:@"1"]) {
         isActive=@"ACTIVE";
