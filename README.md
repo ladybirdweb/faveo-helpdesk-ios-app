@@ -1,8 +1,8 @@
-Faveo Helpdesk community iOS app
+Faveo Helpdesk Community iOS app
 ========
-<br><img src="https://travis-ci.org/ladybirdweb/faveo-helpdesk-android-app.svg?branch=master">&nbsp;<img src="https://img.shields.io/badge/License-OSL-blue.svg">&nbsp;<a href="https://gitter.im/ladybirdweb/faveo-helpdesk" target="_blank"><img src="https://badges.gitter.im/ladybirdweb/faveo-helpdesk.svg"></a>
+<img src="https://travis-ci.org/ladybirdweb/faveo-helpdesk-android-app.svg?branch=master"> <img src="https://img.shields.io/badge/License-OSL-blue.svg"> <a href="https://gitter.im/ladybirdweb/faveo-helpdesk" target="_blank"><img src="https://badges.gitter.im/ladybirdweb/faveo-helpdesk.svg"></a>
 
-Faveo iOS app works along with Faveo Helpdesk Community edition web application. This app will also be avilable on Apple store and can be installed directly from there. To use this app on your phone/tablet you must have Faveo Helpdesk web application installed on your server.
+Faveo iOS app works along with Faveo Helpdesk Community edition web application. This app will also be available on Apple store and can be installed directly from there. To use this app on your phone/tablet you must have Faveo Helpdesk web application installed on your server.
 
 Faveo iOS app is designed & developed by <a href="http://www.ladybirdweb.com/" target="_blank">Ladybird Web Solution Pvt Ltd</a>.
 
@@ -15,9 +15,15 @@ Faveo Community
 Join Faveo discussion group and stay tuned to latest updates. 
 <a href="https://www.linkedin.com/groups/8429668" target="_blank">Join here</a>
 
-Contributing
+Support the community edition
 --------------------------
-Create your own fork of Faveo master repositoray and use <a href="https://github.com/nvie/gitflow">git-flow</a> to create a new feature. Once the feature is published in your fork, send a pull request to begin the conversation of integrating your new feature into Faveo.
+If you are using our product and want to support us <a href="https://github.com/ladybirdweb/faveo-helpdesk/wiki/Support-the-community-edition" target="_blank">Click here</a>
+
+Contribute
+--------------------------
+If you are a developer and want to contribute towards Faveo's development. Follow these instructions.
+
+Create your own fork of Faveo master repository and use <a href="https://github.com/nvie/gitflow">git-flow</a> to create a new feature. Once the feature is published in your fork, send a pull request to begin the conversation of integrating your new feature into Faveo.
 
 Help
 --------------------------
