@@ -12,7 +12,18 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    UIBezierPath *maskPath = [UIBezierPath
+                              bezierPathWithRoundedRect:self.indicationView.bounds
+                              byRoundingCorners:(UIRectCornerTopRight | UIRectCornerBottomRight)
+                              cornerRadii:CGSizeMake(10, 10)
+                              ];
+    
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    
+    maskLayer.frame = self.bounds;
+    maskLayer.path = maskPath.CGPath;
+    
+    self.indicationView.layer.mask = maskLayer;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

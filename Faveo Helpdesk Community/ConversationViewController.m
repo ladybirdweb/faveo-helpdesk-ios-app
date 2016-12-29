@@ -52,6 +52,7 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
+            [self.refreshControl endRefreshing];
           [_activityIndicatorObject stopAnimating];
           [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
@@ -161,7 +162,13 @@
         [cell.internalNoteLabel setHidden:NO]; 
     }
    
-     cell.clientNameLabel.text=[NSString stringWithFormat:@"%@ %@",[finaldic objectForKey:@"first_name"],[finaldic objectForKey:@"last_name"]];
+    NSString *fName=[finaldic objectForKey:@"first_name"];
+    if ([fName isEqualToString:@""]) {
+        fName=@"Not Available";
+    }else{
+        fName=[NSString stringWithFormat:@"%@ %@",[finaldic objectForKey:@"first_name"],[finaldic objectForKey:@"last_name"]];
+    }
+    cell.clientNameLabel.text=fName;
      [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
     
     return cell;

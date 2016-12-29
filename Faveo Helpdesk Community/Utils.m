@@ -8,6 +8,7 @@
 
 #import "Utils.h"
 #import "AppConstanst.h"
+#import "NSDate+NVTimeAgo.h"
 
 @interface Utils ()
 
@@ -127,8 +128,9 @@
     
     [dtFormat setDateFormat:@"d MMM yyyy HH:mm"];
     [dtFormat setTimeZone:[NSTimeZone systemTimeZone]];
+    NSString * fg=[dtFormat stringFromDate:aDate];
     
-    return [dtFormat stringFromDate:aDate];
+    return [[dtFormat dateFromString:fg] formattedAsTimeAgo];
 }
 
 @end

@@ -50,7 +50,7 @@
     
     NSURL *url = [NSURL URLWithString:@"http://www.faveohelpdesk.com/"];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
-        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+        [[UIApplication sharedApplication] openURL:url options:nil completionHandler:nil];
     }else {
      
     }
