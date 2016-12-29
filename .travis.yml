@@ -1,8 +1,8 @@
 
-branches:
-  only:
-    - master
-    - develop
+#branches:
+ # only:
+ #   - master
+   # - develop
 language: objective-c
 xcode_workspace: Faveo Helpdesk Community.xcworkspace
 xcode_scheme: Faveo Helpdesk Community
