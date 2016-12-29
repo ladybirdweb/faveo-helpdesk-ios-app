@@ -1,4 +1,4 @@
-platform:ios,'10.2'
+platform:ios,'9.0'
 
 target 'Faveo Helpdesk Community' do
     pod 'Fabric'
@@ -6,7 +6,7 @@ target 'Faveo Helpdesk Community' do
     pod 'NSDate-Time-Ago'
     pod 'HexColors'
     pod 'IQKeyboardManager'
-    pod 'MBProgressHUD', '~> 1.0.0'
+    pod 'MBProgressHUD'
     pod 'CNPPopupController'
     pod 'ActionSheetPicker-3.0'
     pod 'M13ProgressSuite'

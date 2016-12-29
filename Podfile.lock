@@ -23,7 +23,7 @@ DEPENDENCIES:
   - HexColors
   - IQKeyboardManager
   - M13ProgressSuite
-  - MBProgressHUD (~> 1.0.0)
+  - MBProgressHUD
   - NSDate-Time-Ago
   - SDWebImage
 
@@ -40,6 +40,6 @@ SPEC CHECKSUMS:
   NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 0ae69b9be1d045cdc451815e08ce5d7ecfda7ca3
+PODFILE CHECKSUM: a4ed1f7ed2ed979302bd1c273cd3eee68350e7bf
 
 COCOAPODS: 1.1.1
