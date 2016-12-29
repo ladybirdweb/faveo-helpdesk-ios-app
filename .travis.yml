@@ -6,7 +6,7 @@
 language: objective-c
 xcode_workspace: Faveo Helpdesk Community.xcworkspace
 xcode_scheme: Faveo Helpdesk Community
-xcode_sdk: iphonesimulator10.2
+xcode_sdk: iphonesimulator9.3
 os: osx
 osx_image: xcode8.2.1
 #cache:
