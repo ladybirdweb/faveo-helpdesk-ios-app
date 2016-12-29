@@ -2,28 +2,30 @@
 branches:
   only:
     - master
+    - develop
 language: objective-c
-#xcode_workspace: Faveo Helpdesk Community.xcworkspace
-#xcode_scheme: Faveo Helpdesk Community
+xcode_workspace: Faveo Helpdesk Community.xcworkspace
+xcode_scheme: Faveo Helpdesk Community
+xcode_sdk: iphonesimulator10.2
 os: osx
 osx_image: xcode8.2.1
 #cache:
 #  - cocoapods
 podfile: Faveo Helpdesk Community/Podfile
 
-script:
+#script:
 
-  xctool
-  -workspace Faveo Helpdesk Community/Faveo Helpdesk Community.xcworkspace
-  -scheme Faveo Helpdesk CommunityTests
-  -sdk iphonesimulator
-  -destination 'platform=iOS Simulator,name=iPhone 7 Plus'
-  build 
-  test
-  ONLY_ACTIVE_ARCH=NO
-  CODE_SIGN_IDENTITY=""
-  CODE_SIGNING_REQUIRED=NO
+#  xctool
+#  -workspace Faveo Helpdesk Community/Faveo Helpdesk Community.xcworkspace
+ # -scheme Faveo Helpdesk CommunityTests
+ # -sdk iphonesimulator
+#  -destination 'platform=iOS Simulator,name=iPhone 7 Plus'
+#  build 
+#  test
+#  ONLY_ACTIVE_ARCH=NO
+ # CODE_SIGN_IDENTITY=""
+#  CODE_SIGNING_REQUIRED=NO
 
-before_install:
-  - brew update
-  - brew uninstall xctool && brew install --HEAD xctool
+#before_install:
+#  - brew update
+#  - brew uninstall xctool && brew install --HEAD xctool
