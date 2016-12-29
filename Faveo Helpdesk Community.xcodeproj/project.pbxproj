@@ -16,7 +16,6 @@
 		D94371EA1DF80C2700DB7376 /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371E21DF80C2700DB7376 /* SlideNavigationContorllerAnimatorScaleAndFade.m */; };
 		D94371EB1DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371E41DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlide.m */; };
 		D94371EC1DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371E61DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlideAndFade.m */; };
-		D94371F41DF80DA300DB7376 /* NetworkApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371F11DF80DA300DB7376 /* NetworkApi.m */; };
 		D94371F81DF8104800DB7376 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94371F71DF8104800DB7376 /* SystemConfiguration.framework */; };
 		D94371FA1DF8105500DB7376 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94371F91DF8105500DB7376 /* Foundation.framework */; };
 		D94371FC1DF8105C00DB7376 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94371FB1DF8105C00DB7376 /* CoreGraphics.framework */; };
@@ -98,8 +97,6 @@
 		D94371E41DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideNavigationContorllerAnimatorSlide.m; sourceTree = "<group>"; };
 		D94371E51DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlideAndFade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideNavigationContorllerAnimatorSlideAndFade.h; sourceTree = "<group>"; };
 		D94371E61DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlideAndFade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideNavigationContorllerAnimatorSlideAndFade.m; sourceTree = "<group>"; };
-		D94371F01DF80DA300DB7376 /* NetworkApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkApi.h; sourceTree = "<group>"; };
-		D94371F11DF80DA300DB7376 /* NetworkApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkApi.m; sourceTree = "<group>"; };
 		D94371F21DF80DA300DB7376 /* AppConstanst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstanst.h; sourceTree = "<group>"; };
 		D94371F71DF8104800DB7376 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D94371F91DF8105500DB7376 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -256,8 +253,6 @@
 		D94371ED1DF80D8600DB7376 /* OtherClasses */ = {
 			isa = PBXGroup;
 			children = (
-				D94371F01DF80DA300DB7376 /* NetworkApi.h */,
-				D94371F11DF80DA300DB7376 /* NetworkApi.m */,
 				D94371F21DF80DA300DB7376 /* AppConstanst.h */,
 				D9787A931DF800B6009C745F /* AppDelegate.h */,
 				D9787A941DF800B6009C745F /* AppDelegate.m */,
@@ -685,7 +680,6 @@
 				D943724D1DF8153400DB7376 /* UnassignedTicketsViewController.m in Sources */,
 				D943722D1DF8151100DB7376 /* LoadingTableViewCell.m in Sources */,
 				D94372571DF8153400DB7376 /* ConversationViewController.m in Sources */,
-				D94371F41DF80DA300DB7376 /* NetworkApi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -846,12 +840,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: narendra baratam (BCU77U4N5P)";
 				DEVELOPMENT_TEAM = 8VY8B59STG;
 				INFOPLIST_FILE = "Faveo Helpdesk Community/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ladybirdwebsolutions.FaveoHelpdeskCommunity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f28ec55b-5ef7-4306-9b8c-0499cfb7eddf";
-				PROVISIONING_PROFILE_SPECIFIER = "Faveo Helpdesk Pro Dev 1";
+				PROVISIONING_PROFILE = "c03d3e99-3f12-4d27-ade7-98bc22b3403c";
+				PROVISIONING_PROFILE_SPECIFIER = "Faveo Helpdesk Community dev";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -866,7 +860,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ladybird Web Solution Private Limited (8VY8B59STG)";
 				DEVELOPMENT_TEAM = 8VY8B59STG;
 				INFOPLIST_FILE = "Faveo Helpdesk Community/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ladybirdwebsolutions.FaveoHelpdeskCommunity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
