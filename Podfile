@@ -12,6 +12,7 @@ target 'Faveo Helpdesk Community' do
     pod 'M13ProgressSuite'
     pod 'SDWebImage'
     pod 'DZNEmptyDataSet'
+    pod 'RKDropdownAlert'
 end
 
 

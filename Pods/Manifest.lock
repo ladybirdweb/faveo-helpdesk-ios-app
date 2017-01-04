@@ -10,6 +10,7 @@ PODS:
   - M13ProgressSuite (1.2.9)
   - MBProgressHUD (1.0.0)
   - NSDate-Time-Ago (1.0.1)
+  - RKDropdownAlert (0.3.0)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - M13ProgressSuite
   - MBProgressHUD
   - NSDate-Time-Ago
+  - RKDropdownAlert
   - SDWebImage
 
 SPEC CHECKSUMS:
@@ -38,8 +40,9 @@ SPEC CHECKSUMS:
   M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41
+  RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: ad69fc788bda291236ed6fcd01fa47e624d138e6
+PODFILE CHECKSUM: 6bd835fcfe017e7d7727610406b59cb77aedae45
 
 COCOAPODS: 1.1.1

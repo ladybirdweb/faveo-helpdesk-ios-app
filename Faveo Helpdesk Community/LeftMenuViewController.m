@@ -7,7 +7,9 @@
 //
 
 #import "LeftMenuViewController.h"
-
+#import "RKDropdownAlert.h"
+#import "HexColors.h"
+#import "AppConstanst.h"
 
 @interface LeftMenuViewController ()
 
@@ -93,6 +95,7 @@
             //[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
             //[[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:NO];
            
+            [RKDropdownAlert title:@"Faveo Helpdesk" message:@"You've logged out, successfully." backgroundColor:[UIColor hx_colorWithHexRGBAString:SUCCESS_COLOR] textColor:[UIColor whiteColor]];
             vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Login"];
            // (vc.view.window!.rootViewController?).dismissViewControllerAnimated(false, completion: nil);
             break;

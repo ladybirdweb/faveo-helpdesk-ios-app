@@ -9,13 +9,13 @@
 #import "TicketDetailViewController.h"
 #import "CNPPopupController.h"
 #import "Utils.h"
-#import "HexColors.h"
 #import "AppDelegate.h"
 #import "AppConstanst.h"
 #import "Reachability.h"
 #import "MyWebservices.h"
 #import "GlobalVariables.h"
-
+#import "RKDropdownAlert.h"
+#import "HexColors.h"
 //#import "ReplyViewController.h"
 
 @interface TicketDetailViewController () <CNPPopupControllerDelegate>{
@@ -284,7 +284,7 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
+        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
         
     }else{
         
@@ -342,7 +342,7 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
+        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
         
     }else{
         

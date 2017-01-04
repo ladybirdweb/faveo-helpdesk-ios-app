@@ -16,6 +16,7 @@
 #import "TicketDetailViewController.h"
 #import "OpenCloseTableViewCell.h"
 #import "GlobalVariables.h"
+#import "RKDropdownAlert.h"
 
 @interface ClientDetailViewController ()
 {
@@ -79,8 +80,7 @@
         //connection unavailable
         [refresh endRefreshing];
         [_activityIndicatorObject stopAnimating];
-        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
-        
+        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
     }else{
         
         NSString *url=[NSString stringWithFormat:@"%@helpdesk/my-tickets-user?api_key=%@&ip=%@&token=%@&user_id=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],_clientId];
