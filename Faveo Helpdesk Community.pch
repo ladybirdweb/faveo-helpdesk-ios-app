@@ -1,0 +1,22 @@
+//
+//  Faveo Helpdesk Community.pch
+//  Faveo Helpdesk Community
+//
+//  Created by Narendra on 26/04/17.
+//  Copyright © 2017 Ladybird websolutions pvt ltd. All rights reserved.
+//
+
+#ifndef Faveo_Helpdesk_Community_pch
+#define Faveo_Helpdesk_Community_pch
+
+#ifdef DEBUG
+#    define DLog(...) NSLog(__VA_ARGS__)
+#else
+#    define DLog(...) /* */
+#endif
+#define ALog(...) NSLog(__VA_ARGS__)
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* Faveo_Helpdesk_Community_pch */

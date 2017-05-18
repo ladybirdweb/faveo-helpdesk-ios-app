@@ -171,6 +171,7 @@
 		D9787AB51DF800B6009C745F /* Faveo_Helpdesk_CommunityUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Faveo_Helpdesk_CommunityUITests.m; sourceTree = "<group>"; };
 		D9787AB71DF800B6009C745F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D99C60601DFA7B70006FE5E5 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		D9B5A9381EB0D1F80054D15C /* Faveo Helpdesk Community.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Faveo Helpdesk Community.pch"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,6 +410,7 @@
 		D9787A901DF800B6009C745F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D9B5A9381EB0D1F80054D15C /* Faveo Helpdesk Community.pch */,
 				D99C60601DFA7B70006FE5E5 /* countries.json */,
 				D94371551DF8050800DB7376 /* faveoData.plist */,
 				D9787A991DF800B6009C745F /* Main.storyboard */,
