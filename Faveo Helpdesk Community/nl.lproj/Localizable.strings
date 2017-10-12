@@ -1,0 +1,58 @@
+/*
+ Localization.strings
+ Faveo Helpdesk Pro
+ 
+ Created by Narendra on 03/04/17.
+ Copyright © 2017 Ladybird websolutions pvt ltd. All rights reserved.
+ */
+
+"Please Enter the URL"="Vul alstublieft de URL in ";
+"Verifying URL"="Verificatie URL";
+"Error verifying URL"="Fout bij het verifiëren van URL";
+"Please Enter a valid URL"="Vul alstublieft een geldige URL in";
+"Verified URL"="Geverifieerde URL";
+"Access denied, to use pro version!"="Toegang geweigerd, pro-versie gebruiken!";
+"Please Enter Username & Password"="Vul alstublieft gebruikersnaam en wachtwoord in";
+"Please Enter Password"="Vul alstublieft het wachtwoord in";
+"You have logged in successfully."="Je hebt succesvol ingelogd.";
+"Getting Data"="Gegevens ophalen";
+"Refreshing"="Refreshing";
+"CreateTicket"="Ticket maken";
+"Inbox"="Inbox";
+"Trash Tickets"="Trash Tickets";
+"Client List"="Client List";
+"Closed Tickets"="Gesloten tickets";
+"Unassigned Tickets"="Niet-toegewezen Tickets";
+"MyTickets"="MyTickets";
+"About"="About";
+"Not Available"="Niet beschikbaar";
+"Select Helptopic"="Selecteer Helptopic";
+"Select CountryCode"="Selecteer CountryCode";
+"Please enter EMAIL-ID"="Vul alstublieft EMAIL-ID in ";
+"Please enter First Name"="Voer eerst voornaam in";
+"Please select HELP-TOPIC"="Selecteer HELP-TOPIC";
+"Please select SLA"="Selecteer alstublieft SLA ";
+"Please select DEPARTMENT"="Selecteer DEPARTMENT";
+"Please select PRIORITY"="Selecteer PRIORITY";
+"Please enter SUBJECT"="Vul alstublieft SUBJECT in";
+"SUBJECT requires at least 5 characters"="SUBJECT vereist ten minste 5 tekens";
+"Please enter ticket MESSAGE"="Vul alstublieft ticket MESSAGE in";
+"MESSAGE requires at least 10 characters"="MESSAGE vereist minstens 10 tekens";
+"Invalid EMAIL_ID" ="Ongeldig EMAIL_ID";
+"FirstName should have more than 2 characters"="Naam moet meer dan 2 karakters bevatten";
+"Ticket created successfully!"="Ticket gemaakt met succes!";
+"Internal Note"="Interne opmerking";
+"Message"="Message";
+"Done"="Done";
+"Ticket Reply"="Ticket Reply";
+"Message*"="Message*";
+"Empty!!!"="Leeg!!!";
+"Cc"="Cc";
+"Please wait"="Even geduld aub   ";
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+{
+    "success": {
+        "backgroundColor": "#00C060",
+        "titleTextColor": "#FFFFFF",
+        "titleFontSize": 14,
+        "subTitleFontSize": 12,
+        "subTitleTextColor": "#FFFFFF",
+        "iconImage": "NotificationBackgroundSuccessIcon.png"
+    },
+    "normal": {
+        "backgroundColor": "#E8E8E8",
+        "titleTextColor": "#727C83",
+        "titleFontSize": 14,
+        "subTitleFontSize": 12,
+        "subTitleTextColor": "#727C83"
+    },
+    "warning": {
+        "backgroundColor": "#FFCC00",
+        "titleTextColor": "#484638",
+        "titleFontSize": 14,
+        "subTitleFontSize": 12,
+        "subTitleTextColor": "#484638",
+        "iconImage": "NotificationBackgroundWarningIcon.png"
+    },
+    "error": {
+        "backgroundColor": "#FF2D55",
+        "titleTextColor": "#FFFFFF",
+        "titleFontSize": 14,
+        "subTitleFontSize": 12,
+        "subTitleTextColor": "#FFFFFF",
+        "iconImage": "NotificationBackgroundErrorIcon.png"
+    }
+}

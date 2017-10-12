@@ -1,0 +1,55 @@
+/*
+ Localization.strings
+ Faveo Helpdesk Pro
+ 
+ Created by Narendra on 03/04/17.
+ Copyright © 2017 Ladybird websolutions pvt ltd. All rights reserved.
+ */
+
+"Please Enter the URL"="Inserire l'URL";
+"Verifying URL"="Verifica URL";
+"Error verifying URL"="Errore verifica URL";
+"Please Enter a valid URL"="Inserisci un URL valido";
+"Verified URL"="URL Verificato";
+"Access denied, to use pro version!"="Accesso negato, di utilizzare la versione pro!";
+"Please Enter Username & Password"="Inserisci nome utente e password";
+"Please Enter Password"="Inserisci la password";
+"You have logged in successfully."="Aver effettuato l'accesso con successo.";
+"Getting Data"="Ottenere dati";
+"Refreshing"="Rinfrescante";
+"CreateTicket"="Crea Ticket";
+"Inbox"="Posta in arrivo";
+"Trash Tickets"="I biglietti Trash";
+"Client List"="Client List";
+"Closed Tickets"="Closed Tickets";
+"Unassigned Tickets"="Non assegnati Tickets";
+"MyTickets"="I miei biglietti";
+"About"="A proposito di";
+"Not Available"="Non disponibile";
+"Select Helptopic"="Selezionare HelpTopic";
+"Select CountryCode"="Selezionare CountryCode";
+"Please enter EMAIL-ID"="Si prega di inserire EMAIL-ID";
+"Please enter First Name"="Si prega di inserire Nome";
+"Please select HELP-TOPIC"="Selezionare HELP-TOPIC";
+"Please select SLA"="Selezionare SLA";
+"Please select DEPARTMENT"="Selezionare REPARTO";
+"Please select PRIORITY"="Si prega di selezionare la priorità";
+"Please enter SUBJECT"="Si prega di inserire OGGETTO";
+"SUBJECT requires at least 5 characters"="SOGGETTO richiede almeno 5 caratteri";
+"Please enter ticket MESSAGE"="Si prega di inserire MESSAGE biglietto";
+"MESSAGE requires at least 10 characters"="MESSAGE richiede almeno 10 caratteri";
+"Invalid EMAIL_ID" ="EMAIL_ID non valido";
+"FirstName should have more than 2 characters"="Nome dovrebbe avere più di 2 caratteri";
+"Ticket created successfully!"="Ticket creato con successo!";
+"Internal Note"="Nota interna";
+"Message"="Messaggio";
+"Done"="Fatto";
+"Ticket Reply"="";
+"Message*"="Messaggio *";
+"Empty!!!"="Vuoto!!!";
+"Cc"="Cc";
+"Please wait"="attendere prego";
+
+
+
+

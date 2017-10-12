@@ -171,24 +171,9 @@
  */
 - (void)addRightButtonOnKeyboardWithText:(nullable NSString*)text target:(nullable id)target action:(nullable SEL)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
 
-/**
- Helper function to add Right button on keyboard.
- 
- @param image Image icon to use as right button.
- @param target Target object for selector.
- @param action Right button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
- @param shouldShowPlaceholder A boolean to indicate whether to show textField placeholder on IQToolbar'.
- */
+
 - (void)addRightButtonOnKeyboardWithImage:(nullable UIImage*)image target:(nullable id)target action:(nullable SEL)action shouldShowPlaceholder:(BOOL)showPlaceholder;
 
-/**
- Helper function to add Right button on keyboard.
- 
- @param image Image icon to use as right button.
- @param target Target object for selector.
- @param action Right button action name. Usually 'doneAction:(IQBarButtonItem*)item'.
- @param titleText text to show as title in IQToolbar'.
- */
 - (void)addRightButtonOnKeyboardWithImage:(nullable UIImage*)image target:(nullable id)target action:(nullable SEL)action titleText:(nullable NSString*)titleText;
 
 ///------------------

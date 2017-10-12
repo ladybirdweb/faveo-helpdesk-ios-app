@@ -2,9 +2,6 @@
 //  Utils.m
 //  SideMEnuDemo
 //
-//  Created by Narendra on 07/11/16.
-//  Copyright © 2016 Ladybird websolutions pvt ltd. All rights reserved.
-//
 
 #import "Utils.h"
 #import "AppConstanst.h"
@@ -26,6 +23,7 @@
     transition.subtype =kCATransitionFromRight;
     // transition.delegate = self;
     [views.layer addAnimation:transition forKey:nil];
+   
 }
 
 -(void)viewSlideInFromLeftToRight:(UIView *)views
@@ -66,11 +64,18 @@
 
 + (BOOL)validateUrl: (NSString *) url {
     
-    NSString *theURL =
-    @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
-    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", theURL];
+//    NSString *theURL =
+//    @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+//    
+//    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", theURL];
     
-    return [urlTest evaluateWithObject:url];
+    NSURL* urls = [NSURL URLWithString:url];
+    if (urls == nil) {
+       
+        NSLog(@"Nope %@ is not a proper URL", url);
+         return NO;
+    }
+   return YES;
 }
 
 -(void)showAlertWithMessage:(NSString*)message sendViewController:(UIViewController *)viewController
@@ -90,7 +95,7 @@
 
 +(BOOL)emailValidation:(NSString *)strEmail;
 {
-    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSString *emailRegex = @"[A-Z0-9a-z._%+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSPredicate *emailTest =[NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     BOOL myStringMatchesRegEx=[emailTest evaluateWithObject:strEmail];
  
@@ -111,7 +116,7 @@
     //NSString *expression = @" ";
     
     //if([strUsername compare:expression])
-    if(strUsername.length >= 2){
+    if(strUsername.length >= 5){
         
         return YES;
     }
@@ -130,7 +135,67 @@
     [dtFormat setTimeZone:[NSTimeZone systemTimeZone]];
     NSString * fg=[dtFormat stringFromDate:aDate];
     
+    
+//    TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+//   return [timeIntervalFormatter stringForTimeIntervalFromDate:aDate toDate:[NSDate date]];
+    
     return [[dtFormat dateFromString:fg] formattedAsTimeAgo];
+    
+}
+
+-(NSString *)getLocalDateTimeFromUTCDueDate:(NSString *)strDate
+{
+    NSDateFormatter *dtFormat = [[NSDateFormatter alloc] init];
+    [dtFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dtFormat setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    NSDate *aDate = [dtFormat dateFromString:strDate];
+    
+    [dtFormat setDateFormat:@"d MMM yyyy HH:mm"];
+    [dtFormat setTimeZone:[NSTimeZone systemTimeZone]];
+    NSString *fg=[dtFormat stringFromDate:aDate];
+    
+    return fg;
+    
+}
+
++(BOOL)isEmpty:(NSString *)str{
+    if (str == nil || str == (id)[NSNull null] || [[NSString stringWithFormat:@"%@",str] length] == 0 || [[[NSString stringWithFormat:@"%@",str] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
+        
+        return YES;
+    }
+    return NO;
+} 
+
+
+
+
+-(BOOL)compareDates:(NSString*)strDate{
+    
+    NSDateFormatter *dtFormat = [[NSDateFormatter alloc] init];
+    [dtFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dtFormat setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    NSDate *date1 = [dtFormat dateFromString:strDate];
+    
+    NSDate *todayDate = [NSDate date]; //Get todays date
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; // here we create NSDateFormatter object for change the Format of date.
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDate *date2=[dateFormatter dateFromString:[dateFormatter stringFromDate:todayDate]];
+    
+    if ([date1 compare:date2] == NSOrderedDescending) {
+        NSLog(@"date1 is later than date2");
+         return NO;
+        
+    } else if ([date1 compare:date2] == NSOrderedAscending) {
+        NSLog(@"date1 is earlier than date2");
+        return YES;
+
+    } else {
+        NSLog(@"dates are the same");
+        return NO;
+
+    }
+   
 }
 
 @end

@@ -1,0 +1,199 @@
+
+/* Class = "UILabel"; text = "Closed tickets"; ObjectID = "00M-ZV-gxI"; */
+"00M-ZV-gxI.text" = "Biglietti chiuse";
+
+/* Class = "UILabel"; text = "Last Name*"; ObjectID = "0LL-vd-wv1"; */
+"0LL-vd-wv1.text" = "Cognome*";
+
+/* Class = "UILabel"; text = "Sla Plans"; ObjectID = "437-01-M12"; */
+"437-01-M12.text" = "piani di SLA";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "6Mo-Z2-qgf"; */
+"6Mo-Z2-qgf.text" = "Email";
+
+/* Class = "UILabel"; text = "Subject*"; ObjectID = "7x1-4m-H9y"; */
+"7x1-4m-H9y.text" = "Soggetto*";
+
+/* Class = "UILabel"; text = "Last Name"; ObjectID = "9NB-2Q-SIV"; */
+"9NB-2Q-SIV.text" = "Cognome";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "9Z7-uO-fAa"; */
+"9Z7-uO-fAa.text" = "Impostazioni";
+
+/* Class = "UILabel"; text = "Client Name"; ObjectID = "AmR-Cc-CWB"; */
+"AmR-Cc-CWB.text" = "Cliente";
+
+/* Class = "UILabel"; text = "My tickets"; ObjectID = "AwE-I0-oTJ"; */
+"AwE-I0-oTJ.text" = "I miei biglietti";
+
+/* Class = "UILabel"; text = "ACTIVE"; ObjectID = "B1T-Ry-EJE"; */
+"B1T-Ry-EJE.text" = "attivo";
+
+/* Class = "UITextField"; placeholder = "Select SLA"; ObjectID = "CgG-Am-WVW"; */
+"CgG-Am-WVW.placeholder" = "Selezionare SLA";
+
+/* Class = "UILabel"; text = "Subject"; ObjectID = "E1F-Az-9Gv"; */
+"E1F-Az-9Gv.text" = "Soggetto";
+
+/* Class = "UITextField"; placeholder = "Select Priority"; ObjectID = "Fgz-Q4-nRj"; */
+"Fgz-Q4-nRj.placeholder" = "Selezionare Priority";
+
+/* Class = "UILabel"; text = "Department*"; ObjectID = "Ftd-As-0ie"; */
+"Ftd-As-0ie.text" = "Dipartimenti*";
+
+/* Class = "UILabel"; text = "HelpTopics"; ObjectID = "G6t-w8-5gE"; */
+"G6t-w8-5gE.text" = "HelpTopics";
+
+/* Class = "UITextField"; placeholder = "Ex: 9999999999"; ObjectID = "Gsy-RY-3zo"; */
+"Gsy-RY-3zo.placeholder" = "Ex: 9999999999";
+
+/* Class = "UISegmentedControl"; GzN-Yn-vAw.segmentTitles[0] = "Conversation"; ObjectID = "GzN-Yn-vAw"; */
+"GzN-Yn-vAw.segmentTitles[0]" = "Conversation";
+
+/* Class = "UISegmentedControl"; GzN-Yn-vAw.segmentTitles[1] = "Detail"; ObjectID = "GzN-Yn-vAw"; */
+"GzN-Yn-vAw.segmentTitles[1]" = "Detail";
+
+/* Class = "UILabel"; text = "jhbafbas@gmail.com"; ObjectID = "H5i-YI-b5K"; */
+"H5i-YI-b5K.text" = "jhbafbas@gmail.com";
+
+/* Class = "UILabel"; text = "Priority"; ObjectID = "ImK-IA-DcU"; */
+"ImK-IA-DcU.text" = "Priority";
+
+/* Class = "UILabel"; text = "Unassigned tickets"; ObjectID = "K2r-lG-27s"; */
+"K2r-lG-27s.text" = "Unassigned tickets";
+
+/* Class = "UILabel"; text = "Message*"; ObjectID = "KL7-aF-noB"; */
+"KL7-aF-noB.text" = "Message*";
+
+/* Class = "UILabel"; text = "Ticket list"; ObjectID = "Kwa-ua-KzA"; */
+"Kwa-ua-KzA.text" = "Ticket list";
+
+/* Class = "UILabel"; text = "COMPANY'S URL"; ObjectID = "NvZ-jN-SUK"; */
+"NvZ-jN-SUK.text" = "Società URL";
+
+/* Class = "UILabel"; text = "Logout"; ObjectID = "Nwy-MN-km4"; */
+"Nwy-MN-km4.text" = "Logout";
+
+/* Class = "UITextField"; placeholder = "Select Helptopic"; ObjectID = "OIR-WQ-j9s"; */
+"OIR-WQ-j9s.placeholder" = "Selezionare Helptopic";
+
+/* Class = "UILabel"; text = "Passcode"; ObjectID = "OQM-lN-xDk"; */
+"OQM-lN-xDk.text" = "Passcode";
+
+/* Class = "UILabel"; text = "+91 9482189901"; ObjectID = "OTI-p0-kg7"; */
+"OTI-p0-kg7.text" = "+91 9482189901";
+
+/* Class = "UILabel"; text = "Status"; ObjectID = "PYi-EK-g8m"; */
+"PYi-EK-g8m.text" = "Status";
+
+/* Class = "UILabel"; text = "HelpTopics*"; ObjectID = "QyC-lw-kS2"; */
+"QyC-lw-kS2.text" = "HelpTopics*";
+
+/* Class = "UITextField"; placeholder = "Select Status"; ObjectID = "SbQ-76-SUZ"; */
+"SbQ-76-SUZ.placeholder" = "Selezionare Status";
+
+/* Class = "UILabel"; text = "Code"; ObjectID = "UFg-tX-fNF"; */
+"UFg-tX-fNF.text" = "Code";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "Unu-1C-zRF"; */
+"Unu-1C-zRF.normalTitle" = "Submit";
+
+/* Class = "UILabel"; text = "ACZN-2015-0002015"; ObjectID = "Uyc-xp-Avp"; */
+"Uyc-xp-Avp.text" = "ACZN-2015-0002015";
+
+/* Class = "UITextField"; placeholder = "Select Source"; ObjectID = "VJe-Gu-Kf0"; */
+"VJe-Gu-Kf0.placeholder" = "Selezionare Source";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "VP0-T6-DvK"; */
+"VP0-T6-DvK.normalTitle" = "Login";
+
+/* Class = "UITextField"; placeholder = "Select Department"; ObjectID = "VRM-vp-sUX"; */
+"VRM-vp-sUX.placeholder" = "Selezionare Dipartimenti";
+
+/* Class = "UILabel"; text = "Client list"; ObjectID = "Xj6-wM-O9Q"; */
+"Xj6-wM-O9Q.text" = "Lista  client";
+
+/* Class = "UILabel"; text = "Anuj"; ObjectID = "Xmx-EM-axR"; */
+"Xmx-EM-axR.text" = "Anuj";
+
+/* Class = "UILabel"; text = "Created Date"; ObjectID = "YWC-xC-yYI"; */
+"YWC-xC-yYI.text" = "Data Creato";
+
+/* Class = "UILabel"; text = "Inbox tickets"; ObjectID = "Z79-JG-G6l"; */
+"Z79-JG-G6l.text" = "Biglietti Posta in arrivo";
+
+/* Class = "UILabel"; text = "Faveo HELPDESK"; ObjectID = "ZIG-RQ-ubz"; */
+"ZIG-RQ-ubz.text" = "Faveo HELPDESK";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "aVs-YL-pOr"; */
+"aVs-YL-pOr.text" = "A proposito di";
+
+/* Class = "UITextField"; placeholder = "Select Dept"; ObjectID = "cF2-G6-BWv"; */
+"cF2-G6-BWv.placeholder" = "Selezionare Dept";
+
+/* Class = "UIButton"; normalTitle = "Website"; ObjectID = "dBA-ZM-uZ7"; */
+"dBA-ZM-uZ7.normalTitle" = "Website";
+
+/* Class = "UILabel"; text = "version: 1.0"; ObjectID = "dkk-3v-jiw"; */
+"dkk-3v-jiw.text" = "version: 1.0";
+
+/* Class = "UITextView"; text = "Headquartered in Bangalore, Faveo HELPDESK provides Businesses with an automated Helpdesk system to manage customer support.The word Faveo comes from Latin which means to be favourable. Which truly highlights vision and the scope as well as the functionality of the product that Faveo is. It is specifically designed to cater the needs of startups and SME’s empowering them with state of art, ticket based support system. In today’s competitive startup scenario customer retention is one of the major challenges. Handling client query diligently is all the difference between retaining or losing a long lasting relationship. The company is driven with passion of providing tools for managing consumer queries for strategic insights and helping companies take those decisive decisions."; ObjectID = "eVd-3F-lkE"; */
+"eVd-3F-lkE.text" = "Faveo Helpdesk fornisce alle aziende un sistema di helpdesk automatizzato per gestire l'assistenza clienti. La parola Faveo deriva dal latino che significa essere favorevoli. Che evidenzia realmente visione e la portata e la funzionalità del prodotto che è Faveo.Faveo consente la vostra attività con stato dell'arte, sistema di supporto ticket in base. In avvio di fidelizzazione dei clienti scenario competitivo di oggi è una delle maggiori sfide. Gestione di query cliente diligentemente è la differenza tra il mantenimento o la perdita di un rapporto duraturo. L'azienda è guidata con passione di fornire strumenti per la gestione delle richieste di consumo per analisi strategiche e aiutare le aziende a prendere quelle decisioni decisive.Questa applicazione funziona con Faveo Helpdesk applicazione basata su Web Pro Edition.
+";
+
+/* Class = "UILabel"; text = "Phone"; ObjectID = "eiY-Rq-ac5"; */
+"eiY-Rq-ac5.text" = "Telefono";
+
+/* Class = "UILabel"; text = "First Name*"; ObjectID = "hNf-fP-ORr"; */
+"hNf-fP-ORr.text" = "Nome*";
+
+/* Class = "UITextField"; placeholder = "Ex: +91"; ObjectID = "ist-CM-MqC"; */
+"ist-CM-MqC.placeholder" = "Ex: +91";
+
+/* Class = "UILabel"; text = "Trash tickets"; ObjectID = "jNK-32-X7O"; */
+"jNK-32-X7O.text" = "Trash tickets";
+
+/* Class = "UILabel"; text = "Priority*"; ObjectID = "mCO-gF-wNs"; */
+"mCO-gF-wNs.text" = "Priority*";
+
+/* Class = "UILabel"; text = "Email*"; ObjectID = "mEi-tm-bVi"; */
+"mEi-tm-bVi.text" = "Email*";
+
+/* Class = "UILabel"; text = "Sla Plans*"; ObjectID = "mFD-SZ-woH"; */
+"mFD-SZ-woH.text" = "Sla Plans*";
+
+/* Class = "UITextField"; placeholder = "Select Sla"; ObjectID = "mxh-V7-yKk"; */
+"mxh-V7-yKk.placeholder" = "Selezionare Sla";
+
+/* Class = "UILabel"; text = "Create ticket"; ObjectID = "oTB-RY-cvo"; */
+"oTB-RY-cvo.text" = "Creare biglietteria";
+
+/* Class = "UILabel"; text = "Department"; ObjectID = "oun-g4-t0F"; */
+"oun-g4-t0F.text" = "Dipartimenti";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "p7x-HL-8O0"; */
+"p7x-HL-8O0.text" = "Nome utente";
+
+/* Class = "UILabel"; text = "Source"; ObjectID = "trq-0Z-m8M"; */
+"trq-0Z-m8M.text" = "Fonte";
+
+/* Class = "UITextField"; placeholder = "Select Priority"; ObjectID = "uMQ-L7-CIX"; */
+"uMQ-L7-CIX.placeholder" = "Selezionare Priority";
+
+/* Class = "UILabel"; text = "Last Response date"; ObjectID = "v6I-fo-Qk7"; */
+"v6I-fo-Qk7.text" = "Data ultima risposta";
+
+/* Class = "UITextField"; placeholder = "Select Helptopic"; ObjectID = "vCW-en-No4"; */
+"vCW-en-No4.placeholder" = "Selezionare Helptopic";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "w8G-FB-g9d"; */
+"w8G-FB-g9d.normalTitle" = "Salva";
+
+/* Class = "UILabel"; text = "First Name"; ObjectID = "wMb-MW-vQq"; */
+"wMb-MW-vQq.text" = "Nome";
+
+/* Class = "UILabel"; text = "Due Date"; ObjectID = "xFf-Wq-nyR"; */
+"xFf-Wq-nyR.text" = "Data di scadenza";
+
+/* Class = "UILabel"; text = "www.faveohelpdesk.com"; ObjectID = "xol-WZ-dRz"; */
+"xol-WZ-dRz.text" = "www.faveohelpdesk.com";

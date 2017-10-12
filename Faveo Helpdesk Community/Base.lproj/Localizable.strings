@@ -1,0 +1,52 @@
+///*
+//  Localization.strings
+//  Faveo Helpdesk Pro
+//
+//  Created by Narendra on 03/04/17.
+//  Copyright © 2017 Ladybird websolutions pvt ltd. All rights reserved.
+//*/
+//
+"Please Enter the URL"="Please Enter the URL";
+"Verifying URL"="Verifying URL";
+"Error verifying URL"="Error verifying URL";
+"Please Enter a valid URL"="Please Enter a valid URL";
+"Verified URL"="Verified URL";
+"Access denied, to use pro version!"="Access denied, to use pro version!";
+"Please Enter Username & Password"="Please Enter Username";
+"Please Enter Password"="Please Enter Password";
+"You have logged in successfully."="You have logged in successfully.";
+"Getting Data"="Getting Data";
+"Refreshing"="Refreshing";
+"CreateTicket"="CreateTicket";
+"Inbox"="Inbox";
+"Trash Tickets"="Trash Tickets";
+"Client List"="Client List";
+"Closed Tickets"="Closed Tickets";
+"Unassigned Tickets"="Unassigned Tickets";
+"My Tickets"="MyTickets";
+"About"="About";
+"Not Available"="Not Available";
+"Select Helptopic"="Select Helptopic";
+"Select CountryCode"="Select CountryCode";
+"Please enter EMAIL-ID"="Please enter EMAIL-ID";
+"Please enter First Name"="Please enter First Name";
+"Please select HELP-TOPIC"="Please select HELP-TOPIC";
+"Please select SLA"="Please select SLA";
+"Please select DEPARTMENT"="Please select DEPARTMENT";
+"Please select PRIORITY"="Please select PRIORITY";
+"Please enter SUBJECT"="Please enter SUBJECT";
+"SUBJECT requires at least 5 characters"="SUBJECT requires at least 5 characters";
+"Please enter ticket MESSAGE"="Please enter ticket MESSAGE";
+"MESSAGE requires at least 10 characters"="MESSAGE requires at least 10 characters";
+"Invalid EMAIL_ID" ="Invalid EMAIL_ID";
+"FirstName should have more than 2 characters"="Name should have more than 2 characters";
+"Ticket created successfully!"="Ticket created successfully!";
+"Internal Notes"="Internal Notes";
+"Message"="Message";
+"Done"="Done";
+"Details"="Details";
+"Ticket Reply"="Ticket Reply";
+"Message*"="Message*";
+"Empty!!!"="Empty!!!";
+"Cc"="Cc";
+"Please wait"="Please wait";

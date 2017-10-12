@@ -38,23 +38,10 @@
 - (void)cancelProgress;
 /**Wether or not the progress bar is showing.*/
 - (BOOL)isShowingProgressBar;
-/**
- The primary color of the progress bar if you do not want it to be the same as the UINavigationBar's tint color. If set to nil, the UINavigationBar's tint color will be used.
- 
- @param primaryColor The color to set.
- */
+
 - (void)setPrimaryColor:(UIColor *)primaryColor;
-/**
- The secondary color of the progress bar, if nil, the secondary color will be the barTintColor.
- 
- @param secondaryColor The color to set.
- */
+
 - (void)setSecondaryColor:(UIColor *)secondaryColor;
-/**
- The background color of the progress bar, if nil, the background color will be the clearColor.
- 
- @param background The color to set.
- */
 - (void)setBackgroundColor:(UIColor *)backgroundColor;
 
 @end

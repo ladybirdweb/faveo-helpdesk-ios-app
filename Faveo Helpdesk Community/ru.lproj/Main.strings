@@ -1,0 +1,168 @@
+
+/* Class = "UILabel"; text = "Closed tickets"; ObjectID = "00M-ZV-gxI"; */
+"00M-ZV-gxI.text" = "Закрытые билеты";
+
+/* Class = "UILabel"; text = "Last Name*"; ObjectID = "0LL-vd-wv1"; */
+"0LL-vd-wv1.text" = "Фамилия*";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "6Mo-Z2-qgf"; */
+"6Mo-Z2-qgf.text" = "Email";
+
+/* Class = "UILabel"; text = "Subject*"; ObjectID = "7x1-4m-H9y"; */
+"7x1-4m-H9y.text" = "Предмет*";
+
+/* Class = "UILabel"; text = "Last Name"; ObjectID = "9NB-2Q-SIV"; */
+"9NB-2Q-SIV.text" = "Фамилия";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "9Z7-uO-fAa"; */
+"9Z7-uO-fAa.text" = "Настройки";
+
+/* Class = "UILabel"; text = "Client Name"; ObjectID = "AmR-Cc-CWB"; */
+"AmR-Cc-CWB.text" = "имя клиента";
+
+/* Class = "UILabel"; text = "My tickets"; ObjectID = "AwE-I0-oTJ"; */
+"AwE-I0-oTJ.text" = "Мои билеты";
+
+/* Class = "UILabel"; text = "ACTIVE"; ObjectID = "B1T-Ry-EJE"; */
+"B1T-Ry-EJE.text" = "Активный";
+
+/* Class = "UILabel"; text = "Subject"; ObjectID = "E1F-Az-9Gv"; */
+"E1F-Az-9Gv.text" = "Предмет";
+
+/* Class = "UITextField"; placeholder = "Select Priority"; ObjectID = "Fgz-Q4-nRj"; */
+"Fgz-Q4-nRj.placeholder" = "Выберите приоритет";
+
+/* Class = "UILabel"; text = "HelpTopics"; ObjectID = "G6t-w8-5gE"; */
+"G6t-w8-5gE.text" = "разделы справки";
+
+/* Class = "UITextField"; placeholder = "Ex: 9999999999"; ObjectID = "Gsy-RY-3zo"; */
+"Gsy-RY-3zo.placeholder" = "Ex: 9999999999";
+
+/* Class = "UISegmentedControl"; GzN-Yn-vAw.segmentTitles[0] = "Conversation"; ObjectID = "GzN-Yn-vAw"; */
+"GzN-Yn-vAw.segmentTitles[0]" = "диалог";
+
+/* Class = "UISegmentedControl"; GzN-Yn-vAw.segmentTitles[1] = "Detail"; ObjectID = "GzN-Yn-vAw"; */
+"GzN-Yn-vAw.segmentTitles[1]" = "Деталь";
+
+/* Class = "UILabel"; text = "jhbafbas@gmail.com"; ObjectID = "H5i-YI-b5K"; */
+"H5i-YI-b5K.text" = "jhbafbas@gmail.com";
+
+/* Class = "UILabel"; text = "Priority"; ObjectID = "ImK-IA-DcU"; */
+"ImK-IA-DcU.text" = "Приоритет";
+
+/* Class = "UILabel"; text = "Unassigned tickets"; ObjectID = "K2r-lG-27s"; */
+"K2r-lG-27s.text" = "Нераспределенные билеты";
+
+/* Class = "UILabel"; text = "Message*"; ObjectID = "KL7-aF-noB"; */
+"KL7-aF-noB.text" = "Сообщение*";
+
+/* Class = "UILabel"; text = "Ticket list"; ObjectID = "Kwa-ua-KzA"; */
+"Kwa-ua-KzA.text" = "Список билетов";
+
+/* Class = "UILabel"; text = "COMPANY'S URL"; ObjectID = "NvZ-jN-SUK"; */
+"NvZ-jN-SUK.text" = "URL-адрес компании";
+
+/* Class = "UILabel"; text = "Logout"; ObjectID = "Nwy-MN-km4"; */
+"Nwy-MN-km4.text" = "Выход";
+
+/* Class = "UITextField"; placeholder = "Select Helptopic"; ObjectID = "OIR-WQ-j9s"; */
+"OIR-WQ-j9s.placeholder" = "Выберите разделы справки";
+
+/* Class = "UILabel"; text = "Passcode"; ObjectID = "OQM-lN-xDk"; */
+"OQM-lN-xDk.text" = "Пароль";
+
+/* Class = "UILabel"; text = "+91 9482189901"; ObjectID = "OTI-p0-kg7"; */
+"OTI-p0-kg7.text" = "+91 9482189901";
+
+/* Class = "UILabel"; text = "HelpTopics*"; ObjectID = "QyC-lw-kS2"; */
+"QyC-lw-kS2.text" = "разделы справки*";
+
+/* Class = "UILabel"; text = "Code"; ObjectID = "UFg-tX-fNF"; */
+"UFg-tX-fNF.text" = "Code";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "Unu-1C-zRF"; */
+"Unu-1C-zRF.normalTitle" = "Отправить";
+
+/* Class = "UILabel"; text = "ACZN-2015-0002015"; ObjectID = "Uyc-xp-Avp"; */
+"Uyc-xp-Avp.text" = "ACZN-2015-0002015";
+
+/* Class = "UITextField"; placeholder = "Select Source"; ObjectID = "VJe-Gu-Kf0"; */
+"VJe-Gu-Kf0.placeholder" = "Выберите Источник";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "VP0-T6-DvK"; */
+"VP0-T6-DvK.normalTitle" = "Вход";
+
+/* Class = "UILabel"; text = "Client list"; ObjectID = "Xj6-wM-O9Q"; */
+"Xj6-wM-O9Q.text" = "список клиентов";
+
+/* Class = "UILabel"; text = "Anuj"; ObjectID = "Xmx-EM-axR"; */
+"Xmx-EM-axR.text" = "Anuj";
+
+/* Class = "UILabel"; text = "Created Date"; ObjectID = "YWC-xC-yYI"; */
+"YWC-xC-yYI.text" = "Дата создания";
+
+/* Class = "UILabel"; text = "Inbox tickets"; ObjectID = "Z79-JG-G6l"; */
+"Z79-JG-G6l.text" = "Входящие билеты";
+
+/* Class = "UILabel"; text = "Faveo HELPDESK"; ObjectID = "ZIG-RQ-ubz"; */
+"ZIG-RQ-ubz.text" = "Faveo HELPDESK";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "aVs-YL-pOr"; */
+"aVs-YL-pOr.text" = "O";
+
+/* Class = "UIButton"; normalTitle = "Website"; ObjectID = "dBA-ZM-uZ7"; */
+"dBA-ZM-uZ7.normalTitle" = "Website";
+
+/* Class = "UILabel"; text = "version: 1.0"; ObjectID = "dkk-3v-jiw"; */
+"dkk-3v-jiw.text" = "Версия: 1.0";
+
+/* Class = "UITextView"; text = "Headquartered in Bangalore, Faveo HELPDESK provides Businesses with an automated Helpdesk system to manage customer support.The word Faveo comes from Latin which means to be favourable. Which truly highlights vision and the scope as well as the functionality of the product that Faveo is. It is specifically designed to cater the needs of startups and SME’s empowering them with state of art, ticket based support system. In today’s competitive startup scenario customer retention is one of the major challenges. Handling client query diligently is all the difference between retaining or losing a long lasting relationship. The company is driven with passion of providing tools for managing consumer queries for strategic insights and helping companies take those decisive decisions."; ObjectID = "eVd-3F-lkE"; */
+"eVd-3F-lkE.text" = "Штаб-квартира в Бангалоре, Faveo HELPDESK предоставляет предприятиям автоматизированную систему Helpdesk для управления клиентской поддержкой. Слово Faveo происходит от латинского, что означает быть благоприятным. Который действительно выделяет видение и сферу применения, а также функциональность продукта, которым обладает Faveo. Он специально разработан для удовлетворения потребностей стартапов, а SME предоставляет им современную систему поддержки на основе билета. В сегодняшнем конкурентном сценарии стартапа сохранение клиентов является одной из основных проблем. Обработка клиентского запроса старательно - это все разница между сохранением или потерей долговременных отношений. Компания руководствуется страстью предоставить инструменты для управления потребительскими запросами для стратегической проницательности и помогать компаниям принимать эти решающие решения.";
+
+/* Class = "UILabel"; text = "Phone"; ObjectID = "eiY-Rq-ac5"; */
+"eiY-Rq-ac5.text" = "Телефон";
+
+/* Class = "UILabel"; text = "First Name*"; ObjectID = "hNf-fP-ORr"; */
+"hNf-fP-ORr.text" = "Имя*";
+
+/* Class = "UITextField"; placeholder = "Ex: +91"; ObjectID = "ist-CM-MqC"; */
+"ist-CM-MqC.placeholder" = "Ex: +91";
+
+/* Class = "UILabel"; text = "Trash tickets"; ObjectID = "jNK-32-X7O"; */
+"jNK-32-X7O.text" = "Мусор";
+
+/* Class = "UILabel"; text = "Priority*"; ObjectID = "mCO-gF-wNs"; */
+"mCO-gF-wNs.text" = "Приоритет*";
+
+/* Class = "UILabel"; text = "Email*"; ObjectID = "mEi-tm-bVi"; */
+"mEi-tm-bVi.text" = "Email*";
+
+/* Class = "UILabel"; text = "Create ticket"; ObjectID = "oTB-RY-cvo"; */
+"oTB-RY-cvo.text" = "Создать билет";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "p7x-HL-8O0"; */
+"p7x-HL-8O0.text" = "Имя пользователя";
+
+/* Class = "UILabel"; text = "Source"; ObjectID = "trq-0Z-m8M"; */
+"trq-0Z-m8M.text" = "Источник";
+
+/* Class = "UITextField"; placeholder = "Select Priority"; ObjectID = "uMQ-L7-CIX"; */
+"uMQ-L7-CIX.placeholder" = "Выберите Приоритет";
+
+/* Class = "UILabel"; text = "Last Response date"; ObjectID = "v6I-fo-Qk7"; */
+"v6I-fo-Qk7.text" = "Дата последнего ответа";
+
+/* Class = "UITextField"; placeholder = "Select Helptopic"; ObjectID = "vCW-en-No4"; */
+"vCW-en-No4.placeholder" = "Выберите Helptopic";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "w8G-FB-g9d"; */
+"w8G-FB-g9d.normalTitle" = "Сохранить";
+
+/* Class = "UILabel"; text = "First Name"; ObjectID = "wMb-MW-vQq"; */
+"wMb-MW-vQq.text" = "Имя";
+
+/* Class = "UILabel"; text = "Due Date"; ObjectID = "xFf-Wq-nyR"; */
+"xFf-Wq-nyR.text" = "Срок оплаты";
+
+/* Class = "UILabel"; text = "www.faveohelpdesk.com"; ObjectID = "xol-WZ-dRz"; */
+"xol-WZ-dRz.text" = "www.faveohelpdesk.com";
