@@ -41,8 +41,7 @@
     NSLog(@"Naaa-LeftMENU");
     
     [self addUIRefresh];
-    
-    
+
     utils=[[Utils alloc]init];
     globalVariables=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
@@ -55,10 +54,7 @@
     
     [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting Data",nil)];
     
-    
-    
-    // Do any additional setup after loading the view from its nib.
-    // Do any additional setup after loading the view from its nib.
+
 }
 
 
@@ -72,7 +68,7 @@
 
 -(void)update{
     
-    
+    [[AppDelegate sharedAppdelegate] hideProgressView];
     userDefaults=[NSUserDefaults standardUserDefaults];
     globalVariables=[GlobalVariables sharedInstance];
     NSLog(@"Role : %@",[userDefaults objectForKey:@"role"]);

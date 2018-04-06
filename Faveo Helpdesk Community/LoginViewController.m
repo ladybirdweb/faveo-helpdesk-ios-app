@@ -294,6 +294,9 @@
             
             NSString *url=[NSString stringWithFormat:@"%@authenticate",[[NSUserDefaults standardUserDefaults] objectForKey:@"companyURL"]];
             // NSString *params=[NSString string];
+            
+            NSLog(@"URL is: %@",url);
+            
             NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:self.userNameTextField.text,@"username",self.passcodeTextField.text,@"password",API_KEY,@"api_key",IP,@"ip",nil];
             
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -377,25 +380,7 @@
                             [RKDropdownAlert title:NSLocalizedString(@"Welcome.",nil) message:NSLocalizedString(@"You have logged in successfully.",nil) backgroundColor:[UIColor hx_colorWithHexRGBAString:SUCCESS_COLOR] textColor:[UIColor whiteColor]];
                             
                             
-                            //                            if (self.navigationController.navigationBarHidden) {
-                            //                                [self.navigationController setNavigationBarHidden:NO];
-                            //                            }
-                            //
-                            //                            [RMessage showNotificationInViewController:self.navigationController
-                            //                                                                 title:NSLocalizedString(@"Welcome", nil)
-                            //                                                              subtitle:NSLocalizedString(@"You have logged in successfully.", nil)
-                            //                                                             iconImage:nil
-                            //                                                                  type:RMessageTypeSuccess
-                            //                                                        customTypeName:nil
-                            //                                                              duration:RMessageDurationAutomatic
-                            //                                                              callback:nil
-                            //                                                           buttonTitle:nil
-                            //                                                        buttonCallback:nil
-                            //                                                            atPosition:RMessagePositionNavBarOverlay
-                            //                                                  canBeDismissedByUser:YES];
-                            
-                            
-                            [self sendDeviceToken];
+                       
                             [[AppDelegate sharedAppdelegate] hideProgressView];
                             InboxViewController *inboxVC=[self.storyboard  instantiateViewControllerWithIdentifier:@"InboxID"];
                             [self.navigationController pushViewController:inboxVC animated:YES];
@@ -509,45 +494,6 @@
 }
 
 
--(void)sendDeviceToken{
-    NSString *refreshedToken =  [[FIRInstanceID instanceID] token];
-    NSLog(@"refreshed token  %@",refreshedToken);
-    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-    NSString *url=[NSString stringWithFormat:@"%@fcmtoken?user_id=%@&fcm_token=%@&os=%@",[userDefaults objectForKey:@"companyURL"],[userDefaults objectForKey:@"user_id"],[[FIRInstanceID instanceID] token],@"ios"];
-    MyWebservices *webservices=[MyWebservices sharedInstance];
-    [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg){
-        if (error || [msg containsString:@"Error"]) {
-            if (msg) {
-                
-                // [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                NSLog(@"Thread-postAPNS-toserver-error == %@",error.localizedDescription);
-            }else if(error)  {
-                //                [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                NSLog(@"Thread-postAPNS-toserver-error == %@",error.localizedDescription);
-            }
-            return ;
-        }
-        if (json) {
-            
-            NSLog(@"Thread-sendAPNS-token-json-%@",json);
-        }
-        
-    }];
-}
 
-//-(void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:YES];
-//     [[self navigationController] setNavigationBarHidden:YES animated:NO];
-//}
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 @end
 
