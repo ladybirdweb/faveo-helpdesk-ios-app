@@ -58,21 +58,6 @@
     userDefaults=[NSUserDefaults standardUserDefaults];
     
     
-    //    self.currentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OpenClient"];
-    //    self.currentViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-    //    [self addChildViewController:self.currentViewController];
-    //    [self addSubview:self.currentViewController.view toView:self.containerView];
-    //    self.testingLAbel.text=@"Open Ticket";
-    //    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
-    //    self.profileImageView.clipsToBounds = YES;
-    //    self.segmentedControl.tintColor=[UIColor hx_colorWithHexString:@"#00aeef"];
-    
-    
-    //    self.testingLAbel.text=self.isClientActive;
-    //    self.emailLabel.text=self.emailID;
-    //    self.clientNameLabel.text=self.clientName;
-    //    self.phoneLabel.text=self.phone;
-    
     [_activityIndicatorObject startAnimating];
     [self reload];
     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];

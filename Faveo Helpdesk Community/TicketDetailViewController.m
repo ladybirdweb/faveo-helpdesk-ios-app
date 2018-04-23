@@ -59,27 +59,14 @@
     
     self.segmentedControl.tintColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
     
-    // [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:[[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleDone target:self action:@selector(onNavButtonTapped:event:)],[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(replyBtnPressed)],[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(internalNotePressed)], nil] animated:YES];
-    
-    // [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"verticle"] style:UIBarButtonItemStyleDone target:self action:@selector(onNavButtonTapped:event:)],[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(replyBtnPressed)],[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(internalNotePressed)], nil] animated:YES];
-    
-    // [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"verticle"] style:UIBarButtonItemStyleDone target:self action:@selector(onNavButtonTapped:event:)],[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"editTicket"] style:UIBarButtonItemStyleDone target:self action:@selector(editTicketTapped)], nil] animated:YES];
-    
     
     
     UIButton *editTicket =  [UIButton buttonWithType:UIButtonTypeCustom]; // editTicket
-    [editTicket setImage:[UIImage imageNamed:@"editTicket"] forState:UIControlStateNormal];
+    [editTicket setImage:[UIImage imageNamed:@"pencileEdit"] forState:UIControlStateNormal];
     [editTicket addTarget:self action:@selector(editTicketTapped) forControlEvents:UIControlEventTouchUpInside];
-   // [editTicket setFrame:CGRectMake(0, 0, 32, 32)];
     [editTicket setFrame:CGRectMake(44, 0, 32, 32)];
     
-//    UIButton *moreButton =  [UIButton buttonWithType:UIButtonTypeCustom];
-//    [moreButton setImage:[UIImage imageNamed:@"verticle"] forState:UIControlStateNormal];
-//    [moreButton addTarget:self action:@selector(onNavButtonTapped:event:) forControlEvents:UIControlEventTouchUpInside];
-//    [moreButton setFrame:CGRectMake(44, 0, 32, 32)];
-    
     UIView *rightBarButtonItems = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 76, 32)];
-   // [rightBarButtonItems addSubview:moreButton];
     [rightBarButtonItems addSubview:editTicket];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonItems];

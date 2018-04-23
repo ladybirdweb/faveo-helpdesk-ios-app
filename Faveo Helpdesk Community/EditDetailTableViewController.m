@@ -92,19 +92,18 @@
     [self.view addSubview:_imgViewLoading];
     [self.imgViewLoading.layer addAnimation:[self imageAnimationForEmptyDataSet] forKey:@"transform"];
     
-    //_activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    //_activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-100);
-    // _activityIndicatorObject.color=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
-    //[self.view addSubview:_activityIndicatorObject];
+    self.subjectTextView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.subjectTextView.layer.borderWidth = 0.4;
+    self.subjectTextView.layer.cornerRadius = 3;
+    
     
     utils=[[Utils alloc]init];
     globalVariables=[GlobalVariables sharedInstance];
-    // _subjectTextField.text=globalVariables.title;
     userDefaults=[NSUserDefaults standardUserDefaults];
-    //[_activityIndicatorObject startAnimating];
+
     [self reload];
-    
     [self readFromPlist];
+    
     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view.
 }

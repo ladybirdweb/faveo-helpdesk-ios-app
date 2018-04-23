@@ -58,18 +58,30 @@
     NSLog(@"device_token %@",[userDefaults objectForKey:@"deviceToken"]);
     
     
+    UIButton *NotificationBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
+    [NotificationBtn setImage:[UIImage imageNamed:@"notification.png"] forState:UIControlStateNormal];
+    [NotificationBtn addTarget:self action:@selector(NotificationBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+    // [NotificationBtn setFrame:CGRectMake(10, 0, 32, 32)];
+    [NotificationBtn setFrame:CGRectMake(46, 0, 32, 32)];
+    
+    UIView *rightBarButtonItems = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 76, 32)];
+    
+    [rightBarButtonItems addSubview:NotificationBtn];
+    
+     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonItems];
+                                              
     [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting Data",nil)];
     [self reload];
     
-    
-    ////////
-    
-    //static dispatch_once_t onceToken;
-    // dispatch_once(&onceToken, ^{
     [self getDependencies];
-    // });
+
+}
+
+-(void)NotificationBtnPressed
+{
+    NotificationViewController *noti=[self.storyboard instantiateViewControllerWithIdentifier:@"Notify"];
+    [self.navigationController pushViewController:noti animated:YES];
     
-    // Do any additional setup after loading the view.
 }
 
 -(void)reload{

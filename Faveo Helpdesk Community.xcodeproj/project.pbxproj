@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		069D3A87208DF412002FF61D /* TicketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069D3A86208DF412002FF61D /* TicketTableViewCell.xib */; };
+		069D3A89208DF834002FF61D /* ConversationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069D3A88208DF834002FF61D /* ConversationTableViewCell.xib */; };
+		069D3A8D208DF9C2002FF61D /* UIImageView+Letters.m in Sources */ = {isa = PBXBuildFile; fileRef = 069D3A8C208DF9C2002FF61D /* UIImageView+Letters.m */; };
 		1AB32A2460BBC9026C287619 /* libPods-Faveo Helpdesk Community.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A09A5113BF2FF5F9301D5CB0 /* libPods-Faveo Helpdesk Community.a */; };
 		D94371561DF8050800DB7376 /* faveoData.plist in Resources */ = {isa = PBXBuildFile; fileRef = D94371551DF8050800DB7376 /* faveoData.plist */; };
 		D94371AD1DF8064200DB7376 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371AC1DF8064200DB7376 /* Reachability.m */; };
@@ -24,13 +27,11 @@
 		D95D26881F2C839E00C54B9C /* NotificationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95D26741F2C839E00C54B9C /* NotificationTableViewCell.m */; };
 		D95D26891F2C839E00C54B9C /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95D26751F2C839E00C54B9C /* NotificationTableViewCell.xib */; };
 		D95D268A1F2C839E00C54B9C /* TicketTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95D26771F2C839E00C54B9C /* TicketTableViewCell.m */; };
-		D95D268B1F2C839E00C54B9C /* TicketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95D26781F2C839E00C54B9C /* TicketTableViewCell.xib */; };
 		D95D268C1F2C839E00C54B9C /* ClientListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95D267A1F2C839E00C54B9C /* ClientListTableViewCell.m */; };
 		D95D268D1F2C839E00C54B9C /* ClientListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95D267B1F2C839E00C54B9C /* ClientListTableViewCell.xib */; };
 		D95D268E1F2C839E00C54B9C /* ClientTicketTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95D267D1F2C839E00C54B9C /* ClientTicketTableViewCell.m */; };
 		D95D268F1F2C839E00C54B9C /* ClientTicketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95D267E1F2C839E00C54B9C /* ClientTicketTableViewCell.xib */; };
 		D95D26901F2C839E00C54B9C /* ConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95D26801F2C839E00C54B9C /* ConversationTableViewCell.m */; };
-		D95D26911F2C839E00C54B9C /* ConversationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95D26811F2C839E00C54B9C /* ConversationTableViewCell.xib */; };
 		D95D26921F2C839E00C54B9C /* OpenCloseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95D26831F2C839E00C54B9C /* OpenCloseTableViewCell.m */; };
 		D95D26931F2C839E00C54B9C /* OpenCloseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95D26841F2C839E00C54B9C /* OpenCloseTableViewCell.xib */; };
 		D95D26941F2C839E00C54B9C /* LoadingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95D26861F2C839E00C54B9C /* LoadingTableViewCell.m */; };
@@ -66,7 +67,6 @@
 		D9787AA01DF800B6009C745F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9787A9E1DF800B6009C745F /* LaunchScreen.storyboard */; };
 		D9787AAB1DF800B6009C745F /* Faveo_Helpdesk_CommunityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9787AAA1DF800B6009C745F /* Faveo_Helpdesk_CommunityTests.m */; };
 		D9787AB61DF800B6009C745F /* Faveo_Helpdesk_CommunityUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9787AB51DF800B6009C745F /* Faveo_Helpdesk_CommunityUITests.m */; };
-		D9E643BC1F344A76006CC84B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9E643BB1F344A76006CC84B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +87,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		069D3A86208DF412002FF61D /* TicketTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TicketTableViewCell.xib; path = "../../../4 April/faveo-helpdesk-ios-pro/Faveo Helpdesk Pro/TicketTableViewCell.xib"; sourceTree = "<group>"; };
+		069D3A88208DF834002FF61D /* ConversationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConversationTableViewCell.xib; path = "../../../4 April/faveo-helpdesk-ios-pro/Faveo Helpdesk Pro/ConversationTableViewCell.xib"; sourceTree = "<group>"; };
+		069D3A8B208DF9C2002FF61D /* UIImageView+Letters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Letters.h"; sourceTree = "<group>"; };
+		069D3A8C208DF9C2002FF61D /* UIImageView+Letters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Letters.m"; sourceTree = "<group>"; };
 		915F307D68DBDCCB69A2FBFB /* Pods-Faveo Helpdesk Community.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faveo Helpdesk Community.release.xcconfig"; path = "Pods/Target Support Files/Pods-Faveo Helpdesk Community/Pods-Faveo Helpdesk Community.release.xcconfig"; sourceTree = "<group>"; };
 		A09A5113BF2FF5F9301D5CB0 /* libPods-Faveo Helpdesk Community.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Faveo Helpdesk Community.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCCC239757CE7B543ACA6EFF /* Pods-Faveo Helpdesk Community.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faveo Helpdesk Community.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Faveo Helpdesk Community/Pods-Faveo Helpdesk Community.debug.xcconfig"; sourceTree = "<group>"; };
@@ -118,7 +122,6 @@
 		D95D26751F2C839E00C54B9C /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
 		D95D26761F2C839E00C54B9C /* TicketTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketTableViewCell.h; sourceTree = "<group>"; };
 		D95D26771F2C839E00C54B9C /* TicketTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketTableViewCell.m; sourceTree = "<group>"; };
-		D95D26781F2C839E00C54B9C /* TicketTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketTableViewCell.xib; sourceTree = "<group>"; };
 		D95D26791F2C839E00C54B9C /* ClientListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientListTableViewCell.h; sourceTree = "<group>"; };
 		D95D267A1F2C839E00C54B9C /* ClientListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientListTableViewCell.m; sourceTree = "<group>"; };
 		D95D267B1F2C839E00C54B9C /* ClientListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClientListTableViewCell.xib; sourceTree = "<group>"; };
@@ -127,7 +130,6 @@
 		D95D267E1F2C839E00C54B9C /* ClientTicketTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClientTicketTableViewCell.xib; sourceTree = "<group>"; };
 		D95D267F1F2C839E00C54B9C /* ConversationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationTableViewCell.h; sourceTree = "<group>"; };
 		D95D26801F2C839E00C54B9C /* ConversationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationTableViewCell.m; sourceTree = "<group>"; };
-		D95D26811F2C839E00C54B9C /* ConversationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationTableViewCell.xib; sourceTree = "<group>"; };
 		D95D26821F2C839E00C54B9C /* OpenCloseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCloseTableViewCell.h; sourceTree = "<group>"; };
 		D95D26831F2C839E00C54B9C /* OpenCloseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenCloseTableViewCell.m; sourceTree = "<group>"; };
 		D95D26841F2C839E00C54B9C /* OpenCloseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenCloseTableViewCell.xib; sourceTree = "<group>"; };
@@ -182,7 +184,6 @@
 		D95D26E41F2C859500C54B9C /* UITextField+PasswordField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+PasswordField.m"; sourceTree = "<group>"; };
 		D95D26EC1F2C874800C54B9C /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		D95D26EE1F2C887E00C54B9C /* Faveo Helpdesk Community.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Faveo Helpdesk Community.entitlements"; sourceTree = "<group>"; };
-		D95D26F11F2C8BE900C54B9C /* Faveo Helpdesk Pro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Faveo Helpdesk Pro.entitlements"; sourceTree = "<group>"; };
 		D95D26F21F2C8CEC00C54B9C /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D95D26F41F2C8EB000C54B9C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D9787A8D1DF800B6009C745F /* Faveo Helpdesk Community.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Faveo Helpdesk Community.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,7 +198,6 @@
 		D9787AB51DF800B6009C745F /* Faveo_Helpdesk_CommunityUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Faveo_Helpdesk_CommunityUITests.m; sourceTree = "<group>"; };
 		D9787AB71DF800B6009C745F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9B5A9381EB0D1F80054D15C /* Faveo Helpdesk Community.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Faveo Helpdesk Community.pch"; sourceTree = SOURCE_ROOT; };
-		D9E643BB1F344A76006CC84B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +242,8 @@
 		D94371571DF8059900DB7376 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				069D3A8B208DF9C2002FF61D /* UIImageView+Letters.h */,
+				069D3A8C208DF9C2002FF61D /* UIImageView+Letters.m */,
 				D94371D11DF80BC400DB7376 /* SideMenu */,
 				D94371B21DF8066C00DB7376 /* Reachability */,
 			);
@@ -394,7 +396,7 @@
 				D95D26751F2C839E00C54B9C /* NotificationTableViewCell.xib */,
 				D95D26761F2C839E00C54B9C /* TicketTableViewCell.h */,
 				D95D26771F2C839E00C54B9C /* TicketTableViewCell.m */,
-				D95D26781F2C839E00C54B9C /* TicketTableViewCell.xib */,
+				069D3A86208DF412002FF61D /* TicketTableViewCell.xib */,
 				D95D26791F2C839E00C54B9C /* ClientListTableViewCell.h */,
 				D95D267A1F2C839E00C54B9C /* ClientListTableViewCell.m */,
 				D95D267B1F2C839E00C54B9C /* ClientListTableViewCell.xib */,
@@ -403,7 +405,7 @@
 				D95D267E1F2C839E00C54B9C /* ClientTicketTableViewCell.xib */,
 				D95D267F1F2C839E00C54B9C /* ConversationTableViewCell.h */,
 				D95D26801F2C839E00C54B9C /* ConversationTableViewCell.m */,
-				D95D26811F2C839E00C54B9C /* ConversationTableViewCell.xib */,
+				069D3A88208DF834002FF61D /* ConversationTableViewCell.xib */,
 				D95D26821F2C839E00C54B9C /* OpenCloseTableViewCell.h */,
 				D95D26831F2C839E00C54B9C /* OpenCloseTableViewCell.m */,
 				D95D26841F2C839E00C54B9C /* OpenCloseTableViewCell.xib */,
@@ -449,9 +451,7 @@
 		D9787A901DF800B6009C745F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D9E643BB1F344A76006CC84B /* GoogleService-Info.plist */,
 				D95D26EC1F2C874800C54B9C /* countries.json */,
-				D95D26F11F2C8BE900C54B9C /* Faveo Helpdesk Pro.entitlements */,
 				D95D26EE1F2C887E00C54B9C /* Faveo Helpdesk Community.entitlements */,
 				D95D26F41F2C8EB000C54B9C /* Main.storyboard */,
 				D9787A9C1DF800B6009C745F /* Assets.xcassets */,
@@ -609,20 +609,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D95D26911F2C839E00C54B9C /* ConversationTableViewCell.xib in Resources */,
 				D94371561DF8050800DB7376 /* faveoData.plist in Resources */,
+				069D3A89208DF834002FF61D /* ConversationTableViewCell.xib in Resources */,
 				D95D26F31F2C8CEC00C54B9C /* Localizable.strings in Resources */,
 				D9787AA01DF800B6009C745F /* LaunchScreen.storyboard in Resources */,
 				D95D268D1F2C839E00C54B9C /* ClientListTableViewCell.xib in Resources */,
 				D95D26891F2C839E00C54B9C /* NotificationTableViewCell.xib in Resources */,
 				D95D26F51F2C8EB000C54B9C /* Main.storyboard in Resources */,
+				069D3A87208DF412002FF61D /* TicketTableViewCell.xib in Resources */,
 				D95D26931F2C839E00C54B9C /* OpenCloseTableViewCell.xib in Resources */,
 				D95D26951F2C839E00C54B9C /* LoadingTableViewCell.xib in Resources */,
 				D9787A9D1DF800B6009C745F /* Assets.xcassets in Resources */,
 				D95D26ED1F2C874800C54B9C /* countries.json in Resources */,
-				D95D268B1F2C839E00C54B9C /* TicketTableViewCell.xib in Resources */,
 				D95D268F1F2C839E00C54B9C /* ClientTicketTableViewCell.xib in Resources */,
-				D9E643BC1F344A76006CC84B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,6 +709,7 @@
 			files = (
 				D95D26D71F2C852F00C54B9C /* AppDelegate.m in Sources */,
 				D94371AD1DF8064200DB7376 /* Reachability.m in Sources */,
+				069D3A8D208DF9C2002FF61D /* UIImageView+Letters.m in Sources */,
 				D94371EB1DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlide.m in Sources */,
 				D95D26B41F2C847D00C54B9C /* LeftMenuViewController.m in Sources */,
 				D95D26BD1F2C847E00C54B9C /* AboutViewController.m in Sources */,

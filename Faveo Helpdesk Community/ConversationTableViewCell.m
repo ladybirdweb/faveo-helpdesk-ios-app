@@ -15,20 +15,31 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    //        NSURL *url = [NSURL URLWithString:@"http://www.amazon.com"];
+    //        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
 -(void)setUserProfileimage:(NSString*)imageUrl
 {
-    self.profilePicView.layer.borderWidth=1.25f;
+    // self.profilePicView.layer.borderWidth=1.25f;
     self.profilePicView.layer.borderColor=[[UIColor hx_colorWithHexRGBAString:@"#0288D1"] CGColor];
     [self.profilePicView sd_setImageWithURL:[NSURL URLWithString:imageUrl]
                            placeholderImage:[UIImage imageNamed:@"default_pic.png"]];
+    
+    
 }
 
+//- (IBAction)clickedOnAttachment:(id)sender {
+//
+//
+//}
 @end

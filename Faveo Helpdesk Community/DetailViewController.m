@@ -78,16 +78,16 @@
     [self.view addSubview:_imgViewLoading];
     [self.imgViewLoading.layer addAnimation:[self imageAnimationForEmptyDataSet] forKey:@"transform"];
     
-    //_activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    //_activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-100);
-    // _activityIndicatorObject.color=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
-    //[self.view addSubview:_activityIndicatorObject];
-    
     utils=[[Utils alloc]init];
     globalVariables=[GlobalVariables sharedInstance];
-    // _subjectTextField.text=globalVariables.title;
     userDefaults=[NSUserDefaults standardUserDefaults];
-    //[_activityIndicatorObject startAnimating];
+
+    
+    
+    self.subjectTextView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.subjectTextView.layer.borderWidth = 0.4;
+    self.subjectTextView.layer.cornerRadius = 3;
+    
     [self reload];
     
     [self readFromPlist];
@@ -106,8 +106,6 @@
     {
         //connection unavailable
         [_imgViewLoading setHidden:YES];
-        // [_activityIndicatorObject stopAnimating];
-        //  [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
         
         if (self.navigationController.navigationBarHidden) {
             [self.navigationController setNavigationBarHidden:NO];

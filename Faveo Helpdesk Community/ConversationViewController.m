@@ -16,6 +16,7 @@
 #import "NotificationViewController.h"
 #import "RMessage.h"
 #import "RMessageView.h"
+#import "UIImageView+Letters.h"
 
 
 @interface ConversationViewController ()<CNPPopupControllerDelegate,UIWebViewDelegate,RMessageProtocol>{
@@ -24,6 +25,13 @@
     NSUserDefaults *userDefaults;
     NSMutableArray *mutableArray;
     GlobalVariables *globalVariable;
+    int selectedIndex;
+    NSMutableArray *attachmentArray;
+    
+    NSString *fName;
+    NSString *lName;
+    NSString *userName;
+
 }
 @property(nonatomic,strong) UILabel *noDataLabel;
 @property (nonatomic, strong) CNPPopupController *popupController;
@@ -34,7 +42,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"ConversationVC");
+    selectedIndex = -1;
+    
     _activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-100);
     _activityIndicatorObject.color=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
@@ -44,12 +53,33 @@
     utils=[[Utils alloc]init];
     globalVariable=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
-    //[_activityIndicatorObject startAnimating];
-    [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting Data",nil)];
-    [self reload];
+    
+    
+    
     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadd) name:@"reload_data" object:nil];
-    // Do any additional setup after loading the view.
+    
+    
+    [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting Conversations",nil)];
+    
+    if([[userDefaults objectForKey:@"msgFromRefreshToken"] isEqualToString:@"Invalid credentials"])
+    {
+        NSString *msg=@"";
+        [utils showAlertWithMessage:@"Access Denied.  Your credentials has been changed. Contact to Admin and try to login again." sendViewController:self];
+        [self->userDefaults setObject:msg forKey:@"msgFromRefreshToken"];
+        [[AppDelegate sharedAppdelegate] hideProgressView];
+    }
+    else if([[userDefaults objectForKey:@"msgFromRefreshToken"] isEqualToString:@"API disabled"])
+    {   NSString *msg=@"";
+        [utils showAlertWithMessage:@"API is disabled in web, please enable it from Admin panel." sendViewController:self];
+        [self->userDefaults setObject:msg forKey:@"msgFromRefreshToken"];
+        [[AppDelegate sharedAppdelegate] hideProgressView];
+    }
+    else{
+        [self reload];
+        
+    }
+    
 }
 
 -(void)reload{
@@ -92,10 +122,56 @@
                     [[AppDelegate sharedAppdelegate] hideProgressView];
                     if (msg) {
                         
-                        [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
+                        if([msg isEqualToString:@"Error-401"])
+                        {
+                            NSLog(@"Message is : %@",msg);
+                            [self->utils showAlertWithMessage:[NSString stringWithFormat:@"Access Denied.  Your credentials has been changed. Contact to Admin and try to login again."] sendViewController:self];
+                        }
+                        else
+                            
+                            if([msg isEqualToString:@"Error-402"])
+                            {
+                                NSLog(@"Message is : %@",msg);
+                                [self->utils showAlertWithMessage:[NSString stringWithFormat:@"API is disabled in web, please enable it from Admin panel."] sendViewController:self];
+                            }
+                            else if([msg isEqualToString:@"Error-422"])
+                            {
+                                NSLog(@"Message is : %@",msg);
+                                [self->utils showAlertWithMessage:[NSString stringWithFormat:@"Unprocessable Entity. Please try again later."] sendViewController:self];
+                            }
+                            else if([msg isEqualToString:@"Error-404"])
+                            {
+                                NSLog(@"Message is : %@",msg);
+                                [self->utils showAlertWithMessage:[NSString stringWithFormat:@"The requested URL was not found on this server."] sendViewController:self];
+                            }
+                            else if([msg isEqualToString:@"Error-405"] ||[msg isEqualToString:@"405"])
+                            {
+                                NSLog(@"Message is : %@",msg);
+                                [self->utils showAlertWithMessage:[NSString stringWithFormat:@"The requested URL was not found on this server."] sendViewController:self];
+                            }
+                            else if([msg isEqualToString:@"Error-500"] ||[msg isEqualToString:@"500"])
+                            {
+                                NSLog(@"Message is : %@",msg);
+                                [self->utils showAlertWithMessage:[NSString stringWithFormat:@"Internal Server Error.Something has gone wrong on the website's server."] sendViewController:self];
+                            }
+                            else if([msg isEqualToString:@"Error-400"] ||[msg isEqualToString:@"400"])
+                            {
+                                NSLog(@"Message is : %@",msg);
+                                [self->utils showAlertWithMessage:[NSString stringWithFormat:@"The request could not be understood by the server due to malformed syntax."] sendViewController:self];
+                            }
+                            else if([msg isEqualToString:@"Error-403"] || [msg isEqualToString:@"403"])
+                            {
+                                NSLog(@"Message is : %@",msg);
+                                [self->utils showAlertWithMessage:@"Access Denied. Either your credentials has been changed or You are not an Agent/Admin." sendViewController:self];
+                            }
+                            else{
+                                
+                                [self->utils showAlertWithMessage:msg sendViewController:self];
+                            }
+                        
                         
                     }else if(error)  {
-                        [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
+                        [self->utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
                         NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
                     }
                     
@@ -106,6 +182,15 @@
                     
                     [self reload];
                     NSLog(@"Thread--NO4-call-getConversation");
+                    return;
+                }
+                
+                if ([msg isEqualToString:@"tokenNotRefreshed"]) {
+                    
+                //erote error messages
+                    
+                    [[AppDelegate sharedAppdelegate] hideProgressView];
+                    
                     return;
                 }
                 
@@ -125,24 +210,24 @@
                         });
                     });
                 }
+
                 
                 NSLog(@"Thread-NO5-getConversation-closed");
                 
             }];
         }@catch (NSException *exception)
         {
-            // Print exception information
-            NSLog( @"NSException caught in reload method in Conversation ViewController\n" );
+            [utils showAlertWithMessage:exception.name sendViewController:self];
             NSLog( @"Name: %@", exception.name);
             NSLog( @"Reason: %@", exception.reason );
-            return ;
+            return;
         }
         @finally
         {
-            // Cleanup, in both success and fail cases
-            NSLog( @"In finally block");
+            NSLog( @" I am in reload method in Conversation ViewController" );
             
         }
+        
         
     }
 }
@@ -151,6 +236,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSInteger numOfSections = 0;
@@ -196,98 +282,145 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ConversationTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    NSDictionary *finaldic=[mutableArray objectAtIndex:indexPath.row];
     
-    @try{
-        cell.timeStampLabel.text=[utils getLocalDateTimeFromUTC:[finaldic objectForKey:@"created_at"]];
-        
-        NSInteger i=[[finaldic objectForKey:@"is_internal"] intValue];
-        if (i==0) {
-            [cell.internalNoteLabel setHidden:YES];
-        }
-        if(i==1){
-            [cell.internalNoteLabel setHidden:NO];
-        }
-        
-        
-        //NSString *system= @"System";
-        NSString *fName=[finaldic objectForKey:@"first_name"];
-        NSString *lName=[finaldic objectForKey:@"last_name"];
-        
-        NSString *userName=[finaldic objectForKey:@"user_name"];
-        
-        [Utils isEmpty:fName];
-        [Utils isEmpty:lName];
-        [Utils isEmpty:userName];
-        
-        
-        
-        if  ([Utils isEmpty:fName] && [Utils isEmpty:lName]){
-            if(![Utils isEmpty:userName]){
-                userName=[NSString stringWithFormat:@"%@",[finaldic objectForKey:@"user_name"]];
-                cell.clientNameLabel.text=userName;
-            }else cell.clientNameLabel.text=@"System";
-        }
-        else if ((![Utils isEmpty:fName] || ![Utils isEmpty:lName]) || (![Utils isEmpty:fName] && ![Utils isEmpty:lName]))
-        {
-            fName=[NSString stringWithFormat:@"%@ %@",fName,lName];
-            
-            cell.clientNameLabel.text=fName;
-            
-        }
-        
-        
-        
-        // [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
-        
-        if (  ![[finaldic objectForKey:@"profile_pic"] isEqual:[NSNull null]]   )
-        {
-            [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
-            
-        }
-        else
-        {
-            [cell setUserProfileimage:@"default_pic.png"];
-        }
-        
-    }@catch (NSException *exception)
-    {
-        // Print exception information
-        NSLog( @"NSException caught in CellForRowAtIndexPath methos in Conversation ViewController\n" );
-        NSLog( @"Name: %@", exception.name);
-        NSLog( @"Reason: %@", exception.reason );
-        return cell;
+    NSDictionary *finaldic=[mutableArray objectAtIndex:indexPath.row];
+    NSLog(@"Ticket Thread Dict is : %@",finaldic);
+
+    //create at label
+    cell.timeStampLabel.text=[utils getLocalDateTimeFromUTC:[finaldic objectForKey:@"created_at"]];
+    
+    //internal note label
+    NSInteger i=[[finaldic objectForKey:@"is_internal"] intValue];
+    if (i==0) {
+        [cell.internalNoteLabel setHidden:YES];
     }
-    @finally
+    if(i==1){
+        [cell.internalNoteLabel setHidden:NO];
+    }
+    
+
+    
+    
+    
+    //         NSURL *url = [NSURL URLWithString:@"http://www.amazon.com"];
+    //        [cell.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    
+    
+    // NSDictionary *finaldic=[mutableArray objectAtIndex:indexPath.row];
+    //    [self showWebview:@"" body:[finaldic objectForKey:@"body"] popupStyle:CNPPopupStyleActionSheet];/
+    
+    
+    NSString *body= [finaldic objectForKey:@"body"];  //@"Mallikarjun";
+    NSRange range = [body rangeOfString:@"<body"];
+    
+    if(range.location != NSNotFound) {
+        // Adjust style for mobile
+        float inset = 40;
+        NSString *style = [NSString stringWithFormat:@"<style>div {max-width: %fpx;}</style>", self.view.bounds.size.width - inset];
+        body = [NSString stringWithFormat:@"%@%@%@", [body substringToIndex:range.location], style, [body substringFromIndex:range.location]];
+    }
+    cell.webView.translatesAutoresizingMaskIntoConstraints = NO;
+    [cell.webView loadHTMLString:body baseURL:nil];
+    
+    
+    
+    //NSString *system= @"System";
+    NSString *fName=[finaldic objectForKey:@"first_name"];
+    NSString *lName=[finaldic objectForKey:@"last_name"];
+    
+    NSString *userName=[finaldic objectForKey:@"user_name"];
+    
+    [Utils isEmpty:fName];
+    [Utils isEmpty:lName];
+    [Utils isEmpty:userName];
+    
+    
+    
+    if  ([Utils isEmpty:fName] && [Utils isEmpty:lName]){
+        if(![Utils isEmpty:userName]){
+            userName=[NSString stringWithFormat:@"%@",[finaldic objectForKey:@"user_name"]];
+            cell.clientNameLabel.text=userName;
+        }else cell.clientNameLabel.text=@"System";
+    }
+    else if ((![Utils isEmpty:fName] || ![Utils isEmpty:lName]) || (![Utils isEmpty:fName] && ![Utils isEmpty:lName]))
     {
-        // Cleanup, in both success and fail cases
-        NSLog( @"In finally block");
+        fName=[NSString stringWithFormat:@"%@ %@",fName,lName];
+        
+        cell.clientNameLabel.text=fName;
         
     }
+
+        
+        
+        
+    // [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
+    
+    if (  ![[finaldic objectForKey:@"profile_pic"] isEqual:[NSNull null]]   )
+    {
+        [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
+        
+    }
+    else
+    {
+        [cell setUserProfileimage:@"default_pic.png"];
+    }
+
+    
     
     return cell;
 }
 
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if(selectedIndex == indexPath.row)
+    {
+        // return  200;
+        
+        UITableViewCell   *cell = [self tableView: tableView cellForRowAtIndexPath: indexPath];
+        return cell.bounds.size.height;
+    }
+    else
+    {
+        return  90;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSDictionary *finaldic=[mutableArray objectAtIndex:indexPath.row];
-    [self showWebview:@"" body:[finaldic objectForKey:@"body"] popupStyle:CNPPopupStyleActionSheet];
+    // NSDictionary *finaldic=[mutableArray objectAtIndex:indexPath.row];
+    //    [self showWebview:@"" body:[finaldic objectForKey:@"body"] popupStyle:CNPPopupStyleActionSheet];
+    
+    
+    //user taps expnmade view
+    
+    if(selectedIndex == indexPath.row)
+    {
+        
+        selectedIndex =-1;
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]  withRowAnimation:UITableViewRowAnimationFade ];
+        return;
+    }
+    
+    //user taps diff row
+    if(selectedIndex != -1)
+    {
+        
+        NSIndexPath *prevPath= [NSIndexPath indexPathForRow:selectedIndex inSection:0];
+        selectedIndex=(int)indexPath.row;
+        
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:prevPath, nil]  withRowAnimation:UITableViewRowAnimationFade ];
+    }
+    
+    
+    //uiser taps new row with none expanded
+    selectedIndex =(int)indexPath.row;
+    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]  withRowAnimation:UITableViewRowAnimationFade ];
+    
 }
 
 
-
-//- (void)webViewDidFinishLoad:(UIWebView *)theWebView
-//{
-//    CGSize contentSize = theWebView.scrollView.contentSize;
-//    CGSize viewSize = theWebView.bounds.size;
-//
-//    float rw = viewSize.width / contentSize.width;
-//
-//    theWebView.scrollView.minimumZoomScale = rw;
-//    theWebView.scrollView.maximumZoomScale = rw;
-//    theWebView.scrollView.zoomScale = rw;
-//
-//}
 
 -(void)showWebview:(NSString*)tittle body:(NSString*)body popupStyle:(CNPPopupStyle)popupStyle{
     
@@ -335,6 +468,8 @@
 -(void)webViewDidStartLoad:(UIWebView *)webView{
     
 }
+
+
 -(void)addUIRefresh{
     
     NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
@@ -345,7 +480,9 @@
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.tintColor=[UIColor whiteColor];
-    self.refreshControl.backgroundColor = [UIColor colorWithRed:0.46 green:0.8 blue:1.0 alpha:1.0];
+    //  self.refreshControl.backgroundColor = [UIColor colorWithRed:0.46 green:0.8 blue:1.0 alpha:1.0];
+    self.refreshControl.backgroundColor = [UIColor hx_colorWithHexRGBAString:@"#BDBDBD"];
+    
     self.refreshControl.attributedTitle =refreshing;
     [self.refreshControl addTarget:self action:@selector(reloadd) forControlEvents:UIControlEventValueChanged];
     
@@ -355,6 +492,7 @@
     [self reload];
     // [refreshControl endRefreshing];
 }
+
 
 
 @end
