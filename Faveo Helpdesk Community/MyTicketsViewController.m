@@ -15,7 +15,8 @@
 #import "HexColors.h"
 #import "RMessage.h"
 #import "RMessageView.h"
-#import "NotificationViewController.h"
+#import "UIImageView+Letters.h"
+
 
 @interface MyTicketsViewController ()<RMessageProtocol>{
     
@@ -58,8 +59,7 @@
     { [refresh endRefreshing];
         //connection unavailable
         [[AppDelegate sharedAppdelegate] hideProgressView];
-        // [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
-        
+    
         
         if (self.navigationController.navigationBarHidden) {
             [self.navigationController setNavigationBarHidden:NO];
@@ -487,16 +487,19 @@
         // [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
         
         @try{
-            if (  ![[finaldic objectForKey:@"profile_pic"] isEqual:[NSNull null]]   )
+            //Image view
+            if([[finaldic objectForKey:@"profile_pic"] hasSuffix:@"system.png"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".jpg"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".jpeg"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".png"] )
             {
                 [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
-                
+            }
+            else if(![Utils isEmpty:[finaldic objectForKey:@"first_name"]])
+            {
+                [cell.profilePicView setImageWithString:[finaldic objectForKey:@"first_name"] color:nil ];
             }
             else
             {
-                [cell setUserProfileimage:@"default_pic.png"];
+                [cell.profilePicView setImageWithString:[finaldic objectForKey:@"user_name"] color:nil ];
             }
-            
             
             
             cell.indicationView.layer.backgroundColor=[[UIColor hx_colorWithHexRGBAString:[finaldic objectForKey:@"priority_color"]] CGColor];

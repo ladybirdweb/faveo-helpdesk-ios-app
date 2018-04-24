@@ -15,6 +15,7 @@
 #import "GlobalVariables.h"
 #import "RMessage.h"
 #import "RMessageView.h"
+#import "UIImageView+Letters.h"
 
 
 @interface ClientListViewController ()<RMessageProtocol>{
@@ -330,22 +331,11 @@
         }
         
         NSDictionary *finaldic=[_mutableArray objectAtIndex:indexPath.row];
-        
-        // NSString *email=[finaldic objectForKey:@"email"];
-        
-        /* NSString *phone=[finaldic objectForKey:@"phone_number"];
-         if ([email isEqualToString:@""]) {
-         email=NSLocalizedString(@"Not Available",nil);
-         }
-         if ([phone isEqualToString:@""]) {
-         phone=NSLocalizedString(@"Not Available",nil);
-         } */
+    
         
         @try{
             
-            
-            
-            
+    
             NSString *email=[finaldic objectForKey:@"email"];
             
             NSString *mobile=[finaldic objectForKey:@"mobile"];
@@ -440,17 +430,22 @@
             }
             
             
-            // [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
+            //Image view
             
-            if (  ![[finaldic objectForKey:@"profile_pic"] isEqual:[NSNull null]]   )
+            if([[finaldic objectForKey:@"profile_pic"] hasSuffix:@".jpg"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".jpeg"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".png"] )
             {
-                [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
+                [cell setUserProfileimage:globalVariables.profilePicFromClientList];
+            }else if(![Utils isEmpty:clientFirstName])
+            {
+                // [cell.profilePicView setImageWithString:fname color:nil ];
                 
+                [cell.profilePicView setImageWithString:clientFirstName color:nil ];
             }
             else
             {
-                [cell setUserProfileimage:@"default_pic.png"];
+               [cell.profilePicView setImageWithString:userName color:nil ];
             }
+
         }@catch (NSException *exception)
         {
             // Print exception information
@@ -479,9 +474,15 @@
     globalVariables.iD=@([client_id intValue]);
     globalVariables.First_name=[finaldic objectForKey:@"first_name"];
     globalVariables.Last_name=[finaldic objectForKey:@"last_name"];
-    globalVariables.mobileCode1= [NSString stringWithFormat:@"%@",[finaldic objectForKey:@"mobile_code"]];
     
-    //    td.clientName=[NSString stringWithFormat:@"%@ %@",clientName,[finaldic objectForKey:@"last_name"]];
+    globalVariables.emailFromClientList=[finaldic objectForKey:@"email"];
+    globalVariables.userNameFromClientList=[finaldic objectForKey:@"user_name"];
+    globalVariables.mobileNumberFromClientList=[finaldic objectForKey:@"mobile"];
+    globalVariables.profilePicFromClientList=[finaldic objectForKey:@"profile_pic"];
+    globalVariables.activeStatusFromClinetList=[finaldic objectForKey:@"active"];
+    globalVariables.mobileCodeFromClientList= [NSString stringWithFormat:@"%@",[finaldic objectForKey:@"mobile_code"]];
+    globalVariables.phoneNumberFromClientList=[finaldic objectForKey:@"phone_number"];
+
     
     [self.navigationController pushViewController:td animated:YES];
 }

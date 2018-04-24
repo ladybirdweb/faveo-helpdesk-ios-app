@@ -15,6 +15,7 @@
 #import "RKDropdownAlert.h"
 #import "RMessage.h"
 #import "RMessageView.h"
+#import "UIImageView+Letters.h"
 
 @interface ClientDetailViewController ()<RMessageProtocol>
 {
@@ -39,27 +40,130 @@
     [super viewDidLoad];
     
     self.profileImageView.clipsToBounds = YES;
-    self.profileImageView.layer.borderWidth=1.3f;
+//    self.profileImageView.layer.borderWidth=0.3f;
     self.profileImageView.layer.borderColor=[[UIColor hx_colorWithHexRGBAString:@"#0288D1"] CGColor];
-    //  self.profileImageView.layer.borderColor=[[UIColor blackColor] CGColor];
     
-    // [self setUserProfileimage:_imageURL];
+    
     
     _activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-50);
     _activityIndicatorObject.color=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
     [self.view addSubview:_activityIndicatorObject];
-    [self addUIRefresh];
+   
+    
+    
+    _testingLAbel.backgroundColor=[UIColor lightGrayColor];
+    _testingLAbel.layer.cornerRadius=8;
+    _testingLAbel.layer.masksToBounds=true;
+    _testingLAbel.userInteractionEnabled=YES;
+    
+    
     utils=[[Utils alloc]init];
-    
     globalVariables=[GlobalVariables sharedInstance];
-    _clientId=[NSString stringWithFormat:@"%@",globalVariables.iD];
-    
     userDefaults=[NSUserDefaults standardUserDefaults];
     
+    NSString *firstName=globalVariables.First_name;
+    NSString *lastName=globalVariables.Last_name;
+    NSString *userName=globalVariables.userNameFromClientList;
+    NSString *emailId=globalVariables.emailFromClientList;
+    NSString *mobileCode=globalVariables.mobileCodeFromClientList;
+    NSString *mobileNumber=globalVariables.mobileNumberFromClientList;
+    NSString *phoneNumber=globalVariables.phoneNumberFromClientList;
+    NSString *userState=[NSString stringWithFormat:@"%@",globalVariables.activeStatusFromClinetList];
+    
+    //user name
+    if (![firstName isEqual:[NSNull null]] ) {
+        
+        _clientNameLabel.text=[NSString stringWithFormat:@"%@ %@",firstName,lastName];
+    }
+    else if(![userName isEqual:[NSNull null]])
+    {
+        _clientNameLabel.text=userName;
+    }
+    else
+    {
+        _clientNameLabel.text=emailId;
+    }
+    
+    //email
+    
+    if(![emailId isEqual:[NSNull null]]){
+        _emailLabel.text=emailId;
+    }
+    else{
+        _emailLabel.text=@"Not Available";
+    }
+    
+    //mobile/phone number and code
+    
+    if(![mobileCode isEqual:[NSNull null]])
+    {
+        if([mobileCode isEqualToString:@"0"])
+        {
+            mobileCode=@"";
+        }
+        
+         if(![mobileNumber isEqual:[NSNull null]])
+         {
+             _phoneLabel.text=[NSString stringWithFormat:@"%@ %@",mobileCode,mobileNumber];
+         }
+
+        else
+        {
+            _phoneLabel.text=@"Not Available";
+        }
+    }
+    else if(![mobileNumber isEqual:[NSNull null]])
+    {
+        _phoneLabel.text=[NSString stringWithFormat:@"%@",mobileNumber];
+    }
+    else if(![phoneNumber isEqual:[NSNull null]])
+    {
+         _phoneLabel.text=[NSString stringWithFormat:@"%@",phoneNumber];;
+    }
+    else
+    {
+        _phoneLabel.text=@"Not Available";
+    }
+    
+    
+    // is active or inactive
+    
+    if([userState isEqualToString:@"1"])
+    {
+        _testingLAbel.text=@"ACTIVE";
+    }
+    else
+    {
+         _testingLAbel.text=@"INACTIVE";
+    }
+    
+    
+    //Image view
+    
+    if([globalVariables.profilePicFromClientList hasSuffix:@".jpg"] || [globalVariables.profilePicFromClientList hasSuffix:@".jpeg"] || [globalVariables.profilePicFromClientList hasSuffix:@".png"] )
+    {
+        [self setUserProfileimage:globalVariables.profilePicFromClientList];
+    }else if(![Utils isEmpty:firstName])
+    {
+        // [cell.profilePicView setImageWithString:fname color:nil ];
+        
+        [_profileImageView setImageWithString:firstName color:nil];
+    }
+    else
+    {
+        [_profileImageView setImageWithString:userName color:nil];
+    }
+    
+    
+    
+    
+    _clientId=[NSString stringWithFormat:@"%@",globalVariables.iD];
+     [self addUIRefresh];
+    [self reload];
     
     [_activityIndicatorObject startAnimating];
-    [self reload];
+    
     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view.
 }
@@ -120,114 +224,12 @@
                     NSLog(@"Thread-NO4--getClientTickets--%@",json);
                     mutableArray = [[json objectForKey:@"tickets"] copy];
                     
-                    NSDictionary *requester=[json objectForKey:@"requester"];
-                    
-                    requesterTempDict= [json objectForKey:@"requester"];
-                    
-                    //[requester objectForKey:@"company"];
-                    
-                    if(( ![[json objectForKey:@"requester"] isEqual:[NSNull null]] ) )
-                        
-                    { /////////
-                        
-                        if (( ![[requester objectForKey:@"email"] isEqual:[NSNull null]] )) {
-                            
-                            _emailID= [requester objectForKey:@"email"];
-                        }
-                        else
-                        {
-                            _emailID=NSLocalizedString(@"Not Available",nil);
-                        }
-                        
-                        if (( ![[requester objectForKey:@"active"] isEqual:[NSNull null]] )) {
-                            // _isClientActive=[requester objectForKey:@"active"];
-                            _isClientActive= [NSString stringWithFormat:@"%@",[requester objectForKey:@"active"]];
-                            
-                            if ([_isClientActive isEqualToString:@"1"]) {
-                                _isClientActive=@"ACTIVE";
-                            }else  _isClientActive=@"INACTIVE";
-                        }
-                        else
-                        {
-                            _isClientActive= NSLocalizedString(@"Not Available",nil);
-                        }
-                        
-                        if (( ![[requester objectForKey:@"first_name"] isEqual:[NSNull null]] )) {
-                            _clientName=[NSString stringWithFormat:@"%@ %@ ", [requester objectForKey:@"first_name"], [requester objectForKey:@"last_name"]];
-                        }
-                        else
-                        {
-                            _clientName=NSLocalizedString(@"Not Available",nil);
-                        }
-                        
-                        
-                        if (( ![[requester objectForKey:@"phone_number"] isEqual:[NSNull null]] ) && ![[requester objectForKey:@"phone_number"] isEqualToString:@""]) {
-                            _phone=[requester objectForKey:@"phone_number"];
-                        }
-                        else if(( ![[requester objectForKey:@"mobile"] isEqual:[NSNull null]] ))
-                        {
-                            _phone=[requester objectForKey:@"mobile"];
-                        }
-                        else
-                        {
-                            _phone= NSLocalizedString(@"Not Available",nil);
-                        }
-                        
-                        NSString *code1= [NSString stringWithFormat:@"%@",[requester objectForKey:@"country_code"]];
-                        
-                        
-                        
-                        [Utils isEmpty:code1];
-                        if(![Utils isEmpty:code1])
-                        {
-                            if([code1 isEqualToString:@"0"])
-                            {
-                                code2=@"";
-                                
-                            }
-                            else
-                            {
-                                code2=[NSString stringWithFormat:@"+%@",[requester objectForKey:@"country_code"]];
-                            }
-                        }
-                        else
-                        {
-                            code2=@"";
-                        }
-                        
-                        [requester objectForKey:@"profile_pic"];
-                        
-                        
-                    } ///////
-                    
-                    
+        
                     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [_activityIndicatorObject stopAnimating];
                             [refresh endRefreshing];
-                            //self.testingLAbel.text=self.isClientActive;
-                            self.emailLabel.text=self.emailID;
-                            self.clientNameLabel.text=self.clientName;
-                            // self.phoneLabel.text=self.phone;
-                            
-                            self.phoneLabel.text=[NSString stringWithFormat:@"%@  %@",code2,self.phone];
-                            
-                            [self setUserProfileimage:[requester objectForKey:@"profile_pic"]];
-                            // self.testingLAbel.text=self.isClientActive;
-                            
-                            if ([_isClientActive isEqualToString:@"ACTIVE"])
-                            {
-                                self.testingLAbel.textColor=[UIColor greenColor];
-                                self.testingLAbel.text=@"ACTIVE";
-                                
-                            }else
-                            {
-                                
-                                self.testingLAbel.textColor=[UIColor redColor];
-                                self.testingLAbel.text=@"INACTIVE";
-                                
-                            }
-                            
+                    
                             [self.tableView reloadData];
                         });
                     });

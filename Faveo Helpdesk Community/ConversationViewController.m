@@ -13,7 +13,6 @@
 #import "HexColors.h"
 #import "GlobalVariables.h"
 #import "RKDropdownAlert.h"
-#import "NotificationViewController.h"
 #import "RMessage.h"
 #import "RMessageView.h"
 #import "UIImageView+Letters.h"
@@ -59,26 +58,10 @@
     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadd) name:@"reload_data" object:nil];
     
-    
-    [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting Conversations",nil)];
-    
-    if([[userDefaults objectForKey:@"msgFromRefreshToken"] isEqualToString:@"Invalid credentials"])
-    {
-        NSString *msg=@"";
-        [utils showAlertWithMessage:@"Access Denied.  Your credentials has been changed. Contact to Admin and try to login again." sendViewController:self];
-        [self->userDefaults setObject:msg forKey:@"msgFromRefreshToken"];
-        [[AppDelegate sharedAppdelegate] hideProgressView];
-    }
-    else if([[userDefaults objectForKey:@"msgFromRefreshToken"] isEqualToString:@"API disabled"])
-    {   NSString *msg=@"";
-        [utils showAlertWithMessage:@"API is disabled in web, please enable it from Admin panel." sendViewController:self];
-        [self->userDefaults setObject:msg forKey:@"msgFromRefreshToken"];
-        [[AppDelegate sharedAppdelegate] hideProgressView];
-    }
-    else{
+ 
         [self reload];
-        
-    }
+        [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting Conversations",nil)];
+    
     
 }
 
@@ -89,7 +72,7 @@
         [self.refreshControl endRefreshing];
         //[_activityIndicatorObject stopAnimating];
         [[AppDelegate sharedAppdelegate] hideProgressView];
-        // [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+
         
         if (self.navigationController.navigationBarHidden) {
             [self.navigationController setNavigationBarHidden:NO];
@@ -195,6 +178,8 @@
                 }
                 
                 if (json) {
+                    [[AppDelegate sharedAppdelegate] hideProgressView];
+                    
                     //NSError *error;
                     mutableArray=[[NSMutableArray alloc]initWithCapacity:10];
                     NSLog(@"Thread-NO4--getConversationAPI--%@",json);
@@ -350,23 +335,26 @@
         
     }
 
-        
-        
-        
-    // [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
     
-    if (  ![[finaldic objectForKey:@"profile_pic"] isEqual:[NSNull null]]   )
+    
+    if([[finaldic objectForKey:@"profile_pic"] hasSuffix:@"system.png"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".jpg"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".jpeg"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".png"] )
     {
         [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
+    }
+    else if(![Utils isEmpty:[finaldic objectForKey:@"first_name"]])
+    {
+        [cell.profilePicView setImageWithString:[finaldic objectForKey:@"first_name"] color:nil ];
+    }
+    else if(![Utils isEmpty:userName])
+    {
+        [cell.profilePicView setImageWithString:[finaldic objectForKey:@"user_name"] color:nil ];
         
     }
     else
     {
-        [cell setUserProfileimage:@"default_pic.png"];
+        cell.clientNameLabel.text=@"System";
+        [cell.profilePicView setImageWithString:@"System" color:nil ];
     }
-
-    
-    
     return cell;
 }
 

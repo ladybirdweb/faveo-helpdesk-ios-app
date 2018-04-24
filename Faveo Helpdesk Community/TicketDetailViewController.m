@@ -12,7 +12,6 @@
 #import "RKDropdownAlert.h"
 #import "RMessage.h"
 #import "RMessageView.h"
-#import "NotificationViewController.h"
 #import "InboxViewController.h"
 #import "LGPlusButtonsView.h"
 #import "ConversationViewController.h"
@@ -52,9 +51,7 @@
     [self addChildViewController:self.currentViewController];
     [self addSubview:self.currentViewController.view toView:self.containerView];
     utils=[[Utils alloc]init];
-    
     globalVariables=[GlobalVariables sharedInstance];
-    
     userDefaults=[NSUserDefaults standardUserDefaults];
     
     self.segmentedControl.tintColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
@@ -82,7 +79,7 @@
 {
     
     globalVariables=[GlobalVariables sharedInstance];
-    userDefaults=[NSUserDefaults standardUserDefaults];
+    
     
     _ticketLabel.text=globalVariables.ticket_number;
     
@@ -92,7 +89,7 @@
     
     
     [super viewWillAppear:animated];
-    
+    [self viewDidLoad];
     [self floatingButton];
 }
 
@@ -129,7 +126,7 @@
     _plusButtonsViewMain.plusButtonAnimationType = LGPlusButtonAnimationTypeRotate;
     
     [_plusButtonsViewMain setButtonsTitles:@[@"+", @"", @""] forState:UIControlStateNormal];
-    [_plusButtonsViewMain setDescriptionsTexts:@[@"", @"Ticket Replay", @"Internal Notes"]];
+    [_plusButtonsViewMain setDescriptionsTexts:@[@"", @"Ticket Reply", @"Internal Notes"]];
     [_plusButtonsViewMain setButtonsImages:@[[NSNull new], [UIImage imageNamed:@"reply1"], [UIImage imageNamed:@"note3"]]
                                   forState:UIControlStateNormal
                             forOrientation:LGPlusButtonsViewOrientationAll];
@@ -710,9 +707,6 @@
         
     }
 }
-
-
-
 
 
 -(void)postReply{

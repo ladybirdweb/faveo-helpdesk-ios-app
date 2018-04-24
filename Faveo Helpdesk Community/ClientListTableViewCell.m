@@ -14,7 +14,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.profilePicView.layer.borderWidth=1.25f;
+   // self.profilePicView.layer.borderWidth=1.25f;
     self.profilePicView.layer.borderColor=[[UIColor hx_colorWithHexRGBAString:@"#0288D1"] CGColor];
     self.profilePicView.layer.cornerRadius = 57/2;
     self.profilePicView.clipsToBounds = YES;

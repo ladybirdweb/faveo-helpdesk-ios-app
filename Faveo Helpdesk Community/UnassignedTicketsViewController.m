@@ -15,7 +15,7 @@
 #import "HexColors.h"
 #import "RMessage.h"
 #import "RMessageView.h"
-#import "NotificationViewController.h"
+#import "UIImageView+Letters.h"
 
 @interface UnassignedTicketsViewController ()<RMessageProtocol>{
     Utils *utils;
@@ -319,12 +319,6 @@
         
         NSDictionary *finaldic=[_mutableArray objectAtIndex:indexPath.row];
         
-        //        cell.ticketIdLabel.text=[finaldic objectForKey:@"ticket_number"];
-        //        cell.mailIdLabel.text=[finaldic objectForKey:@"email"];
-        //        cell.timeStampLabel.text=[utils getLocalDateTimeFromUTC:[finaldic objectForKey:@"updated_at"]];
-        
-        
-        // cell.ticketIdLabel.text=[finaldic objectForKey:@"ticket_number"];
         @try{
             if ( ( ![[finaldic objectForKey:@"ticket_number"] isEqual:[NSNull null]] ) && ( [[finaldic objectForKey:@"ticket_number"] length] != 0 ) )
             {
@@ -468,14 +462,18 @@
         //[cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
         
         @try{
-            if (  ![[finaldic objectForKey:@"profile_pic"] isEqual:[NSNull null]]   )
+            //Image view
+            if([[finaldic objectForKey:@"profile_pic"] hasSuffix:@"system.png"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".jpg"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".jpeg"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".png"] )
             {
                 [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
-                
+            }
+            else if(![Utils isEmpty:[finaldic objectForKey:@"first_name"]])
+            {
+                [cell.profilePicView setImageWithString:[finaldic objectForKey:@"first_name"] color:nil ];
             }
             else
             {
-                [cell setUserProfileimage:@"default_pic.png"];
+                [cell.profilePicView setImageWithString:[finaldic objectForKey:@"user_name"] color:nil ];
             }
             
             

@@ -14,7 +14,7 @@
 #import "HexColors.h"
 #import "RMessage.h"
 #import "RMessageView.h"
-#import "NotificationViewController.h"
+#import "UIImageView+Letters.h"
 
 @import FirebaseInstanceID;
 @import FirebaseMessaging;
@@ -56,32 +56,13 @@
     globalVariables=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
     NSLog(@"device_token %@",[userDefaults objectForKey:@"deviceToken"]);
-    
-    
-    UIButton *NotificationBtn =  [UIButton buttonWithType:UIButtonTypeCustom];
-    [NotificationBtn setImage:[UIImage imageNamed:@"notification.png"] forState:UIControlStateNormal];
-    [NotificationBtn addTarget:self action:@selector(NotificationBtnPressed) forControlEvents:UIControlEventTouchUpInside];
-    // [NotificationBtn setFrame:CGRectMake(10, 0, 32, 32)];
-    [NotificationBtn setFrame:CGRectMake(46, 0, 32, 32)];
-    
-    UIView *rightBarButtonItems = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 76, 32)];
-    
-    [rightBarButtonItems addSubview:NotificationBtn];
-    
-     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButtonItems];
+
                                               
-    [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting Data",nil)];
+    [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting Tickets",nil)];
     [self reload];
     
     [self getDependencies];
 
-}
-
--(void)NotificationBtnPressed
-{
-    NotificationViewController *noti=[self.storyboard instantiateViewControllerWithIdentifier:@"Notify"];
-    [self.navigationController pushViewController:noti animated:YES];
-    
 }
 
 -(void)reload{
@@ -91,8 +72,6 @@
         [refresh endRefreshing];
         //connection unavailable
         [[AppDelegate sharedAppdelegate] hideProgressView];
-        //[utils showAlertWithMessage:NO_INTERNET sendViewController:self];
-        //[RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
         
         if (self.navigationController.navigationBarHidden) {
             [self.navigationController setNavigationBarHidden:NO];
@@ -668,15 +647,20 @@
         
         // [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
         @try{
+        
             
-            if (  ![[finaldic objectForKey:@"profile_pic"] isEqual:[NSNull null]]   )
+            //Image view
+            if([[finaldic objectForKey:@"profile_pic"] hasSuffix:@"system.png"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".jpg"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".jpeg"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".png"] )
             {
                 [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
-                
+            }
+            else if(![Utils isEmpty:[finaldic objectForKey:@"first_name"]])
+            {
+                [cell.profilePicView setImageWithString:[finaldic objectForKey:@"first_name"] color:nil ];
             }
             else
             {
-                [cell setUserProfileimage:@"default_pic.png"];
+                [cell.profilePicView setImageWithString:[finaldic objectForKey:@"user_name"] color:nil ];
             }
             
             

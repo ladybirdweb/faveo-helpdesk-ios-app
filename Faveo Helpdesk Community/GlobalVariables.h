@@ -100,5 +100,15 @@
 
 @property (strong, nonatomic) NSString *title;
 
+
+@property (strong, nonatomic) NSString *emailFromClientList;
+@property (strong, nonatomic) NSString *mobileCodeFromClientList;
+@property (strong, nonatomic) NSString *mobileNumberFromClientList;
+@property (strong, nonatomic) NSString *phoneNumberFromClientList;
+@property (strong, nonatomic) NSString *activeStatusFromClinetList;
+@property (strong, nonatomic) NSString *userNameFromClientList;
+@property (strong, nonatomic) NSString *profilePicFromClientList;
+
+
 @end
 

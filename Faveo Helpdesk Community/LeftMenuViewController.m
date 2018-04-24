@@ -11,7 +11,7 @@
 #import "Reachability.h"
 #import "Utils.h"
 #import "AppDelegate.h"
-
+#import "UIImageView+Letters.h"
 
 @import Firebase;
 @interface LeftMenuViewController ()<RMessageProtocol>{
@@ -77,8 +77,18 @@
     _user_nameLabel.text=[userDefaults objectForKey:@"profile_name"];
     _url_label.text=[userDefaults objectForKey:@"baseURL"];
     
-    [_user_profileImage sd_setImageWithURL:[NSURL URLWithString:[userDefaults objectForKey:@"profile_pic"]]
-                          placeholderImage:[UIImage imageNamed:@"default_pic.png"]];
+//    [_user_profileImage sd_setImageWithURL:[NSURL URLWithString:[userDefaults objectForKey:@"profile_pic"]]
+//                          placeholderImage:[UIImage imageNamed:@"default_pic.png"]];
+    
+    if([[userDefaults objectForKey:@"profile_pic"] hasSuffix:@".jpg"] || [[userDefaults objectForKey:@"profile_pic"] hasSuffix:@".jpeg"] || [[userDefaults objectForKey:@"profile_pic"] hasSuffix:@".png"] )
+    {
+        [_user_profileImage sd_setImageWithURL:[NSURL URLWithString:[userDefaults objectForKey:@"profile_pic"]]
+                              placeholderImage:[UIImage imageNamed:@"default_pic.png"]];
+    }else
+    {
+        [_user_profileImage setImageWithString:[userDefaults objectForKey:@"profile_name"] color:nil ];
+    }
+    
     _user_profileImage.layer.borderColor=[[UIColor hx_colorWithHexRGBAString:@"#0288D1"] CGColor];
     
     _user_profileImage.layer.cornerRadius = _user_profileImage.frame.size.height /2;
@@ -88,25 +98,25 @@
     
     _view1.alpha=0.5;
     _view1.layer.cornerRadius = 20;
-    _view1.backgroundColor = [UIColor purpleColor];
+    _view1.backgroundColor = [UIColor hx_colorWithHexRGBAString:@"#884dff"];
     
     _view2.alpha=0.5;
     _view2.layer.cornerRadius = 20;
-    _view2.backgroundColor = [UIColor purpleColor];
+   _view2.backgroundColor = [UIColor hx_colorWithHexRGBAString:@"#884dff"];
     
     
     _view3.alpha=0.5;
     _view3.layer.cornerRadius = 20;
-    _view3.backgroundColor = [UIColor purpleColor];
+    _view3.backgroundColor = [UIColor hx_colorWithHexRGBAString:@"#884dff"];
     
     
     _view4.alpha=0.5;
     _view4.layer.cornerRadius = 20;
-    _view4.backgroundColor = [UIColor purpleColor];
+    _view4.backgroundColor = [UIColor hx_colorWithHexRGBAString:@"#884dff"];
     
     _view5.alpha=0.5;
     _view5.layer.cornerRadius = 20;
-    _view5.backgroundColor = [UIColor purpleColor];
+    _view5.backgroundColor = [UIColor hx_colorWithHexRGBAString:@"#884dff"];
     
     
     NSInteger open =  [globalVariables.OpenCount integerValue];
