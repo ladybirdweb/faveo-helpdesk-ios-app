@@ -481,9 +481,9 @@
     {
         
         [self.popupController dismissPopupControllerAnimated:YES];
-        
-        TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
-        [self.navigationController pushViewController:td animated:YES];
+        [self.view setNeedsDisplay];
+//        TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
+//        [self.navigationController pushViewController:td animated:YES];
     };
     
     
@@ -599,9 +599,9 @@
     {
         
         [self.popupController dismissPopupControllerAnimated:YES];
-        
-        TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
-        [self.navigationController pushViewController:td animated:YES];
+        [self.view setNeedsDisplay];
+//         TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
+//        [self.navigationController pushViewController:td animated:YES];
     };
     
     self.popupController = [[CNPPopupController alloc] initWithContents:@[titleLabel, customView, button,button2]];
@@ -680,9 +680,12 @@
                             [RKDropdownAlert title:NSLocalizedString(@"Sucess", nil) message:NSLocalizedString(@"Posted your note.", nil) backgroundColor:[UIColor hx_colorWithHexRGBAString:SUCCESS_COLOR] textColor:[UIColor whiteColor]];
                             
                             [[NSNotificationCenter defaultCenter] postNotificationName:@"reload_data" object:self];
-                            TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
-                            [self.navigationController pushViewController:td animated:YES];
+//                            TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
+//                            [self.navigationController pushViewController:td animated:YES];
                             
+//                            [self.navigationController popViewControllerAnimated:YES];
+                             [self.view setNeedsDisplay];
+                              [self viewDidLoad];
                             // [utils showAlertWithMessage:@"Kindly Refresh!!" sendViewController:self];
                         });
                     }
@@ -781,8 +784,11 @@
                             
                             [[NSNotificationCenter defaultCenter] postNotificationName:@"reload_data" object:self];
                             
-                            TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
-                            [self.navigationController pushViewController:td animated:YES];
+                            [self.view setNeedsDisplay];
+                             [self viewDidLoad];
+                            
+//                            TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
+//                            [self.navigationController pushViewController:td animated:YES];
                             // [utils showAlertWithMessage:@"Kindly Refresh!!" sendViewController:self];
                         });
                     }

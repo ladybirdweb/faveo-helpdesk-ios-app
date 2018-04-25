@@ -159,10 +159,9 @@
     
     
     _clientId=[NSString stringWithFormat:@"%@",globalVariables.iD];
-     [self addUIRefresh];
-    [self reload];
-    
     [_activityIndicatorObject startAnimating];
+     [self addUIRefresh];
+     [self reload];
     
     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view.
@@ -175,7 +174,6 @@
         [refresh endRefreshing];
         //connection unavailable
         [_activityIndicatorObject stopAnimating];
-        //[RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
         
         if (self.navigationController.navigationBarHidden) {
             [self.navigationController setNavigationBarHidden:NO];
@@ -227,10 +225,12 @@
         
                     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                         dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            [self.tableView reloadData];
                             [_activityIndicatorObject stopAnimating];
                             [refresh endRefreshing];
                     
-                            [self.tableView reloadData];
+                            
                         });
                     });
                 }

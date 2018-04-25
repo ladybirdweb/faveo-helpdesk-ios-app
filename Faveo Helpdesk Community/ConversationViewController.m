@@ -168,17 +168,9 @@
                     return;
                 }
                 
-                if ([msg isEqualToString:@"tokenNotRefreshed"]) {
-                    
-                //erote error messages
-                    
-                    [[AppDelegate sharedAppdelegate] hideProgressView];
-                    
-                    return;
-                }
                 
                 if (json) {
-                    [[AppDelegate sharedAppdelegate] hideProgressView];
+                    
                     
                     //NSError *error;
                     mutableArray=[[NSMutableArray alloc]initWithCapacity:10];
@@ -187,16 +179,16 @@
                     NSLog(@"Thread-NO4.1getConversation-dic--%@", mutableArray);
                     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            
+                            [self.tableView reloadData];
                             [self.refreshControl endRefreshing];
                             [[AppDelegate sharedAppdelegate] hideProgressView];
                             //[_activityIndicatorObject stopAnimating];
-                            [self.tableView reloadData];
+                            
                         });
                     });
                 }
 
-                
+                [[AppDelegate sharedAppdelegate] hideProgressView];
                 NSLog(@"Thread-NO5-getConversation-closed");
                 
             }];
