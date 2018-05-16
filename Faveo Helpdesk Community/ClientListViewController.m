@@ -46,7 +46,7 @@
     userDefaults=[NSUserDefaults standardUserDefaults];
     globalVariables=[GlobalVariables sharedInstance];
     
-    [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting Data",nil)];
+    [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting user List",nil)];
     [self reload];
     
     // Do any additional setup after loading the view.

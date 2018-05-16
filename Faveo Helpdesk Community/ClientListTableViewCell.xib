@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n51-Gz-KNn">
@@ -29,17 +29,23 @@
                                     <constraint firstAttribute="width" constant="57" id="dvj-9c-wiB"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="x83-b6-fXu">
-                                <rect key="frame" x="81" y="38" width="16" height="16"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="msg1" translatesAutoresizingMaskIntoConstraints="NO" id="x83-b6-fXu">
+                                <rect key="frame" x="81" y="34" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="DGF-qC-ucd"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="VCc-gF-Dxd"/>
+                                    <constraint firstAttribute="height" constant="16" id="bIK-nV-soN"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="8wC-5v-j9h">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="call1" translatesAutoresizingMaskIntoConstraints="NO" id="8wC-5v-j9h">
                                 <rect key="frame" x="81" y="55" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="5Lv-H8-mLn"/>
+                                    <constraint firstAttribute="width" constant="16" id="i8h-f7-dZd"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hdbhbahb@gmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEh-9k-nRs">
-                                <rect key="frame" x="105" y="36" width="211" height="18"/>
+                                <rect key="frame" x="105" y="28" width="211" height="26"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -51,7 +57,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anuj" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsn-fo-koh">
-                                <rect key="frame" x="81" y="12" width="231" height="18"/>
+                                <rect key="frame" x="81" y="10" width="231" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -61,9 +67,9 @@
                         <constraints>
                             <constraint firstItem="lsn-fo-koh" firstAttribute="leading" secondItem="x83-b6-fXu" secondAttribute="leading" id="0QK-aM-Zxd"/>
                             <constraint firstItem="YEh-9k-nRs" firstAttribute="leading" secondItem="hH2-UJ-QXg" secondAttribute="leading" id="5Uc-wM-wvW"/>
-                            <constraint firstItem="x83-b6-fXu" firstAttribute="bottom" secondItem="YEh-9k-nRs" secondAttribute="bottom" id="6zl-k9-OWd"/>
+                            <constraint firstItem="x83-b6-fXu" firstAttribute="bottom" secondItem="YEh-9k-nRs" secondAttribute="bottom" constant="-4" id="6zl-k9-OWd"/>
                             <constraint firstItem="x83-b6-fXu" firstAttribute="leading" secondItem="8wC-5v-j9h" secondAttribute="leading" id="71d-Fw-nBP"/>
-                            <constraint firstItem="x83-b6-fXu" firstAttribute="top" secondItem="lsn-fo-koh" secondAttribute="bottom" constant="8" symbolic="YES" id="COX-vb-ive"/>
+                            <constraint firstItem="x83-b6-fXu" firstAttribute="top" secondItem="lsn-fo-koh" secondAttribute="bottom" constant="6" id="COX-vb-ive"/>
                             <constraint firstItem="YEh-9k-nRs" firstAttribute="trailing" secondItem="hH2-UJ-QXg" secondAttribute="trailing" id="GGV-dM-kWP"/>
                             <constraint firstAttribute="trailing" secondItem="YEh-9k-nRs" secondAttribute="trailing" constant="4" id="HRx-EY-1nt"/>
                             <constraint firstItem="YEh-9k-nRs" firstAttribute="leading" secondItem="x83-b6-fXu" secondAttribute="trailing" constant="8" symbolic="YES" id="J4B-og-fUT"/>
@@ -73,10 +79,10 @@
                             <constraint firstItem="hH2-UJ-QXg" firstAttribute="top" secondItem="YEh-9k-nRs" secondAttribute="bottom" id="RZk-Fs-6zB"/>
                             <constraint firstItem="lsn-fo-koh" firstAttribute="leading" secondItem="Tao-A8-ngO" secondAttribute="trailing" constant="8" symbolic="YES" id="Use-rg-uV9"/>
                             <constraint firstItem="8wC-5v-j9h" firstAttribute="centerY" secondItem="hH2-UJ-QXg" secondAttribute="centerY" id="VJQ-s3-1or"/>
-                            <constraint firstItem="8wC-5v-j9h" firstAttribute="top" secondItem="x83-b6-fXu" secondAttribute="bottom" constant="1" id="itb-GX-82n"/>
+                            <constraint firstItem="8wC-5v-j9h" firstAttribute="top" secondItem="x83-b6-fXu" secondAttribute="bottom" constant="5" id="itb-GX-82n"/>
                             <constraint firstItem="Tao-A8-ngO" firstAttribute="top" secondItem="n51-Gz-KNn" secondAttribute="top" constant="11" id="oWw-FY-lGD"/>
                             <constraint firstItem="hH2-UJ-QXg" firstAttribute="bottom" secondItem="n51-Gz-KNn" secondAttribute="bottomMargin" id="vZj-if-R4v"/>
-                            <constraint firstItem="YEh-9k-nRs" firstAttribute="top" secondItem="lsn-fo-koh" secondAttribute="bottom" constant="6" id="ybz-QH-n15"/>
+                            <constraint firstItem="YEh-9k-nRs" firstAttribute="top" secondItem="lsn-fo-koh" secondAttribute="bottom" id="ybz-QH-n15"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -97,8 +103,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="default_pic" width="96" height="96"/>
-        <image name="email" width="16" height="16"/>
-        <image name="phone" width="16" height="16"/>
+        <image name="call1" width="24" height="24"/>
+        <image name="default_pic" width="512" height="512"/>
+        <image name="msg1" width="24" height="24"/>
     </resources>
 </document>

@@ -127,23 +127,43 @@
     
     if(open>99){
         _c1.text=@"99+";
-    }else
-        _c1.text=@(open).stringValue;
+    }else if(open<10){
+        _c1.text=[NSString stringWithFormat:@"0%ld",(long)open];
+    }
+    else{
+        _c1.text=@(open).stringValue; }
+    
     if(closed>99){
         _c4.text=@"99+";
-    }else
-        _c4.text=@(closed).stringValue;
+    }
+    else if(closed<10){
+        _c4.text=[NSString stringWithFormat:@"0%ld",(long)closed];
+    }else{
+        _c4.text=@(closed).stringValue; }
+    
     if(trash>99){
         _c5.text=@"99+";
+    }
+    else if(trash<10){
+        _c5.text=[NSString stringWithFormat:@"0%ld",(long)trash];
     }else
         _c5.text=@(trash).stringValue;
+    
     if(unasigned>99){
         _c3.text=@"99+";
-    }else
+    }else if(unasigned<10){
+        _c3.text=[NSString stringWithFormat:@"0%ld",(long)unasigned];
+    }
+    else
         _c3.text=@(unasigned).stringValue;
+    
     if(my_tickets>99){
         _c2.text=@"99+";
-    }else
+    }
+    else if(my_tickets<10){
+        _c2.text=[NSString stringWithFormat:@"0%ld",(long)my_tickets];
+    }
+    else
         _c2.text=@(my_tickets).stringValue;
     
     [self.tableView reloadData];

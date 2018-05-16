@@ -227,15 +227,16 @@
                         dispatch_async(dispatch_get_main_queue(), ^{
                             
                             [self.tableView reloadData];
-                            [_activityIndicatorObject stopAnimating];
                             [refresh endRefreshing];
+                            [_activityIndicatorObject stopAnimating];
+                           
                     
                             
                         });
                     });
                 }
                 
-                [_activityIndicatorObject stopAnimating];
+              //  [_activityIndicatorObject stopAnimating];
                 NSLog(@"Thread-NO5-getClientTickets-closed");
                 
             }];
@@ -362,23 +363,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
     NSDictionary *finaldic=[mutableArray objectAtIndex:indexPath.row];
-    
-    
-    
+
     globalVariables.iD=[finaldic objectForKey:@"id"];
     globalVariables.ticket_number=[finaldic objectForKey:@"ticket_number"];
-    
-    //globalVariables.title=[finaldic objectForKey:@"title"];  // ticket_status_name  // Ticket_status
-    
     globalVariables.Ticket_status= [finaldic objectForKey:@"ticket_status_name"];
     
     //requesterTempDict
     globalVariables.First_name= [requesterTempDict objectForKey:@"first_name"];
     globalVariables.Last_name= [requesterTempDict objectForKey:@"last_name"];
     
-    
+    TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
     [self.navigationController pushViewController:td animated:YES];
     
 }
