@@ -7,121 +7,139 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14DD78062E33839871A3CFA30EAEF0F8 /* HexColors-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD79B2F1216DD574236C4C95E3FC13 /* HexColors-dummy.m */; };
-		1CB223DD57D75FBB9EA5F4439E433993 /* RMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = C2965D1BD9D002009F4B16736B4BEBCA /* RMessage.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1F33E054C38DDE02BF6C0517F730FB56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		36600725474DBFC483AEC4D6B5DAB8A1 /* HexColors.h in Headers */ = {isa = PBXBuildFile; fileRef = F79FFBC9E644CB04ACACEF59F67712FB /* HexColors.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		37975EDB5A73A7B77337CCB6CF0BED0A /* UIViewController+PPTopMostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 592D2C3150B5190FD4C8DD9E4FCAE61F /* UIViewController+PPTopMostController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4BAD6E49187A6A9999FA177D0081C63E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		57F055318F6B8B1BB506CC58C0AEF4E0 /* Pods-Faveo Helpdesk Community-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E4A01C3B384E47B67EED79ACCA2907 /* Pods-Faveo Helpdesk Community-dummy.m */; };
+		14DD78062E33839871A3CFA30EAEF0F8 /* HexColors-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B12C75915D5E2F09644D36A29BFA81D /* HexColors-dummy.m */; };
+		17C469667F414B8739D44938C99B98C8 /* RMessageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2605FF05281AAA38A8C4A2227A60DCE4 /* RMessageView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1DF72B2CB5170905B3C811AB0E9948A7 /* RMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 30301AA5FFB82F8613C5D0096B15B071 /* RMessage.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		36600725474DBFC483AEC4D6B5DAB8A1 /* HexColors.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2FE6C9E62FB823443E2668DB3D4077 /* HexColors.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3AF49F9C23CF801A1D571A76FAAA319B /* FTProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 350CF2EE273A17266EBBF5B413B43D68 /* FTProgressIndicator.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3BE670831E8D92767F6563D5791BD152 /* UITabBarController+PPTopMostController.m in Sources */ = {isa = PBXBuildFile; fileRef = B062065AC050CC771E338513947F7849 /* UITabBarController+PPTopMostController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		44EE04C8C2233743A91E9305407DCD11 /* RMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 428BD5C2BBE1681C8365C17B3C018D42 /* RMessage.m */; };
+		4CC314CF4DB8E772C4CD20B69B4A1368 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		4D5413ED2359B982A70F3E461A0F20CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		60DD3C34AA697BE917469B0A9E9FF388 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		6689E8B779AE1EAD447DE0B95F9DB28C /* Pods-Faveo Helpdesk Community-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E4A01C3B384E47B67EED79ACCA2907 /* Pods-Faveo Helpdesk Community-dummy.m */; };
 		684887DE0B0891FB0EA0B6F6B53622B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		6960F3CB2D8FBC491E32A5111B6B361D /* RMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D91A2435077860E65F1358B67D54147 /* RMessageView.m */; };
-		71FD815B545372B81A39DE5FDA244F8C /* PPTopMostControllerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = C09FD631147B5FEAAB84BFEC1F659B00 /* PPTopMostControllerProtocol.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7DD48BF9F9E66704556928F4BA3D0904 /* RMessageView.h in Headers */ = {isa = PBXBuildFile; fileRef = E77C707DCB53A545A7F8C5423140D280 /* RMessageView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8009AB243E7235ED96AEC9D906CE7C3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		84B68833CED506E703C128C087F3F3AF /* UITabBarController+PPTopMostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B5FFB839CF622C0431690B79BE25BF /* UITabBarController+PPTopMostController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		A4950E142AD29C6F3F5E021256208496 /* HexColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D7DCAE9D73477DEDFC6E4FFEA30750 /* HexColors.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		A8EE9CA65F80565F047533C0DD2AE202 /* RMessage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D742D807D815D32FAA89A68393200B5 /* RMessage-dummy.m */; };
-		B179BE9A12CFC594D3AC35CB99C0332C /* UITabBarController+PPTopMostController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7247A5C98E2C05C708F3F0620B276A32 /* UITabBarController+PPTopMostController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B6651A4FB696315BBF1D24FD444B629A /* UIViewController+PPTopMostController.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A18257BC3BC30621414DB48B7E7B83 /* UIViewController+PPTopMostController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BC929D75959E9545168C698E23CC66DF /* PPTopMostController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C511F54C65E28B6F196A6267E9C324 /* PPTopMostController-dummy.m */; };
-		D822B67054D8BE0648649B0D37BE27F7 /* RMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F36044ED6055B5C9B1377C86EB6D5E /* RMessage.m */; };
-		E8F1FECE4A982B9C5EEE2204636877D0 /* UINavigationController+PPTopMostController.h in Headers */ = {isa = PBXBuildFile; fileRef = DF902D231BE8C4C3E40237A5C42DD67F /* UINavigationController+PPTopMostController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EE5D0658236E9A8A6C2F29DF8DB65F0E /* UINavigationController+PPTopMostController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD246E65513C019B50BEB7C43B1D2120 /* UINavigationController+PPTopMostController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6F99772E001322243832B95A2225E155 /* UITabBarController+PPTopMostController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F500755A41904118539CF4EC65827E0 /* UITabBarController+PPTopMostController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		768402A159EA4DCCC0292A25B23CCD74 /* FTProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 890B6CA4ED6A1960F97FDB5571A3AC94 /* FTProgressIndicator.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7729D5F352D9232DFDCB49E98377F8F1 /* UIViewController+PPTopMostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE12742C703C0131A52B00FCEC3916 /* UIViewController+PPTopMostController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8B711F2B7A98AF48F63AC1CC603EBA70 /* UINavigationController+PPTopMostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE62C21E07CAACCF94F4FE9D34F6FDDD /* UINavigationController+PPTopMostController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9D39486B6CE2BE75766DE1F2A0636795 /* FTIndicator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D4561C17D4603590A4846534DB966A /* FTIndicator-dummy.m */; };
+		A4950E142AD29C6F3F5E021256208496 /* HexColors.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D1D8DE3151951EDBC36CF456D5097C /* HexColors.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A858BF0CD60042A6FC04422E60A214EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		AB429336A04A9D4EC4D08D547FF1C322 /* UINavigationController+PPTopMostController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B7DCFD8620387980A59A98BB2569F14 /* UINavigationController+PPTopMostController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C0120DBB1C68ABF2C58AF066766ED871 /* PPTopMostControllerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = EA7B4DEC5BA6B73180DA82E8E1388100 /* PPTopMostControllerProtocol.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C7217A63CFB3EDBB17EF0B133D6C7768 /* RMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FE62CCACCBBFBFD23A221F58C949A68 /* RMessageView.m */; };
+		D3ED5D57D6B9971E580DA4DDA9EF54BD /* UIViewController+PPTopMostController.h in Headers */ = {isa = PBXBuildFile; fileRef = 804CC56CC23FFE5D58CA40DB4AA48EAC /* UIViewController+PPTopMostController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DD2DCE53E9E98EDF9B3220BFAB1E2271 /* PPTopMostController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEAC256BAE4258190C7435CE515D184 /* PPTopMostController-dummy.m */; };
+		FCF1A0CFE529CDE3EF91293CD2FCCA0D /* RMessage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4C196DC5D50650A8C718774A2E4F51 /* RMessage-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		451A0E1D0F96F9CFBEF99E5BF6813BD3 /* PBXContainerItemProxy */ = {
+		111C99765701643D1C2516D3EE85A361 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BD320F4F98DB69B58424F172D7B2934;
+			remoteInfo = FTIndicator;
+		};
+		18E2266662755EB8415951F624AE63A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 69880C36B0CE14DB37795B388DA40185;
+			remoteInfo = PPTopMostController;
+		};
+		7C6EAC7783BECD2F74D728163B1FD549 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = EC7BAA2B0109B633CE06A36E872A9505;
 			remoteInfo = HexColors;
 		};
-		6F140450AD590E1DAC0441066AD68288 /* PBXContainerItemProxy */ = {
+		A9385D9F52AF22718F887B2642E74CE2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C4CA6E8293E5DB35380B40FBC56E79C4;
+			remoteGlobalIDString = EC7BAA2B0109B633CE06A36E872A9505;
+			remoteInfo = HexColors;
+		};
+		E6BE19C8241DC8AB79D8AE738BD736AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 69880C36B0CE14DB37795B388DA40185;
+			remoteInfo = PPTopMostController;
+		};
+		F5BF4554FD2DDA6DF55043324B7AE45D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E60935219EF50AD37D78249A7D3C384;
 			remoteInfo = RMessage;
-		};
-		796DEDBA0F57E42AA3426416469117EC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EC7BAA2B0109B633CE06A36E872A9505;
-			remoteInfo = HexColors;
-		};
-		9830C3D22804B7D4C870DFC57BCDCD1B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 18334018B3CAA18F5E3E613437CF68EB;
-			remoteInfo = PPTopMostController;
-		};
-		DEFE51690C4DA3FD314CAEF9D31240A4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 18334018B3CAA18F5E3E613437CF68EB;
-			remoteInfo = PPTopMostController;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01F53F85C9EC7FC996AA6F368B59CFCB /* libPods-Faveo Helpdesk Community.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Faveo Helpdesk Community.a"; path = "libPods-Faveo Helpdesk Community.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		08C511F54C65E28B6F196A6267E9C324 /* PPTopMostController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PPTopMostController-dummy.m"; sourceTree = "<group>"; };
-		0D742D807D815D32FAA89A68393200B5 /* RMessage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RMessage-dummy.m"; sourceTree = "<group>"; };
-		15D0934CA62F4553389A16605567ED94 /* HexColors.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HexColors.xcconfig; sourceTree = "<group>"; };
-		1BD4DBF2420D42C0E47D1BB776D36A67 /* PPTopMostController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PPTopMostController-prefix.pch"; sourceTree = "<group>"; };
+		1C3C10138635CC6277BF0999E2C7E92E /* HexColors-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HexColors-prefix.pch"; sourceTree = "<group>"; };
 		1CC4CCD75023294D4026428E5847C544 /* Pods-Faveo Helpdesk Community-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Faveo Helpdesk Community-frameworks.sh"; sourceTree = "<group>"; };
-		304729F92306EE328D2820D4DA96C785 /* PPTopMostController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PPTopMostController.xcconfig; sourceTree = "<group>"; };
-		45A18257BC3BC30621414DB48B7E7B83 /* UIViewController+PPTopMostController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+PPTopMostController.h"; path = "PPTopMostController-Files/UIViewController+PPTopMostController.h"; sourceTree = "<group>"; };
-		4ACD79B2F1216DD574236C4C95E3FC13 /* HexColors-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HexColors-dummy.m"; sourceTree = "<group>"; };
-		4D91A2435077860E65F1358B67D54147 /* RMessageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RMessageView.m; path = RMessage/RMessageView.m; sourceTree = "<group>"; };
-		592D2C3150B5190FD4C8DD9E4FCAE61F /* UIViewController+PPTopMostController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+PPTopMostController.m"; path = "PPTopMostController-Files/UIViewController+PPTopMostController.m"; sourceTree = "<group>"; };
-		5EA230BBA1716EB8C2B7281A30E13845 /* NotificationBackgroundErrorIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundErrorIcon.png; path = RMessage/Assets/NotificationBackgroundErrorIcon.png; sourceTree = "<group>"; };
-		600D3FDDA1273B6AE2D7AC60D88ABBEB /* NotificationButtonBackground@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationButtonBackground@2x.png"; path = "RMessage/Assets/NotificationButtonBackground@2x.png"; sourceTree = "<group>"; };
-		60D7DCAE9D73477DEDFC6E4FFEA30750 /* HexColors.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = HexColors.m; path = Classes/HexColors.m; sourceTree = "<group>"; };
-		643FDCCA44B0E5692127DFE73F208D73 /* libPPTopMostController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libPPTopMostController.a; path = libPPTopMostController.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		644424F896D7F7BC450CE750FCE7C7B9 /* RMessage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RMessage-prefix.pch"; sourceTree = "<group>"; };
+		1F500755A41904118539CF4EC65827E0 /* UITabBarController+PPTopMostController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITabBarController+PPTopMostController.h"; path = "PPTopMostController-Files/UITabBarController+PPTopMostController.h"; sourceTree = "<group>"; };
+		2310241DD67D62F89C49297CF085E60A /* RMessageDefaultDesign.json */ = {isa = PBXFileReference; includeInIndex = 1; name = RMessageDefaultDesign.json; path = RMessage/Assets/RMessageDefaultDesign.json; sourceTree = "<group>"; };
+		2605FF05281AAA38A8C4A2227A60DCE4 /* RMessageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RMessageView.h; path = RMessage/RMessageView.h; sourceTree = "<group>"; };
+		2B7DCFD8620387980A59A98BB2569F14 /* UINavigationController+PPTopMostController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+PPTopMostController.h"; path = "PPTopMostController-Files/UINavigationController+PPTopMostController.h"; sourceTree = "<group>"; };
+		30301AA5FFB82F8613C5D0096B15B071 /* RMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RMessage.h; path = RMessage/RMessage.h; sourceTree = "<group>"; };
+		31CF3231905AD314B2914AE9A4361E74 /* NotificationButtonBackground@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationButtonBackground@2x.png"; path = "RMessage/Assets/NotificationButtonBackground@2x.png"; sourceTree = "<group>"; };
+		3297BA4156DFB7FE13EB4820290D61E3 /* libHexColors.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libHexColors.a; path = libHexColors.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		350CF2EE273A17266EBBF5B413B43D68 /* FTProgressIndicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FTProgressIndicator.h; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.h; sourceTree = "<group>"; };
+		428BD5C2BBE1681C8365C17B3C018D42 /* RMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RMessage.m; path = RMessage/RMessage.m; sourceTree = "<group>"; };
+		47280B9684A433AFADAB3BE9CDC5C6F1 /* FTIndicator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTIndicator-prefix.pch"; sourceTree = "<group>"; };
+		4EDE12742C703C0131A52B00FCEC3916 /* UIViewController+PPTopMostController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+PPTopMostController.m"; path = "PPTopMostController-Files/UIViewController+PPTopMostController.m"; sourceTree = "<group>"; };
+		5D73318BD68DF8B3449129E4CE6082BB /* PPTopMostController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PPTopMostController-prefix.pch"; sourceTree = "<group>"; };
+		5F14E688BBC74FA24C7BAAA590CB4433 /* libPods-Faveo Helpdesk Community.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Faveo Helpdesk Community.a"; path = "libPods-Faveo Helpdesk Community.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE62CCACCBBFBFD23A221F58C949A68 /* RMessageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RMessageView.m; path = RMessage/RMessageView.m; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		66B5FFB839CF622C0431690B79BE25BF /* UITabBarController+PPTopMostController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITabBarController+PPTopMostController.m"; path = "PPTopMostController-Files/UITabBarController+PPTopMostController.m"; sourceTree = "<group>"; };
-		7247A5C98E2C05C708F3F0620B276A32 /* UITabBarController+PPTopMostController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITabBarController+PPTopMostController.h"; path = "PPTopMostController-Files/UITabBarController+PPTopMostController.h"; sourceTree = "<group>"; };
+		6785817445C8B1B3A31BDFA586C4D7E6 /* libRMessage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRMessage.a; path = libRMessage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6819462C14ADA7D240DBC374472D96E2 /* RMessageView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = RMessageView.xib; path = RMessage/Resources/RMessageView.xib; sourceTree = "<group>"; };
+		6B12C75915D5E2F09644D36A29BFA81D /* HexColors-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HexColors-dummy.m"; sourceTree = "<group>"; };
 		7556F8E9BE1D612D471B1C7D9A4F38A0 /* Pods-Faveo Helpdesk Community-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Faveo Helpdesk Community-acknowledgements.markdown"; sourceTree = "<group>"; };
-		7AB32DD8ECC51A4A4EC069248627456B /* NotificationBackgroundWarningIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundWarningIcon.png; path = RMessage/Assets/NotificationBackgroundWarningIcon.png; sourceTree = "<group>"; };
-		838971CC0E591994B0FD89F93603C877 /* NotificationBackgroundSuccessIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundSuccessIcon@2x.png"; path = "RMessage/Assets/NotificationBackgroundSuccessIcon@2x.png"; sourceTree = "<group>"; };
-		91EB5D2D3D89B4ED5A02890521327D9D /* RMessageView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = RMessageView.xib; path = RMessage/Resources/RMessageView.xib; sourceTree = "<group>"; };
+		804CC56CC23FFE5D58CA40DB4AA48EAC /* UIViewController+PPTopMostController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+PPTopMostController.h"; path = "PPTopMostController-Files/UIViewController+PPTopMostController.h"; sourceTree = "<group>"; };
+		819858A8151A9419598E2F91D46A0312 /* RMessage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RMessage.xcconfig; sourceTree = "<group>"; };
+		83FB42F81B330160F117DBB0AEC5F32F /* NotificationBackgroundSuccessIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundSuccessIcon@2x.png"; path = "RMessage/Assets/NotificationBackgroundSuccessIcon@2x.png"; sourceTree = "<group>"; };
+		890B6CA4ED6A1960F97FDB5571A3AC94 /* FTProgressIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FTProgressIndicator.m; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.m; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93AAA1004E31889A7DEDE277D9AE305A /* Pods-Faveo Helpdesk Community-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Faveo Helpdesk Community-resources.sh"; sourceTree = "<group>"; };
+		9EF5A574E8EEF0C159F5B4EA28D6B130 /* PPTopMostController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PPTopMostController.xcconfig; sourceTree = "<group>"; };
+		A2D4561C17D4603590A4846534DB966A /* FTIndicator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FTIndicator-dummy.m"; sourceTree = "<group>"; };
 		A34BD076EEAC621B5F3C827CE4800175 /* Pods-Faveo Helpdesk Community.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Faveo Helpdesk Community.debug.xcconfig"; sourceTree = "<group>"; };
-		A7AE79FB3CCE448D6168500B379599D7 /* NotificationBackgroundWarningIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundWarningIcon@2x.png"; path = "RMessage/Assets/NotificationBackgroundWarningIcon@2x.png"; sourceTree = "<group>"; };
-		AD246E65513C019B50BEB7C43B1D2120 /* UINavigationController+PPTopMostController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+PPTopMostController.m"; path = "PPTopMostController-Files/UINavigationController+PPTopMostController.m"; sourceTree = "<group>"; };
-		AFFD8F8EA748165770904A58BF6BD653 /* NotificationBackgroundErrorIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundErrorIcon@2x.png"; path = "RMessage/Assets/NotificationBackgroundErrorIcon@2x.png"; sourceTree = "<group>"; };
-		B210671FD3C59334D7A26EA0D1BA91A6 /* HexColors-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HexColors-prefix.pch"; sourceTree = "<group>"; };
-		B8436EC1C277C4722AA9CFCF47BBDDAE /* libRMessage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRMessage.a; path = libRMessage.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C09FD631147B5FEAAB84BFEC1F659B00 /* PPTopMostControllerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PPTopMostControllerProtocol.h; path = "PPTopMostController-Files/PPTopMostControllerProtocol.h"; sourceTree = "<group>"; };
-		C2965D1BD9D002009F4B16736B4BEBCA /* RMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RMessage.h; path = RMessage/RMessage.h; sourceTree = "<group>"; };
+		A6DC7FDACC19B84F958C19A837E13353 /* NotificationButtonBackground.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationButtonBackground.png; path = RMessage/Assets/NotificationButtonBackground.png; sourceTree = "<group>"; };
+		AA4C196DC5D50650A8C718774A2E4F51 /* RMessage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RMessage-dummy.m"; sourceTree = "<group>"; };
+		B062065AC050CC771E338513947F7849 /* UITabBarController+PPTopMostController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITabBarController+PPTopMostController.m"; path = "PPTopMostController-Files/UITabBarController+PPTopMostController.m"; sourceTree = "<group>"; };
+		B8D84270FCE25F62786C165CBB6BD04D /* NotificationBackgroundErrorIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundErrorIcon@2x.png"; path = "RMessage/Assets/NotificationBackgroundErrorIcon@2x.png"; sourceTree = "<group>"; };
+		BAEAC256BAE4258190C7435CE515D184 /* PPTopMostController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PPTopMostController-dummy.m"; sourceTree = "<group>"; };
+		BBEF24A566D9790207CC76CFECE7B487 /* FTProgressIndicator.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = FTProgressIndicator.bundle; path = FTIndicator/FTProgressIndicator/FTProgressIndicator.bundle; sourceTree = "<group>"; };
+		BE08423FD90CC536EE1136D80D3E8A53 /* libPPTopMostController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libPPTopMostController.a; path = libPPTopMostController.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C26C43C5A5EFC1EA0038A45A6044C870 /* NotificationBackgroundWarningIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationBackgroundWarningIcon@2x.png"; path = "RMessage/Assets/NotificationBackgroundWarningIcon@2x.png"; sourceTree = "<group>"; };
 		C8E4A01C3B384E47B67EED79ACCA2907 /* Pods-Faveo Helpdesk Community-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Faveo Helpdesk Community-dummy.m"; sourceTree = "<group>"; };
-		C9F36044ED6055B5C9B1377C86EB6D5E /* RMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RMessage.m; path = RMessage/RMessage.m; sourceTree = "<group>"; };
 		CC8E6154CEA70C31BEBC949B78A5DFEE /* Pods-Faveo Helpdesk Community-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Faveo Helpdesk Community-acknowledgements.plist"; sourceTree = "<group>"; };
-		D3851AB39B4E0EF390F2C91095704490 /* RMessage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RMessage.xcconfig; sourceTree = "<group>"; };
-		D78E8ED28E3E57074EF44AC95B381E58 /* NotificationButtonBackground.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationButtonBackground.png; path = RMessage/Assets/NotificationButtonBackground.png; sourceTree = "<group>"; };
-		D996C982D0F0660B85747AF51319CC91 /* RMessageDefaultDesign.json */ = {isa = PBXFileReference; includeInIndex = 1; name = RMessageDefaultDesign.json; path = RMessage/Assets/RMessageDefaultDesign.json; sourceTree = "<group>"; };
-		DB89D81E0469DD4C789D07D142FDDC0E /* libHexColors.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libHexColors.a; path = libHexColors.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF902D231BE8C4C3E40237A5C42DD67F /* UINavigationController+PPTopMostController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+PPTopMostController.h"; path = "PPTopMostController-Files/UINavigationController+PPTopMostController.h"; sourceTree = "<group>"; };
-		E77C707DCB53A545A7F8C5423140D280 /* RMessageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RMessageView.h; path = RMessage/RMessageView.h; sourceTree = "<group>"; };
-		EB762EE1E7DEFC0893587AE70D626DFE /* NotificationBackgroundSuccessIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundSuccessIcon.png; path = RMessage/Assets/NotificationBackgroundSuccessIcon.png; sourceTree = "<group>"; };
-		F79FFBC9E644CB04ACACEF59F67712FB /* HexColors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = HexColors.h; path = Classes/HexColors.h; sourceTree = "<group>"; };
+		D8D1D8DE3151951EDBC36CF456D5097C /* HexColors.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = HexColors.m; path = Classes/HexColors.m; sourceTree = "<group>"; };
+		E3D4E82C6D1535A29283A9C5D5B53A5C /* RMessage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RMessage-prefix.pch"; sourceTree = "<group>"; };
+		E93B7E02FE52ADA3EFCAF6BE25B8AB64 /* HexColors.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HexColors.xcconfig; sourceTree = "<group>"; };
+		E968EF6E3F4894FF8F9A101AD386EFC1 /* NotificationBackgroundErrorIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundErrorIcon.png; path = RMessage/Assets/NotificationBackgroundErrorIcon.png; sourceTree = "<group>"; };
+		EA7B4DEC5BA6B73180DA82E8E1388100 /* PPTopMostControllerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PPTopMostControllerProtocol.h; path = "PPTopMostController-Files/PPTopMostControllerProtocol.h"; sourceTree = "<group>"; };
+		EE62C21E07CAACCF94F4FE9D34F6FDDD /* UINavigationController+PPTopMostController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+PPTopMostController.m"; path = "PPTopMostController-Files/UINavigationController+PPTopMostController.m"; sourceTree = "<group>"; };
+		EE99C8E5B569504188C56D6003150ECC /* NotificationBackgroundSuccessIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundSuccessIcon.png; path = RMessage/Assets/NotificationBackgroundSuccessIcon.png; sourceTree = "<group>"; };
+		F8BBA13B7C6ECDB23BA4CBFB748A0CA6 /* NotificationBackgroundWarningIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundWarningIcon.png; path = RMessage/Assets/NotificationBackgroundWarningIcon.png; sourceTree = "<group>"; };
+		F99545D5C126D98DBAF5093C3F0A8C16 /* FTIndicator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTIndicator.xcconfig; sourceTree = "<group>"; };
+		FA3E50CA8714F7767FE7C73BC9AA76AC /* libFTIndicator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFTIndicator.a; path = libFTIndicator.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC2FE6C9E62FB823443E2668DB3D4077 /* HexColors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = HexColors.h; path = Classes/HexColors.h; sourceTree = "<group>"; };
 		FFD1CF6554313D748A01613DB9E539DD /* Pods-Faveo Helpdesk Community.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Faveo Helpdesk Community.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2BD1DF7CA67147C3F3B90A256153EF32 /* Frameworks */ = {
+		25FD0F40C1AF004D9A5517577E019E27 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BAD6E49187A6A9999FA177D0081C63E /* Foundation.framework in Frameworks */,
+				A858BF0CD60042A6FC04422E60A214EC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,45 +151,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E741E8FAB8143F73E1061A37E8D7094C /* Frameworks */ = {
+		8B01548FBE4DA6B7D8C5BEE8758CD542 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8009AB243E7235ED96AEC9D906CE7C3E /* Foundation.framework in Frameworks */,
+				60DD3C34AA697BE917469B0A9E9FF388 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EEFD02ED760D97EF966578F41CCBAFEC /* Frameworks */ = {
+		8D1EE80A4415F1A779922558A50BAB0A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F33E054C38DDE02BF6C0517F730FB56 /* Foundation.framework in Frameworks */,
+				4D5413ED2359B982A70F3E461A0F20CE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE0F772FA8CA5E11F56CEDAE8E1C5AE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CC314CF4DB8E772C4CD20B69B4A1368 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0FF74E407FE0A4734D7DCEAC14CF4A31 /* Support Files */ = {
+		1E0A2C245CDD01325FFE61DAC77A0B35 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				D3851AB39B4E0EF390F2C91095704490 /* RMessage.xcconfig */,
-				0D742D807D815D32FAA89A68393200B5 /* RMessage-dummy.m */,
-				644424F896D7F7BC450CE750FCE7C7B9 /* RMessage-prefix.pch */,
+				819858A8151A9419598E2F91D46A0312 /* RMessage.xcconfig */,
+				AA4C196DC5D50650A8C718774A2E4F51 /* RMessage-dummy.m */,
+				E3D4E82C6D1535A29283A9C5D5B53A5C /* RMessage-prefix.pch */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/RMessage";
-			sourceTree = "<group>";
-		};
-		1429EC88131F639F8430E7A33CF15C7D /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				15D0934CA62F4553389A16605567ED94 /* HexColors.xcconfig */,
-				4ACD79B2F1216DD574236C4C95E3FC13 /* HexColors-dummy.m */,
-				B210671FD3C59334D7A26EA0D1BA91A6 /* HexColors-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/HexColors";
 			sourceTree = "<group>";
 		};
 		2C8EBD2C15A759B3AA14A7B53AF10265 /* Pods-Faveo Helpdesk Community */ = {
@@ -189,18 +204,47 @@
 			path = "Target Support Files/Pods-Faveo Helpdesk Community";
 			sourceTree = "<group>";
 		};
-		553CB51CE59ACDFA7212A57D8817C67E /* RMessage */ = {
+		2EDBDF8099A385AE5EAFF7849EBEAA6B /* RMessage */ = {
 			isa = PBXGroup;
 			children = (
-				C2965D1BD9D002009F4B16736B4BEBCA /* RMessage.h */,
-				C9F36044ED6055B5C9B1377C86EB6D5E /* RMessage.m */,
-				E77C707DCB53A545A7F8C5423140D280 /* RMessageView.h */,
-				4D91A2435077860E65F1358B67D54147 /* RMessageView.m */,
-				D68DD34FC1253E5BC1812ACEB877EB96 /* Resources */,
-				0FF74E407FE0A4734D7DCEAC14CF4A31 /* Support Files */,
+				30301AA5FFB82F8613C5D0096B15B071 /* RMessage.h */,
+				428BD5C2BBE1681C8365C17B3C018D42 /* RMessage.m */,
+				2605FF05281AAA38A8C4A2227A60DCE4 /* RMessageView.h */,
+				5FE62CCACCBBFBFD23A221F58C949A68 /* RMessageView.m */,
+				9DB26C689E34921595F96C45179D1396 /* Resources */,
+				1E0A2C245CDD01325FFE61DAC77A0B35 /* Support Files */,
 			);
 			name = RMessage;
 			path = RMessage;
+			sourceTree = "<group>";
+		};
+		3447E740D688308E9F7C600DD5034446 /* FTIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				8A86AB50DF8CD49655CB60A67FDB41EE /* FTProgressIndicator */,
+				978F6AFD378C4E1C13960B610CC92DE5 /* Support Files */,
+			);
+			name = FTIndicator;
+			path = FTIndicator;
+			sourceTree = "<group>";
+		};
+		4B0FCEEF0450E57C2554EF1062186AE4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BBEF24A566D9790207CC76CFECE7B487 /* FTProgressIndicator.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		60D5AC3409999702101936CC59DA847F /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9EF5A574E8EEF0C159F5B4EA28D6B130 /* PPTopMostController.xcconfig */,
+				BAEAC256BAE4258190C7435CE515D184 /* PPTopMostController-dummy.m */,
+				5D73318BD68DF8B3449129E4CE6082BB /* PPTopMostController-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PPTopMostController";
 			sourceTree = "<group>";
 		};
 		6A932D5BCB2651E9B7009837021DEC7E /* Targets Support Files */ = {
@@ -211,36 +255,114 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		7728FD50CD67C239EA1CC257AB48E5B4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3447E740D688308E9F7C600DD5034446 /* FTIndicator */,
+				B03105ABB4584D0EEBDF348245CDA7AA /* HexColors */,
+				7CAED13942472B30260CF9E2F8F4D701 /* PPTopMostController */,
+				2EDBDF8099A385AE5EAFF7849EBEAA6B /* RMessage */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7CAED13942472B30260CF9E2F8F4D701 /* PPTopMostController */ = {
+			isa = PBXGroup;
+			children = (
+				EA7B4DEC5BA6B73180DA82E8E1388100 /* PPTopMostControllerProtocol.h */,
+				2B7DCFD8620387980A59A98BB2569F14 /* UINavigationController+PPTopMostController.h */,
+				EE62C21E07CAACCF94F4FE9D34F6FDDD /* UINavigationController+PPTopMostController.m */,
+				1F500755A41904118539CF4EC65827E0 /* UITabBarController+PPTopMostController.h */,
+				B062065AC050CC771E338513947F7849 /* UITabBarController+PPTopMostController.m */,
+				804CC56CC23FFE5D58CA40DB4AA48EAC /* UIViewController+PPTopMostController.h */,
+				4EDE12742C703C0131A52B00FCEC3916 /* UIViewController+PPTopMostController.m */,
+				60D5AC3409999702101936CC59DA847F /* Support Files */,
+			);
+			name = PPTopMostController;
+			path = PPTopMostController;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				91AA88AAD5715ADA563E3523FC138B03 /* Pods */,
-				D2EEA61AC461AD5EEA028E90065783A9 /* Products */,
+				7728FD50CD67C239EA1CC257AB48E5B4 /* Pods */,
+				AC32C21B4051AE0BB0BB71E875EDDD67 /* Products */,
 				6A932D5BCB2651E9B7009837021DEC7E /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		91AA88AAD5715ADA563E3523FC138B03 /* Pods */ = {
+		88756CDEDE4EF01584B14CF7732DD2F8 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				BF74ADFC16279F319ED1F087E280DFF5 /* HexColors */,
-				D020DC18D601A7E17D7575EFA351CD8F /* PPTopMostController */,
-				553CB51CE59ACDFA7212A57D8817C67E /* RMessage */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		9564E13454CF9BC5DB5313204C0DA75C /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				304729F92306EE328D2820D4DA96C785 /* PPTopMostController.xcconfig */,
-				08C511F54C65E28B6F196A6267E9C324 /* PPTopMostController-dummy.m */,
-				1BD4DBF2420D42C0E47D1BB776D36A67 /* PPTopMostController-prefix.pch */,
+				E93B7E02FE52ADA3EFCAF6BE25B8AB64 /* HexColors.xcconfig */,
+				6B12C75915D5E2F09644D36A29BFA81D /* HexColors-dummy.m */,
+				1C3C10138635CC6277BF0999E2C7E92E /* HexColors-prefix.pch */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/PPTopMostController";
+			path = "../Target Support Files/HexColors";
+			sourceTree = "<group>";
+		};
+		8A86AB50DF8CD49655CB60A67FDB41EE /* FTProgressIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				350CF2EE273A17266EBBF5B413B43D68 /* FTProgressIndicator.h */,
+				890B6CA4ED6A1960F97FDB5571A3AC94 /* FTProgressIndicator.m */,
+				4B0FCEEF0450E57C2554EF1062186AE4 /* Resources */,
+			);
+			name = FTProgressIndicator;
+			sourceTree = "<group>";
+		};
+		978F6AFD378C4E1C13960B610CC92DE5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F99545D5C126D98DBAF5093C3F0A8C16 /* FTIndicator.xcconfig */,
+				A2D4561C17D4603590A4846534DB966A /* FTIndicator-dummy.m */,
+				47280B9684A433AFADAB3BE9CDC5C6F1 /* FTIndicator-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FTIndicator";
+			sourceTree = "<group>";
+		};
+		9DB26C689E34921595F96C45179D1396 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E968EF6E3F4894FF8F9A101AD386EFC1 /* NotificationBackgroundErrorIcon.png */,
+				B8D84270FCE25F62786C165CBB6BD04D /* NotificationBackgroundErrorIcon@2x.png */,
+				EE99C8E5B569504188C56D6003150ECC /* NotificationBackgroundSuccessIcon.png */,
+				83FB42F81B330160F117DBB0AEC5F32F /* NotificationBackgroundSuccessIcon@2x.png */,
+				F8BBA13B7C6ECDB23BA4CBFB748A0CA6 /* NotificationBackgroundWarningIcon.png */,
+				C26C43C5A5EFC1EA0038A45A6044C870 /* NotificationBackgroundWarningIcon@2x.png */,
+				A6DC7FDACC19B84F958C19A837E13353 /* NotificationButtonBackground.png */,
+				31CF3231905AD314B2914AE9A4361E74 /* NotificationButtonBackground@2x.png */,
+				2310241DD67D62F89C49297CF085E60A /* RMessageDefaultDesign.json */,
+				6819462C14ADA7D240DBC374472D96E2 /* RMessageView.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		AC32C21B4051AE0BB0BB71E875EDDD67 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA3E50CA8714F7767FE7C73BC9AA76AC /* libFTIndicator.a */,
+				3297BA4156DFB7FE13EB4820290D61E3 /* libHexColors.a */,
+				5F14E688BBC74FA24C7BAAA590CB4433 /* libPods-Faveo Helpdesk Community.a */,
+				BE08423FD90CC536EE1136D80D3E8A53 /* libPPTopMostController.a */,
+				6785817445C8B1B3A31BDFA586C4D7E6 /* libRMessage.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B03105ABB4584D0EEBDF348245CDA7AA /* HexColors */ = {
+			isa = PBXGroup;
+			children = (
+				FC2FE6C9E62FB823443E2668DB3D4077 /* HexColors.h */,
+				D8D1D8DE3151951EDBC36CF456D5097C /* HexColors.m */,
+				88756CDEDE4EF01584B14CF7732DD2F8 /* Support Files */,
+			);
+			name = HexColors;
+			path = HexColors;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -251,44 +373,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BF74ADFC16279F319ED1F087E280DFF5 /* HexColors */ = {
-			isa = PBXGroup;
-			children = (
-				F79FFBC9E644CB04ACACEF59F67712FB /* HexColors.h */,
-				60D7DCAE9D73477DEDFC6E4FFEA30750 /* HexColors.m */,
-				1429EC88131F639F8430E7A33CF15C7D /* Support Files */,
-			);
-			name = HexColors;
-			path = HexColors;
-			sourceTree = "<group>";
-		};
-		D020DC18D601A7E17D7575EFA351CD8F /* PPTopMostController */ = {
-			isa = PBXGroup;
-			children = (
-				C09FD631147B5FEAAB84BFEC1F659B00 /* PPTopMostControllerProtocol.h */,
-				DF902D231BE8C4C3E40237A5C42DD67F /* UINavigationController+PPTopMostController.h */,
-				AD246E65513C019B50BEB7C43B1D2120 /* UINavigationController+PPTopMostController.m */,
-				7247A5C98E2C05C708F3F0620B276A32 /* UITabBarController+PPTopMostController.h */,
-				66B5FFB839CF622C0431690B79BE25BF /* UITabBarController+PPTopMostController.m */,
-				45A18257BC3BC30621414DB48B7E7B83 /* UIViewController+PPTopMostController.h */,
-				592D2C3150B5190FD4C8DD9E4FCAE61F /* UIViewController+PPTopMostController.m */,
-				9564E13454CF9BC5DB5313204C0DA75C /* Support Files */,
-			);
-			name = PPTopMostController;
-			path = PPTopMostController;
-			sourceTree = "<group>";
-		};
-		D2EEA61AC461AD5EEA028E90065783A9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				DB89D81E0469DD4C789D07D142FDDC0E /* libHexColors.a */,
-				01F53F85C9EC7FC996AA6F368B59CFCB /* libPods-Faveo Helpdesk Community.a */,
-				643FDCCA44B0E5692127DFE73F208D73 /* libPPTopMostController.a */,
-				B8436EC1C277C4722AA9CFCF47BBDDAE /* libRMessage.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,34 +381,25 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		D68DD34FC1253E5BC1812ACEB877EB96 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				5EA230BBA1716EB8C2B7281A30E13845 /* NotificationBackgroundErrorIcon.png */,
-				AFFD8F8EA748165770904A58BF6BD653 /* NotificationBackgroundErrorIcon@2x.png */,
-				EB762EE1E7DEFC0893587AE70D626DFE /* NotificationBackgroundSuccessIcon.png */,
-				838971CC0E591994B0FD89F93603C877 /* NotificationBackgroundSuccessIcon@2x.png */,
-				7AB32DD8ECC51A4A4EC069248627456B /* NotificationBackgroundWarningIcon.png */,
-				A7AE79FB3CCE448D6168500B379599D7 /* NotificationBackgroundWarningIcon@2x.png */,
-				D78E8ED28E3E57074EF44AC95B381E58 /* NotificationButtonBackground.png */,
-				600D3FDDA1273B6AE2D7AC60D88ABBEB /* NotificationButtonBackground@2x.png */,
-				D996C982D0F0660B85747AF51319CC91 /* RMessageDefaultDesign.json */,
-				91EB5D2D3D89B4ED5A02890521327D9D /* RMessageView.xib */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		A339F8BF25402CAEFAE8E340FAE3544F /* Headers */ = {
+		0A45DBA1F5AC8571375246D900D2CF2F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71FD815B545372B81A39DE5FDA244F8C /* PPTopMostControllerProtocol.h in Headers */,
-				E8F1FECE4A982B9C5EEE2204636877D0 /* UINavigationController+PPTopMostController.h in Headers */,
-				B179BE9A12CFC594D3AC35CB99C0332C /* UITabBarController+PPTopMostController.h in Headers */,
-				B6651A4FB696315BBF1D24FD444B629A /* UIViewController+PPTopMostController.h in Headers */,
+				3AF49F9C23CF801A1D571A76FAAA319B /* FTProgressIndicator.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7283D09708C5DB14A0BA58F6262E9835 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0120DBB1C68ABF2C58AF066766ED871 /* PPTopMostControllerProtocol.h in Headers */,
+				AB429336A04A9D4EC4D08D547FF1C322 /* UINavigationController+PPTopMostController.h in Headers */,
+				6F99772E001322243832B95A2225E155 /* UITabBarController+PPTopMostController.h in Headers */,
+				D3ED5D57D6B9971E580DA4DDA9EF54BD /* UIViewController+PPTopMostController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,25 +411,61 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FBF463BAF9ED2494CE84A461A4C2E19A /* Headers */ = {
+		F11E3622160073D1111762234A94422B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CB223DD57D75FBB9EA5F4439E433993 /* RMessage.h in Headers */,
-				7DD48BF9F9E66704556928F4BA3D0904 /* RMessageView.h in Headers */,
+				1DF72B2CB5170905B3C811AB0E9948A7 /* RMessage.h in Headers */,
+				17C469667F414B8739D44938C99B98C8 /* RMessageView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		18334018B3CAA18F5E3E613437CF68EB /* PPTopMostController */ = {
+		5BD320F4F98DB69B58424F172D7B2934 /* FTIndicator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F1014139039F2352A5DFE42632887894 /* Build configuration list for PBXNativeTarget "PPTopMostController" */;
+			buildConfigurationList = DC962CA9B70C2AE0240E874ECC28A126 /* Build configuration list for PBXNativeTarget "FTIndicator" */;
 			buildPhases = (
-				C85F503223D5B79B9F0AA09D420EF0DD /* Sources */,
-				EEFD02ED760D97EF966578F41CCBAFEC /* Frameworks */,
-				A339F8BF25402CAEFAE8E340FAE3544F /* Headers */,
+				67DE1A00607EAE4224A387A600F7A213 /* Sources */,
+				AE0F772FA8CA5E11F56CEDAE8E1C5AE2 /* Frameworks */,
+				0A45DBA1F5AC8571375246D900D2CF2F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FTIndicator;
+			productName = FTIndicator;
+			productReference = FA3E50CA8714F7767FE7C73BC9AA76AC /* libFTIndicator.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		5E60935219EF50AD37D78249A7D3C384 /* RMessage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA1BA89BE9875CE2BA49445F0291CD63 /* Build configuration list for PBXNativeTarget "RMessage" */;
+			buildPhases = (
+				42339EEC6B8D45298E049D50AEF33C26 /* Sources */,
+				8B01548FBE4DA6B7D8C5BEE8758CD542 /* Frameworks */,
+				F11E3622160073D1111762234A94422B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0A4F917053678472238BEBF5807AA96 /* PBXTargetDependency */,
+				9844D438C11D1A64A3417601B997340A /* PBXTargetDependency */,
+			);
+			name = RMessage;
+			productName = RMessage;
+			productReference = 6785817445C8B1B3A31BDFA586C4D7E6 /* libRMessage.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		69880C36B0CE14DB37795B388DA40185 /* PPTopMostController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C55318DEC6353BF0B7759F20E346CB3F /* Build configuration list for PBXNativeTarget "PPTopMostController" */;
+			buildPhases = (
+				556527932984E698C80FC3B91CAA6AD6 /* Sources */,
+				25FD0F40C1AF004D9A5517577E019E27 /* Frameworks */,
+				7283D09708C5DB14A0BA58F6262E9835 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -362,45 +473,27 @@
 			);
 			name = PPTopMostController;
 			productName = PPTopMostController;
-			productReference = 643FDCCA44B0E5692127DFE73F208D73 /* libPPTopMostController.a */;
+			productReference = BE08423FD90CC536EE1136D80D3E8A53 /* libPPTopMostController.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		8938A0200FB2C1F57A1E0E9987CCAE0E /* Pods-Faveo Helpdesk Community */ = {
+		D6684483807C015E48FC0D7D28DAC17E /* Pods-Faveo Helpdesk Community */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8D90696EDFFBB8C9975DF3B4A059E163 /* Build configuration list for PBXNativeTarget "Pods-Faveo Helpdesk Community" */;
+			buildConfigurationList = 0286CF7130A7BA066B18861040BCBF66 /* Build configuration list for PBXNativeTarget "Pods-Faveo Helpdesk Community" */;
 			buildPhases = (
-				E9FD4487D9E437DA92121D3B197CF42D /* Sources */,
-				E741E8FAB8143F73E1061A37E8D7094C /* Frameworks */,
+				4D0F559BF61A8AFC7F66389338015D97 /* Sources */,
+				8D1EE80A4415F1A779922558A50BAB0A /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1E8BE360DDC34D81FC6EBD6AC71C5B8D /* PBXTargetDependency */,
-				6ECEED1CAD472E8A099A0C9DD1348C03 /* PBXTargetDependency */,
-				6FA0679D3BD3DCCBF4C7C4EC16CDDC02 /* PBXTargetDependency */,
+				1350F81EF8C615D728CD54007A9C1B2E /* PBXTargetDependency */,
+				B60500894C59E58DD08BCD9220D8EBE0 /* PBXTargetDependency */,
+				E6C01833B3A88E9F9FE230C0692ACCD9 /* PBXTargetDependency */,
+				3D9988504B832F8F0A06568A8F7CF829 /* PBXTargetDependency */,
 			);
 			name = "Pods-Faveo Helpdesk Community";
 			productName = "Pods-Faveo Helpdesk Community";
-			productReference = 01F53F85C9EC7FC996AA6F368B59CFCB /* libPods-Faveo Helpdesk Community.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		C4CA6E8293E5DB35380B40FBC56E79C4 /* RMessage */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 57D9AA63CC81B6EC4A93EFCB89D32D83 /* Build configuration list for PBXNativeTarget "RMessage" */;
-			buildPhases = (
-				47BAF2FCD3D385BA47B112EC18C77B73 /* Sources */,
-				2BD1DF7CA67147C3F3B90A256153EF32 /* Frameworks */,
-				FBF463BAF9ED2494CE84A461A4C2E19A /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				25663EB9ADD3CBBB137B635A493ECC1E /* PBXTargetDependency */,
-				1E587C551163DA631C5E58617A307A2D /* PBXTargetDependency */,
-			);
-			name = RMessage;
-			productName = RMessage;
-			productReference = B8436EC1C277C4722AA9CFCF47BBDDAE /* libRMessage.a */;
+			productReference = 5F14E688BBC74FA24C7BAAA590CB4433 /* libPods-Faveo Helpdesk Community.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		EC7BAA2B0109B633CE06A36E872A9505 /* HexColors */ = {
@@ -417,7 +510,7 @@
 			);
 			name = HexColors;
 			productName = HexColors;
-			productReference = DB89D81E0469DD4C789D07D142FDDC0E /* libHexColors.a */;
+			productReference = 3297BA4156DFB7FE13EB4820290D61E3 /* libHexColors.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -437,37 +530,55 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = D2EEA61AC461AD5EEA028E90065783A9 /* Products */;
+			productRefGroup = AC32C21B4051AE0BB0BB71E875EDDD67 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				5BD320F4F98DB69B58424F172D7B2934 /* FTIndicator */,
 				EC7BAA2B0109B633CE06A36E872A9505 /* HexColors */,
-				8938A0200FB2C1F57A1E0E9987CCAE0E /* Pods-Faveo Helpdesk Community */,
-				18334018B3CAA18F5E3E613437CF68EB /* PPTopMostController */,
-				C4CA6E8293E5DB35380B40FBC56E79C4 /* RMessage */,
+				D6684483807C015E48FC0D7D28DAC17E /* Pods-Faveo Helpdesk Community */,
+				69880C36B0CE14DB37795B388DA40185 /* PPTopMostController */,
+				5E60935219EF50AD37D78249A7D3C384 /* RMessage */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		47BAF2FCD3D385BA47B112EC18C77B73 /* Sources */ = {
+		42339EEC6B8D45298E049D50AEF33C26 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8EE9CA65F80565F047533C0DD2AE202 /* RMessage-dummy.m in Sources */,
-				D822B67054D8BE0648649B0D37BE27F7 /* RMessage.m in Sources */,
-				6960F3CB2D8FBC491E32A5111B6B361D /* RMessageView.m in Sources */,
+				FCF1A0CFE529CDE3EF91293CD2FCCA0D /* RMessage-dummy.m in Sources */,
+				44EE04C8C2233743A91E9305407DCD11 /* RMessage.m in Sources */,
+				C7217A63CFB3EDBB17EF0B133D6C7768 /* RMessageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C85F503223D5B79B9F0AA09D420EF0DD /* Sources */ = {
+		4D0F559BF61A8AFC7F66389338015D97 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC929D75959E9545168C698E23CC66DF /* PPTopMostController-dummy.m in Sources */,
-				EE5D0658236E9A8A6C2F29DF8DB65F0E /* UINavigationController+PPTopMostController.m in Sources */,
-				84B68833CED506E703C128C087F3F3AF /* UITabBarController+PPTopMostController.m in Sources */,
-				37975EDB5A73A7B77337CCB6CF0BED0A /* UIViewController+PPTopMostController.m in Sources */,
+				6689E8B779AE1EAD447DE0B95F9DB28C /* Pods-Faveo Helpdesk Community-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		556527932984E698C80FC3B91CAA6AD6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD2DCE53E9E98EDF9B3220BFAB1E2271 /* PPTopMostController-dummy.m in Sources */,
+				8B711F2B7A98AF48F63AC1CC603EBA70 /* UINavigationController+PPTopMostController.m in Sources */,
+				3BE670831E8D92767F6563D5791BD152 /* UITabBarController+PPTopMostController.m in Sources */,
+				7729D5F352D9232DFDCB49E98377F8F1 /* UIViewController+PPTopMostController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67DE1A00607EAE4224A387A600F7A213 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D39486B6CE2BE75766DE1F2A0636795 /* FTIndicator-dummy.m in Sources */,
+				768402A159EA4DCCC0292A25B23CCD74 /* FTProgressIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,50 +591,73 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E9FD4487D9E437DA92121D3B197CF42D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				57F055318F6B8B1BB506CC58C0AEF4E0 /* Pods-Faveo Helpdesk Community-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1E587C551163DA631C5E58617A307A2D /* PBXTargetDependency */ = {
+		1350F81EF8C615D728CD54007A9C1B2E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = PPTopMostController;
-			target = 18334018B3CAA18F5E3E613437CF68EB /* PPTopMostController */;
-			targetProxy = DEFE51690C4DA3FD314CAEF9D31240A4 /* PBXContainerItemProxy */;
+			name = FTIndicator;
+			target = 5BD320F4F98DB69B58424F172D7B2934 /* FTIndicator */;
+			targetProxy = 111C99765701643D1C2516D3EE85A361 /* PBXContainerItemProxy */;
 		};
-		1E8BE360DDC34D81FC6EBD6AC71C5B8D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = HexColors;
-			target = EC7BAA2B0109B633CE06A36E872A9505 /* HexColors */;
-			targetProxy = 451A0E1D0F96F9CFBEF99E5BF6813BD3 /* PBXContainerItemProxy */;
-		};
-		25663EB9ADD3CBBB137B635A493ECC1E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = HexColors;
-			target = EC7BAA2B0109B633CE06A36E872A9505 /* HexColors */;
-			targetProxy = 796DEDBA0F57E42AA3426416469117EC /* PBXContainerItemProxy */;
-		};
-		6ECEED1CAD472E8A099A0C9DD1348C03 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PPTopMostController;
-			target = 18334018B3CAA18F5E3E613437CF68EB /* PPTopMostController */;
-			targetProxy = 9830C3D22804B7D4C870DFC57BCDCD1B /* PBXContainerItemProxy */;
-		};
-		6FA0679D3BD3DCCBF4C7C4EC16CDDC02 /* PBXTargetDependency */ = {
+		3D9988504B832F8F0A06568A8F7CF829 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RMessage;
-			target = C4CA6E8293E5DB35380B40FBC56E79C4 /* RMessage */;
-			targetProxy = 6F140450AD590E1DAC0441066AD68288 /* PBXContainerItemProxy */;
+			target = 5E60935219EF50AD37D78249A7D3C384 /* RMessage */;
+			targetProxy = F5BF4554FD2DDA6DF55043324B7AE45D /* PBXContainerItemProxy */;
+		};
+		9844D438C11D1A64A3417601B997340A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PPTopMostController;
+			target = 69880C36B0CE14DB37795B388DA40185 /* PPTopMostController */;
+			targetProxy = E6BE19C8241DC8AB79D8AE738BD736AF /* PBXContainerItemProxy */;
+		};
+		B60500894C59E58DD08BCD9220D8EBE0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HexColors;
+			target = EC7BAA2B0109B633CE06A36E872A9505 /* HexColors */;
+			targetProxy = A9385D9F52AF22718F887B2642E74CE2 /* PBXContainerItemProxy */;
+		};
+		D0A4F917053678472238BEBF5807AA96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HexColors;
+			target = EC7BAA2B0109B633CE06A36E872A9505 /* HexColors */;
+			targetProxy = 7C6EAC7783BECD2F74D728163B1FD549 /* PBXContainerItemProxy */;
+		};
+		E6C01833B3A88E9F9FE230C0692ACCD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PPTopMostController;
+			target = 69880C36B0CE14DB37795B388DA40185 /* PPTopMostController */;
+			targetProxy = 18E2266662755EB8415951F624AE63A6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		00EDD5A3E6047559AC94ACA391D1A19B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F99545D5C126D98DBAF5093C3F0A8C16 /* FTIndicator.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/FTIndicator/FTIndicator-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = FTIndicator;
+				PRODUCT_NAME = FTIndicator;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		199D972A13F2B4C56847F7A89CCA83BC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -587,30 +721,9 @@
 			};
 			name = Debug;
 		};
-		29A85B34A757A31616A16C14DC1BB634 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A34BD076EEAC621B5F3C827CE4800175 /* Pods-Faveo Helpdesk Community.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		32C6F385E04C931C30776B0A1B01D0A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 15D0934CA62F4553389A16605567ED94 /* HexColors.xcconfig */;
+			baseConfigurationReference = E93B7E02FE52ADA3EFCAF6BE25B8AB64 /* HexColors.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -631,9 +744,9 @@
 			};
 			name = Debug;
 		};
-		39BF4CA71D3D68051258C1599D17733A /* Release */ = {
+		53E54E25C750D8D92E125959522F4B68 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3851AB39B4E0EF390F2C91095704490 /* RMessage.xcconfig */;
+			baseConfigurationReference = 819858A8151A9419598E2F91D46A0312 /* RMessage.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -655,7 +768,75 @@
 			};
 			name = Release;
 		};
-		3EF17B4C8F3DA1D3BCFE57F73EB06691 /* Release */ = {
+		6647F19822A7B5519E3F482A914839C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A34BD076EEAC621B5F3C827CE4800175 /* Pods-Faveo Helpdesk Community.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7306E5A54A5B4E4F5F7ECE699F28B6B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 819858A8151A9419598E2F91D46A0312 /* RMessage.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/RMessage/RMessage-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = RMessage;
+				PRODUCT_NAME = RMessage;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		95A24FB4983FB55C33BB223A9CE877BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E93B7E02FE52ADA3EFCAF6BE25B8AB64 /* HexColors.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/HexColors/HexColors-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = HexColors;
+				PRODUCT_NAME = HexColors;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		99BABCCF0A7E6619D2D0FFC2FC5A4DF5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FFD1CF6554313D748A01613DB9E539DD /* Pods-Faveo Helpdesk Community.release.xcconfig */;
 			buildSettings = {
@@ -677,32 +858,9 @@
 			};
 			name = Release;
 		};
-		4B5FFF84B332E88684E1AC933DFB450D /* Debug */ = {
+		9DE425987C6E046375A7024087BA083F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3851AB39B4E0EF390F2C91095704490 /* RMessage.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/RMessage/RMessage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = RMessage;
-				PRODUCT_NAME = RMessage;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		53619D7D99E6C0694B8715A28C53D938 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 304729F92306EE328D2820D4DA96C785 /* PPTopMostController.xcconfig */;
+			baseConfigurationReference = 9EF5A574E8EEF0C159F5B4EA28D6B130 /* PPTopMostController.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -723,33 +881,33 @@
 			};
 			name = Debug;
 		};
-		95A24FB4983FB55C33BB223A9CE877BC /* Release */ = {
+		B469AF65CC3B72D0DB33EDC78FE98345 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 15D0934CA62F4553389A16605567ED94 /* HexColors.xcconfig */;
+			baseConfigurationReference = F99545D5C126D98DBAF5093C3F0A8C16 /* FTIndicator.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/HexColors/HexColors-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				GCC_PREFIX_HEADER = "Target Support Files/FTIndicator/FTIndicator-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = HexColors;
-				PRODUCT_NAME = HexColors;
+				PRODUCT_MODULE_NAME = FTIndicator;
+				PRODUCT_NAME = FTIndicator;
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = Debug;
 		};
-		AE42A45568DD2109D55BEFBB23CB2F93 /* Release */ = {
+		D562F26FF81A9F5647502012A572CE4D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 304729F92306EE328D2820D4DA96C785 /* PPTopMostController.xcconfig */;
+			baseConfigurationReference = 9EF5A574E8EEF0C159F5B4EA28D6B130 /* PPTopMostController.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -832,6 +990,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0286CF7130A7BA066B18861040BCBF66 /* Build configuration list for PBXNativeTarget "Pods-Faveo Helpdesk Community" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6647F19822A7B5519E3F482A914839C9 /* Debug */,
+				99BABCCF0A7E6619D2D0FFC2FC5A4DF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -841,20 +1008,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		57D9AA63CC81B6EC4A93EFCB89D32D83 /* Build configuration list for PBXNativeTarget "RMessage" */ = {
+		C55318DEC6353BF0B7759F20E346CB3F /* Build configuration list for PBXNativeTarget "PPTopMostController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4B5FFF84B332E88684E1AC933DFB450D /* Debug */,
-				39BF4CA71D3D68051258C1599D17733A /* Release */,
+				9DE425987C6E046375A7024087BA083F /* Debug */,
+				D562F26FF81A9F5647502012A572CE4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8D90696EDFFBB8C9975DF3B4A059E163 /* Build configuration list for PBXNativeTarget "Pods-Faveo Helpdesk Community" */ = {
+		DC962CA9B70C2AE0240E874ECC28A126 /* Build configuration list for PBXNativeTarget "FTIndicator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				29A85B34A757A31616A16C14DC1BB634 /* Debug */,
-				3EF17B4C8F3DA1D3BCFE57F73EB06691 /* Release */,
+				B469AF65CC3B72D0DB33EDC78FE98345 /* Debug */,
+				00EDD5A3E6047559AC94ACA391D1A19B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA1BA89BE9875CE2BA49445F0291CD63 /* Build configuration list for PBXNativeTarget "RMessage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7306E5A54A5B4E4F5F7ECE699F28B6B2 /* Debug */,
+				53E54E25C750D8D92E125959522F4B68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -864,15 +1040,6 @@
 			buildConfigurations = (
 				32C6F385E04C931C30776B0A1B01D0A3 /* Debug */,
 				95A24FB4983FB55C33BB223A9CE877BC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F1014139039F2352A5DFE42632887894 /* Build configuration list for PBXNativeTarget "PPTopMostController" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				53619D7D99E6C0694B8715A28C53D938 /* Debug */,
-				AE42A45568DD2109D55BEFBB23CB2F93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

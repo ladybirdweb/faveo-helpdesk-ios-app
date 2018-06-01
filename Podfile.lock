@@ -1,4 +1,5 @@
 PODS:
+  - FTIndicator/FTProgressIndicator (1.2.6)
   - HexColors (4.0.0)
   - PPTopMostController (0.0.1)
   - RMessage (2.1.5):
@@ -6,19 +7,22 @@ PODS:
     - PPTopMostController
 
 DEPENDENCIES:
+  - FTIndicator/FTProgressIndicator
   - RMessage
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - FTIndicator
     - HexColors
     - PPTopMostController
     - RMessage
 
 SPEC CHECKSUMS:
+  FTIndicator: d2a7c204341b7b0165b6dbeb5bf6979c6d7d4bb7
   HexColors: 5f95843ef89aff6a72e1fd3a8ebabf205cc43379
   PPTopMostController: 4e6f1e5f8c645bdcc74cd837a20f607ff262c048
   RMessage: 31d44bd26a8f353f987d2e7194f3e9ffb203cbf2
 
-PODFILE CHECKSUM: b43b2f9348435214356f4e76178401793d8fb0e4
+PODFILE CHECKSUM: 3e8946d27e47b8ae66cc7faf81e0ef8f8271ee32
 
 COCOAPODS: 1.5.0
