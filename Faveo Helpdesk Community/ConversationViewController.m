@@ -16,7 +16,7 @@
 #import "MyWebservices.h"
 #import "HexColors.h"
 #import "GlobalVariables.h"
-
+#import "FTProgressIndicator.h"
 
 @interface ConversationViewController ()<CNPPopupControllerDelegate,UIWebViewDelegate>{
     Utils *utils;
@@ -33,15 +33,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"ConversationVC");
-    _activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    _activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-100);
-    _activityIndicatorObject.color=[UIColor hx_colorWithHexString:@"#00aeef"];
-    [self.view addSubview:_activityIndicatorObject];
+   
     [self addUIRefresh];
     utils=[[Utils alloc]init];
     globalVariable=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
-    [_activityIndicatorObject startAnimating];
+    
+    [FTProgressIndicator showProgressWithMessage:@"Please wait" userInteractionEnable:NO];
     [self reload];
     // Do any additional setup after loading the view.
 }
@@ -51,7 +49,8 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-          [_activityIndicatorObject stopAnimating];
+         // [_activityIndicatorObject stopAnimating];
+          [FTProgressIndicator dismiss];
           [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
@@ -63,8 +62,10 @@
             
             if (error || [msg containsString:@"Error"]) {
                  [self.refreshControl endRefreshing];
-                  [_activityIndicatorObject stopAnimating];
-                [[AppDelegate sharedAppdelegate] hideProgressView];
+              //    [_activityIndicatorObject stopAnimating];
+              //  [[AppDelegate sharedAppdelegate] hideProgressView];
+                [FTProgressIndicator dismiss];
+                
                 [utils showAlertWithMessage:@"Error" sendViewController:self];
                 NSLog(@"Thread-NO4-getConversation-Refresh-error == %@",error.localizedDescription);
                 self.noDataLabel.text=@"Error";
@@ -88,7 +89,8 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
                         [self.refreshControl endRefreshing];
-                        [_activityIndicatorObject stopAnimating];
+                        [FTProgressIndicator dismiss];
+                       // [_activityIndicatorObject stopAnimating];
                         [self.tableView reloadData];
                     });
                 });
@@ -166,28 +168,6 @@
     [self showWebview:[finaldic objectForKey:@"title"] body:[finaldic objectForKey:@"body"] popupStyle:CNPPopupStyleActionSheet];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-//- (void)webViewDidFinishLoad:(UIWebView *)theWebView
-//{
-//    CGSize contentSize = theWebView.scrollView.contentSize;
-//    CGSize viewSize = theWebView.bounds.size;
-//    
-//    float rw = viewSize.width / contentSize.width;
-//    
-//    theWebView.scrollView.minimumZoomScale = rw;
-//    theWebView.scrollView.maximumZoomScale = rw;
-//    theWebView.scrollView.zoomScale = rw;
-//    
-//}
 
 -(void)showWebview:(NSString*)tittle body:(NSString*)body popupStyle:(CNPPopupStyle)popupStyle{
 

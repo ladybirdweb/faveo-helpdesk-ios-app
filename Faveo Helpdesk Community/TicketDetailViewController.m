@@ -15,6 +15,7 @@
 #import "Reachability.h"
 #import "MyWebservices.h"
 #import "GlobalVariables.h"
+#import "FTProgressIndicator.h"
 
 //#import "ReplyViewController.h"
 
@@ -288,20 +289,18 @@
         
     }else{
         
-        [[AppDelegate sharedAppdelegate] showProgressView];
+       // [[AppDelegate sharedAppdelegate] showProgressView];
+         [FTProgressIndicator showProgressWithMessage:@"Please wait" userInteractionEnable:NO];
         
-//        NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:API_KEY,@"api_key",IP,@"ip",[userDefaults objectForKey:@"token"],@"token",[userDefaults objectForKey:@"user_id"],@"userid",textViewInternalNote.text,@"body",globalVariables.iD,@"ticketid",nil];
-//        NSLog(@"Dic %@",param);
-//        
-//        NSString *url=[NSString stringWithFormat:@"%@helpdesk/internal-note",[userDefaults objectForKey:@"companyURL"]];
         
         NSString *url=[NSString stringWithFormat:@"%@helpdesk/internal-note?api_key=%@&ip=%@&token=%@&userid=%@&body=%@&ticketid=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],[userDefaults objectForKey:@"user_id"],textViewInternalNote.text,globalVariables.iD];
         
         MyWebservices *webservices=[MyWebservices sharedInstance];
         
         [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
-            [[AppDelegate sharedAppdelegate] hideProgressView];
+            //[[AppDelegate sharedAppdelegate] hideProgressView];
             if (error || [msg containsString:@"Error"]) {
+                [FTProgressIndicator dismiss];
                 
                 [utils showAlertWithMessage:msg sendViewController:self];
                 NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
@@ -317,6 +316,9 @@
             
             if (json) {
                 NSLog(@"JSON-CreateTicket-%@",json);
+                
+                [FTProgressIndicator dismiss];
+                
                 if ([json objectForKey:@"thread"]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [utils showAlertWithMessage:@"Kindly Refresh!!" sendViewController:self];
@@ -339,12 +341,9 @@
         
     }else{
         
-        [[AppDelegate sharedAppdelegate] showProgressView];
+       // [[AppDelegate sharedAppdelegate] showProgressView];
         
-//        NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:API_KEY,@"api_key",IP,@"ip",[userDefaults objectForKey:@"token"],@"token",textViewReply.text,@"reply_content",textFieldCc.text,@"cc",globalVariables.iD,@"ticket_ID",nil];
-//        NSLog(@"Dic %@",param);
-//        
-//        NSString *url=[NSString stringWithFormat:@"%@helpdesk/reply",[userDefaults objectForKey:@"companyURL"]];
+       [FTProgressIndicator showProgressWithMessage:@"Please wait" userInteractionEnable:NO];
         
         NSString *url=[NSString stringWithFormat:@"%@helpdesk/reply?api_key=%@&ip=%@&token=%@&reply_content=%@&ticket_ID=%@&cc=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],textViewReply.text,globalVariables.iD,textFieldCc.text];
         
@@ -352,8 +351,10 @@
         
         
         [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
-            [[AppDelegate sharedAppdelegate] hideProgressView];
+           // [[AppDelegate sharedAppdelegate] hideProgressView];
             if (error || [msg containsString:@"Error"]) {
+                
+                [FTProgressIndicator dismiss];
                 
                 [utils showAlertWithMessage:msg sendViewController:self];
                 NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
@@ -369,6 +370,7 @@
             
             if (json) {
                 NSLog(@"JSON-CreateTicket-%@",json);
+                [FTProgressIndicator dismiss];
                 if ([json objectForKey:@"result"]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [utils showAlertWithMessage:@"Kindly Refresh!" sendViewController:self];

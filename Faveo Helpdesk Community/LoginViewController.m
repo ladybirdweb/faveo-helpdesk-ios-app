@@ -15,8 +15,10 @@
 #import "MyWebservices.h"
 #import "Utils.h"
 #import "HexColors.h"
+#import "FTProgressIndicator.h"
+#import "RMessageView.h"
 
-@interface LoginViewController (){
+@interface LoginViewController ()<UITextFieldDelegate,RMessageProtocol>{
     Utils *utils;
     NSUserDefaults *userdefaults;
     NSString *errorMsg;
@@ -75,7 +77,8 @@
                         }else{
                              //connection available
             
-                        [[AppDelegate sharedAppdelegate] showProgressViewWithText:@"Verifying URL"];
+                       // [[AppDelegate sharedAppdelegate] showProgressViewWithText:@"Verifying URL"];
+                        [FTProgressIndicator showProgressWithMessage:@"Verifying URL." userInteractionEnable:NO];
             
                         NSString *url=[NSString stringWithFormat:@"%@api/v1/helpdesk/url?url=%@&api_key=%@",baseURL,[baseURL substringToIndex:[baseURL length]-1],API_KEY];
             
@@ -93,6 +96,9 @@
                             // handle basic connectivity issues here
             
                             if ([[error domain] isEqualToString:NSURLErrorDomain]) {
+                                
+                                [FTProgressIndicator dismiss];
+                                
                                 switch ([error code]) {
                                     case NSURLErrorCannotFindHost:
                                         errorMsg = NSLocalizedString(@"Cannot find specified host. Retype URL.", nil);
@@ -115,13 +121,15 @@
             
                                 if (statusCode != 200) {
                                     if (statusCode == 404) {
+                                        [FTProgressIndicator dismiss];
                                         NSLog(@"dataTaskWithRequest HTTP status code: %ld", (long)statusCode);
-                                        [[AppDelegate sharedAppdelegate] hideProgressView];
+                                        //[[AppDelegate sharedAppdelegate] hideProgressView];
                                         [utils showAlertWithMessage:@"Invalid URL!" sendViewController:self];
                                         return;
                                     }else{
+                                        [FTProgressIndicator dismiss];
                                         NSLog(@"dataTaskWithRequest HTTP status code: %ld", (long)statusCode);
-                                        [[AppDelegate sharedAppdelegate] hideProgressView];
+                                       // [[AppDelegate sharedAppdelegate] hideProgressView];
                                         [utils showAlertWithMessage:@"Unknown Error!" sendViewController:self];
                                         return;
                                     }
@@ -137,10 +145,18 @@
                                     NSLog(@"Success");
             
                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                        [[AppDelegate sharedAppdelegate] hideProgressView];
+                                      //  [[AppDelegate sharedAppdelegate] hideProgressView];
+                                        
+                                        [RMessage showNotificationWithTitle:NSLocalizedString(@"Success", nil)
+                                                                   subtitle:NSLocalizedString(@"URL Verified successfully !", nil)
+                                                                       type:RMessageTypeSuccess
+                                                             customTypeName:nil
+                                                                   callback:nil];
+                                        
                                         [self.companyURLview setHidden:YES];
                                         [self.loginView setHidden:NO];
                                         [utils viewSlideInFromRightToLeft:self.loginView];
+                                        [FTProgressIndicator dismiss];
             
                                     });
             
@@ -189,7 +205,8 @@
             
         }else{
             
-            [[AppDelegate sharedAppdelegate] showProgressView];
+           // [[AppDelegate sharedAppdelegate] showProgressView];
+             [FTProgressIndicator showProgressWithMessage:@"Please wait" userInteractionEnable:NO];
             
             NSString *url=[NSString stringWithFormat:@"%@authenticate",[[NSUserDefaults standardUserDefaults] objectForKey:@"companyURL"]];
            // NSString *params=[NSString string];
@@ -209,6 +226,7 @@
                 
                 if (error) {
                     NSLog(@"dataTaskWithRequest error: %@", error);
+                    [FTProgressIndicator dismiss];
                     return;
                 }else if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
                     
@@ -217,12 +235,14 @@
                     if (statusCode != 200) {
                         if (statusCode == 401) {
                             NSLog(@"dataTaskWithRequest HTTP status code: %ld", (long)statusCode);
-                            [[AppDelegate sharedAppdelegate] hideProgressView];
+                           // [[AppDelegate sharedAppdelegate] hideProgressView];
+                            [FTProgressIndicator dismiss];
                             [utils showAlertWithMessage:@"Wrong Credentials!" sendViewController:self];
                             return;
                         }else{
                             NSLog(@"dataTaskWithRequest HTTP status code: %ld", (long)statusCode);
-                            [[AppDelegate sharedAppdelegate] hideProgressView];
+                           // [[AppDelegate sharedAppdelegate] hideProgressView];
+                            [FTProgressIndicator dismiss];
                             [utils showAlertWithMessage:@"Unknown Error!" sendViewController:self];
                             return;
                         }
@@ -256,7 +276,15 @@
 
                     NSLog(@"token--%@",[jsonData objectForKey:@"token"]);
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [[AppDelegate sharedAppdelegate] hideProgressView];
+                          //  [[AppDelegate sharedAppdelegate] hideProgressView];
+                            
+                            [FTProgressIndicator dismiss];
+                            
+                            [RMessage showNotificationWithTitle:NSLocalizedString(@"Success", nil)
+                                                       subtitle:NSLocalizedString(@"URL Verified successfully !", nil)
+                                                           type:RMessageTypeSuccess
+                                                 customTypeName:nil
+                                                       callback:nil];
                             
                             InboxViewController *inboxVC=[self.storyboard instantiateViewControllerWithIdentifier:@"InboxID"];
                             [self.navigationController pushViewController:inboxVC animated:YES];
@@ -269,8 +297,8 @@
                     }
                    
                 }else {
-                     [[AppDelegate sharedAppdelegate] hideProgressView];
-                    
+                   //  [[AppDelegate sharedAppdelegate] hideProgressView];
+                    [FTProgressIndicator dismiss];
                     if ([replyStr containsString:@"invalid_credentials"]) {
                        
                         [utils showAlertWithMessage:@"Wrong Credentials" sendViewController:self];

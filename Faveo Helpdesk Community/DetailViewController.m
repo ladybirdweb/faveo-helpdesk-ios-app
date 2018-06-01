@@ -15,8 +15,11 @@
 #import "Reachability.h"
 #import "AppDelegate.h"
 #import "GlobalVariables.h"
+#import "FTProgressIndicator.h"
+#import "RMessageView.h"
 
-@interface DetailViewController (){
+
+@interface DetailViewController ()<RMessageProtocol>{
 
     Utils *utils;
     NSUserDefaults *userDefaults;
@@ -63,16 +66,14 @@
     status_id=[[NSNumber alloc]init];
     
       _saveButton.backgroundColor=[UIColor hx_colorWithHexString:@"#00aeef"];
-    _activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    _activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-100);
-    _activityIndicatorObject.color=[UIColor hx_colorWithHexString:@"#00aeef"];
-    [self.view addSubview:_activityIndicatorObject];
+    
     
     utils=[[Utils alloc]init];
     globalVariables=[GlobalVariables sharedInstance];
     _subjectTextField.text=globalVariables.title;
     userDefaults=[NSUserDefaults standardUserDefaults];
-    [_activityIndicatorObject startAnimating];
+    
+    [FTProgressIndicator showProgressWithMessage:@"Please wait" userInteractionEnable:NO];
     [self reload];
     
     [self readFromPlist];
@@ -86,7 +87,8 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        [_activityIndicatorObject stopAnimating];
+       // [_activityIndicatorObject stopAnimating];
+        [FTProgressIndicator dismiss];
         [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
@@ -98,7 +100,8 @@
             
             if (error) {
                 [self.refreshControl endRefreshing];
-                [_activityIndicatorObject stopAnimating];
+              //  [_activityIndicatorObject stopAnimating];
+                [FTProgressIndicator dismiss];
                
                 [utils showAlertWithMessage:@"Error" sendViewController:self];
                 NSLog(@"Thread-NO4-getDetail-Refresh-error == %@",error.localizedDescription);
@@ -141,9 +144,11 @@
                         _sourceTextField.text=[dic objectForKey:@"source_name"];
                         _statusTextField.text= [dic objectForKey:@"status_name"];
                         _dueDateTextField.text= [utils getLocalDateTimeFromUTC:[dic objectForKey:@"duedate"]];
-                        [self.refreshControl endRefreshing];
-                        [_activityIndicatorObject stopAnimating];
+                        
+                       // [_activityIndicatorObject stopAnimating];
                         [self.tableView reloadData];
+                        [self.refreshControl endRefreshing];
+                        [FTProgressIndicator dismiss];
                         
                     });
                 });
@@ -347,16 +352,18 @@
         
     }else{
         
-        [[AppDelegate sharedAppdelegate] showProgressView];
+      //  [[AppDelegate sharedAppdelegate] showProgressView];
+         [FTProgressIndicator showProgressWithMessage:@"Saving Data" userInteractionEnable:NO];
         
         NSString *url=[NSString stringWithFormat:@"%@helpdesk/edit?api_key=%@&ip=%@&token=%@&ticket_id=%@&subject=%@&help_topic=%@&sla_plan=%@&ticket_priority=%@&ticket_source=%@&status=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],globalVariables.iD,_subjectTextField.text,help_topic_id,sla_id,priority_id,source_id,status_id];
 
         MyWebservices *webservices=[MyWebservices sharedInstance];
         
         [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
-            [[AppDelegate sharedAppdelegate] hideProgressView];
+           // [[AppDelegate sharedAppdelegate] hideProgressView];
             if (error || [msg containsString:@"Error"]) {
                 
+                [FTProgressIndicator dismiss];
                 [utils showAlertWithMessage:msg sendViewController:self];
                 NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
                 return ;
@@ -371,9 +378,30 @@
             
             if (json) {
                 NSLog(@"JSON-CreateTicket-%@",json);
+                [FTProgressIndicator dismiss];
+                
                 if ([json objectForKey:@"result"]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [utils showAlertWithMessage:@"Updated successfully!" sendViewController:self];
+                      //  [utils showAlertWithMessage:@"Updated successfully!" sendViewController:self];
+                        
+                        if (self.navigationController.navigationBarHidden) {
+                            [self.navigationController setNavigationBarHidden:NO];
+                        }
+                        
+                        [RMessage showNotificationInViewController:self.navigationController
+                                                             title:NSLocalizedString(@"Success", nil)
+                                                          subtitle:NSLocalizedString(@"Data saved successfully", nil)
+                                                         iconImage:nil
+                                                              type:RMessageTypeSuccess
+                                                    customTypeName:nil
+                                                          duration:RMessageDurationAutomatic
+                                                          callback:nil
+                                                       buttonTitle:nil
+                                                    buttonCallback:nil
+                                                        atPosition:RMessagePositionNavBarOverlay
+                                              canBeDismissedByUser:YES];
+
+                        
                     });
                 }
             }
