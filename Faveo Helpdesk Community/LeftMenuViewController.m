@@ -7,9 +7,7 @@
 //
 
 #import "LeftMenuViewController.h"
-#import "RKDropdownAlert.h"
-#import "HexColors.h"
-#import "AppConstanst.h"
+
 
 @interface LeftMenuViewController ()
 
@@ -26,7 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -95,7 +92,6 @@
             //[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
             //[[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:NO];
            
-            [RKDropdownAlert title:@"Faveo Helpdesk" message:@"You've logged out, successfully." backgroundColor:[UIColor hx_colorWithHexRGBAString:SUCCESS_COLOR] textColor:[UIColor whiteColor]];
             vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Login"];
            // (vc.view.window!.rootViewController?).dismissViewControllerAnimated(false, completion: nil);
             break;
@@ -115,17 +111,6 @@
                                                                      andCompletion:nil];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    if (indexPath.row == 9) {
-        return 0;
-    } else {
-        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-    }
-   
-}
-
 -(void)wipeDataInLogout{
     
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
@@ -140,11 +125,6 @@
     {
         NSLog(@"Error while removing the plist %@", error.localizedDescription);
         //TODO: Handle/Log error
-    }
-    
-    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (NSHTTPCookie *each in cookieStorage.cookies) {
-        [cookieStorage deleteCookie:each];
     }
     
 }

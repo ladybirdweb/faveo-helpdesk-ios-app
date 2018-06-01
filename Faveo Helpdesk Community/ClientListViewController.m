@@ -15,14 +15,14 @@
 #import "MyWebservices.h"
 #import "AppDelegate.h"
 #import "LoadingTableViewCell.h"
-#import "RKDropdownAlert.h"
-#import "HexColors.h"
+#import "GlobalVariables.h"
 
 @interface ClientListViewController (){
 
     Utils *utils;
     UIRefreshControl *refresh;
     NSUserDefaults *userDefaults;
+    GlobalVariables *globalVariables;
 
 }
 
@@ -43,6 +43,9 @@
     
     [self addUIRefresh];
     utils=[[Utils alloc]init];
+    
+    globalVariables=[GlobalVariables sharedInstance];
+    
     userDefaults=[NSUserDefaults standardUserDefaults];
     [[AppDelegate sharedAppdelegate] showProgressViewWithText:@"Getting Data"];
     [self reload];
@@ -54,10 +57,11 @@
 -(void)reload{
     
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
-    { [refresh endRefreshing];
+    {
         //connection unavailable
         [[AppDelegate sharedAppdelegate] hideProgressView];
-        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
+        
     }else{
         
         //        [[AppDelegate sharedAppdelegate] showProgressView];
@@ -67,17 +71,10 @@
         [webservices httpResponseGET:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
             
             if (error || [msg containsString:@"Error"]) {
-                [refresh endRefreshing];
+ [refresh endRefreshing];
                 [[AppDelegate sharedAppdelegate] hideProgressView];
-                
-                if (msg) {
-                    
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                    
-                }else if(error)  {
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
-                }
+                [utils showAlertWithMessage:@"Error" sendViewController:self];
+                NSLog(@"Thread-NO4-getClients-Refresh-error == %@",error.localizedDescription);
                 return ;
             }
             
@@ -127,7 +124,7 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
         
@@ -135,15 +132,11 @@
         [webservices getNextPageURL:_nextPageUrl callbackHandler:^(NSError *error,id json,NSString* msg) {
             
             if (error || [msg containsString:@"Error"]) {
-                
-                if (msg) {
-                    
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                    
-                }else if(error)  {
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
-                }
+                LoadingTableViewCell *lc=[[LoadingTableViewCell alloc]init];
+                lc.loadingLbl.text=@"Failed!";
+                [lc.indicator setHidden:YES];
+                [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
+                NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
                 return ;
             }
             
@@ -263,36 +256,85 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSDictionary *finaldic=[_mutableArray objectAtIndex:indexPath.row];
-    NSString *isActive=[finaldic objectForKey:@"active"];
+    
+    NSString *fName=[finaldic objectForKey:@"first_name"];
+    NSString *lName=[finaldic objectForKey:@"last_name"];
+    NSString *userName=[finaldic objectForKey:@"user_name"];
     NSString *email=[finaldic objectForKey:@"email"];
-    NSString *phone=[finaldic objectForKey:@"phone_number"];
-    NSString *clientName=[finaldic objectForKey:@"first_name"];
-    NSString *client_id=[finaldic objectForKey:@"id"];
-    if ([email isEqualToString:@""]) {
-        email=@"Not Available";
+   
+    NSString *userId=[NSString stringWithFormat:@"%@",[finaldic objectForKey:@"id"]];
+    NSString *userState=[NSString stringWithFormat:@"%@",[finaldic objectForKey:@"active"]];
+    NSString *userMobile=[NSString stringWithFormat:@"%@",[finaldic objectForKey:@"mobile"]];
+    NSString *userPhone=[NSString stringWithFormat:@"%@",[finaldic objectForKey:@"phone_number"]];
+    
+    NSString *userProfile=[NSString stringWithFormat:@"%@",[finaldic objectForKey:@"profile_pic"]];
+    
+    [Utils isEmpty:fName];
+    [Utils isEmpty:lName];
+    [Utils isEmpty:userName];
+    [Utils isEmpty:email];
+    
+    [Utils isEmpty:userId];
+    [Utils isEmpty:userState];
+    [Utils isEmpty:userMobile];
+    [Utils isEmpty:userProfile];
+    [Utils isEmpty:userPhone];
+    
+    if([Utils isEmpty:fName] && [Utils isEmpty:lName])
+    {
+        if(![Utils isEmpty:userName])
+        {
+            globalVariables.firstNameFromUserList=userName;
+        }
+    }else{
+        
+        globalVariables.firstNameFromUserList=[NSString stringWithFormat:@"%@ %@",fName,lName];
     }
-    if ([phone isEqualToString:@""]) {
-        phone=@"Not Available";
+    
+    if(![Utils isEmpty:email])
+    {
+        globalVariables.emailFromUserList=email;
+    }else
+    {
+        globalVariables.emailFromUserList=@"Not Available";
     }
-    if ([clientName isEqualToString:@""]) {
-        clientName=@"Not Available";
+    
+    if(![Utils isEmpty:userState])
+    {
+        if([userState isEqualToString:@"1"])
+        {
+            globalVariables.userStateFromUserList=@"ACTIVE";
+        }else{
+            globalVariables.userStateFromUserList=@"INACTIVE";
+        }
     }
+    
+    if(![Utils isEmpty:userMobile])
+    {
+        globalVariables.mobileFromUserList=userMobile;
+    }
+    else  if(![Utils isEmpty:userPhone])
+    {
+        globalVariables.mobileFromUserList=userPhone;
+    }
+    else{
+        globalVariables.mobileFromUserList=@"Not Available";
+    }
+   
+    
+    if(![Utils isEmpty:userProfile])
+    {
+        globalVariables.profilePicFromUserList=userProfile;
+    }
+    else{
+        
+    }
+    
+    globalVariables.userIdFromUserList=userId;
     
     ClientDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"ClientDetailVCID"];
-    td.imageURL=[finaldic objectForKey:@"profile_pic"];
-
-    
-    if ([isActive isEqualToString:@"1"]) {
-        isActive=@"ACTIVE";
-    }else isActive=@"INACTIVE";
-    
-    td.clientId=client_id;
-    td.isClientActive=isActive;
-    td.emailID=email;
-    td.phone=phone;
-    td.clientName=[NSString stringWithFormat:@"%@ %@",clientName,[finaldic objectForKey:@"last_name"]];
-    
     [self.navigationController pushViewController:td animated:YES];
+
 }
 
 -(void)addUIRefresh{

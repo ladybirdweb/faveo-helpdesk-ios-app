@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
       [self setTitle:@"About"];
-    _websiteButton.backgroundColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    _websiteButton.backgroundColor=[UIColor hx_colorWithHexString:@"#00aeef"];
     // Do any additional setup after loading the view.
 }
 

@@ -16,7 +16,6 @@
 #import "MyWebservices.h"
 #import "HexColors.h"
 #import "GlobalVariables.h"
-#import "RKDropdownAlert.h"
 
 
 @interface ConversationViewController ()<CNPPopupControllerDelegate,UIWebViewDelegate>{
@@ -36,7 +35,7 @@
     NSLog(@"ConversationVC");
     _activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-100);
-    _activityIndicatorObject.color=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    _activityIndicatorObject.color=[UIColor hx_colorWithHexString:@"#00aeef"];
     [self.view addSubview:_activityIndicatorObject];
     [self addUIRefresh];
     utils=[[Utils alloc]init];
@@ -44,7 +43,6 @@
     userDefaults=[NSUserDefaults standardUserDefaults];
     [_activityIndicatorObject startAnimating];
     [self reload];
-     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view.
 }
 
@@ -53,29 +51,23 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-            [self.refreshControl endRefreshing];
           [_activityIndicatorObject stopAnimating];
-        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+          [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
+        
     }else{
        
           NSString *url=[NSString stringWithFormat:@"%@helpdesk/ticket-thread?api_key=%@&ip=%@&token=%@&id=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],globalVariable.iD];
         
         MyWebservices *webservices=[MyWebservices sharedInstance];
         [webservices httpResponseGET:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
-
+            
             if (error || [msg containsString:@"Error"]) {
-                [self.refreshControl endRefreshing];
-                [_activityIndicatorObject stopAnimating];
+                 [self.refreshControl endRefreshing];
+                  [_activityIndicatorObject stopAnimating];
                 [[AppDelegate sharedAppdelegate] hideProgressView];
-                if (msg) {
-                    
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                    
-                }else if(error)  {
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
-                }
-                
+                [utils showAlertWithMessage:@"Error" sendViewController:self];
+                NSLog(@"Thread-NO4-getConversation-Refresh-error == %@",error.localizedDescription);
+                self.noDataLabel.text=@"Error";
                 return ;
             }
             
@@ -162,13 +154,7 @@
         [cell.internalNoteLabel setHidden:NO]; 
     }
    
-    NSString *fName=[finaldic objectForKey:@"first_name"];
-    if ([fName isEqualToString:@""]) {
-        fName=@"Not Available";
-    }else{
-        fName=[NSString stringWithFormat:@"%@ %@",[finaldic objectForKey:@"first_name"],[finaldic objectForKey:@"last_name"]];
-    }
-    cell.clientNameLabel.text=fName;
+     cell.clientNameLabel.text=[NSString stringWithFormat:@"%@ %@",[finaldic objectForKey:@"first_name"],[finaldic objectForKey:@"last_name"]];
      [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
     
     return cell;

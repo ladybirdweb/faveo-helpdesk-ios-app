@@ -16,7 +16,6 @@
 #import "AppConstanst.h"
 #import "MyWebservices.h"
 #import "AppDelegate.h"
-#import "RKDropdownAlert.h"
 
 @interface CreateTicketViewController (){
     
@@ -59,8 +58,8 @@
     [self readFromPlist];
     [self setTitle:@"CreateTicket"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _submitButton.backgroundColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
-    self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
+    _submitButton.backgroundColor=[UIColor hx_colorWithHexString:@"#00aeef"];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -239,55 +238,37 @@
     [ActionSheetStringPicker showPickerWithTitle:@"Select CountryCode" rows:_countryArray initialSelection:0 target:self successAction:@selector(countryCodeWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
 }
 
-
 - (IBAction)submitClicked:(id)sender {
     
     if (self.emailTextField.text.length==0){
-        [RKDropdownAlert title:APP_NAME message:@"Please enter EMAIL-ID" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        //[utils showAlertWithMessage:@"Please enter EMAIL-ID" sendViewController:self];
+        [utils showAlertWithMessage:@"Please enter EMAIL-ID" sendViewController:self];
     }else if (self.nameTextField.text.length==0) {
-        [RKDropdownAlert title:APP_NAME message:@"Please enter NAME" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        //[utils showAlertWithMessage:@"Please enter NAME" sendViewController:self];
+        [utils showAlertWithMessage:@"Please enter NAME" sendViewController:self];
     }else if (self.helpTopicTextField.text.length==0) {
-        [RKDropdownAlert title:APP_NAME message:@"Please select HELP-TOPIC" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        // [utils showAlertWithMessage:@"Please select HELP-TOPIC" sendViewController:self];
+        [utils showAlertWithMessage:@"Please select HELP-TOPIC" sendViewController:self];
     }else if (self.slaTextField.text.length==0){
-        [RKDropdownAlert title:APP_NAME message:@"Please select SLA" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        //[utils showAlertWithMessage:@"Please select SLA" sendViewController:self];
+        [utils showAlertWithMessage:@"Please select SLA" sendViewController:self];
     }else if (self.deptTextField.text.length==0) {
-        [RKDropdownAlert title:APP_NAME message:@"Please select DEPARTMENT" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        // [utils showAlertWithMessage:@"Please select DEPARTMENT" sendViewController:self];
+        [utils showAlertWithMessage:@"Please select DEPARTMENT" sendViewController:self];
     }else if (self.subjectTextField.text.length==0) {
-        [RKDropdownAlert title:APP_NAME message:@"Please enter SUBJECT" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        // [utils showAlertWithMessage:@"Please enter SUBJECT" sendViewController:self];
-    }else  if (self.subjectTextField.text.length<5) {
-        [RKDropdownAlert title:APP_NAME message:@"SUBJECT requires at least 5 characters" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        // [utils showAlertWithMessage:@"Please enter SUBJECT" sendViewController:self];
+        [utils showAlertWithMessage:@"Please enter SUBJECT" sendViewController:self];
     }else if (self.msgTextField.text.length==0){
-        [RKDropdownAlert title:APP_NAME message:@"Please enter ticket MESSAGE" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        // [utils showAlertWithMessage:@"Please enter ticket MESSAGE" sendViewController:self];
-    }else if (self.msgTextField.text.length<10){
-        [RKDropdownAlert title:APP_NAME message:@"MESSAGE requires at least 10 characters" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        // [utils showAlertWithMessage:@"Please enter ticket MESSAGE" sendViewController:self];
+        [utils showAlertWithMessage:@"Please enter ticket MESSAGE" sendViewController:self];
     }else if (self.priorityTextField.text.length==0){
-        [RKDropdownAlert title:APP_NAME message:@"Please select PRIORITY" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        //[utils showAlertWithMessage:@"Please select PRIORITY" sendViewController:self];
+        [utils showAlertWithMessage:@"Please select PRIORITY" sendViewController:self];
     }else if(![Utils emailValidation:self.emailTextField.text]){
-        [RKDropdownAlert title:APP_NAME message:@"Invalid EMAIL_ID" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        //[utils showAlertWithMessage:@"Invalid EMAIL_ID" sendViewController:self];
+        [utils showAlertWithMessage:@"Invalid EMAIL_ID" sendViewController:self];
     }else if(![Utils userNameValidation:self.nameTextField.text]){
-        [RKDropdownAlert title:APP_NAME message:@"Name should have more than 2 characters" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        //[utils showAlertWithMessage:@"Name should have more than 2 characters" sendViewController:self];
+        [utils showAlertWithMessage:@"Name should have more than 2 characters" sendViewController:self];
     }else {
         NSLog(@"ticketCreated dept_id-%@, help_id-%@ ,sla_id-%@, pri_id-%@",dept_id,help_topic_id,sla_id,priority_id);
-        [self createTicket];
+        [self reload];
     }
-    
     
 }
 
 
--(void)createTicket{
+-(void)reload{
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
@@ -297,10 +278,10 @@
         
         [[AppDelegate sharedAppdelegate] showProgressView];
         
-        //        NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:API_KEY,@"api_key",IP,@"ip",[userDefaults objectForKey:@"token"],@"token",[userDefaults objectForKey:@"user_id"],@"user_id",_subjectTextField.text,@"subject",_msgTextField.text,@"body",_nameTextField.text,@"first_name",@"nx",@"last_name",_phoneTextField.text,@"phone",[_codeTextField.text substringFromIndex:1],@"code",_emailTextField.text,@"email",help_topic_id,@"helptopic",sla_id,@"sla",priority_id,@"priority",dept_id,@"dept",nil];
-        //        NSLog(@"Dic %@",param);
+//        NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:API_KEY,@"api_key",IP,@"ip",[userDefaults objectForKey:@"token"],@"token",[userDefaults objectForKey:@"user_id"],@"user_id",_subjectTextField.text,@"subject",_msgTextField.text,@"body",_nameTextField.text,@"first_name",@"nx",@"last_name",_phoneTextField.text,@"phone",[_codeTextField.text substringFromIndex:1],@"code",_emailTextField.text,@"email",help_topic_id,@"helptopic",sla_id,@"sla",priority_id,@"priority",dept_id,@"dept",nil];
+//        NSLog(@"Dic %@",param);
         
-        // NSString *url=[NSString stringWithFormat:@"%@helpdesk/create",[userDefaults objectForKey:@"companyURL"]];
+       // NSString *url=[NSString stringWithFormat:@"%@helpdesk/create",[userDefaults objectForKey:@"companyURL"]];
         
         NSString *url=[NSString stringWithFormat:@"%@helpdesk/create?api_key=%@&ip=%@&token=%@&user_id=%@&subject=%@&body=%@&first_name=%@&last_name=%@&phone=%@&code=%@&email=%@&helptopic=%@&sla=%@&priority=%@&dept=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],[userDefaults objectForKey:@"user_id"],_subjectTextField.text,_msgTextField.text,_nameTextField.text,@"",_phoneTextField.text,[_codeTextField.text substringFromIndex:1],_emailTextField.text,help_topic_id,sla_id,priority_id,dept_id];
         
@@ -309,24 +290,16 @@
         
         [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
             [[AppDelegate sharedAppdelegate] hideProgressView];
-            
             if (error || [msg containsString:@"Error"]) {
                 
-                if (msg) {
-                    
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                    
-                }else if(error)  {
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
-                }
-                
+                [utils showAlertWithMessage:msg sendViewController:self];
+                NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
                 return ;
             }
             
             if ([msg isEqualToString:@"tokenRefreshed"]) {
                 
-                [self createTicket];
+                [self reload];
                 NSLog(@"Thread--NO4-call-postCreateTicket");
                 return;
             }

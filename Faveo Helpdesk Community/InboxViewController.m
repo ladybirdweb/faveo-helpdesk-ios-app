@@ -17,8 +17,6 @@
 #import "MyWebservices.h"
 #import "GlobalVariables.h"
 #import "LoadingTableViewCell.h"
-#import "RKDropdownAlert.h"
-#import "HexColors.h"
 
 @interface InboxViewController (){
     Utils *utils;
@@ -64,12 +62,10 @@
     
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
-        [refresh endRefreshing];
         //connection unavailable
         [[AppDelegate sharedAppdelegate] hideProgressView];
-        //[utils showAlertWithMessage:NO_INTERNET sendViewController:self];
-        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
-
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
+        
     }else{
         
         //        [[AppDelegate sharedAppdelegate] showProgressView];
@@ -115,7 +111,9 @@
                         [self.tableView reloadData];
                     });
                 });
-                
+                for (NSDictionary *tickets in  _mutableArray) {
+                    NSLog(@"Client-name--%@",[tickets objectForKey:@"first_name"]);
+                }
             }
             NSLog(@"Thread-NO5-getInbox-closed");
             
@@ -241,7 +239,7 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-       [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
         
@@ -250,6 +248,9 @@
             
             if (error || [msg containsString:@"Error"]) {
                 
+                LoadingTableViewCell *lc=[[LoadingTableViewCell alloc]init];
+               lc.loadingLbl.text=@"Failed!";
+                [lc.indicator setHidden:YES];
                 if (msg) {
                     
                     [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];

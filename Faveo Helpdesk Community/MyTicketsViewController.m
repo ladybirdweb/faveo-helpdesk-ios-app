@@ -17,8 +17,6 @@
 #import "MyWebservices.h"
 #import "GlobalVariables.h"
 #import "LoadingTableViewCell.h"
-#import "RKDropdownAlert.h"
-#import "HexColors.h"
 
 @interface MyTicketsViewController (){
 
@@ -54,10 +52,11 @@
 -(void)reload{
     
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
-    { [refresh endRefreshing];
+    {
         //connection unavailable
         [[AppDelegate sharedAppdelegate] hideProgressView];
-      [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
+        
     }else{
         
         //        [[AppDelegate sharedAppdelegate] showProgressView];
@@ -159,7 +158,7 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-      [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
         
@@ -167,15 +166,11 @@
         [webservices getNextPageURL:_nextPageUrl callbackHandler:^(NSError *error,id json,NSString* msg) {
             
             if (error || [msg containsString:@"Error"]) {
-                
-                if (msg) {
-                    
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                    
-                }else if(error)  {
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
-                }
+                LoadingTableViewCell *lc=[[LoadingTableViewCell alloc]init];
+                lc.loadingLbl.text=@"Failed!";
+                [lc.indicator setHidden:YES];
+                [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
+                NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
                 return ;
             }
             

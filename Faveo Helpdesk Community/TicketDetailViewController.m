@@ -9,13 +9,13 @@
 #import "TicketDetailViewController.h"
 #import "CNPPopupController.h"
 #import "Utils.h"
+#import "HexColors.h"
 #import "AppDelegate.h"
 #import "AppConstanst.h"
 #import "Reachability.h"
 #import "MyWebservices.h"
 #import "GlobalVariables.h"
-#import "RKDropdownAlert.h"
-#import "HexColors.h"
+
 //#import "ReplyViewController.h"
 
 @interface TicketDetailViewController () <CNPPopupControllerDelegate>{
@@ -44,7 +44,7 @@
     utils=[[Utils alloc]init];
     globalVariables=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
-    self.segmentedControl.tintColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    self.segmentedControl.tintColor=[UIColor hx_colorWithHexString:@"#00aeef"];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(replyBtnPressed)],[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(internalNotePressed)], nil] animated:YES];
     
     _lblTicketNumber.text=globalVariables.ticket_number;
@@ -160,7 +160,7 @@
     
     UILabel *lineTwoLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 100, 20)];
     //    lineTwoLabel.numberOfLines = 0;
-    lineTwoLabel.textColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    lineTwoLabel.textColor=[UIColor hx_colorWithHexString:@"#00aeef"];
     lineTwoLabel.text = @"Message";
     
     
@@ -181,7 +181,7 @@
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [button setTitle:@"Done" forState:UIControlStateNormal];
-    button.backgroundColor = [UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    button.backgroundColor = [UIColor hx_colorWithHexString:@"#00aeef"];
     button.layer.cornerRadius = 4;
     button.selectionHandler = ^(CNPPopupButton *button){
         if ( textViewInternalNote.text.length!=0) {
@@ -207,8 +207,8 @@
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
     NSAttributedString *title = [[NSAttributedString alloc] initWithString:@"Ticket Reply" attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:24], NSParagraphStyleAttributeName : paragraphStyle}];
-    NSAttributedString *lineOne = [[NSAttributedString alloc] initWithString:@"Cc" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : [UIColor hx_colorWithHexRGBAString:@"#00aeef"]}];
-    NSMutableAttributedString *lineTwo = [[NSMutableAttributedString alloc] initWithString:@"Message*" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : [UIColor hx_colorWithHexRGBAString:@"#00aeef"]}];
+    NSAttributedString *lineOne = [[NSAttributedString alloc] initWithString:@"Cc" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : [UIColor hx_colorWithHexString:@"#00aeef"]}];
+    NSMutableAttributedString *lineTwo = [[NSMutableAttributedString alloc] initWithString:@"Message*" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : [UIColor hx_colorWithHexString:@"#00aeef"]}];
     [lineTwo addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(7,1)];
     
     UILabel *titleLabel = [[UILabel alloc] init];
@@ -258,7 +258,7 @@
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [button setTitle:@"Done" forState:UIControlStateNormal];
-    button.backgroundColor = [UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    button.backgroundColor = [UIColor hx_colorWithHexString:@"#00aeef"];
     button.layer.cornerRadius = 4;
     
     button.selectionHandler = ^(CNPPopupButton *button){
@@ -284,7 +284,7 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
         
@@ -303,15 +303,8 @@
             [[AppDelegate sharedAppdelegate] hideProgressView];
             if (error || [msg containsString:@"Error"]) {
                 
-                if (msg) {
-                    
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                    
-                }else if(error)  {
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
-                }
-                
+                [utils showAlertWithMessage:msg sendViewController:self];
+                NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
                 return ;
             }
             
@@ -342,7 +335,7 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
         
@@ -362,15 +355,8 @@
             [[AppDelegate sharedAppdelegate] hideProgressView];
             if (error || [msg containsString:@"Error"]) {
                 
-                if (msg) {
-                    
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                    
-                }else if(error)  {
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
-                }
-                
+                [utils showAlertWithMessage:msg sendViewController:self];
+                NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
                 return ;
             }
             

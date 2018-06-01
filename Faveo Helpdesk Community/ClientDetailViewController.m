@@ -16,7 +16,6 @@
 #import "TicketDetailViewController.h"
 #import "OpenCloseTableViewCell.h"
 #import "GlobalVariables.h"
-#import "RKDropdownAlert.h"
 
 @interface ClientDetailViewController ()
 {
@@ -25,10 +24,13 @@
     NSMutableArray *mutableArray;
     UIRefreshControl *refresh;
     GlobalVariables *globalVariables;
+    
+    NSMutableDictionary * clientDict;
 
 }
 
 @property (nonatomic,retain) UIActivityIndicatorView *activityIndicatorObject;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (nonatomic,strong) UILabel *noDataLabel;
 
 @end
@@ -40,36 +42,27 @@
     
     self.profileImageView.layer.cornerRadius = 26;
     self.profileImageView.clipsToBounds = YES;
-    self.profileImageView.layer.borderWidth=1.3f;
-    self.profileImageView.layer.borderColor=[[UIColor hx_colorWithHexRGBAString:@"#0288D1"] CGColor];
-    [self setUserProfileimage:_imageURL];
     
     _activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-50);
-    _activityIndicatorObject.color=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    _activityIndicatorObject.color=[UIColor hx_colorWithHexString:@"#00aeef"];
     [self.view addSubview:_activityIndicatorObject];
     [self addUIRefresh];
+    
     utils=[[Utils alloc]init];
     globalVariables=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
-//    self.currentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OpenClient"];
-//    self.currentViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-//    [self addChildViewController:self.currentViewController];
-//    [self addSubview:self.currentViewController.view toView:self.containerView];
-//    self.testingLAbel.text=@"Open Ticket";
-//    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
-//    self.profileImageView.clipsToBounds = YES;
-//    self.segmentedControl.tintColor=[UIColor hx_colorWithHexString:@"#00aeef"];
+
+    clientDict=[[NSMutableDictionary alloc]init];
     
-    
-    self.testingLAbel.text=self.isClientActive;
-    self.emailLabel.text=self.emailID;
-    self.clientNameLabel.text=self.clientName;
-    self.phoneLabel.text=self.phone;
+//    self.testingLAbel.text=globalVariables.userStateFromUserList;
+//    self.emailLabel.text=globalVariables.emailFromUserList;
+//    self.clientNameLabel.text=globalVariables.userNameFromUserList;
+//    self.phoneLabel.text=globalVariables.mobileFromUserList;
+//
     
     [_activityIndicatorObject startAnimating];
     [self reload];
-     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view.
 }
 
@@ -78,12 +71,12 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        [refresh endRefreshing];
         [_activityIndicatorObject stopAnimating];
-        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
+        
     }else{
         
-        NSString *url=[NSString stringWithFormat:@"%@helpdesk/my-tickets-user?api_key=%@&ip=%@&token=%@&user_id=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],_clientId];
+        NSString *url=[NSString stringWithFormat:@"%@helpdesk/my-tickets-user?api_key=%@&ip=%@&token=%@&user_id=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],globalVariables.userIdFromUserList];
         
         MyWebservices *webservices=[MyWebservices sharedInstance];
         [webservices httpResponseGET:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
@@ -106,16 +99,17 @@
                // NSError *error;
                 mutableArray=[[NSMutableArray alloc]initWithCapacity:10];
                 NSLog(@"Thread-NO4--getClientTickets--%@",json);
-                mutableArray = [json copy];
-//                _nextPageUrl =[json objectForKey:@"next_page_url"];
-//                _currentPage=[[json objectForKey:@"current_page"] integerValue];
-//                _totalTickets=[[json objectForKey:@"total"] integerValue];
-//                NSLog(@"Thread-NO4.1getInbox-dic--%@", mutableArray);
+                clientDict = [json copy];
+                mutableArray = [clientDict objectForKey:@"tickets"];
+                
                 dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [_activityIndicatorObject stopAnimating];
-                        [refresh endRefreshing];
+                        
+                        
                         [self.tableView reloadData];
+                        [refresh endRefreshing];
+                        [_activityIndicatorObject stopAnimating];
+                        
                     });
                 });
             }
@@ -152,7 +146,11 @@
     return numOfSections;
 }
 
-
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return [mutableArray count];
@@ -170,26 +168,39 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"OpenCloseTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    NSDictionary *finaldic=[mutableArray objectAtIndex:indexPath.row];
-    cell.ticketNumberLbl.text=[finaldic objectForKey:@"ticket_number"];
-    cell.ticketSubLbl.text=[finaldic objectForKey:@"title"];
 
-    if ([[finaldic objectForKey:@"ticket_status_name"] isEqualToString:@"Open"]) {
-        cell.indicationView.layer.backgroundColor=[[UIColor hx_colorWithHexRGBAString:SUCCESS_COLOR] CGColor];
+    
+    
+    NSDictionary *ticketDict=[mutableArray objectAtIndex:indexPath.row];
+
+    NSLog(@"Dict 111 is : %@",ticketDict);
+    
+    cell.ticketNumberLbl.text=[ticketDict objectForKey:@"ticket_number"];
+    cell.ticketSubLbl.text=[ticketDict objectForKey:@"title"];
+
+    if ([[ticketDict objectForKey:@"ticket_status_name"] isEqualToString:@"Open"]) {
+        cell.indicationView.layer.backgroundColor=[[UIColor greenColor] CGColor];
     }else{
-        cell.indicationView.layer.backgroundColor=[[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] CGColor];
-        
+        cell.indicationView.layer.backgroundColor=[[UIColor redColor] CGColor];
     }
+
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+
+    NSDictionary *ticketDict=[mutableArray objectAtIndex:indexPath.row];
+    
+    NSLog(@"Dict 111 is : %@",ticketDict);
+    
+    globalVariables.iD= [ticketDict objectForKey:@"id"];
+    globalVariables.ticket_number=[ticketDict objectForKey:@"ticket_number"];
+    globalVariables.title=[ticketDict objectForKey:@"title"];
+    
+    
     TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
-      NSDictionary *finaldic=[mutableArray objectAtIndex:indexPath.row];
-    globalVariables.iD=[finaldic objectForKey:@"id"];
-    globalVariables.ticket_number=[finaldic objectForKey:@"ticket_number"];
-     globalVariables.title=[finaldic objectForKey:@"title"];
+    
     [self.navigationController pushViewController:td animated:YES];
     
 }
@@ -242,7 +253,7 @@
         UIImage* image = [[UIImage alloc] initWithData:imageData];
         if (image) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.profileImageView.image = image;
+                self.profileImageView.image = [UIImage imageNamed:globalVariables.profilePicFromUserList];
             });
         }
     });

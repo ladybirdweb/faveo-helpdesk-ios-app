@@ -145,9 +145,15 @@
       "scale" : "2x"
     },
     {
+      "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "iTunesArtwork@2x.png",
+      "scale" : "1x"
+    },
+    {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Icon-App-40x40@1x.png",
+      "filename" : "Icon-App-40x40@1x-1.png",
       "scale" : "1x"
     },
     {
@@ -159,7 +165,7 @@
     {
       "size" : "76x76",
       "idiom" : "iphone",
-      "filename" : "Icon-App-76x76@1x.png",
+      "filename" : "Icon-App-76x76@1x-1.png",
       "scale" : "1x"
     },
     {

@@ -15,7 +15,6 @@
 #import "MyWebservices.h"
 #import "Utils.h"
 #import "HexColors.h"
-#import "RKDropdownAlert.h"
 
 @interface LoginViewController (){
     Utils *utils;
@@ -30,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _loginButton.backgroundColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    _loginButton.backgroundColor=[UIColor hx_colorWithHexString:@"#00aeef"];
     utils=[[Utils alloc]init];
     userdefaults=[NSUserDefaults standardUserDefaults];
 }
@@ -60,110 +59,107 @@
     else{
         if ([Utils validateUrl:self.urlTextfield.text]) {
             
-            NSString *baseURL=[[NSString alloc] init];
+                        NSString *baseURL=[[NSString alloc] init];
             
-            if ([self.urlTextfield.text hasSuffix:@"/"]) {
-                baseURL=self.urlTextfield.text;
-            }else{
-                baseURL=[self.urlTextfield.text stringByAppendingString:@"/"];
-            }
-            
-            if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
-            {
-                //connection unavailable
-                [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
-                
-            }else{
-                //connection available
-                
-                [[AppDelegate sharedAppdelegate] showProgressViewWithText:@"Verifying URL"];
-                
-                NSString *url=[NSString stringWithFormat:@"%@api/v1/helpdesk/url?url=%@&api_key=%@",baseURL,[baseURL substringToIndex:[baseURL length]-1],API_KEY];
-                
-                NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-                [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-                [request addValue:@"application/json" forHTTPHeaderField:@"Offer-type"];
-                [request setTimeoutInterval:45.0];
-                [request setURL:[NSURL URLWithString:url]];  // add your url
-                [request setHTTPMethod:@"GET"];  // specify the JSON type to GET
-                
-                NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] ];
-                // intialiaze NSURLSession
-                
-                [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                    // Add your parameters in blocks
-                    
-                    // handle basic connectivity issues here
-                    
-                    if ([[error domain] isEqualToString:NSURLErrorDomain]) {
-                        switch ([error code]) {
-                            case NSURLErrorCannotFindHost:
-                                errorMsg = NSLocalizedString(@"Cannot find specified host. Retype URL.", nil);
-                                break;
-                            case NSURLErrorCannotConnectToHost:
-                                errorMsg = NSLocalizedString(@"Cannot connect to specified host. Server may be down.", nil);
-                                break;
-                            case NSURLErrorNotConnectedToInternet:
-                                errorMsg = NSLocalizedString(@"Cannot connect to the internet. Service may not be available.", nil);
-                                break;
-                            default:
-                                errorMsg = [error localizedDescription];
-                                break;
+                        if ([self.urlTextfield.text hasSuffix:@"/"]) {
+                            baseURL=self.urlTextfield.text;
+                        }else{
+                            baseURL=[self.urlTextfield.text stringByAppendingString:@"/"];
                         }
-                        NSLog(@"dataTaskWithRequest error: %@", errorMsg);
-                        return;
-                    }else if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                        
-                        NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-                        
-                        if (statusCode != 200) {
-                            if (statusCode == 404) {
-                                NSLog(@"dataTaskWithRequest HTTP status code: %ld", (long)statusCode);
-                                [[AppDelegate sharedAppdelegate] hideProgressView];
-                                [utils showAlertWithMessage:@"Invalid URL!" sendViewController:self];
+            
+                        if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
+                        {
+                            //connection unavailable
+                            [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
+            
+                        }else{
+                             //connection available
+            
+                        [[AppDelegate sharedAppdelegate] showProgressViewWithText:@"Verifying URL"];
+            
+                        NSString *url=[NSString stringWithFormat:@"%@api/v1/helpdesk/url?url=%@&api_key=%@",baseURL,[baseURL substringToIndex:[baseURL length]-1],API_KEY];
+            
+                         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+            
+                        [request setURL:[NSURL URLWithString:url]];  // add your url
+                        [request setHTTPMethod:@"GET"];  // specify the JSON type to GET
+            
+                        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] ];
+                        // intialiaze NSURLSession
+            
+                        [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                            // Add your parameters in blocks
+            
+                            // handle basic connectivity issues here
+            
+                            if ([[error domain] isEqualToString:NSURLErrorDomain]) {
+                                switch ([error code]) {
+                                    case NSURLErrorCannotFindHost:
+                                        errorMsg = NSLocalizedString(@"Cannot find specified host. Retype URL.", nil);
+                                        break;
+                                    case NSURLErrorCannotConnectToHost:
+                                        errorMsg = NSLocalizedString(@"Cannot connect to specified host. Server may be down.", nil);
+                                        break;
+                                    case NSURLErrorNotConnectedToInternet:
+                                        errorMsg = NSLocalizedString(@"Cannot connect to the internet. Service may not be available.", nil);
+                                        break;
+                                    default:
+                                        errorMsg = [error localizedDescription];
+                                        break;
+                                }
+                                NSLog(@"dataTaskWithRequest error: %@", errorMsg);
                                 return;
-                            }else{
-                                NSLog(@"dataTaskWithRequest HTTP status code: %ld", (long)statusCode);
-                                [[AppDelegate sharedAppdelegate] hideProgressView];
-                                [utils showAlertWithMessage:@"Unknown Error!" sendViewController:self];
-                                return;
+                            }else if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            
+                                NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+            
+                                if (statusCode != 200) {
+                                    if (statusCode == 404) {
+                                        NSLog(@"dataTaskWithRequest HTTP status code: %ld", (long)statusCode);
+                                        [[AppDelegate sharedAppdelegate] hideProgressView];
+                                        [utils showAlertWithMessage:@"Invalid URL!" sendViewController:self];
+                                        return;
+                                    }else{
+                                        NSLog(@"dataTaskWithRequest HTTP status code: %ld", (long)statusCode);
+                                        [[AppDelegate sharedAppdelegate] hideProgressView];
+                                        [utils showAlertWithMessage:@"Unknown Error!" sendViewController:self];
+                                        return;
+                                    }
+                                }
                             }
-                        }
-                    }
-                    
-                    
-                    NSString *replyStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                    
-                    NSLog(@"Get your response == %@", replyStr);
-                    
-                    if ([replyStr containsString:@"success"]) {
-                        NSLog(@"Success");
-                        
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [RKDropdownAlert title:APP_NAME message:@"Verified URL" backgroundColor:[UIColor hx_colorWithHexRGBAString:SUCCESS_COLOR] textColor:[UIColor whiteColor]];
-                            [[AppDelegate sharedAppdelegate] hideProgressView];
-                            [self.companyURLview setHidden:YES];
-                            [self.loginView setHidden:NO];
-                            [utils viewSlideInFromRightToLeft:self.loginView];
-                            
-                        });
-                        
-                        // NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-                        
-                        [userdefaults setObject:[baseURL stringByAppendingString:@"api/v1/"] forKey:@"companyURL"];
-                        [userdefaults synchronize];
-                        
-                    }else{
-                        
-                        [[AppDelegate sharedAppdelegate] hideProgressView];
-                        [utils showAlertWithMessage:@"Error verifying URL" sendViewController:self];
-                        
-                    }
-                    
-                    NSLog(@"Got response %@ with error %@.\n", response, error);
-                    
-                }]resume];
-            }
+            
+            
+                            NSString *replyStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            
+                                NSLog(@"Get your response == %@", replyStr);
+            
+                                if ([replyStr containsString:@"success"]) {
+                                    NSLog(@"Success");
+            
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        [[AppDelegate sharedAppdelegate] hideProgressView];
+                                        [self.companyURLview setHidden:YES];
+                                        [self.loginView setHidden:NO];
+                                        [utils viewSlideInFromRightToLeft:self.loginView];
+            
+                                    });
+            
+                                   // NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            
+                                    [userdefaults setObject:[baseURL stringByAppendingString:@"api/v1/"] forKey:@"companyURL"];
+                                    [userdefaults synchronize];
+            
+                                }else{
+            
+                                    [[AppDelegate sharedAppdelegate] hideProgressView];
+                                    [utils showAlertWithMessage:@"Error verifying URL" sendViewController:self];
+            
+                                }
+
+                            NSLog(@"Got response %@ with error %@.\n", response, error);
+            
+                        }]resume];
+             }
             
         }else
             [utils showAlertWithMessage:@"Please Enter a valid URL" sendViewController:self];
@@ -189,14 +185,14 @@
         if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
         {
             //connection unavailable
-            [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+            [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
             
         }else{
             
             [[AppDelegate sharedAppdelegate] showProgressView];
             
             NSString *url=[NSString stringWithFormat:@"%@authenticate",[[NSUserDefaults standardUserDefaults] objectForKey:@"companyURL"]];
-            // NSString *params=[NSString string];
+           // NSString *params=[NSString string];
             NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:self.userNameTextField.text,@"username",self.passcodeTextField.text,@"password",API_KEY,@"api_key",IP,@"ip",nil];
             
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -207,7 +203,7 @@
             [request setHTTPBody:[NSJSONSerialization dataWithJSONObject:param options:0 error:nil]];
             [request setHTTPMethod:@"POST"];
             
-            NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] ];
+             NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] ];
             
             [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                 
@@ -242,19 +238,26 @@
                     
                     @try{
                         
-                        NSDictionary *jsonData=[NSJSONSerialization JSONObjectWithData:data options:nil error:&error];
+                    NSDictionary *jsonData=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                    NSLog(@"JSON is : %@",jsonData);
                         
-                        [userdefaults setObject:[jsonData objectForKey:@"token"] forKey:@"token"];
-                        [userdefaults setObject:[jsonData objectForKey:@"user_id"] forKey:@"user_id"];
-                        [userdefaults setObject:self.userNameTextField.text forKey:@"username"];
-                        [userdefaults setObject:self.passcodeTextField.text forKey:@"password"];
-                        [userdefaults setBool:YES forKey:@"loginSuccess"];
-                        [userdefaults synchronize];
+                    NSLog(@"JSON is : %@",jsonData);
+                
+                        NSDictionary *userDict=[jsonData objectForKey:@"user_id"];
                         
-                        NSLog(@"token--%@",[jsonData objectForKey:@"token"]);
+                    [userdefaults setObject:[jsonData objectForKey:@"token"] forKey:@"token"];
+                        
+                    [userdefaults setObject:[userDict objectForKey:@"id"] forKey:@"user_id"];
+                    [userdefaults setObject:self.userNameTextField.text forKey:@"username"];
+                    [userdefaults setObject:self.passcodeTextField.text forKey:@"password"];
+                        
+                    [userdefaults setBool:YES forKey:@"loginSuccess"];
+                    [userdefaults synchronize];
+
+                    NSLog(@"token--%@",[jsonData objectForKey:@"token"]);
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [[AppDelegate sharedAppdelegate] hideProgressView];
-                            [RKDropdownAlert title:APP_NAME message:@"Thank you, you have logged in successfully." backgroundColor:[UIColor hx_colorWithHexRGBAString:SUCCESS_COLOR] textColor:[UIColor whiteColor]];
+                            
                             InboxViewController *inboxVC=[self.storyboard instantiateViewControllerWithIdentifier:@"InboxID"];
                             [self.navigationController pushViewController:inboxVC animated:YES];
                             //[self.navigationController popViewControllerAnimated:YES];
@@ -264,22 +267,22 @@
                     @catch(NSException *ne) {
                         NSLog(@"exception %@",ne);
                     }
-                    
+                   
                 }else {
-                    [[AppDelegate sharedAppdelegate] hideProgressView];
+                     [[AppDelegate sharedAppdelegate] hideProgressView];
                     
                     if ([replyStr containsString:@"invalid_credentials"]) {
-                        
+                       
                         [utils showAlertWithMessage:@"Wrong Credentials" sendViewController:self];
                     }else{
-                        
+                       
                         [utils showAlertWithMessage:@"Error" sendViewController:self];
                     }
                 }
-                
+               
                 //yuoyu
                 
-                NSLog(@"Got response %@ with error %@.\n", response, error);
+             NSLog(@"Got response %@ with error %@.\n", response, error);
             }] resume];
             
         }
@@ -293,7 +296,7 @@
     //  [self dismissViewControllerAnimated:NO completion:Nil];
     
     //[self.navigationController popViewControllerAnimated:YES];
-    // [[self navigationController] setNavigationBarHidden:NO];
+   // [[self navigationController] setNavigationBarHidden:NO];
     
 }
 

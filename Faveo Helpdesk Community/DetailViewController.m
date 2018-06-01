@@ -15,7 +15,6 @@
 #import "Reachability.h"
 #import "AppDelegate.h"
 #import "GlobalVariables.h"
-#import "RKDropdownAlert.h"
 
 @interface DetailViewController (){
 
@@ -63,10 +62,10 @@
     source_id=[[NSNumber alloc]init];
     status_id=[[NSNumber alloc]init];
     
-      _saveButton.backgroundColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+      _saveButton.backgroundColor=[UIColor hx_colorWithHexString:@"#00aeef"];
     _activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-100);
-    _activityIndicatorObject.color=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    _activityIndicatorObject.color=[UIColor hx_colorWithHexString:@"#00aeef"];
     [self.view addSubview:_activityIndicatorObject];
     
     utils=[[Utils alloc]init];
@@ -77,7 +76,7 @@
     [self reload];
     
     [self readFromPlist];
-   self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
+  
     // Do any additional setup after loading the view.
 }
 
@@ -88,7 +87,7 @@
     {
         //connection unavailable
         [_activityIndicatorObject stopAnimating];
-       [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
         
@@ -98,24 +97,11 @@
         [webservices httpResponseGET:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
             
             if (error) {
-                
-                [utils showAlertWithMessage:@"Error" sendViewController:self];
-                NSLog(@"Thread-NO4-getDetail-Refresh-error == %@",error.localizedDescription);
-                
-                return ;
-            }
-            if (error || [msg containsString:@"Error"]) {
-                
                 [self.refreshControl endRefreshing];
                 [_activityIndicatorObject stopAnimating];
-                
-                if (msg) {
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                    
-                }else if(error)  {
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
-                }
+               
+                [utils showAlertWithMessage:@"Error" sendViewController:self];
+                NSLog(@"Thread-NO4-getDetail-Refresh-error == %@",error.localizedDescription);
                 
                 return ;
             }
@@ -336,23 +322,17 @@
 - (IBAction)saveClicked:(id)sender {
     
     if (self.subjectTextField.text.length==0) {
-        [RKDropdownAlert title:APP_NAME message:@"Please enter SUBJECT" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        // [utils showAlertWithMessage:@"Please enter SUBJECT" sendViewController:self];
+        [utils showAlertWithMessage:@"Please enter SUBJECT" sendViewController:self];
     }else if (self.helpTopicTextField.text.length==0) {
-        [RKDropdownAlert title:APP_NAME message:@"Please enter HELP-TOPIC" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        // [utils showAlertWithMessage:@"Please select HELP-TOPIC" sendViewController:self];
+        [utils showAlertWithMessage:@"Please select HELP-TOPIC" sendViewController:self];
     }else if (self.slaTextField.text.length==0){
-        [RKDropdownAlert title:APP_NAME message:@"Please enter SLA" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        //[utils showAlertWithMessage:@"Please select SLA" sendViewController:self];
+        [utils showAlertWithMessage:@"Please select SLA" sendViewController:self];
     }else if (self.priorityTextField.text.length==0){
-        [RKDropdownAlert title:APP_NAME message:@"Please enter PRIORITY" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        //[utils showAlertWithMessage:@"Please select PRIORITY" sendViewController:self];
+        [utils showAlertWithMessage:@"Please select PRIORITY" sendViewController:self];
     }else  if (self.statusTextField.text.length==0){
-        [RKDropdownAlert title:APP_NAME message:@"Please enter STATUS" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        //[utils showAlertWithMessage:@"Please select STATUS" sendViewController:self];
+        [utils showAlertWithMessage:@"Please select STATUS" sendViewController:self];
     }else  if (self.sourceTextField.text.length==0){
-        [RKDropdownAlert title:APP_NAME message:@"Please select SOURCE" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-        //[utils showAlertWithMessage:@"Please select SOURCE" sendViewController:self];
+        [utils showAlertWithMessage:@"Please select SOURCE" sendViewController:self];
     }else  {
         [self save];
     }
@@ -363,7 +343,7 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-              [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
         
@@ -375,18 +355,10 @@
         
         [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
             [[AppDelegate sharedAppdelegate] hideProgressView];
-   
             if (error || [msg containsString:@"Error"]) {
                 
-                if (msg) {
-                    
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                    
-                }else if(error)  {
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
-                }
-                
+                [utils showAlertWithMessage:msg sendViewController:self];
+                NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
                 return ;
             }
             
