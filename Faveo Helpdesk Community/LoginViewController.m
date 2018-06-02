@@ -184,6 +184,11 @@
     
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [_urlTextfield resignFirstResponder];
+    return YES;
+}
 
 - (BOOL)prefersStatusBarHidden
 {

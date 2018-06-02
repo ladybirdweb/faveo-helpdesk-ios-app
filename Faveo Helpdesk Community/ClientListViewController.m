@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "LoadingTableViewCell.h"
 #import "GlobalVariables.h"
+#import "FTProgressIndicator.h"
 
 @interface ClientListViewController (){
 
@@ -47,7 +48,8 @@
     globalVariables=[GlobalVariables sharedInstance];
     
     userDefaults=[NSUserDefaults standardUserDefaults];
-    [[AppDelegate sharedAppdelegate] showProgressViewWithText:@"Getting Data"];
+  //  [[AppDelegate sharedAppdelegate] showProgressViewWithText:@"Getting Data"];
+      [FTProgressIndicator showProgressWithMessage:@"Getting User List" userInteractionEnable:NO];
     [self reload];
 
     // Do any additional setup after loading the view.
@@ -59,12 +61,13 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        [[AppDelegate sharedAppdelegate] hideProgressView];
+       // [[AppDelegate sharedAppdelegate] hideProgressView];
+        [FTProgressIndicator dismiss];
         [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
         
-        //        [[AppDelegate sharedAppdelegate] showProgressView];
+       
         NSString *url=[NSString stringWithFormat:@"%@helpdesk/customers-custom?api_key=%@&ip=%@&token=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"]];
         
         MyWebservices *webservices=[MyWebservices sharedInstance];
@@ -72,7 +75,8 @@
             
             if (error || [msg containsString:@"Error"]) {
  [refresh endRefreshing];
-                [[AppDelegate sharedAppdelegate] hideProgressView];
+               // [[AppDelegate sharedAppdelegate] hideProgressView];
+                [FTProgressIndicator dismiss];
                 [utils showAlertWithMessage:@"Error" sendViewController:self];
                 NSLog(@"Thread-NO4-getClients-Refresh-error == %@",error.localizedDescription);
                 return ;
@@ -97,9 +101,10 @@
                 dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
-                        [[AppDelegate sharedAppdelegate] hideProgressView];
+                      //  [[AppDelegate sharedAppdelegate] hideProgressView];
                         [refresh endRefreshing];
                         [self.tableView reloadData];
+                        [FTProgressIndicator dismiss];
                     });
                 });
                
@@ -286,7 +291,8 @@
         {
             globalVariables.firstNameFromUserList=userName;
         }
-    }else{
+    }
+    else if(![Utils isEmpty:fName] || ![Utils isEmpty:lName]){
         
         globalVariables.firstNameFromUserList=[NSString stringWithFormat:@"%@ %@",fName,lName];
     }

@@ -321,7 +321,11 @@
                 
                 if ([json objectForKey:@"thread"]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [utils showAlertWithMessage:@"Kindly Refresh!!" sendViewController:self];
+                       // [utils showAlertWithMessage:@"Kindly Refresh!!" sendViewController:self];
+                        TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
+                        
+                        [self.navigationController pushViewController:td animated:YES];
+                        
                     });
                 }
             }
@@ -373,7 +377,10 @@
                 [FTProgressIndicator dismiss];
                 if ([json objectForKey:@"result"]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [utils showAlertWithMessage:@"Kindly Refresh!" sendViewController:self];
+                        //[utils showAlertWithMessage:@"Kindly Refresh!" sendViewController:self];
+                        TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
+                        
+                        [self.navigationController pushViewController:td animated:YES];
                     });
                 }
                 

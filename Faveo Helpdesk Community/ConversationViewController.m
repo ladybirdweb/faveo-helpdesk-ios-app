@@ -113,7 +113,7 @@
     if ([mutableArray count]==0)
     {
         self.noDataLabel         = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.height)];
-        self.noDataLabel.text             = @"Empty!";
+        self.noDataLabel.text             = @"";
         self.noDataLabel.textColor        = [UIColor blackColor];
         self.noDataLabel.textAlignment    = NSTextAlignmentCenter;
         tableView.backgroundView = self.noDataLabel;

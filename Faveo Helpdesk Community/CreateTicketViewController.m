@@ -16,8 +16,11 @@
 #import "AppConstanst.h"
 #import "MyWebservices.h"
 #import "AppDelegate.h"
+#import "FTProgressIndicator.h"
+#import "RMessage.h"
+#import "RMessageView.h"
 
-@interface CreateTicketViewController (){
+@interface CreateTicketViewController ()<RMessageProtocol>{
     
     Utils *utils;
     NSUserDefaults *userDefaults;
@@ -276,12 +279,9 @@
         
     }else{
         
-        [[AppDelegate sharedAppdelegate] showProgressView];
+      //  [[AppDelegate sharedAppdelegate] showProgressView];
         
-//        NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:API_KEY,@"api_key",IP,@"ip",[userDefaults objectForKey:@"token"],@"token",[userDefaults objectForKey:@"user_id"],@"user_id",_subjectTextField.text,@"subject",_msgTextField.text,@"body",_nameTextField.text,@"first_name",@"nx",@"last_name",_phoneTextField.text,@"phone",[_codeTextField.text substringFromIndex:1],@"code",_emailTextField.text,@"email",help_topic_id,@"helptopic",sla_id,@"sla",priority_id,@"priority",dept_id,@"dept",nil];
-//        NSLog(@"Dic %@",param);
-        
-       // NSString *url=[NSString stringWithFormat:@"%@helpdesk/create",[userDefaults objectForKey:@"companyURL"]];
+      [FTProgressIndicator showProgressWithMessage:@"Loading" userInteractionEnable:NO];
         
         NSString *url=[NSString stringWithFormat:@"%@helpdesk/create?api_key=%@&ip=%@&token=%@&user_id=%@&subject=%@&body=%@&first_name=%@&last_name=%@&phone=%@&code=%@&email=%@&helptopic=%@&sla=%@&priority=%@&dept=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],[userDefaults objectForKey:@"user_id"],_subjectTextField.text,_msgTextField.text,_nameTextField.text,@"",_phoneTextField.text,[_codeTextField.text substringFromIndex:1],_emailTextField.text,help_topic_id,sla_id,priority_id,dept_id];
         
@@ -289,7 +289,9 @@
         MyWebservices *webservices=[MyWebservices sharedInstance];
         
         [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
-            [[AppDelegate sharedAppdelegate] hideProgressView];
+          //  [[AppDelegate sharedAppdelegate] hideProgressView];
+              [FTProgressIndicator dismiss];
+            
             if (error || [msg containsString:@"Error"]) {
                 
                 [utils showAlertWithMessage:msg sendViewController:self];
@@ -309,8 +311,22 @@
                 if ([json objectForKey:@"response"]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         //[utils showAlertWithMessage:@"Ticket created successfully!" sendViewController:self];
+                        
+                        [RMessage showNotificationInViewController:self.navigationController
+                                                             title:NSLocalizedString(@"success", nil)
+                                                          subtitle:NSLocalizedString(@"Ticket created successfully.", nil)
+                                                         iconImage:nil
+                                                              type:RMessageTypeSuccess
+                                                    customTypeName:nil
+                                                          duration:RMessageDurationAutomatic
+                                                          callback:nil
+                                                       buttonTitle:nil
+                                                    buttonCallback:nil
+                                                        atPosition:RMessagePositionBottom
+                                              canBeDismissedByUser:YES];
                         InboxViewController *inboxVC=[self.storyboard instantiateViewControllerWithIdentifier:@"InboxID"];
                         [self.navigationController pushViewController:inboxVC animated:YES];
+                        [FTProgressIndicator dismiss];
                     });
                 }
             }

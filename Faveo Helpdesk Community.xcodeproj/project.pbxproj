@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0620ED0D20C277D300EA4D0F /* company.png in Resources */ = {isa = PBXBuildFile; fileRef = 0620ED0C20C277D200EA4D0F /* company.png */; };
 		AC5A9BF07574EBE3DEB4D706 /* libPods-Faveo Helpdesk Community.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C3565B4D9122515237948C /* libPods-Faveo Helpdesk Community.a */; };
 		D94371561DF8050800DB7376 /* faveoData.plist in Resources */ = {isa = PBXBuildFile; fileRef = D94371551DF8050800DB7376 /* faveoData.plist */; };
 		D94371931DF805D800DB7376 /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = D943715B1DF805D800DB7376 /* IQNSArray+Sort.m */; };
@@ -107,6 +108,7 @@
 
 /* Begin PBXFileReference section */
 		02C3565B4D9122515237948C /* libPods-Faveo Helpdesk Community.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Faveo Helpdesk Community.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0620ED0C20C277D200EA4D0F /* company.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = company.png; sourceTree = "<group>"; };
 		5FF0F057EB1F20D172FC8AF6 /* Pods-Faveo Helpdesk Community.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faveo Helpdesk Community.release.xcconfig"; path = "Pods/Target Support Files/Pods-Faveo Helpdesk Community/Pods-Faveo Helpdesk Community.release.xcconfig"; sourceTree = "<group>"; };
 		6BE020171D2568124BA38143 /* Pods-Faveo Helpdesk Community.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faveo Helpdesk Community.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Faveo Helpdesk Community/Pods-Faveo Helpdesk Community.debug.xcconfig"; sourceTree = "<group>"; };
 		D94371551DF8050800DB7376 /* faveoData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = faveoData.plist; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				D94371F21DF80DA300DB7376 /* AppConstanst.h */,
 				D9787A931DF800B6009C745F /* AppDelegate.h */,
 				D9787A941DF800B6009C745F /* AppDelegate.m */,
+				0620ED0C20C277D200EA4D0F /* company.png */,
 			);
 			name = OtherClasses;
 			sourceTree = "<group>";
@@ -779,6 +782,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D943722E1DF8151100DB7376 /* LoadingTableViewCell.xib in Resources */,
+				0620ED0D20C277D300EA4D0F /* company.png in Resources */,
 				D94371A11DF805D800DB7376 /* IQKeyboardManager.bundle in Resources */,
 				D94372241DF8151100DB7376 /* TicketTableViewCell.xib in Resources */,
 				D94371561DF8050800DB7376 /* faveoData.plist in Resources */,
@@ -1027,7 +1031,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1069,7 +1073,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1085,8 +1089,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 8VY8B59STG;
 				INFOPLIST_FILE = "Faveo Helpdesk Community/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ladybirdwebsolutions.Faveo-Helpdesk-Community";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ladybirdwebsolutions.FaveoHelpdeskCommunity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1100,8 +1105,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 8VY8B59STG;
 				INFOPLIST_FILE = "Faveo Helpdesk Community/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ladybirdwebsolutions.Faveo-Helpdesk-Community";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ladybirdwebsolutions.FaveoHelpdeskCommunity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

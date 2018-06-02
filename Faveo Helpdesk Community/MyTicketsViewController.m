@@ -17,6 +17,7 @@
 #import "MyWebservices.h"
 #import "GlobalVariables.h"
 #import "LoadingTableViewCell.h"
+#import "FTProgressIndicator.h"
 
 @interface MyTicketsViewController (){
 
@@ -44,7 +45,9 @@
     utils=[[Utils alloc]init];
     globalVariables=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
-    [[AppDelegate sharedAppdelegate] showProgressViewWithText:@"Getting Data"];
+   // [[AppDelegate sharedAppdelegate] showProgressViewWithText:@"Getting Data"];
+    [FTProgressIndicator showProgressWithMessage:@"Getting Tickets" userInteractionEnable:NO];
+
     [self reload];
     // Do any additional setup after loading the view.
 }
@@ -54,7 +57,8 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        [[AppDelegate sharedAppdelegate] hideProgressView];
+      // [[AppDelegate sharedAppdelegate] hideProgressView];
+        [FTProgressIndicator dismiss];
         [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
@@ -67,7 +71,8 @@
             
             if (error || [msg containsString:@"Error"]) {
                 [refresh endRefreshing];
-                [[AppDelegate sharedAppdelegate] hideProgressView];
+               // [[AppDelegate sharedAppdelegate] hideProgressView];
+                [FTProgressIndicator dismiss];
                
                 if (msg) {
                    
@@ -99,9 +104,10 @@
                 NSLog(@"Thread-NO4.1getInbox-dic--%@", _mutableArray);
                 dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [[AppDelegate sharedAppdelegate] hideProgressView];
+                   //     [[AppDelegate sharedAppdelegate] hideProgressView];
                         [refresh endRefreshing];
                         [self.tableView reloadData];
+                        [FTProgressIndicator dismiss];
                     });
                 });
              }
