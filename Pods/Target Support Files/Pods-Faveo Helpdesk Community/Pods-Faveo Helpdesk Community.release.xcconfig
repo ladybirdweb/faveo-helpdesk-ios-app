@@ -1,8 +1,8 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FTIndicator" "${PODS_ROOT}/Headers/Public/HexColors" "${PODS_ROOT}/Headers/Public/PPTopMostController" "${PODS_ROOT}/Headers/Public/RMessage"
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FTIndicator" "${PODS_CONFIGURATION_BUILD_DIR}/HexColors" "${PODS_CONFIGURATION_BUILD_DIR}/PPTopMostController" "${PODS_CONFIGURATION_BUILD_DIR}/RMessage"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/FTIndicator" -isystem "${PODS_ROOT}/Headers/Public/HexColors" -isystem "${PODS_ROOT}/Headers/Public/PPTopMostController" -isystem "${PODS_ROOT}/Headers/Public/RMessage"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"FTIndicator" -l"HexColors" -l"PPTopMostController" -l"RMessage"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FTIndicator" "${PODS_ROOT}/Headers/Public/HexColors" "${PODS_ROOT}/Headers/Public/IQKeyboardManager" "${PODS_ROOT}/Headers/Public/PPTopMostController" "${PODS_ROOT}/Headers/Public/RMessage"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FTIndicator" "${PODS_CONFIGURATION_BUILD_DIR}/HexColors" "${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManager" "${PODS_CONFIGURATION_BUILD_DIR}/PPTopMostController" "${PODS_CONFIGURATION_BUILD_DIR}/RMessage"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/FTIndicator" -isystem "${PODS_ROOT}/Headers/Public/HexColors" -isystem "${PODS_ROOT}/Headers/Public/IQKeyboardManager" -isystem "${PODS_ROOT}/Headers/Public/PPTopMostController" -isystem "${PODS_ROOT}/Headers/Public/RMessage"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"FTIndicator" -l"HexColors" -l"IQKeyboardManager" -l"PPTopMostController" -l"RMessage" -framework "CoreGraphics" -framework "Foundation" -framework "QuartzCore" -framework "UIKit"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

@@ -4,5 +4,6 @@ target 'Faveo Helpdesk Community' do
 
 pod "RMessage"
 pod 'FTIndicator/FTProgressIndicator'
+pod 'IQKeyboardManager'
 
 end

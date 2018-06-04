@@ -187,6 +187,18 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [_urlTextfield resignFirstResponder];
+    
+    if(textField == _userNameTextField)
+    {
+        [textField resignFirstResponder];
+        
+        [_passcodeTextField becomeFirstResponder];
+    }
+    else  if(textField == _passcodeTextField)
+    {
+        
+        [textField resignFirstResponder];
+    }
     return YES;
 }
 

@@ -1,6 +1,7 @@
 PODS:
   - FTIndicator/FTProgressIndicator (1.2.6)
   - HexColors (4.0.0)
+  - IQKeyboardManager (5.0.7)
   - PPTopMostController (0.0.1)
   - RMessage (2.1.5):
     - HexColors (~> 4.0)
@@ -8,21 +9,24 @@ PODS:
 
 DEPENDENCIES:
   - FTIndicator/FTProgressIndicator
+  - IQKeyboardManager
   - RMessage
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - FTIndicator
     - HexColors
+    - IQKeyboardManager
     - PPTopMostController
     - RMessage
 
 SPEC CHECKSUMS:
   FTIndicator: d2a7c204341b7b0165b6dbeb5bf6979c6d7d4bb7
   HexColors: 5f95843ef89aff6a72e1fd3a8ebabf205cc43379
+  IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
   PPTopMostController: 4e6f1e5f8c645bdcc74cd837a20f607ff262c048
   RMessage: 31d44bd26a8f353f987d2e7194f3e9ffb203cbf2
 
-PODFILE CHECKSUM: 3e8946d27e47b8ae66cc7faf81e0ef8f8271ee32
+PODFILE CHECKSUM: ec1ce30dbe85aec82b151c6e66eaf028180a1879
 
 COCOAPODS: 1.5.0
