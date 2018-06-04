@@ -24,4 +24,6 @@
 -(void)showAlertWithMessage:(NSString*)message sendViewController:(UIViewController *)viewController;
 -(NSString *)getLocalDateTimeFromUTC:(NSString *)strDate;
 
++(BOOL)isEmpty:(NSString *)str;
+
 @end

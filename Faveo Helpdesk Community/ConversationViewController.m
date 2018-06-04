@@ -16,8 +16,7 @@
 #import "MyWebservices.h"
 #import "HexColors.h"
 #import "GlobalVariables.h"
-#import "RKDropdownAlert.h"
-
+#import "FTProgressIndicator.h"
 
 @interface ConversationViewController ()<CNPPopupControllerDelegate,UIWebViewDelegate>{
     Utils *utils;
@@ -34,17 +33,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"ConversationVC");
-    _activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    _activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-100);
-    _activityIndicatorObject.color=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
-    [self.view addSubview:_activityIndicatorObject];
+   
     [self addUIRefresh];
     utils=[[Utils alloc]init];
     globalVariable=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
-    [_activityIndicatorObject startAnimating];
+    
+    [FTProgressIndicator showProgressWithMessage:@"Please wait" userInteractionEnable:NO];
     [self reload];
-     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view.
 }
 
@@ -53,29 +49,26 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-            [self.refreshControl endRefreshing];
-          [_activityIndicatorObject stopAnimating];
-        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+         // [_activityIndicatorObject stopAnimating];
+          [FTProgressIndicator dismiss];
+          [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
+        
     }else{
        
           NSString *url=[NSString stringWithFormat:@"%@helpdesk/ticket-thread?api_key=%@&ip=%@&token=%@&id=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],globalVariable.iD];
         
         MyWebservices *webservices=[MyWebservices sharedInstance];
         [webservices httpResponseGET:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
-
+            
             if (error || [msg containsString:@"Error"]) {
-                [self.refreshControl endRefreshing];
-                [_activityIndicatorObject stopAnimating];
-                [[AppDelegate sharedAppdelegate] hideProgressView];
-                if (msg) {
-                    
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                    
-                }else if(error)  {
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
-                }
+                 [self.refreshControl endRefreshing];
+              //    [_activityIndicatorObject stopAnimating];
+              //  [[AppDelegate sharedAppdelegate] hideProgressView];
+                [FTProgressIndicator dismiss];
                 
+                [utils showAlertWithMessage:@"Error" sendViewController:self];
+                NSLog(@"Thread-NO4-getConversation-Refresh-error == %@",error.localizedDescription);
+                self.noDataLabel.text=@"Error";
                 return ;
             }
             
@@ -96,7 +89,8 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
                         [self.refreshControl endRefreshing];
-                        [_activityIndicatorObject stopAnimating];
+                        [FTProgressIndicator dismiss];
+                       // [_activityIndicatorObject stopAnimating];
                         [self.tableView reloadData];
                     });
                 });
@@ -119,7 +113,7 @@
     if ([mutableArray count]==0)
     {
         self.noDataLabel         = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.height)];
-        self.noDataLabel.text             = @"Empty!";
+        self.noDataLabel.text             = @"";
         self.noDataLabel.textColor        = [UIColor blackColor];
         self.noDataLabel.textAlignment    = NSTextAlignmentCenter;
         tableView.backgroundView = self.noDataLabel;
@@ -162,13 +156,7 @@
         [cell.internalNoteLabel setHidden:NO]; 
     }
    
-    NSString *fName=[finaldic objectForKey:@"first_name"];
-    if ([fName isEqualToString:@""]) {
-        fName=@"Not Available";
-    }else{
-        fName=[NSString stringWithFormat:@"%@ %@",[finaldic objectForKey:@"first_name"],[finaldic objectForKey:@"last_name"]];
-    }
-    cell.clientNameLabel.text=fName;
+     cell.clientNameLabel.text=[NSString stringWithFormat:@"%@ %@",[finaldic objectForKey:@"first_name"],[finaldic objectForKey:@"last_name"]];
      [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
     
     return cell;
@@ -180,28 +168,6 @@
     [self showWebview:[finaldic objectForKey:@"title"] body:[finaldic objectForKey:@"body"] popupStyle:CNPPopupStyleActionSheet];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-//- (void)webViewDidFinishLoad:(UIWebView *)theWebView
-//{
-//    CGSize contentSize = theWebView.scrollView.contentSize;
-//    CGSize viewSize = theWebView.bounds.size;
-//    
-//    float rw = viewSize.width / contentSize.width;
-//    
-//    theWebView.scrollView.minimumZoomScale = rw;
-//    theWebView.scrollView.maximumZoomScale = rw;
-//    theWebView.scrollView.zoomScale = rw;
-//    
-//}
 
 -(void)showWebview:(NSString*)tittle body:(NSString*)body popupStyle:(CNPPopupStyle)popupStyle{
 

@@ -7,15 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1AB32A2460BBC9026C287619 /* libPods-Faveo Helpdesk Community.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A09A5113BF2FF5F9301D5CB0 /* libPods-Faveo Helpdesk Community.a */; };
+		0620ED0D20C277D300EA4D0F /* company.png in Resources */ = {isa = PBXBuildFile; fileRef = 0620ED0C20C277D200EA4D0F /* company.png */; };
+		AC5A9BF07574EBE3DEB4D706 /* libPods-Faveo Helpdesk Community.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C3565B4D9122515237948C /* libPods-Faveo Helpdesk Community.a */; };
 		D94371561DF8050800DB7376 /* faveoData.plist in Resources */ = {isa = PBXBuildFile; fileRef = D94371551DF8050800DB7376 /* faveoData.plist */; };
 		D94371AD1DF8064200DB7376 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371AC1DF8064200DB7376 /* Reachability.m */; };
+		D94371B01DF8065300DB7376 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371AF1DF8065300DB7376 /* MBProgressHUD.m */; };
+		D94371C71DF80B8500DB7376 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371B41DF80B8500DB7376 /* AbstractActionSheetPicker.m */; };
+		D94371C81DF80B8500DB7376 /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371B61DF80B8500DB7376 /* ActionSheetCustomPicker.m */; };
+		D94371C91DF80B8500DB7376 /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371B91DF80B8500DB7376 /* ActionSheetDatePicker.m */; };
+		D94371CA1DF80B8500DB7376 /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371BB1DF80B8500DB7376 /* ActionSheetDistancePicker.m */; };
+		D94371CB1DF80B8500DB7376 /* ActionSheetLocalePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371BD1DF80B8500DB7376 /* ActionSheetLocalePicker.m */; };
+		D94371CC1DF80B8500DB7376 /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371BF1DF80B8500DB7376 /* ActionSheetMultipleStringPicker.m */; };
+		D94371CD1DF80B8500DB7376 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371C21DF80B8500DB7376 /* ActionSheetStringPicker.m */; };
+		D94371CE1DF80B8500DB7376 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371C41DF80B8500DB7376 /* DistancePickerView.m */; };
+		D94371CF1DF80B8500DB7376 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371C61DF80B8500DB7376 /* SWActionSheet.m */; };
+		D94371D61DF80BFC00DB7376 /* CNPPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371D51DF80BFC00DB7376 /* CNPPopupController.m */; };
+		D94371D91DF80C0800DB7376 /* HexColors.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371D81DF80C0800DB7376 /* HexColors.m */; };
 		D94371E71DF80C2700DB7376 /* SlideNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371DB1DF80C2700DB7376 /* SlideNavigationController.m */; };
 		D94371E81DF80C2700DB7376 /* SlideNavigationContorllerAnimatorFade.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371DE1DF80C2700DB7376 /* SlideNavigationContorllerAnimatorFade.m */; };
 		D94371E91DF80C2700DB7376 /* SlideNavigationContorllerAnimatorScale.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371E01DF80C2700DB7376 /* SlideNavigationContorllerAnimatorScale.m */; };
 		D94371EA1DF80C2700DB7376 /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371E21DF80C2700DB7376 /* SlideNavigationContorllerAnimatorScaleAndFade.m */; };
 		D94371EB1DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371E41DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlide.m */; };
 		D94371EC1DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371E61DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlideAndFade.m */; };
+		D94371F31DF80DA300DB7376 /* Webservice.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371EF1DF80DA300DB7376 /* Webservice.m */; };
+		D94371F41DF80DA300DB7376 /* NetworkApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D94371F11DF80DA300DB7376 /* NetworkApi.m */; };
 		D94371F81DF8104800DB7376 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94371F71DF8104800DB7376 /* SystemConfiguration.framework */; };
 		D94371FA1DF8105500DB7376 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94371F91DF8105500DB7376 /* Foundation.framework */; };
 		D94371FC1DF8105C00DB7376 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94371FB1DF8105C00DB7376 /* CoreGraphics.framework */; };
@@ -57,7 +72,6 @@
 		D9787AA01DF800B6009C745F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9787A9E1DF800B6009C745F /* LaunchScreen.storyboard */; };
 		D9787AAB1DF800B6009C745F /* Faveo_Helpdesk_CommunityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9787AAA1DF800B6009C745F /* Faveo_Helpdesk_CommunityTests.m */; };
 		D9787AB61DF800B6009C745F /* Faveo_Helpdesk_CommunityUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9787AB51DF800B6009C745F /* Faveo_Helpdesk_CommunityUITests.m */; };
-		D99C60611DFA7B70006FE5E5 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = D99C60601DFA7B70006FE5E5 /* countries.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,12 +92,39 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		915F307D68DBDCCB69A2FBFB /* Pods-Faveo Helpdesk Community.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faveo Helpdesk Community.release.xcconfig"; path = "Pods/Target Support Files/Pods-Faveo Helpdesk Community/Pods-Faveo Helpdesk Community.release.xcconfig"; sourceTree = "<group>"; };
-		A09A5113BF2FF5F9301D5CB0 /* libPods-Faveo Helpdesk Community.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Faveo Helpdesk Community.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CCCC239757CE7B543ACA6EFF /* Pods-Faveo Helpdesk Community.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faveo Helpdesk Community.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Faveo Helpdesk Community/Pods-Faveo Helpdesk Community.debug.xcconfig"; sourceTree = "<group>"; };
+		02C3565B4D9122515237948C /* libPods-Faveo Helpdesk Community.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Faveo Helpdesk Community.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0620ED0C20C277D200EA4D0F /* company.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = company.png; sourceTree = "<group>"; };
+		5FF0F057EB1F20D172FC8AF6 /* Pods-Faveo Helpdesk Community.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faveo Helpdesk Community.release.xcconfig"; path = "Pods/Target Support Files/Pods-Faveo Helpdesk Community/Pods-Faveo Helpdesk Community.release.xcconfig"; sourceTree = "<group>"; };
+		6BE020171D2568124BA38143 /* Pods-Faveo Helpdesk Community.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faveo Helpdesk Community.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Faveo Helpdesk Community/Pods-Faveo Helpdesk Community.debug.xcconfig"; sourceTree = "<group>"; };
 		D94371551DF8050800DB7376 /* faveoData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = faveoData.plist; sourceTree = "<group>"; };
 		D94371AB1DF8064200DB7376 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D94371AC1DF8064200DB7376 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		D94371AE1DF8065300DB7376 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		D94371AF1DF8065300DB7376 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		D94371B31DF80B8500DB7376 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractActionSheetPicker.h; sourceTree = "<group>"; };
+		D94371B41DF80B8500DB7376 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractActionSheetPicker.m; sourceTree = "<group>"; };
+		D94371B51DF80B8500DB7376 /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetCustomPicker.h; sourceTree = "<group>"; };
+		D94371B61DF80B8500DB7376 /* ActionSheetCustomPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetCustomPicker.m; sourceTree = "<group>"; };
+		D94371B71DF80B8500DB7376 /* ActionSheetCustomPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetCustomPickerDelegate.h; sourceTree = "<group>"; };
+		D94371B81DF80B8500DB7376 /* ActionSheetDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetDatePicker.h; sourceTree = "<group>"; };
+		D94371B91DF80B8500DB7376 /* ActionSheetDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetDatePicker.m; sourceTree = "<group>"; };
+		D94371BA1DF80B8500DB7376 /* ActionSheetDistancePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetDistancePicker.h; sourceTree = "<group>"; };
+		D94371BB1DF80B8500DB7376 /* ActionSheetDistancePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetDistancePicker.m; sourceTree = "<group>"; };
+		D94371BC1DF80B8500DB7376 /* ActionSheetLocalePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetLocalePicker.h; sourceTree = "<group>"; };
+		D94371BD1DF80B8500DB7376 /* ActionSheetLocalePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetLocalePicker.m; sourceTree = "<group>"; };
+		D94371BE1DF80B8500DB7376 /* ActionSheetMultipleStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetMultipleStringPicker.h; sourceTree = "<group>"; };
+		D94371BF1DF80B8500DB7376 /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
+		D94371C01DF80B8500DB7376 /* ActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPicker.h; sourceTree = "<group>"; };
+		D94371C11DF80B8500DB7376 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetStringPicker.h; sourceTree = "<group>"; };
+		D94371C21DF80B8500DB7376 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetStringPicker.m; sourceTree = "<group>"; };
+		D94371C31DF80B8500DB7376 /* DistancePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistancePickerView.h; sourceTree = "<group>"; };
+		D94371C41DF80B8500DB7376 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
+		D94371C51DF80B8500DB7376 /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWActionSheet.h; sourceTree = "<group>"; };
+		D94371C61DF80B8500DB7376 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
+		D94371D41DF80BFC00DB7376 /* CNPPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPPopupController.h; sourceTree = "<group>"; };
+		D94371D51DF80BFC00DB7376 /* CNPPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPPopupController.m; sourceTree = "<group>"; };
+		D94371D71DF80C0800DB7376 /* HexColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexColors.h; sourceTree = "<group>"; };
+		D94371D81DF80C0800DB7376 /* HexColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexColors.m; sourceTree = "<group>"; };
 		D94371DA1DF80C2700DB7376 /* SlideNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideNavigationController.h; sourceTree = "<group>"; };
 		D94371DB1DF80C2700DB7376 /* SlideNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideNavigationController.m; sourceTree = "<group>"; };
 		D94371DC1DF80C2700DB7376 /* SlideNavigationContorllerAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideNavigationContorllerAnimator.h; sourceTree = "<group>"; };
@@ -97,6 +138,10 @@
 		D94371E41DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideNavigationContorllerAnimatorSlide.m; sourceTree = "<group>"; };
 		D94371E51DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlideAndFade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideNavigationContorllerAnimatorSlideAndFade.h; sourceTree = "<group>"; };
 		D94371E61DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlideAndFade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideNavigationContorllerAnimatorSlideAndFade.m; sourceTree = "<group>"; };
+		D94371EE1DF80DA300DB7376 /* Webservice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Webservice.h; sourceTree = "<group>"; };
+		D94371EF1DF80DA300DB7376 /* Webservice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Webservice.m; sourceTree = "<group>"; };
+		D94371F01DF80DA300DB7376 /* NetworkApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkApi.h; sourceTree = "<group>"; };
+		D94371F11DF80DA300DB7376 /* NetworkApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkApi.m; sourceTree = "<group>"; };
 		D94371F21DF80DA300DB7376 /* AppConstanst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstanst.h; sourceTree = "<group>"; };
 		D94371F71DF8104800DB7376 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D94371F91DF8105500DB7376 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -170,7 +215,6 @@
 		D9787AB11DF800B6009C745F /* Faveo Helpdesk CommunityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Faveo Helpdesk CommunityUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9787AB51DF800B6009C745F /* Faveo_Helpdesk_CommunityUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Faveo_Helpdesk_CommunityUITests.m; sourceTree = "<group>"; };
 		D9787AB71DF800B6009C745F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D99C60601DFA7B70006FE5E5 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +226,7 @@
 				D94371FA1DF8105500DB7376 /* Foundation.framework in Frameworks */,
 				D94371FC1DF8105C00DB7376 /* CoreGraphics.framework in Frameworks */,
 				D94371F81DF8104800DB7376 /* SystemConfiguration.framework in Frameworks */,
-				1AB32A2460BBC9026C287619 /* libPods-Faveo Helpdesk Community.a in Frameworks */,
+				AC5A9BF07574EBE3DEB4D706 /* libPods-Faveo Helpdesk Community.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,22 +247,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2CAB3CDDF33496B489181EC7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CCCC239757CE7B543ACA6EFF /* Pods-Faveo Helpdesk Community.debug.xcconfig */,
-				915F307D68DBDCCB69A2FBFB /* Pods-Faveo Helpdesk Community.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		D94371571DF8059900DB7376 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				D94371D31DF80BDE00DB7376 /* CNPPopup */,
+				D94371D21DF80BD000DB7376 /* HexColor */,
 				D94371D11DF80BC400DB7376 /* SideMenu */,
+				D94371D01DF80B8900DB7376 /* ActionSheetPicker */,
 				D94371B21DF8066C00DB7376 /* Reachability */,
+				D94371B11DF8065800DB7376 /* MBProgressHUD */,
 			);
 			name = Librarys;
+			sourceTree = "<group>";
+		};
+		D94371B11DF8065800DB7376 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				D94371AE1DF8065300DB7376 /* MBProgressHUD.h */,
+				D94371AF1DF8065300DB7376 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		D94371B21DF8066C00DB7376 /* Reachability */ = {
@@ -228,6 +276,33 @@
 				D94371AC1DF8064200DB7376 /* Reachability.m */,
 			);
 			name = Reachability;
+			sourceTree = "<group>";
+		};
+		D94371D01DF80B8900DB7376 /* ActionSheetPicker */ = {
+			isa = PBXGroup;
+			children = (
+				D94371B31DF80B8500DB7376 /* AbstractActionSheetPicker.h */,
+				D94371B41DF80B8500DB7376 /* AbstractActionSheetPicker.m */,
+				D94371B51DF80B8500DB7376 /* ActionSheetCustomPicker.h */,
+				D94371B61DF80B8500DB7376 /* ActionSheetCustomPicker.m */,
+				D94371B71DF80B8500DB7376 /* ActionSheetCustomPickerDelegate.h */,
+				D94371B81DF80B8500DB7376 /* ActionSheetDatePicker.h */,
+				D94371B91DF80B8500DB7376 /* ActionSheetDatePicker.m */,
+				D94371BA1DF80B8500DB7376 /* ActionSheetDistancePicker.h */,
+				D94371BB1DF80B8500DB7376 /* ActionSheetDistancePicker.m */,
+				D94371BC1DF80B8500DB7376 /* ActionSheetLocalePicker.h */,
+				D94371BD1DF80B8500DB7376 /* ActionSheetLocalePicker.m */,
+				D94371BE1DF80B8500DB7376 /* ActionSheetMultipleStringPicker.h */,
+				D94371BF1DF80B8500DB7376 /* ActionSheetMultipleStringPicker.m */,
+				D94371C01DF80B8500DB7376 /* ActionSheetPicker.h */,
+				D94371C11DF80B8500DB7376 /* ActionSheetStringPicker.h */,
+				D94371C21DF80B8500DB7376 /* ActionSheetStringPicker.m */,
+				D94371C31DF80B8500DB7376 /* DistancePickerView.h */,
+				D94371C41DF80B8500DB7376 /* DistancePickerView.m */,
+				D94371C51DF80B8500DB7376 /* SWActionSheet.h */,
+				D94371C61DF80B8500DB7376 /* SWActionSheet.m */,
+			);
+			name = ActionSheetPicker;
 			sourceTree = "<group>";
 		};
 		D94371D11DF80BC400DB7376 /* SideMenu */ = {
@@ -250,12 +325,35 @@
 			name = SideMenu;
 			sourceTree = "<group>";
 		};
+		D94371D21DF80BD000DB7376 /* HexColor */ = {
+			isa = PBXGroup;
+			children = (
+				D94371D71DF80C0800DB7376 /* HexColors.h */,
+				D94371D81DF80C0800DB7376 /* HexColors.m */,
+			);
+			name = HexColor;
+			sourceTree = "<group>";
+		};
+		D94371D31DF80BDE00DB7376 /* CNPPopup */ = {
+			isa = PBXGroup;
+			children = (
+				D94371D41DF80BFC00DB7376 /* CNPPopupController.h */,
+				D94371D51DF80BFC00DB7376 /* CNPPopupController.m */,
+			);
+			name = CNPPopup;
+			sourceTree = "<group>";
+		};
 		D94371ED1DF80D8600DB7376 /* OtherClasses */ = {
 			isa = PBXGroup;
 			children = (
+				D94371EE1DF80DA300DB7376 /* Webservice.h */,
+				D94371EF1DF80DA300DB7376 /* Webservice.m */,
+				D94371F01DF80DA300DB7376 /* NetworkApi.h */,
+				D94371F11DF80DA300DB7376 /* NetworkApi.m */,
 				D94371F21DF80DA300DB7376 /* AppConstanst.h */,
 				D9787A931DF800B6009C745F /* AppDelegate.h */,
 				D9787A941DF800B6009C745F /* AppDelegate.m */,
+				0620ED0C20C277D200EA4D0F /* company.png */,
 			);
 			name = OtherClasses;
 			sourceTree = "<group>";
@@ -265,9 +363,9 @@
 			children = (
 				D94372031DF8145A00DB7376 /* ViewControllers */,
 				D94372041DF8147300DB7376 /* Xibs */,
+				D94371FF1DF8142F00DB7376 /* Utils */,
 				D94372011DF8144500DB7376 /* Model */,
 				D94372001DF8143500DB7376 /* Webservices */,
-				D94371FF1DF8142F00DB7376 /* Utils */,
 				D94371ED1DF80D8600DB7376 /* OtherClasses */,
 			);
 			name = Classes;
@@ -280,7 +378,7 @@
 				D94371FB1DF8105C00DB7376 /* CoreGraphics.framework */,
 				D94371F91DF8105500DB7376 /* Foundation.framework */,
 				D94371F71DF8104800DB7376 /* SystemConfiguration.framework */,
-				A09A5113BF2FF5F9301D5CB0 /* libPods-Faveo Helpdesk Community.a */,
+				02C3565B4D9122515237948C /* libPods-Faveo Helpdesk Community.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -321,10 +419,10 @@
 				D94372301DF8153400DB7376 /* LeftMenuViewController.m */,
 				D94372311DF8153400DB7376 /* LoginViewController.h */,
 				D94372321DF8153400DB7376 /* LoginViewController.m */,
+				D943723F1DF8153400DB7376 /* InboxViewController.h */,
+				D94372401DF8153400DB7376 /* InboxViewController.m */,
 				D94372331DF8153400DB7376 /* UnassignedTicketsViewController.h */,
 				D94372341DF8153400DB7376 /* UnassignedTicketsViewController.m */,
-				D94372351DF8153400DB7376 /* ClientListViewController.h */,
-				D94372361DF8153400DB7376 /* ClientListViewController.m */,
 				D94372371DF8153400DB7376 /* TrashTicketsViewController.h */,
 				D94372381DF8153400DB7376 /* TrashTicketsViewController.m */,
 				D94372391DF8153400DB7376 /* ClosedTicketsViewController.h */,
@@ -333,12 +431,12 @@
 				D943723C1DF8153400DB7376 /* MyTicketsViewController.m */,
 				D943723D1DF8153400DB7376 /* CreateTicketViewController.h */,
 				D943723E1DF8153400DB7376 /* CreateTicketViewController.m */,
-				D943723F1DF8153400DB7376 /* InboxViewController.h */,
-				D94372401DF8153400DB7376 /* InboxViewController.m */,
 				D94372411DF8153400DB7376 /* TicketDetailViewController.h */,
 				D94372421DF8153400DB7376 /* TicketDetailViewController.m */,
 				D94372431DF8153400DB7376 /* AboutViewController.h */,
 				D94372441DF8153400DB7376 /* AboutViewController.m */,
+				D94372351DF8153400DB7376 /* ClientListViewController.h */,
+				D94372361DF8153400DB7376 /* ClientListViewController.m */,
 				D94372451DF8153400DB7376 /* ClientDetailViewController.h */,
 				D94372461DF8153400DB7376 /* ClientDetailViewController.m */,
 				D94372471DF8153400DB7376 /* ConversationViewController.h */,
@@ -382,7 +480,7 @@
 				D9787AB41DF800B6009C745F /* Faveo Helpdesk CommunityUITests */,
 				D9787A8E1DF800B6009C745F /* Products */,
 				D94371F61DF8104800DB7376 /* Frameworks */,
-				2CAB3CDDF33496B489181EC7 /* Pods */,
+				F895D631C9AF619695762FDA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -409,7 +507,6 @@
 		D9787A901DF800B6009C745F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D99C60601DFA7B70006FE5E5 /* countries.json */,
 				D94371551DF8050800DB7376 /* faveoData.plist */,
 				D9787A991DF800B6009C745F /* Main.storyboard */,
 				D9787A9C1DF800B6009C745F /* Assets.xcassets */,
@@ -438,6 +535,15 @@
 			path = "Faveo Helpdesk CommunityUITests";
 			sourceTree = "<group>";
 		};
+		F895D631C9AF619695762FDA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6BE020171D2568124BA38143 /* Pods-Faveo Helpdesk Community.debug.xcconfig */,
+				5FF0F057EB1F20D172FC8AF6 /* Pods-Faveo Helpdesk Community.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -445,13 +551,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9787ABA1DF800B6009C745F /* Build configuration list for PBXNativeTarget "Faveo Helpdesk Community" */;
 			buildPhases = (
-				A279A4D7749BD948A8A050C6 /* [CP] Check Pods Manifest.lock */,
+				406F19F2144E836775348B64 /* [CP] Check Pods Manifest.lock */,
 				D9787A891DF800B6009C745F /* Sources */,
 				D9787A8A1DF800B6009C745F /* Frameworks */,
 				D9787A8B1DF800B6009C745F /* Resources */,
-				D9C143791DF921FD0076A5FD /* ShellScript */,
-				2FB7EBE6D002C37B69A5F5E3 /* [CP] Embed Pods Frameworks */,
-				AA59686D1039CCCBBA7C0A0A /* [CP] Copy Pods Resources */,
+				53404C2145BA3622AC68766D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -510,7 +614,7 @@
 					D9787A8C1DF800B6009C745F = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 8VY8B59STG;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					D9787AA51DF800B6009C745F = {
 						CreatedOnToolsVersion = 8.1;
@@ -552,6 +656,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D943722E1DF8151100DB7376 /* LoadingTableViewCell.xib in Resources */,
+				0620ED0D20C277D300EA4D0F /* company.png in Resources */,
 				D94372241DF8151100DB7376 /* TicketTableViewCell.xib in Resources */,
 				D94371561DF8050800DB7376 /* faveoData.plist in Resources */,
 				D943722A1DF8151100DB7376 /* ConversationTableViewCell.xib in Resources */,
@@ -559,7 +664,6 @@
 				D94372281DF8151100DB7376 /* ClientTicketTableViewCell.xib in Resources */,
 				D94372261DF8151100DB7376 /* ClientListTableViewCell.xib in Resources */,
 				D9787A9D1DF800B6009C745F /* Assets.xcassets in Resources */,
-				D99C60611DFA7B70006FE5E5 /* countries.json in Resources */,
 				D943722C1DF8151100DB7376 /* OpenCloseTableViewCell.xib in Resources */,
 				D9787A9B1DF800B6009C745F /* Main.storyboard in Resources */,
 			);
@@ -582,63 +686,63 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2FB7EBE6D002C37B69A5F5E3 /* [CP] Embed Pods Frameworks */ = {
+		406F19F2144E836775348B64 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Faveo Helpdesk Community/Pods-Faveo Helpdesk Community-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A279A4D7749BD948A8A050C6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Faveo Helpdesk Community-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AA59686D1039CCCBBA7C0A0A /* [CP] Copy Pods Resources */ = {
+		53404C2145BA3622AC68766D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Faveo Helpdesk Community/Pods-Faveo Helpdesk Community-resources.sh",
+				"${PODS_ROOT}/FTIndicator/FTIndicator/FTProgressIndicator/FTProgressIndicator.bundle",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/RMessage/RMessage/Resources/RMessageView.xib",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationBackgroundErrorIcon.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationBackgroundErrorIcon@2x.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationBackgroundSuccessIcon.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationBackgroundSuccessIcon@2x.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationBackgroundWarningIcon.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationBackgroundWarningIcon@2x.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationButtonBackground.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationButtonBackground@2x.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/RMessageDefaultDesign.json",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FTProgressIndicator.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RMessageView.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NotificationBackgroundErrorIcon.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NotificationBackgroundErrorIcon@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NotificationBackgroundSuccessIcon.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NotificationBackgroundSuccessIcon@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NotificationBackgroundWarningIcon.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NotificationBackgroundWarningIcon@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NotificationButtonBackground.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NotificationButtonBackground@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RMessageDefaultDesign.json",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Faveo Helpdesk Community/Pods-Faveo Helpdesk Community-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		D9C143791DF921FD0076A5FD /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 3d31c3fca25cb228d17bfa05856d933d97e90db1 67564a3dc39ee26711efe06322fa00b99e69a63e26e5d755afe7339b6f22ceb1";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -649,37 +753,51 @@
 			files = (
 				D943724C1DF8153400DB7376 /* LoginViewController.m in Sources */,
 				D94371AD1DF8064200DB7376 /* Reachability.m in Sources */,
+				D94371C81DF80B8500DB7376 /* ActionSheetCustomPicker.m in Sources */,
 				D94372561DF8153400DB7376 /* ClientDetailViewController.m in Sources */,
 				D94372501DF8153400DB7376 /* ClosedTicketsViewController.m in Sources */,
 				D94372291DF8151100DB7376 /* ConversationTableViewCell.m in Sources */,
 				D943720A1DF8148D00DB7376 /* GlobalVariables.m in Sources */,
+				D94371CE1DF80B8500DB7376 /* DistancePickerView.m in Sources */,
 				D943724F1DF8153400DB7376 /* TrashTicketsViewController.m in Sources */,
 				D94371EB1DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlide.m in Sources */,
 				D94372271DF8151100DB7376 /* ClientTicketTableViewCell.m in Sources */,
 				D94372101DF814DE00DB7376 /* Utils.m in Sources */,
 				D94372551DF8153400DB7376 /* AboutViewController.m in Sources */,
+				D94371CA1DF80B8500DB7376 /* ActionSheetDistancePicker.m in Sources */,
 				D94372091DF8148D00DB7376 /* Data.m in Sources */,
+				D94371B01DF8065300DB7376 /* MBProgressHUD.m in Sources */,
 				D94371E91DF80C2700DB7376 /* SlideNavigationContorllerAnimatorScale.m in Sources */,
 				D94372541DF8153400DB7376 /* TicketDetailViewController.m in Sources */,
+				D94371CC1DF80B8500DB7376 /* ActionSheetMultipleStringPicker.m in Sources */,
+				D94371C71DF80B8500DB7376 /* AbstractActionSheetPicker.m in Sources */,
 				D94371E71DF80C2700DB7376 /* SlideNavigationController.m in Sources */,
 				D943722B1DF8151100DB7376 /* OpenCloseTableViewCell.m in Sources */,
 				D94371EC1DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */,
+				D94371CF1DF80B8500DB7376 /* SWActionSheet.m in Sources */,
 				D943724E1DF8153400DB7376 /* ClientListViewController.m in Sources */,
+				D94371CD1DF80B8500DB7376 /* ActionSheetStringPicker.m in Sources */,
 				D9787A951DF800B6009C745F /* AppDelegate.m in Sources */,
 				D94372511DF8153400DB7376 /* MyTicketsViewController.m in Sources */,
+				D94371C91DF80B8500DB7376 /* ActionSheetDatePicker.m in Sources */,
 				D943724B1DF8153400DB7376 /* LeftMenuViewController.m in Sources */,
+				D94371D91DF80C0800DB7376 /* HexColors.m in Sources */,
+				D94371D61DF80BFC00DB7376 /* CNPPopupController.m in Sources */,
 				D94372521DF8153400DB7376 /* CreateTicketViewController.m in Sources */,
 				D94372531DF8153400DB7376 /* InboxViewController.m in Sources */,
 				D94372251DF8151100DB7376 /* ClientListTableViewCell.m in Sources */,
 				D943720D1DF814B900DB7376 /* MyWebservices.m in Sources */,
 				D94372231DF8151100DB7376 /* TicketTableViewCell.m in Sources */,
 				D94372581DF8153400DB7376 /* DetailViewController.m in Sources */,
+				D94371CB1DF80B8500DB7376 /* ActionSheetLocalePicker.m in Sources */,
 				D9787A921DF800B6009C745F /* main.m in Sources */,
 				D94371E81DF80C2700DB7376 /* SlideNavigationContorllerAnimatorFade.m in Sources */,
+				D94371F31DF80DA300DB7376 /* Webservice.m in Sources */,
 				D94371EA1DF80C2700DB7376 /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */,
 				D943724D1DF8153400DB7376 /* UnassignedTicketsViewController.m in Sources */,
 				D943722D1DF8151100DB7376 /* LoadingTableViewCell.m in Sources */,
 				D94372571DF8153400DB7376 /* ConversationViewController.m in Sources */,
+				D94371F41DF80DA300DB7376 /* NetworkApi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,12 +870,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: narendra baratam (BCU77U4N5P)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: narendra baratam (BCU77U4N5P)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -776,10 +892,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "c03d3e99-3f12-4d27-ade7-98bc22b3403c";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -803,12 +918,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Ladybird Web Solution Private Limited (8VY8B59STG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ladybird Web Solution Private Limited (8VY8B59STG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -821,9 +934,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "be1fbbcf-6898-42bf-ae4f-059cc09b3d8f";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -832,40 +944,32 @@
 		};
 		D9787ABB1DF800B6009C745F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCCC239757CE7B543ACA6EFF /* Pods-Faveo Helpdesk Community.debug.xcconfig */;
+			baseConfigurationReference = 6BE020171D2568124BA38143 /* Pods-Faveo Helpdesk Community.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: narendra baratam (BCU77U4N5P)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: narendra baratam (BCU77U4N5P)";
 				DEVELOPMENT_TEAM = 8VY8B59STG;
 				INFOPLIST_FILE = "Faveo Helpdesk Community/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ladybirdwebsolutions.FaveoHelpdeskCommunity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c03d3e99-3f12-4d27-ade7-98bc22b3403c";
-				PROVISIONING_PROFILE_SPECIFIER = "Faveo Helpdesk Community dev";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		D9787ABC1DF800B6009C745F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 915F307D68DBDCCB69A2FBFB /* Pods-Faveo Helpdesk Community.release.xcconfig */;
+			baseConfigurationReference = 5FF0F057EB1F20D172FC8AF6 /* Pods-Faveo Helpdesk Community.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Ladybird Web Solution Private Limited (8VY8B59STG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ladybird Web Solution Private Limited (8VY8B59STG)";
 				DEVELOPMENT_TEAM = 8VY8B59STG;
 				INFOPLIST_FILE = "Faveo Helpdesk Community/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ladybirdwebsolutions.FaveoHelpdeskCommunity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "be1fbbcf-6898-42bf-ae4f-059cc09b3d8f";
-				PROVISIONING_PROFILE_SPECIFIER = "Faveo Heldpesk Community dis";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

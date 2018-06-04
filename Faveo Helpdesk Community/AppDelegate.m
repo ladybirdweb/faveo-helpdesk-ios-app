@@ -10,8 +10,6 @@
 #import "LoginViewController.h"
 #import "InboxViewController.h"
 #import "HexColors.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 @property (nonatomic, strong) MBProgressHUD *progressView;
@@ -21,8 +19,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  
-    [Fabric with:@[[Crashlytics class]]];
     [self setApplicationApperance];
     
       UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
@@ -65,8 +61,8 @@
 {
     
    // [[UINavigationBar appearance] setBarTintColor:[UIColor hx_colorWithHexString:@"#00aeef"]];
-    [[UINavigationBar appearance] setTintColor:[UIColor hx_colorWithHexRGBAString:@"#00aeef"]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor hx_colorWithHexRGBAString:@"#00aeef"]}];
+    [[UINavigationBar appearance] setTintColor:[UIColor hx_colorWithHexString:@"#00aeef"]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor hx_colorWithHexString:@"#00aeef"]}];
     
 //    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:8/255.0f green:16/255.0f blue:91/255.0f alpha:1.0f]];
 //    [[UINavigationBar appearance] setTintColor: [UIColor whiteColor]];
@@ -90,7 +86,7 @@
 - (void)showProgressView
 {
     MBProgressHUD *HUD =[MBProgressHUD showHUDAddedTo:self.window animated:YES];
-    HUD.label.text = @"Please wait";
+    HUD.labelText = @"Please wait";
     HUD.dimBackground = YES;
     self.progressView = HUD;
 }
@@ -98,7 +94,7 @@
 - (void)showProgressViewWithText:(NSString *)text
 {
     MBProgressHUD *HUD =[MBProgressHUD showHUDAddedTo:self.window animated:YES];
-    HUD.label.text = text;
+    HUD.labelText = text;
     HUD.dimBackground = YES;
     self.progressView = HUD;
 }

@@ -1,48 +1,32 @@
 PODS:
-  - ActionSheetPicker-3.0 (2.2.0)
-  - CNPPopupController (0.3.3)
-  - Crashlytics (3.8.3):
-    - Fabric (~> 1.6.3)
-  - DZNEmptyDataSet (1.8.1)
-  - Fabric (1.6.11)
+  - FTIndicator/FTProgressIndicator (1.2.6)
   - HexColors (4.0.0)
-  - IQKeyboardManager (4.0.7)
-  - M13ProgressSuite (1.2.9)
-  - MBProgressHUD (1.0.0)
-  - NSDate-Time-Ago (1.0.1)
-  - RKDropdownAlert (0.3.0)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
+  - IQKeyboardManager (5.0.7)
+  - PPTopMostController (0.0.1)
+  - RMessage (2.1.5):
+    - HexColors (~> 4.0)
+    - PPTopMostController
 
 DEPENDENCIES:
-  - ActionSheetPicker-3.0
-  - CNPPopupController
-  - Crashlytics
-  - DZNEmptyDataSet
-  - Fabric
-  - HexColors
+  - FTIndicator/FTProgressIndicator
   - IQKeyboardManager
-  - M13ProgressSuite
-  - MBProgressHUD
-  - NSDate-Time-Ago
-  - RKDropdownAlert
-  - SDWebImage
+  - RMessage
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - FTIndicator
+    - HexColors
+    - IQKeyboardManager
+    - PPTopMostController
+    - RMessage
 
 SPEC CHECKSUMS:
-  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
-  CNPPopupController: 59b06290762f68beab5fb0bbfa87eb4dcbefb7de
-  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
-  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  FTIndicator: d2a7c204341b7b0165b6dbeb5bf6979c6d7d4bb7
   HexColors: 5f95843ef89aff6a72e1fd3a8ebabf205cc43379
-  IQKeyboardManager: 69002bb4fea60596b710e57d426abc00e5063630
-  M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
-  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41
-  RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
+  PPTopMostController: 4e6f1e5f8c645bdcc74cd837a20f607ff262c048
+  RMessage: 31d44bd26a8f353f987d2e7194f3e9ffb203cbf2
 
-PODFILE CHECKSUM: 6bd835fcfe017e7d7727610406b59cb77aedae45
+PODFILE CHECKSUM: ec1ce30dbe85aec82b151c6e66eaf028180a1879
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.5.0

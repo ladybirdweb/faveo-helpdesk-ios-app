@@ -9,13 +9,14 @@
 #import "TicketDetailViewController.h"
 #import "CNPPopupController.h"
 #import "Utils.h"
+#import "HexColors.h"
 #import "AppDelegate.h"
 #import "AppConstanst.h"
 #import "Reachability.h"
 #import "MyWebservices.h"
 #import "GlobalVariables.h"
-#import "RKDropdownAlert.h"
-#import "HexColors.h"
+#import "FTProgressIndicator.h"
+
 //#import "ReplyViewController.h"
 
 @interface TicketDetailViewController () <CNPPopupControllerDelegate>{
@@ -44,7 +45,7 @@
     utils=[[Utils alloc]init];
     globalVariables=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
-    self.segmentedControl.tintColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    self.segmentedControl.tintColor=[UIColor hx_colorWithHexString:@"#00aeef"];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(replyBtnPressed)],[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(internalNotePressed)], nil] animated:YES];
     
     _lblTicketNumber.text=globalVariables.ticket_number;
@@ -160,7 +161,7 @@
     
     UILabel *lineTwoLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 100, 20)];
     //    lineTwoLabel.numberOfLines = 0;
-    lineTwoLabel.textColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    lineTwoLabel.textColor=[UIColor hx_colorWithHexString:@"#00aeef"];
     lineTwoLabel.text = @"Message";
     
     
@@ -181,7 +182,7 @@
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [button setTitle:@"Done" forState:UIControlStateNormal];
-    button.backgroundColor = [UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    button.backgroundColor = [UIColor hx_colorWithHexString:@"#00aeef"];
     button.layer.cornerRadius = 4;
     button.selectionHandler = ^(CNPPopupButton *button){
         if ( textViewInternalNote.text.length!=0) {
@@ -207,8 +208,8 @@
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
     NSAttributedString *title = [[NSAttributedString alloc] initWithString:@"Ticket Reply" attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:24], NSParagraphStyleAttributeName : paragraphStyle}];
-    NSAttributedString *lineOne = [[NSAttributedString alloc] initWithString:@"Cc" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : [UIColor hx_colorWithHexRGBAString:@"#00aeef"]}];
-    NSMutableAttributedString *lineTwo = [[NSMutableAttributedString alloc] initWithString:@"Message*" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : [UIColor hx_colorWithHexRGBAString:@"#00aeef"]}];
+    NSAttributedString *lineOne = [[NSAttributedString alloc] initWithString:@"Cc" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : [UIColor hx_colorWithHexString:@"#00aeef"]}];
+    NSMutableAttributedString *lineTwo = [[NSMutableAttributedString alloc] initWithString:@"Message*" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : [UIColor hx_colorWithHexString:@"#00aeef"]}];
     [lineTwo addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(7,1)];
     
     UILabel *titleLabel = [[UILabel alloc] init];
@@ -258,7 +259,7 @@
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [button setTitle:@"Done" forState:UIControlStateNormal];
-    button.backgroundColor = [UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    button.backgroundColor = [UIColor hx_colorWithHexString:@"#00aeef"];
     button.layer.cornerRadius = 4;
     
     button.selectionHandler = ^(CNPPopupButton *button){
@@ -284,34 +285,25 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
         
-        [[AppDelegate sharedAppdelegate] showProgressView];
+       // [[AppDelegate sharedAppdelegate] showProgressView];
+         [FTProgressIndicator showProgressWithMessage:@"Please wait" userInteractionEnable:NO];
         
-//        NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:API_KEY,@"api_key",IP,@"ip",[userDefaults objectForKey:@"token"],@"token",[userDefaults objectForKey:@"user_id"],@"userid",textViewInternalNote.text,@"body",globalVariables.iD,@"ticketid",nil];
-//        NSLog(@"Dic %@",param);
-//        
-//        NSString *url=[NSString stringWithFormat:@"%@helpdesk/internal-note",[userDefaults objectForKey:@"companyURL"]];
         
         NSString *url=[NSString stringWithFormat:@"%@helpdesk/internal-note?api_key=%@&ip=%@&token=%@&userid=%@&body=%@&ticketid=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],[userDefaults objectForKey:@"user_id"],textViewInternalNote.text,globalVariables.iD];
         
         MyWebservices *webservices=[MyWebservices sharedInstance];
         
         [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
-            [[AppDelegate sharedAppdelegate] hideProgressView];
+            //[[AppDelegate sharedAppdelegate] hideProgressView];
             if (error || [msg containsString:@"Error"]) {
+                [FTProgressIndicator dismiss];
                 
-                if (msg) {
-                    
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                    
-                }else if(error)  {
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
-                }
-                
+                [utils showAlertWithMessage:msg sendViewController:self];
+                NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
                 return ;
             }
             
@@ -324,9 +316,16 @@
             
             if (json) {
                 NSLog(@"JSON-CreateTicket-%@",json);
+                
+                [FTProgressIndicator dismiss];
+                
                 if ([json objectForKey:@"thread"]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [utils showAlertWithMessage:@"Kindly Refresh!!" sendViewController:self];
+                       // [utils showAlertWithMessage:@"Kindly Refresh!!" sendViewController:self];
+                        TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
+                        
+                        [self.navigationController pushViewController:td animated:YES];
+                        
                     });
                 }
             }
@@ -342,16 +341,13 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
         
-        [[AppDelegate sharedAppdelegate] showProgressView];
+       // [[AppDelegate sharedAppdelegate] showProgressView];
         
-//        NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:API_KEY,@"api_key",IP,@"ip",[userDefaults objectForKey:@"token"],@"token",textViewReply.text,@"reply_content",textFieldCc.text,@"cc",globalVariables.iD,@"ticket_ID",nil];
-//        NSLog(@"Dic %@",param);
-//        
-//        NSString *url=[NSString stringWithFormat:@"%@helpdesk/reply",[userDefaults objectForKey:@"companyURL"]];
+       [FTProgressIndicator showProgressWithMessage:@"Please wait" userInteractionEnable:NO];
         
         NSString *url=[NSString stringWithFormat:@"%@helpdesk/reply?api_key=%@&ip=%@&token=%@&reply_content=%@&ticket_ID=%@&cc=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],textViewReply.text,globalVariables.iD,textFieldCc.text];
         
@@ -359,18 +355,13 @@
         
         
         [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
-            [[AppDelegate sharedAppdelegate] hideProgressView];
+           // [[AppDelegate sharedAppdelegate] hideProgressView];
             if (error || [msg containsString:@"Error"]) {
                 
-                if (msg) {
-                    
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                    
-                }else if(error)  {
-                    [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                    NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
-                }
+                [FTProgressIndicator dismiss];
                 
+                [utils showAlertWithMessage:msg sendViewController:self];
+                NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
                 return ;
             }
             
@@ -383,9 +374,13 @@
             
             if (json) {
                 NSLog(@"JSON-CreateTicket-%@",json);
+                [FTProgressIndicator dismiss];
                 if ([json objectForKey:@"result"]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [utils showAlertWithMessage:@"Kindly Refresh!" sendViewController:self];
+                        //[utils showAlertWithMessage:@"Kindly Refresh!" sendViewController:self];
+                        TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
+                        
+                        [self.navigationController pushViewController:td animated:YES];
                     });
                 }
                 

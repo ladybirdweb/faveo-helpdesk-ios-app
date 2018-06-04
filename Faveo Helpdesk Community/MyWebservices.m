@@ -78,12 +78,16 @@
             if ([replyStr containsString:@"token"]) {
 
                 NSError *error=nil;
-                NSDictionary *jsonData=[NSJSONSerialization JSONObjectWithData:data options:nil error:&error];
+                NSDictionary *jsonData=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                
+
+                 NSDictionary *userDict=[jsonData objectForKey:@"user_id"];
+                
                 if (error) {
                     return;
                 }
                 [_userDefaults setObject:[jsonData objectForKey:@"token"] forKey:@"token"];
-                [_userDefaults setObject:[jsonData objectForKey:@"user_id"] forKey:@"user_id"];
+                [_userDefaults setObject:[userDict objectForKey:@"id"] forKey:@"user_id"];
                 [_userDefaults synchronize];
                 
                 result=@"tokenRefreshed";
@@ -103,10 +107,8 @@
 -(void)httpResponsePOST:(NSString *)urlString
               parameter:(id)parameter
         callbackHandler:(callbackHandler)block{
-     NSError *err;
+    NSError *err;
      urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
 
     [request addValue:@"application/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
@@ -128,7 +130,6 @@
    NSLog(@"Request body %@", [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding]);
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] ];
-    
     
     [[session dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
         if (error) {
@@ -181,7 +182,6 @@
     }] resume];
     
 }
-
 
 -(void)httpResponseGET:(NSString *)urlString
              parameter:(id)parameter

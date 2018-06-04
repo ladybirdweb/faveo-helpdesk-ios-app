@@ -1,5 +1,5 @@
 //
-//  IQKeyboardManagerConstants.h
+// IQKeyboardManagerConstants.h
 // https://github.com/hackiftekhar/IQKeyboardManager
 // Copyright (c) 2013-16 Iftekhar Qurashi.
 //
@@ -46,11 +46,21 @@ typedef NS_ENUM(NSInteger, IQAutoToolbarManageBehaviour) {
     IQAutoToolbarByPosition,
 };
 
-///-------------------
-/// @name Localization
-///-------------------
-
-#define IQLocalizedString(key, comment) [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"IQKeyboardManager" ofType:@"bundle"]] localizedStringForKey:(key) value:@"" table:@"IQKeyboardManager"]
+/**
+ `IQPreviousNextDisplayModeDefault`
+ Show NextPrevious when there are more than 1 textField otherwise hide.
+ 
+ `IQPreviousNextDisplayModeAlwaysHide`
+ Do not show NextPrevious buttons in any case.
+ 
+ `IQPreviousNextDisplayModeAlwaysShow`
+ Always show nextPrevious buttons, if there are more than 1 textField then both buttons will be visible but will be shown as disabled.
+ */
+typedef NS_ENUM(NSUInteger, IQPreviousNextDisplayMode) {
+    IQPreviousNextDisplayModeDefault,
+    IQPreviousNextDisplayModeAlwaysHide,
+    IQPreviousNextDisplayModeAlwaysShow,
+};
 
 #endif
 

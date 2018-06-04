@@ -16,7 +16,8 @@
 #import "TicketDetailViewController.h"
 #import "OpenCloseTableViewCell.h"
 #import "GlobalVariables.h"
-#import "RKDropdownAlert.h"
+#import "FTProgressIndicator.h"
+
 
 @interface ClientDetailViewController ()
 {
@@ -25,10 +26,13 @@
     NSMutableArray *mutableArray;
     UIRefreshControl *refresh;
     GlobalVariables *globalVariables;
+    
+    NSMutableDictionary * clientDict;
 
 }
 
 @property (nonatomic,retain) UIActivityIndicatorView *activityIndicatorObject;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (nonatomic,strong) UILabel *noDataLabel;
 
 @end
@@ -38,38 +42,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.profileImageView.layer.cornerRadius = 26;
+    self.profileImageView.layer.cornerRadius =25;
     self.profileImageView.clipsToBounds = YES;
-    self.profileImageView.layer.borderWidth=1.3f;
-    self.profileImageView.layer.borderColor=[[UIColor hx_colorWithHexRGBAString:@"#0288D1"] CGColor];
-    [self setUserProfileimage:_imageURL];
     
-    _activityIndicatorObject = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    _activityIndicatorObject.center =CGPointMake(self.view.frame.size.width/2,(self.view.frame.size.height/2)-50);
-    _activityIndicatorObject.color=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
-    [self.view addSubview:_activityIndicatorObject];
+
+    
     [self addUIRefresh];
+    
     utils=[[Utils alloc]init];
     globalVariables=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
-//    self.currentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OpenClient"];
-//    self.currentViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-//    [self addChildViewController:self.currentViewController];
-//    [self addSubview:self.currentViewController.view toView:self.containerView];
-//    self.testingLAbel.text=@"Open Ticket";
-//    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
-//    self.profileImageView.clipsToBounds = YES;
-//    self.segmentedControl.tintColor=[UIColor hx_colorWithHexString:@"#00aeef"];
+
+    clientDict=[[NSMutableDictionary alloc]init];
     
+    self.testingLAbel.text=globalVariables.userStateFromUserList;
+    self.emailLabel.text=globalVariables.emailFromUserList;
+    self.clientNameLabel.text=globalVariables.firstNameFromUserList;
+    self.phoneLabel.text=globalVariables.mobileFromUserList;
     
-    self.testingLAbel.text=self.isClientActive;
-    self.emailLabel.text=self.emailID;
-    self.clientNameLabel.text=self.clientName;
-    self.phoneLabel.text=self.phone;
+    [self setUserProfileimage:globalVariables.profilePicFromUserList];
+
+    [FTProgressIndicator showProgressWithMessage:@"Please wait" userInteractionEnable:NO];
     
-    [_activityIndicatorObject startAnimating];
     [self reload];
-     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view.
 }
 
@@ -78,18 +73,20 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        [refresh endRefreshing];
-        [_activityIndicatorObject stopAnimating];
-        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        //[_activityIndicatorObject stopAnimating];
+        [FTProgressIndicator dismiss];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
+        
     }else{
         
-        NSString *url=[NSString stringWithFormat:@"%@helpdesk/my-tickets-user?api_key=%@&ip=%@&token=%@&user_id=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],_clientId];
+        NSString *url=[NSString stringWithFormat:@"%@helpdesk/my-tickets-user?api_key=%@&ip=%@&token=%@&user_id=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],globalVariables.userIdFromUserList];
         
         MyWebservices *webservices=[MyWebservices sharedInstance];
         [webservices httpResponseGET:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
             
             if (error || [msg containsString:@"Error"]) { [refresh endRefreshing];
-
+                
+                [FTProgressIndicator dismiss];
                 [utils showAlertWithMessage:@"Error" sendViewController:self];
                 NSLog(@"Thread-NO4-getClientTickets-Refresh-error == %@",error.localizedDescription);
                 return ;
@@ -106,21 +103,23 @@
                // NSError *error;
                 mutableArray=[[NSMutableArray alloc]initWithCapacity:10];
                 NSLog(@"Thread-NO4--getClientTickets--%@",json);
-                mutableArray = [json copy];
-//                _nextPageUrl =[json objectForKey:@"next_page_url"];
-//                _currentPage=[[json objectForKey:@"current_page"] integerValue];
-//                _totalTickets=[[json objectForKey:@"total"] integerValue];
-//                NSLog(@"Thread-NO4.1getInbox-dic--%@", mutableArray);
+                clientDict = [json copy];
+                mutableArray = [clientDict objectForKey:@"tickets"];
+                
                 dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [_activityIndicatorObject stopAnimating];
-                        [refresh endRefreshing];
+                        
+                        
                         [self.tableView reloadData];
+                        [refresh endRefreshing];
+                        
+                        [FTProgressIndicator dismiss];
+                        
                     });
                 });
             }
             
-            [_activityIndicatorObject stopAnimating];
+            [FTProgressIndicator dismiss];
             NSLog(@"Thread-NO5-getClientTickets-closed");
             
         }];
@@ -136,7 +135,7 @@
     if ([mutableArray count]==0)
     {
         self.noDataLabel         = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.height)];
-        self.noDataLabel.text             = @"Empty!";
+        self.noDataLabel.text             = @"";
         self.noDataLabel.textColor        = [UIColor blackColor];
         self.noDataLabel.textAlignment    = NSTextAlignmentCenter;
         tableView.backgroundView = self.noDataLabel;
@@ -152,7 +151,11 @@
     return numOfSections;
 }
 
-
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return [mutableArray count];
@@ -170,26 +173,39 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"OpenCloseTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    NSDictionary *finaldic=[mutableArray objectAtIndex:indexPath.row];
-    cell.ticketNumberLbl.text=[finaldic objectForKey:@"ticket_number"];
-    cell.ticketSubLbl.text=[finaldic objectForKey:@"title"];
 
-    if ([[finaldic objectForKey:@"ticket_status_name"] isEqualToString:@"Open"]) {
-        cell.indicationView.layer.backgroundColor=[[UIColor hx_colorWithHexRGBAString:SUCCESS_COLOR] CGColor];
+    
+    
+    NSDictionary *ticketDict=[mutableArray objectAtIndex:indexPath.row];
+
+    NSLog(@"Dict 111 is : %@",ticketDict);
+    
+    cell.ticketNumberLbl.text=[ticketDict objectForKey:@"ticket_number"];
+    cell.ticketSubLbl.text=[ticketDict objectForKey:@"title"];
+
+    if ([[ticketDict objectForKey:@"ticket_status_name"] isEqualToString:@"Open"]) {
+        cell.indicationView.layer.backgroundColor=[[UIColor greenColor] CGColor];
     }else{
-        cell.indicationView.layer.backgroundColor=[[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] CGColor];
-        
+        cell.indicationView.layer.backgroundColor=[[UIColor redColor] CGColor];
     }
+
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+
+    NSDictionary *ticketDict=[mutableArray objectAtIndex:indexPath.row];
+    
+    NSLog(@"Dict 111 is : %@",ticketDict);
+    
+    globalVariables.iD= [ticketDict objectForKey:@"id"];
+    globalVariables.ticket_number=[ticketDict objectForKey:@"ticket_number"];
+    globalVariables.title=[ticketDict objectForKey:@"title"];
+    
+    
     TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
-      NSDictionary *finaldic=[mutableArray objectAtIndex:indexPath.row];
-    globalVariables.iD=[finaldic objectForKey:@"id"];
-    globalVariables.ticket_number=[finaldic objectForKey:@"ticket_number"];
-     globalVariables.title=[finaldic objectForKey:@"title"];
+    
     [self.navigationController pushViewController:td animated:YES];
     
 }
@@ -248,59 +264,6 @@
     });
 }
 
-//- (void)addSubview:(UIView *)subView toView:(UIView*)parentView {
-//    [parentView addSubview:subView];
-//    
-//    NSDictionary * views = @{@"subView" : subView,};
-//    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[subView]|"
-//                                                                   options:0
-//                                                                   metrics:0
-//                                                                     views:views];
-//    [parentView addConstraints:constraints];
-//    constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[subView]|"
-//                                                          options:0
-//                                                          metrics:0
-//                                                            views:views];
-//    [parentView addConstraints:constraints];
-//}
-
-//- (void)cycleFromViewController:(UIViewController*) oldViewController
-//               toViewController:(UIViewController*) newViewController {
-//    [oldViewController willMoveToParentViewController:nil];
-//    [self addChildViewController:newViewController];
-//    [self addSubview:newViewController.view toView:self.containerView];
-//    newViewController.view.alpha = 0;
-//    [newViewController.view layoutIfNeeded];
-//    
-//    [UIView animateWithDuration:0.5
-//                     animations:^{
-//                         newViewController.view.alpha = 1;
-//                         oldViewController.view.alpha = 0;
-//                     }
-//                     completion:^(BOOL finished) {
-//                         [oldViewController.view removeFromSuperview];
-//                         [oldViewController removeFromParentViewController];
-//                         [newViewController didMoveToParentViewController:self];
-//                     }];
-//}
-
-//- (IBAction)indexChanged:(id)sender {
-//    
-//    if (self.segmentedControl.selectedSegmentIndex == 0) {
-//        UIViewController *newViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OpenClient"];
-//        newViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-//        [self cycleFromViewController:self.currentViewController toViewController:newViewController];
-//        self.currentViewController = newViewController;
-//        // self.testingLAbel.text = @"Open Ticket";
-//    } else {
-//        UIViewController *newViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CloseClient"];
-//        newViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-//        [self cycleFromViewController:self.currentViewController toViewController:newViewController];
-//        self.currentViewController = newViewController;
-//        //self.testingLAbel.text = @"Closed Ticket";
-//    }
-//    
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

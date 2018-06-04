@@ -17,8 +17,8 @@
 #import "MyWebservices.h"
 #import "GlobalVariables.h"
 #import "LoadingTableViewCell.h"
-#import "RKDropdownAlert.h"
-#import "HexColors.h"
+#import "FTProgressIndicator.h"
+
 
 @interface InboxViewController (){
     Utils *utils;
@@ -43,9 +43,7 @@
     [self addUIRefresh];
     _mutableArray=[[NSMutableArray alloc]init];
 
-//    UINib *nib = [UINib nibWithNibName:@"TicketTableViewCell" bundle:nil];
-//    [[self tableView] registerNib:nib forCellReuseIdentifier:@"TableViewCellID"];
-//    [[self tableView] registerNib:nib  forCellReuseIdentifier:@"LoadingCellID"];
+
     utils=[[Utils alloc]init];
     globalVariables=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
@@ -55,7 +53,8 @@
     dispatch_once(&onceToken, ^{
         [self getDependencies];
     });
-    [[AppDelegate sharedAppdelegate] showProgressViewWithText:@"Getting Data"];
+    //[[AppDelegate sharedAppdelegate] showProgressViewWithText:@"Getting Data"];
+    [FTProgressIndicator showProgressWithMessage:@"Getting Tickets" userInteractionEnable:NO];
     [self reload];
     // Do any additional setup after loading the view.
 }
@@ -64,12 +63,11 @@
     
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
-        [refresh endRefreshing];
         //connection unavailable
-        [[AppDelegate sharedAppdelegate] hideProgressView];
-        //[utils showAlertWithMessage:NO_INTERNET sendViewController:self];
-        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
-
+        //[[AppDelegate sharedAppdelegate] hideProgressView];
+        [FTProgressIndicator dismiss];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
+        
     }else{
         
         //        [[AppDelegate sharedAppdelegate] showProgressView];
@@ -80,7 +78,8 @@
             
             if (error || [msg containsString:@"Error"]) {
                 [refresh endRefreshing];
-                [[AppDelegate sharedAppdelegate] hideProgressView];
+              //  [[AppDelegate sharedAppdelegate] hideProgressView];
+                [FTProgressIndicator dismiss];
                 if (msg) {
                     
                     [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
@@ -110,12 +109,16 @@
                 NSLog(@"Thread-NO4.1getInbox-dic--%@", _mutableArray);
                 dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [[AppDelegate sharedAppdelegate] hideProgressView];
-                        [refresh endRefreshing];
+                       // [[AppDelegate sharedAppdelegate] hideProgressView];
+                       
                         [self.tableView reloadData];
+                         [refresh endRefreshing];
+                        [FTProgressIndicator dismiss];
                     });
                 });
-                
+                for (NSDictionary *tickets in  _mutableArray) {
+                    NSLog(@"Client-name--%@",[tickets objectForKey:@"first_name"]);
+                }
             }
             NSLog(@"Thread-NO5-getInbox-closed");
             
@@ -241,7 +244,7 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-       [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
+        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
         
     }else{
         
@@ -250,6 +253,9 @@
             
             if (error || [msg containsString:@"Error"]) {
                 
+                LoadingTableViewCell *lc=[[LoadingTableViewCell alloc]init];
+               lc.loadingLbl.text=@"Failed!";
+                [lc.indicator setHidden:YES];
                 if (msg) {
                     
                     [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
@@ -302,8 +308,6 @@
     }
 }
 
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -349,16 +353,7 @@
     globalVariables.iD=[finaldic objectForKey:@"id"];
     globalVariables.ticket_number=[finaldic objectForKey:@"ticket_number"];
     globalVariables.title=[finaldic objectForKey:@"title"];
-    //    globalVariables.first_name=[finaldic objectForKey:@"first_name"];
-    //    globalVariables.last_name=[finaldic objectForKey:@"last_name"];
-    //    globalVariables.email=[finaldic objectForKey:@"email"];
-    //    globalVariables.created_at=[finaldic objectForKey:@"created_at"];
-    //    globalVariables.updated_at=[finaldic objectForKey:@"updated_at"];
-    //
-    //    globalVariables.help_topic_name=[finaldic objectForKey:@"help_topic_name"];
-    //    globalVariables.sla_plan_name=[finaldic objectForKey:@"sla_plan_name"];
-    //    globalVariables.priotity_name=[finaldic objectForKey:@"priotity_name"];
-    //    globalVariables.department_name=[finaldic objectForKey:@"department_name"];
+   
     
     [self.navigationController pushViewController:td animated:YES];
 }
@@ -410,151 +405,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//-(void)getDependencies{
-//     NSLog(@"getDependencies");
-//
-//    if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
-//    {
-//        //connection unavailable
-//        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
-//
-//    }else{
-//
-//        NSString *url=[NSString stringWithFormat:@"%@helpdesk/dependency?api_key=%@&ip=%@&token=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"]];
-//        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//
-//        [request setURL:[NSURL URLWithString:url]];  // add your url
-//        [request setHTTPMethod:@"GET"];  // specify the JSON type to GET
-//
-//        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] ];
-//         [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//             if (error) {
-//                 NSLog(@"dataTaskWithRequest error: %@", error);
-//                 return;
-//             }
-//             if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-//
-//                 NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-//
-//                 if (statusCode != 200) {
-//                     NSLog(@"dataTaskWithRequest HTTP status code: %ld", (long)statusCode);
-//
-//                     [utils showAlertWithMessage:@"Unknown Error!" sendViewController:self];
-//                     return;
-//                 }
-//
-//                 NSString *replyStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//
-//                 NSLog(@"Get your response == %@", replyStr);
-//
-//                 if ([replyStr containsString:@"Token has expired"]) {
-//
-//                      NSLog(@"Refresh the token!");
-//                     MyWebservices *webservices=[MyWebservices sharedInstance];
-//                     [webservices refreshToken];
-//                     [self getDependencies];
-//
-//                      NSLog(@"Refreshed the token!");
-//                 }else if([replyStr containsString:@"result"]){
-//                     NSError *error;
-//                      NSLog(@"dependencyAPI--%@",replyStr);
-//                     NSDictionary *jsonData=[NSJSONSerialization JSONObjectWithData:data options:nil error:&error];
-//                     NSLog(@"error--%@",[error localizedDescription]);
-//                  NSDictionary *dic = [jsonData objectForKey:@"result"];
-//                     NSLog(@"dic--%@",dic);
-//
-//
-//                 }
-//
-//             }
-//
-//             NSLog(@"Got response %@ with error %@.\n", response, error);
-//
-//         }]
-//          resume];
-//
-//    }
-//}
 
-//-(void)reload{
-//    if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
-//    {
-//        //connection unavailable
-//        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
-//
-//    }else{
-//
-//        [[AppDelegate sharedAppdelegate] showProgressView];
-//        NSString *url=[NSString stringWithFormat:@"%@helpdesk/inbox?api_key=%@&ip=%@&token=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"]];
-//        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//
-//        [request setURL:[NSURL URLWithString:url]];  // add your url
-//        [request setHTTPMethod:@"GET"];  // specify the JSON type to GET
-//
-//        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] ];
-//        [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//            if (error) {
-//                NSLog(@"dataTaskWithRequest error: %@", error);
-//                return;
-//            }else if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-//
-//                NSError *error=nil;
-//                id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-//                if (error) {
-//                    NSLog(@"response : %@", error.localizedDescription);
-//                    NSLog(@"json : %@", json);
-//
-//                }
-//
-//                NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-//
-//                if (statusCode != 200) {
-//                    NSLog(@"dataTaskWithRequest HTTP status code: %ld", (long)statusCode);
-//                    [[AppDelegate sharedAppdelegate] hideProgressView];
-//                    [utils showAlertWithMessage:@"Loading failed!" sendViewController:self];
-//                    return;
-//                }
-//
-//                NSString *replyStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//
-//                NSLog(@"Get your response == %@", replyStr);
-//
-//                if ([replyStr containsString:@"Token has expired"]) {
-//
-//                    NSLog(@"Refresh the token!");
-//                    MyWebservices *webservices=[MyWebservices sharedInstance];
-//                    [webservices refreshToken];
-//                    [self reload];
-//                    NSLog(@"Refreshed the token!");
-//                }else if([replyStr containsString:@"total"]){
-//                    NSError *error=nil;
-//                    [[AppDelegate sharedAppdelegate] hideProgressView];
-//                    NSLog(@"inboxAPI--%@",replyStr);
-//                    NSDictionary *jsonData=[NSJSONSerialization JSONObjectWithData:data options:nil error:&error];
-//                    NSLog(@"response : %@", error.localizedDescription);
-//                    NSDictionary *dic = [jsonData objectForKey:@"total"];
-//
-//                }
-//
-//            }
-//
-//            NSLog(@"Got response %@ with error %@.\n", response, error);
-//
-//        }]
-//         resume];
-//    }
-//    [refresh endRefreshing];
-//}
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

@@ -8,7 +8,6 @@
 
 #import "Utils.h"
 #import "AppConstanst.h"
-#import "NSDate+NVTimeAgo.h"
 
 @interface Utils ()
 
@@ -119,6 +118,15 @@
     return NO;
 }
 
++(BOOL)isEmpty:(NSString *)str{
+    if (str == nil || str == (id)[NSNull null] || [[NSString stringWithFormat:@"%@",str] length] == 0 || [[[NSString stringWithFormat:@"%@",str] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
+        
+        return YES;
+    }
+    return NO;
+}
+
+
 -(NSString *)getLocalDateTimeFromUTC:(NSString *)strDate
 {
     NSDateFormatter *dtFormat = [[NSDateFormatter alloc] init];
@@ -128,9 +136,8 @@
     
     [dtFormat setDateFormat:@"d MMM yyyy HH:mm"];
     [dtFormat setTimeZone:[NSTimeZone systemTimeZone]];
-    NSString * fg=[dtFormat stringFromDate:aDate];
     
-    return [[dtFormat dateFromString:fg] formattedAsTimeAgo];
+    return [dtFormat stringFromDate:aDate];
 }
 
 @end
