@@ -72,6 +72,7 @@
     userDefaults=[NSUserDefaults standardUserDefaults];
     globalVariables=[GlobalVariables sharedInstance];
     NSLog(@"Role : %@",[userDefaults objectForKey:@"role"]);
+    
     _user_role.text=[[userDefaults objectForKey:@"role"] uppercaseString];
     
     _user_nameLabel.text=[userDefaults objectForKey:@"profile_name"];
@@ -88,6 +89,12 @@
     {
         [_user_profileImage setImageWithString:[userDefaults objectForKey:@"profile_name"] color:nil ];
     }
+    
+    
+    NSLog(@"Name :%@ ",[userDefaults objectForKey:@"profile_name"]);
+    NSLog(@"url :%@ ",[userDefaults objectForKey:@"baseURL"]);
+    NSLog(@"url :%@ ",[userDefaults objectForKey:@"role"]);
+    
     
     _user_profileImage.layer.borderColor=[[UIColor hx_colorWithHexRGBAString:@"#0288D1"] CGColor];
     
@@ -221,8 +228,14 @@
                 
                 if (json) {
                     
-                    NSLog(@"Thread-NO4-getDependencies-dependencyAPI--%@",json);
+                 //   NSLog(@"Thread-NO4-getDependencies-dependencyAPI--%@",json);
+                    
+                    
                     NSDictionary *resultDic = [json objectForKey:@"result"];
+                    
+                    self->globalVariables.dependencyDataDict=[json objectForKey:@"result"];
+                    
+                    
                     NSArray *ticketCountArray=[resultDic objectForKey:@"tickets_count"];
                     
                     
@@ -251,26 +264,6 @@
                         });
                     });
                     
-                    
-                    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-                    
-                    // get documents path
-                    NSString *documentsPath = [paths objectAtIndex:0];
-                    
-                    // get the path to our Data/plist file
-                    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"faveoData.plist"];
-                    NSError *writeError = nil;
-                    
-                    NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:resultDic format:NSPropertyListXMLFormat_v1_0 options:NSPropertyListImmutable error:&writeError];
-                    
-                    if(plistData)
-                    {
-                        [plistData writeToFile:plistPath atomically:YES];
-                        NSLog(@"Data saved sucessfully");
-                    }
-                    else
-                    {
-                        NSLog(@"Error in saveData: %@", writeError.localizedDescription);               }
                     
                 }
                 NSLog(@"Thread-NO5-getDependencies-closed");

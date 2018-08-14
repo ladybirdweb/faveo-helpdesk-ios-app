@@ -87,6 +87,21 @@
                 [_userDefaults setObject:[jsonData objectForKey:@"token"] forKey:@"token"];
                 NSDictionary *jsonData1=[jsonData objectForKey:@"user_id"];
                 [_userDefaults setObject:[jsonData1 objectForKey:@"id"] forKey:@"user_id"];
+                [_userDefaults setObject:[jsonData1 objectForKey:@"role"] forKey:@"role"];
+                
+                NSString *clientName=[jsonData1 objectForKey:@"first_name"];
+                
+                if ([clientName isEqualToString:@""]) {
+                    clientName=[jsonData1 objectForKey:@"user_name"];
+                }else{
+                    clientName=[NSString stringWithFormat:@"%@ %@",clientName,[jsonData1 objectForKey:@"last_name"]];
+                }
+            
+                
+                [_userDefaults setObject:clientName forKey:@"profile_name"];
+                
+               //  [_userDefaults setObject:baseURL forKey:@"baseURL"];
+                
                 [_userDefaults synchronize];
                 
                 result=@"tokenRefreshed";

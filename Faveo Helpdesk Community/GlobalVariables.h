@@ -109,6 +109,7 @@
 @property (strong, nonatomic) NSString *userNameFromClientList;
 @property (strong, nonatomic) NSString *profilePicFromClientList;
 
+@property (strong, nonatomic) NSDictionary *dependencyDataDict;
 
 @end
 

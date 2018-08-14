@@ -355,18 +355,22 @@
 
 
 -(void)readFromPlist{
-    // Read plist from bundle and get Root Dictionary out of it
-    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"faveoData.plist"];
-    
+//    // Read plist from bundle and get Root Dictionary out of it
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsPath = [paths objectAtIndex:0];
+//    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"faveoData.plist"];
+//
     @try{
-        if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath])
-        {
-            plistPath = [[NSBundle mainBundle] pathForResource:@"faveoData" ofType:@"plist"];
-        }
-        NSDictionary *resultDic = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+//        if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath])
+//        {
+//            plistPath = [[NSBundle mainBundle] pathForResource:@"faveoData" ofType:@"plist"];
+//        }
+      //  NSDictionary *resultDic = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
         //    NSLog(@"resultDic--%@",resultDic);
+        
+        NSDictionary *resultDic = globalVariables.dependencyDataDict;
+
+        
         NSArray *deptArray=[resultDic objectForKey:@"departments"];
         NSArray *helpTopicArray=[resultDic objectForKey:@"helptopics"];
         NSArray *prioritiesArray=[resultDic objectForKey:@"priorities"];

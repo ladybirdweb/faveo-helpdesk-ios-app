@@ -274,7 +274,10 @@
                 if (json) {
                     
                     NSLog(@"Thread-NO4-getDependencies-dependencyAPI--%@",json);
+                   // NSDictionary *resultDic = [json objectForKey:@"result"];
                     NSDictionary *resultDic = [json objectForKey:@"result"];
+                    
+                    self->globalVariables.dependencyDataDict=[json objectForKey:@"result"];
                     
                     
                     NSArray *ticketStatusArray=[resultDic objectForKey:@"status"];
@@ -304,27 +307,7 @@
                         }
                     }
                     
-                    
-                    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-                    
-                    // get documents path
-                    NSString *documentsPath = [paths objectAtIndex:0];
-                    
-                    // get the path to our Data/plist file
-                    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"faveoData.plist"];
-                    NSError *writeError = nil;
-                    
-                    NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:resultDic format:NSPropertyListXMLFormat_v1_0 options:NSPropertyListImmutable error:&writeError];
-                    
-                    if(plistData)
-                    {
-                        [plistData writeToFile:plistPath atomically:YES];
-                        NSLog(@"Data saved sucessfully");
-                    }
-                    else
-                    {
-                        NSLog(@"Error in saveData: %@", writeError.localizedDescription);               }
-                    
+            
                 }
                 NSLog(@"Thread-NO5-getDependencies-closed");
             }
@@ -741,7 +724,7 @@
         [[AppDelegate sharedAppdelegate] showProgressView];
     
         
-        NSString *url=[NSString stringWithFormat:@"%@helpdesk/reply?api_key=%@&ip=%@&ticket_id=%@&reply_content=%@&token=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,globalVariables.iD,textViewReply.text,[userDefaults objectForKey:@"token"]];
+        NSString *url=[NSString stringWithFormat:@"%@helpdesk/reply?api_key=%@&ip=%@&ticket_ID=%@&reply_content=%@&token=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,globalVariables.iD,textViewReply.text,[userDefaults objectForKey:@"token"]];
         
         
         NSLog(@"URL is : %@",url);
