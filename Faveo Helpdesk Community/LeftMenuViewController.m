@@ -87,7 +87,8 @@
                               placeholderImage:[UIImage imageNamed:@"default_pic.png"]];
     }else
     {
-        [_user_profileImage setImageWithString:[userDefaults objectForKey:@"profile_name"] color:nil ];
+        NSString *mystr= [[userDefaults objectForKey:@"profile_name"] substringToIndex:2];
+        [_user_profileImage setImageWithString:mystr color:nil ];
     }
     
     

@@ -15,10 +15,7 @@
 #import "RMessage.h"
 #import "RMessageView.h"
 #import "UIImageView+Letters.h"
-
-@import FirebaseInstanceID;
-@import FirebaseMessaging;
-
+#import "TableViewAnimationKitHeaders.h"
 
 
 @interface InboxViewController ()<RMessageProtocol>{
@@ -35,6 +32,9 @@
 @property (nonatomic, assign) NSInteger totalTickets;
 @property (nonatomic, strong) NSString *nextPageUrl;
 
+@property (nonatomic, assign) NSInteger animationType;
+
+
 @end
 
 @implementation InboxViewController
@@ -44,9 +44,6 @@
     
     NSLog(@"Naa-Inbox");
     
-    NSString *refreshedToken = [[FIRInstanceID instanceID] token];
-    NSLog(@"refreshed token  %@",refreshedToken);
-    
     [self setTitle:NSLocalizedString(@"Inbox",nil)];
     [self addUIRefresh];
     NSLog(@"string %@",NSLocalizedString(@"Inbox",nil));
@@ -55,14 +52,28 @@
     utils=[[Utils alloc]init];
     globalVariables=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
-    NSLog(@"device_token %@",[userDefaults objectForKey:@"deviceToken"]);
-
+ 
+   
+    _animationType = 5;
+    
                                               
     [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting Tickets",nil)];
     [self reload];
     
     [self getDependencies];
 
+}
+
+- (void)loadAnimation {
+    
+    [self.tableView reloadData];
+    [self starAnimationWithTableView:self.tableView];
+    
+}
+- (void)starAnimationWithTableView:(UITableView *)tableView {
+    
+    [TableViewAnimationKit showWithAnimationType:self.animationType tableView:tableView];
+    
 }
 
 -(void)reload{
@@ -132,12 +143,15 @@
                     _currentPage=[[json objectForKey:@"current_page"] integerValue];
                     _totalTickets=[[json objectForKey:@"total"] integerValue];
                     _totalPages=[[json objectForKey:@"last_page"] integerValue];
-                    NSLog(@"Thread-NO4.1getInbox-dic--%@", _mutableArray);
+                  //  NSLog(@"Thread-NO4.1getInbox-dic--%@", _mutableArray);
                     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                         dispatch_async(dispatch_get_main_queue(), ^{
+                            
                             [[AppDelegate sharedAppdelegate] hideProgressView];
                             [refresh endRefreshing];
                             [self.tableView reloadData];
+                            [self loadAnimation];
+                            
                         });
                     });
                     
@@ -656,11 +670,17 @@
             }
             else if(![Utils isEmpty:[finaldic objectForKey:@"first_name"]])
             {
-                [cell.profilePicView setImageWithString:[finaldic objectForKey:@"first_name"] color:nil ];
+                
+                NSString *mystr= [[finaldic objectForKey:@"first_name"] substringToIndex:2];
+                
+                [cell.profilePicView setImageWithString:mystr color:nil ];
+                
             }
             else
             {
-                [cell.profilePicView setImageWithString:[finaldic objectForKey:@"user_name"] color:nil ];
+                NSString *mystr= [[finaldic objectForKey:@"user_name"] substringToIndex:2];
+                
+                [cell.profilePicView setImageWithString:mystr color:nil ];
             }
             
             

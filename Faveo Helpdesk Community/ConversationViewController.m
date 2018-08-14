@@ -331,11 +331,14 @@
     
     if([[finaldic objectForKey:@"profile_pic"] hasSuffix:@"system.png"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".jpg"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".jpeg"] || [[finaldic objectForKey:@"profile_pic"] hasSuffix:@".png"] )
     {
+        
         [cell setUserProfileimage:[finaldic objectForKey:@"profile_pic"]];
     }
     else if(![Utils isEmpty:[finaldic objectForKey:@"first_name"]])
     {
-        [cell.profilePicView setImageWithString:[finaldic objectForKey:@"first_name"] color:nil ];
+        NSString *mystr= [[finaldic objectForKey:@"first_name"]  substringToIndex:2];
+
+        [cell.profilePicView setImageWithString:mystr color:nil ];
     }
     else if(![Utils isEmpty:userName])
     {

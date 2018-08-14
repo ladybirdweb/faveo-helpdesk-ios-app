@@ -123,9 +123,11 @@
                     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                         dispatch_async(dispatch_get_main_queue(), ^{
                             
-                            [[AppDelegate sharedAppdelegate] hideProgressView];
-                            [refresh endRefreshing];
+                            
+                           
                             [self.tableView reloadData];
+                             [refresh endRefreshing];
+                            [[AppDelegate sharedAppdelegate] hideProgressView];
                         });
                     });
                     
@@ -439,11 +441,14 @@
             {
                 // [cell.profilePicView setImageWithString:fname color:nil ];
                 
-                [cell.profilePicView setImageWithString:clientFirstName color:nil ];
+                NSString *mystr= [clientFirstName substringToIndex:2];
+                
+                [cell.profilePicView setImageWithString:mystr color:nil ];
             }
             else
             {
-               [cell.profilePicView setImageWithString:userName color:nil ];
+               NSString *mystr= [userName substringToIndex:2];
+               [cell.profilePicView setImageWithString:mystr color:nil ];
             }
 
         }@catch (NSException *exception)

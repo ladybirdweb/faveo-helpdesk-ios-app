@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -112,13 +112,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="owner" translatesAutoresizingMaskIntoConstraints="NO" id="siu-XN-GBs">
                                 <rect key="frame" x="63" y="75" width="13" height="12"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headfone" translatesAutoresizingMaskIntoConstraints="NO" id="uFH-Uu-d7J">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uFH-Uu-d7J">
                                 <rect key="frame" x="173.5" y="76" width="11" height="11"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="11" id="7ab-pe-dew"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mallikarjun" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beW-RO-yLo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beW-RO-yLo">
                                 <rect key="frame" x="186.5" y="73" width="80" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                 <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
@@ -175,7 +175,6 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="agentLabel" destination="beW-RO-yLo" id="YrV-GL-Qij"/>
                 <outlet property="attachImgView" destination="d7e-u6-deE" id="agH-vC-SAb"/>
                 <outlet property="ccImgView" destination="R81-PE-3kV" id="6fQ-IU-Hmt"/>
                 <outlet property="indicationView" destination="vGf-8H-ojp" id="acd-h5-eGs"/>
@@ -223,8 +222,7 @@
         </label>
     </objects>
     <resources>
-        <image name="default_pic" width="96" height="96"/>
-        <image name="headfone" width="512" height="512"/>
+        <image name="default_pic" width="512" height="512"/>
         <image name="owner" width="512" height="512"/>
     </resources>
 </document>

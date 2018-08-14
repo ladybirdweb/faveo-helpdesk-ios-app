@@ -148,11 +148,14 @@
     {
         // [cell.profilePicView setImageWithString:fname color:nil ];
         
-        [_profileImageView setImageWithString:firstName color:nil];
+         NSString *mystr= [firstName substringToIndex:2];
+        
+        [_profileImageView setImageWithString:mystr color:nil];
     }
     else
     {
-        [_profileImageView setImageWithString:userName color:nil];
+         NSString *mystr= [userName substringToIndex:2];
+        [_profileImageView setImageWithString:mystr color:nil];
     }
     
     

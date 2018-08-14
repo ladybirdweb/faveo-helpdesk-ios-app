@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0628A1392122D4F800A6728C /* TableViewAnimationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0628A1342122D4F800A6728C /* TableViewAnimationKit.m */; };
+		0628A13A2122D4F800A6728C /* UITableView+XSAnimationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0628A1382122D4F800A6728C /* UITableView+XSAnimationKit.m */; };
 		069D3A8D208DF9C2002FF61D /* UIImageView+Letters.m in Sources */ = {isa = PBXBuildFile; fileRef = 069D3A8C208DF9C2002FF61D /* UIImageView+Letters.m */; };
 		06B3852E208EEC2E001C9A61 /* TicketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06B3852D208EEC2D001C9A61 /* TicketTableViewCell.xib */; };
 		06B38530208EEC3E001C9A61 /* ConversationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06B3852F208EEC3D001C9A61 /* ConversationTableViewCell.xib */; };
@@ -84,6 +86,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0628A1332122D4F800A6728C /* TableViewAnimationKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewAnimationKit.h; sourceTree = "<group>"; };
+		0628A1342122D4F800A6728C /* TableViewAnimationKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewAnimationKit.m; sourceTree = "<group>"; };
+		0628A1352122D4F800A6728C /* TableViewAnimationKitConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewAnimationKitConfig.h; sourceTree = "<group>"; };
+		0628A1362122D4F800A6728C /* TableViewAnimationKitHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewAnimationKitHeaders.h; sourceTree = "<group>"; };
+		0628A1372122D4F800A6728C /* UITableView+XSAnimationKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+XSAnimationKit.h"; sourceTree = "<group>"; };
+		0628A1382122D4F800A6728C /* UITableView+XSAnimationKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+XSAnimationKit.m"; sourceTree = "<group>"; };
 		069D3A8B208DF9C2002FF61D /* UIImageView+Letters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Letters.h"; sourceTree = "<group>"; };
 		069D3A8C208DF9C2002FF61D /* UIImageView+Letters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Letters.m"; sourceTree = "<group>"; };
 		06B3852D208EEC2D001C9A61 /* TicketTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketTableViewCell.xib; sourceTree = "<group>"; };
@@ -222,6 +230,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0628A1322122D4F800A6728C /* TableViewAnimationKit */ = {
+			isa = PBXGroup;
+			children = (
+				0628A1332122D4F800A6728C /* TableViewAnimationKit.h */,
+				0628A1342122D4F800A6728C /* TableViewAnimationKit.m */,
+				0628A1352122D4F800A6728C /* TableViewAnimationKitConfig.h */,
+				0628A1362122D4F800A6728C /* TableViewAnimationKitHeaders.h */,
+				0628A1372122D4F800A6728C /* UITableView+XSAnimationKit.h */,
+				0628A1382122D4F800A6728C /* UITableView+XSAnimationKit.m */,
+			);
+			path = TableViewAnimationKit;
+			sourceTree = "<group>";
+		};
 		2CAB3CDDF33496B489181EC7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +257,7 @@
 			children = (
 				069D3A8B208DF9C2002FF61D /* UIImageView+Letters.h */,
 				069D3A8C208DF9C2002FF61D /* UIImageView+Letters.m */,
+				0628A1322122D4F800A6728C /* TableViewAnimationKit */,
 				D94371D11DF80BC400DB7376 /* SideMenu */,
 				D94371B21DF8066C00DB7376 /* Reachability */,
 			);
@@ -694,6 +716,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D95D26D71F2C852F00C54B9C /* AppDelegate.m in Sources */,
+				0628A1392122D4F800A6728C /* TableViewAnimationKit.m in Sources */,
 				D94371AD1DF8064200DB7376 /* Reachability.m in Sources */,
 				069D3A8D208DF9C2002FF61D /* UIImageView+Letters.m in Sources */,
 				D94371EB1DF80C2700DB7376 /* SlideNavigationContorllerAnimatorSlide.m in Sources */,
@@ -730,6 +753,7 @@
 				D95D26E81F2C859500C54B9C /* UIView+Shake.m in Sources */,
 				D95D26B51F2C847D00C54B9C /* LoginViewController.m in Sources */,
 				D94371EA1DF80C2700DB7376 /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */,
+				0628A13A2122D4F800A6728C /* UITableView+XSAnimationKit.m in Sources */,
 				D95D26B71F2C847D00C54B9C /* InboxViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

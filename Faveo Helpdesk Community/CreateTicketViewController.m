@@ -23,7 +23,7 @@
     
     Utils *utils;
     NSUserDefaults *userDefaults;
-     GlobalVariables *globalVariables;
+    GlobalVariables *globalVariables;
     
     NSNumber *sla_id;
     NSNumber *help_topic_id;
@@ -83,6 +83,7 @@
     utils=[[Utils alloc]init];
     
     userDefaults=[NSUserDefaults standardUserDefaults];
+    globalVariables=[GlobalVariables sharedInstance];
     //_codeTextField.text=[self setDefaultCountryCode];
     
     [self readFromPlist];
