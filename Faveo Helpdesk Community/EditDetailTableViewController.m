@@ -26,23 +26,23 @@
     GlobalVariables *globalVariables;
     
     NSNumber *sla_id;
-    NSNumber *type_id;
+//    NSNumber *type_id;
     NSNumber *help_topic_id;
-    NSNumber *dept_id;
+//    NSNumber *dept_id;
     NSNumber *priority_id;
     NSNumber *source_id;
-    NSNumber *status_id;
-    NSNumber *staff_id;
+//    NSNumber *status_id;
+//    NSNumber *staff_id;
     
     
     NSMutableArray * sla_idArray;
-    NSMutableArray * type_idArray;
-    NSMutableArray * dept_idArray;
+ //   NSMutableArray * type_idArray;
+ //   NSMutableArray * dept_idArray;
     NSMutableArray * pri_idArray;
     NSMutableArray * helpTopic_idArray;
-    NSMutableArray * status_idArray;
+ //   NSMutableArray * status_idArray;
     NSMutableArray * source_idArray;
-    NSMutableArray * staff_idArray;
+ //   NSMutableArray * staff_idArray;
     
 }
 
@@ -50,9 +50,9 @@
 
 - (void)helpTopicWasSelected:(NSNumber *)selectedIndex element:(id)element;
 - (void)slaWasSelected:(NSNumber *)selectedIndex element:(id)element;
-- (void)deptWasSelected:(NSNumber *)selectedIndex element:(id)element;
+//- (void)deptWasSelected:(NSNumber *)selectedIndex element:(id)element;
 - (void)priorityWasSelected:(NSNumber *)selectedIndex element:(id)element;
-- (void)staffWasSelected:(NSNumber *)selectedIndex element:(id)element;
+//- (void)staffWasSelected:(NSNumber *)selectedIndex element:(id)element;
 
 - (void)actionPickerCancelled:(id)sender;
 
@@ -67,13 +67,13 @@
     
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:false];
     sla_id=[[NSNumber alloc]init];
-    dept_id=[[NSNumber alloc]init];
+  //  dept_id=[[NSNumber alloc]init];
     help_topic_id=[[NSNumber alloc]init];
     priority_id=[[NSNumber alloc]init];
     source_id=[[NSNumber alloc]init];
-    status_id=[[NSNumber alloc]init];
-    type_id=[[NSNumber alloc]init];
-    staff_id=[[NSNumber alloc]init];
+ //   status_id=[[NSNumber alloc]init];
+ //   type_id=[[NSNumber alloc]init];
+ //   staff_id=[[NSNumber alloc]init];
     
     
     UIToolbar *toolBar= [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
@@ -189,21 +189,11 @@
                     NSDictionary *dic= [json objectForKey:@"result"];
                     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            
-                            //                        _clientNameTextField.text=[NSString stringWithFormat:@"%@ %@",[dic objectForKey:@"first_name"],[dic objectForKey:@"last_name"]];
-                            _createdDateTextField.text= [utils getLocalDateTimeFromUTC:[dic objectForKey:@"created_at"]];
-                            
-                            //                            if (([[dic objectForKey:@"first_name"] isEqual:[NSNull null]] ) || ( [[dic objectForKey:@"first_name"] length] == 0 )) {
-                            //                                _firstnameTextField.text=NSLocalizedString(@"Not Available",nil);
-                            //                            }else _firstnameTextField.text=[dic objectForKey:@"first_name"];
-                            
-                            //                        if (([[dic objectForKey:@"last_name"] isEqual:[NSNull null]] ) || ( [[dic objectForKey:@"last_name"] length] == 0 )) {
-                            //                            _lastnameTextField.text=NSLocalizedString(@"Not Available",nil);
-                            //                        }else _lastnameTextField.text= [dic objectForKey:@"last_name"];
+                          
                             
                             globalVariables.ticket_number=[dic objectForKey:@"ticket_number"];
-                            //globalVariables.title=[dic objectForKey:@"title"];
                             
+                    
                             //_subjectTextField.text=[dic objectForKey:@"title"];
                             
                             
@@ -283,18 +273,16 @@
                             
                             
                             
-                            
-                            // _emailTextField.text=[dic objectForKey:@"email"];
-                            _lastResponseDateTextField.text=[utils getLocalDateTimeFromUTC:[dic objectForKey:@"updated_at"]];
-                            
-                            
-                            // _deptTextField.text= [dic objectForKey:@"dept_name"];
-                            // _slaTextField.text=[dic objectForKey:@"sla_name"];
-                            
-                            if (([[dic objectForKey:@"type_name"] isEqual:[NSNull null]] ) || ( [[dic objectForKey:@"type_name"] length] == 0 )) {
+                            if (([[dic objectForKey:@"sla_name"] isEqual:[NSNull null]] ) || ( [[dic objectForKey:@"sla_name"] length] == 0 )) {
+                                _helpTopicTextField.text=@"Nil";
                                 
-                            }else _typeTextField.text=[dic objectForKey:@"type_name"];
+                            }else
+                             _slaTextField.text=[dic objectForKey:@"sla_name"];
                             
+//                            if (([[dic objectForKey:@"type_name"] isEqual:[NSNull null]] ) || ( [[dic objectForKey:@"type_name"] length] == 0 )) {
+//
+//                            }else _typeTextField.text=[dic objectForKey:@"type_name"];
+//
                             if (([[dic objectForKey:@"helptopic_name"] isEqual:[NSNull null]] ) || ( [[dic objectForKey:@"helptopic_name"] length] == 0 )) {
                                 _helpTopicTextField.text=@"Nil";
                                 
@@ -312,27 +300,23 @@
                             }else _priorityTextField.text=[dic objectForKey:@"priority_name"];
                             
                             
-                            if (([[dic objectForKey:@"assignee_email"] isEqual:[NSNull null]] ) || ( [[dic objectForKey:@"assignee_email"] length] == 0 )) {
-                                // _assinTextField.text=NSLocalizedString(@"Not Available",nil);
-                                _assinTextField.text=NSLocalizedString(@"Select Assignee",nil);
-                            }else{
-                                _assinTextField.text= [dic objectForKey:@"assignee_email"];
-                            }
+//                            if (([[dic objectForKey:@"assignee_email"] isEqual:[NSNull null]] ) || ( [[dic objectForKey:@"assignee_email"] length] == 0 )) {
+//                                // _assinTextField.text=NSLocalizedString(@"Not Available",nil);
+//                                _assinTextField.text=NSLocalizedString(@"Select Assignee",nil);
+//                            }else{
+//                                _assinTextField.text= [dic objectForKey:@"assignee_email"];
+//                            }
                             
-                            // _statusTextField.text= [dic objectForKey:@"status_name"];
-                            
-                            _dueDateTextField.text= [utils getLocalDateTimeFromUTCDueDate:[dic objectForKey:@"duedate"]];
-                            
+                           
                             [self.refreshControl endRefreshing];
                             [_imgViewLoading setHidden:YES];
-                            //[_activityIndicatorObject stopAnimating];
                             [self.tableView reloadData];
                             
                         });
                     });
                 }
                 
-                NSLog(@"Thread-NO5-getDetail-closed");
+                NSLog(@"Thread-NO5-editDetail-closed");
                 
             }];
         }@catch (NSException *exception)
@@ -371,55 +355,55 @@
         NSDictionary *resultDic = globalVariables.dependencyDataDict;
 
         
-        NSArray *deptArray=[resultDic objectForKey:@"departments"];
+      //  NSArray *deptArray=[resultDic objectForKey:@"departments"];
         NSArray *helpTopicArray=[resultDic objectForKey:@"helptopics"];
         NSArray *prioritiesArray=[resultDic objectForKey:@"priorities"];
         NSArray *slaArray=[resultDic objectForKey:@"sla"];
         NSArray *sourcesArray=[resultDic objectForKey:@"sources"];
-        NSMutableArray *staffsArray=[resultDic objectForKey:@"staffs"];
-        NSArray *statusArray=[resultDic objectForKey:@"status"];
-        NSArray *typeArray=[resultDic objectForKey:@"type"];
+   //     NSMutableArray *staffsArray=[resultDic objectForKey:@"staffs"];
+   //     NSArray *statusArray=[resultDic objectForKey:@"status"];
+   //     NSArray *typeArray=[resultDic objectForKey:@"type"];
         
         //    NSLog(@"resultDic2--%@,%@,%@,%@,%@,%@,%@,%@",deptArray,helpTopicArray,prioritiesArray,slaArray,sourcesArray,staffsArray,statusArray,teamArray);
         
-        NSMutableArray *deptMU=[[NSMutableArray alloc]init];
+   //     NSMutableArray *deptMU=[[NSMutableArray alloc]init];
         NSMutableArray *slaMU=[[NSMutableArray alloc]init];
         NSMutableArray *helptopicMU=[[NSMutableArray alloc]init];
         NSMutableArray *priMU=[[NSMutableArray alloc]init];
-        NSMutableArray *statusMU=[[NSMutableArray alloc]init];
+   //     NSMutableArray *statusMU=[[NSMutableArray alloc]init];
         NSMutableArray *sourceMU=[[NSMutableArray alloc]init];
-        NSMutableArray *typeMU=[[NSMutableArray alloc]init];
-        NSMutableArray *staffMU=[[NSMutableArray alloc]init];
+   //     NSMutableArray *typeMU=[[NSMutableArray alloc]init];
+     //   NSMutableArray *staffMU=[[NSMutableArray alloc]init];
         
         
-        dept_idArray=[[NSMutableArray alloc]init];
+   //     dept_idArray=[[NSMutableArray alloc]init];
         sla_idArray=[[NSMutableArray alloc]init];
         helpTopic_idArray=[[NSMutableArray alloc]init];
         pri_idArray=[[NSMutableArray alloc]init];
-        status_idArray=[[NSMutableArray alloc]init];
+  //      status_idArray=[[NSMutableArray alloc]init];
         source_idArray=[[NSMutableArray alloc]init];
-        type_idArray=[[NSMutableArray alloc]init];
-        staff_idArray=[[NSMutableArray alloc]init];
+  //      type_idArray=[[NSMutableArray alloc]init];
+   //     staff_idArray=[[NSMutableArray alloc]init];
         
         
-        [staffMU insertObject:@"Select Assignee" atIndex:0];
-        [staff_idArray insertObject:@"" atIndex:0];
+//        [staffMU insertObject:@"Select Assignee" atIndex:0];
+//        [staff_idArray insertObject:@"" atIndex:0];
+//
+//        for (NSMutableDictionary *dicc in staffsArray) {
+//            if ([dicc objectForKey:@"email"]) {
+//                [staffMU addObject:[dicc objectForKey:@"email"]];
+//                [staff_idArray addObject:[dicc objectForKey:@"id"]];
+//            }
+//
+//        }
         
-        for (NSMutableDictionary *dicc in staffsArray) {
-            if ([dicc objectForKey:@"email"]) {
-                [staffMU addObject:[dicc objectForKey:@"email"]];
-                [staff_idArray addObject:[dicc objectForKey:@"id"]];
-            }
-            
-        }
-        
-        for (NSDictionary *dicc in deptArray) {
-            if ([dicc objectForKey:@"name"]) {
-                [deptMU addObject:[dicc objectForKey:@"name"]];
-                [dept_idArray addObject:[dicc objectForKey:@"id"]];
-            }
-            
-        }
+//        for (NSDictionary *dicc in deptArray) {
+//            if ([dicc objectForKey:@"name"]) {
+//                [deptMU addObject:[dicc objectForKey:@"name"]];
+//                [dept_idArray addObject:[dicc objectForKey:@"id"]];
+//            }
+//
+//        }
         
         for (NSDictionary *dicc in prioritiesArray) {
             if ([dicc objectForKey:@"priority"]) {
@@ -444,19 +428,20 @@
             }
         }
         
-        for (NSDictionary *dicc in typeArray) {
-            if ([dicc objectForKey:@"name"]) {
-                [typeMU addObject:[dicc objectForKey:@"name"]];
-                [type_idArray addObject:[dicc objectForKey:@"id"]];
-            }
-        }
+//        for (NSDictionary *dicc in typeArray) {
+//            if ([dicc objectForKey:@"name"]) {
+//                [typeMU addObject:[dicc objectForKey:@"name"]];
+//                [type_idArray addObject:[dicc objectForKey:@"id"]];
+//            }
+//        }
         
-        for (NSDictionary *dicc in statusArray) {
-            if ([dicc objectForKey:@"name"]) {
-                [statusMU addObject:[dicc objectForKey:@"name"]];
-                [status_idArray addObject:[dicc objectForKey:@"id"]];
-            }
-        }
+//        for (NSDictionary *dicc in statusArray) {
+//            if ([dicc objectForKey:@"name"]) {
+//                [statusMU addObject:[dicc objectForKey:@"name"]];
+//                [status_idArray addObject:[dicc objectForKey:@"id"]];
+//            }
+//        }
+//
         
         for (NSDictionary *dicc in sourcesArray) {
             if ([dicc objectForKey:@"name"]) {
@@ -465,14 +450,14 @@
             }
         }
         
-        _deptArray=[deptMU copy];
+    //    _deptArray=[deptMU copy];
         _helptopicsArray=[helptopicMU copy];
         _slaPlansArray=[slaMU copy];
         _priorityArray=[priMU copy];
-        _statusArray=[statusMU copy];
+    //    _statusArray=[statusMU copy];
         _sourceArray=[sourceMU copy];
-        _typeArray=[typeMU copy];
-        _assignArray=[staffMU copy];
+    //    _typeArray=[typeMU copy];
+    //    _assignArray=[staffMU copy];
         
     }@catch (NSException *exception)
     {
@@ -493,15 +478,15 @@
 
 
 
-- (IBAction)statusClicked:(id)sender {
-    // [_subjectTextField resignFirstResponder];
-    if (!_statusArray||!_statusArray.count) {
-        _statusTextField.text=NSLocalizedString(@"Not Available",nil);
-        status_id=0;
-    }else{
-        [ActionSheetStringPicker showPickerWithTitle:@"Select Status" rows:_statusArray initialSelection:0 target:self successAction:@selector(statusWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
-    }
-}
+//- (IBAction)statusClicked:(id)sender {
+//    // [_subjectTextField resignFirstResponder];
+//    if (!_statusArray||!_statusArray.count) {
+//        _statusTextField.text=NSLocalizedString(@"Not Available",nil);
+//        status_id=0;
+//    }else{
+//        [ActionSheetStringPicker showPickerWithTitle:@"Select Status" rows:_statusArray initialSelection:0 target:self successAction:@selector(statusWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+//    }
+//}
 
 - (IBAction)slaClicked:(id)sender {
     // [_subjectTextField resignFirstResponder];
@@ -516,17 +501,18 @@
     
 }
 
-- (IBAction)deptClicked:(id)sender {
-    // [_subjectTextField resignFirstResponder];
-    
-    if (!_deptArray||!_deptArray.count) {
-        _deptTextField.text=NSLocalizedString(@"Not Available",nil);
-        dept_id=0;
-    }else{
-        [ActionSheetStringPicker showPickerWithTitle:@"Select Department" rows:_deptArray initialSelection:0 target:self successAction:@selector(deptWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
-    }
-    
-}
+
+//- (IBAction)deptClicked:(id)sender {
+//    // [_subjectTextField resignFirstResponder];
+//
+//    if (!_deptArray||!_deptArray.count) {
+//        _deptTextField.text=NSLocalizedString(@"Not Available",nil);
+//        dept_id=0;
+//    }else{
+//        [ActionSheetStringPicker showPickerWithTitle:@"Select Department" rows:_deptArray initialSelection:0 target:self successAction:@selector(deptWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+//    }
+//
+//}
 
 
 
@@ -568,30 +554,30 @@
         [ActionSheetStringPicker showPickerWithTitle:@"Select Source" rows:_sourceArray initialSelection:0 target:self successAction:@selector(sourceWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
     }
 }
-- (IBAction)typeClicked:(id)sender {
-    
-    [self.view endEditing:YES];
-    [_typeTextField resignFirstResponder];
-    if (!_typeArray||![_typeArray count]) {
-        _typeTextField.text=NSLocalizedString(@"Not Available",nil);
-        type_id=0;
-        
-    }else{
-        [ActionSheetStringPicker showPickerWithTitle:@"Select Ticket Type" rows:_typeArray initialSelection:0 target:self successAction:@selector(typeWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
-    }
-}
+//- (IBAction)typeClicked:(id)sender {
+//
+//    [self.view endEditing:YES];
+//    [_typeTextField resignFirstResponder];
+//    if (!_typeArray||![_typeArray count]) {
+//        _typeTextField.text=NSLocalizedString(@"Not Available",nil);
+//        type_id=0;
+//
+//    }else{
+//        [ActionSheetStringPicker showPickerWithTitle:@"Select Ticket Type" rows:_typeArray initialSelection:0 target:self successAction:@selector(typeWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+//    }
+//}
 
-- (IBAction)assignClicked:(id)sender
-{
-    [self.view endEditing:YES];
-    [_assinTextField resignFirstResponder];
-    if (!_assignArray||!_assignArray.count) {
-        _assinTextField.text=NSLocalizedString(@"Not Available",nil);
-        source_id=0;
-    }else{
-        [ActionSheetStringPicker showPickerWithTitle:@"Select Source" rows:_assignArray initialSelection:0 target:self successAction:@selector(staffWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
-    }
-}
+//- (IBAction)assignClicked:(id)sender
+//{
+//    [self.view endEditing:YES];
+//    [_assinTextField resignFirstResponder];
+//    if (!_assignArray||!_assignArray.count) {
+//        _assinTextField.text=NSLocalizedString(@"Not Available",nil);
+//        source_id=0;
+//    }else{
+//        [ActionSheetStringPicker showPickerWithTitle:@"Select Source" rows:_assignArray initialSelection:0 target:self successAction:@selector(staffWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+//    }
+//}
 
 - (IBAction)saveClicked:(id)sender {
     
@@ -604,7 +590,11 @@
         [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"Please select PRIORITY" ,nil) backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
     }else  if (self.sourceTextField.text.length==0){
         [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"Please select SOURCE" ,@"Please select SOURCE") backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-    }else  {
+    }
+    else  if (self.slaTextField.text.length==0){
+        [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"Please select SLA" ,@"Please select SOURCE") backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+    }
+    else  {
         [self save];
     }
     
@@ -635,32 +625,22 @@
                               canBeDismissedByUser:YES];
         
     }else{
-        if (_typeTextField.text.length!=0) {
-            type_id=[NSNumber numberWithInteger:1+[_typeArray indexOfObject:_typeTextField.text]];
-        }else type_id=0;
         
         priority_id=[NSNumber numberWithInteger:1+[_priorityArray indexOfObject:_priorityTextField.text]];
         help_topic_id = [NSNumber numberWithInteger:1+[_helptopicsArray indexOfObject:_helpTopicTextField.text]];
         sla_id = [NSNumber numberWithInteger:1+[_slaPlansArray indexOfObject:_slaTextField.text]];
         source_id = [NSNumber numberWithInteger:1+[_sourceArray indexOfObject:_sourceTextField.text]];
-        status_id = [NSNumber numberWithInteger:1+[_statusArray indexOfObject:_statusTextField.text]];
-        
+       
         //staff_id = [NSNumber numberWithInteger:1+[_assignArray indexOfObject:_assinTextField.text]];
         
         
         sla_id=[NSNumber numberWithInt:1];
         [[AppDelegate sharedAppdelegate] showProgressView];
         
-        NSString *staffID= [NSString stringWithFormat:@"%@",staff_id];
-        
-        if([staffID isEqualToString:@"(null)"] )
-        {
-            
-            staffID=@"";
-        }
         
         
-        NSString *url=[NSString stringWithFormat:@"%@helpdesk/edit?api_key=%@&ip=%@&token=%@&ticket_id=%@&help_topic=%@&ticket_type=%@&ticket_priority=%@&ticket_source=%@&subject=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],globalVariables.iD,help_topic_id,type_id,priority_id,source_id,_subjectTextView.text];
+        
+        NSString *url=[NSString stringWithFormat:@"%@helpdesk/edit?api_key=%@&ip=%@&token=%@&ticket_id=%@&help_topic=%@&ticket_priority=%@&ticket_source=%@&subject=%@&sla=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],globalVariables.iD,help_topic_id,priority_id,source_id,_subjectTextView.text,sla_id];
         
         NSLog(@"URL is : %@",url);
         
@@ -758,13 +738,13 @@
     NSLog(@"Delegate has been informed that ActionSheetPicker was cancelled");
 }
 
-- (void)staffWasSelected:(NSNumber *)selectedIndex element:(id)element
-{
-    staff_id=(staff_idArray)[(NSUInteger) [selectedIndex intValue]];
-    
-    self.assinTextField.text = (_assignArray)[(NSUInteger) [selectedIndex intValue]];
-    
-}
+//- (void)staffWasSelected:(NSNumber *)selectedIndex element:(id)element
+//{
+//    staff_id=(staff_idArray)[(NSUInteger) [selectedIndex intValue]];
+//
+//    self.assinTextField.text = (_assignArray)[(NSUInteger) [selectedIndex intValue]];
+//
+//}
 
 
 - (void)sourceWasSelected:(NSNumber *)selectedIndex element:(id)element {
@@ -774,22 +754,22 @@
     //may have originated from textField or barButtonItem, use an IBOutlet instead of element
     self.sourceTextField.text = (_sourceArray)[(NSUInteger) [selectedIndex intValue]];
 }
-- (void)typeWasSelected:(NSNumber *)selectedIndex element:(id)element {
-    type_id=(type_idArray)[(NSUInteger) [selectedIndex intValue]];
-    // self.selectedIndex = [selectedIndex intValue];
-    
-    //may have originated from textField or barButtonItem, use an IBOutlet instead of element
-    self.typeTextField.text = (_typeArray)[(NSUInteger) [selectedIndex intValue]];
-}
+//- (void)typeWasSelected:(NSNumber *)selectedIndex element:(id)element {
+//    type_id=(type_idArray)[(NSUInteger) [selectedIndex intValue]];
+//    // self.selectedIndex = [selectedIndex intValue];
+//
+//    //may have originated from textField or barButtonItem, use an IBOutlet instead of element
+//    self.typeTextField.text = (_typeArray)[(NSUInteger) [selectedIndex intValue]];
+//}
 
-- (void)statusWasSelected:(NSNumber *)selectedIndex element:(id)element {
-    status_id=(status_idArray)[(NSUInteger) [selectedIndex intValue]];
-    
-    //self.selectedIndex = [selectedIndex intValue];
-    
-    //may have originated from textField or barButtonItem, use an IBOutlet instead of element
-    self.statusTextField.text = (_statusArray)[(NSUInteger) [selectedIndex intValue]];
-}
+//- (void)statusWasSelected:(NSNumber *)selectedIndex element:(id)element {
+//    status_id=(status_idArray)[(NSUInteger) [selectedIndex intValue]];
+//
+//    //self.selectedIndex = [selectedIndex intValue];
+//
+//    //may have originated from textField or barButtonItem, use an IBOutlet instead of element
+//    self.statusTextField.text = (_statusArray)[(NSUInteger) [selectedIndex intValue]];
+//}
 
 - (void)helpTopicWasSelected:(NSNumber *)selectedIndex element:(id)element {
     help_topic_id=(helpTopic_idArray)[(NSUInteger) [selectedIndex intValue]];
@@ -806,13 +786,13 @@
     //may have originated from textField or barButtonItem, use an IBOutlet instead of element
     self.slaTextField.text = (_slaPlansArray)[(NSUInteger) [selectedIndex intValue]];
 }
-- (void)deptWasSelected:(NSNumber *)selectedIndex element:(id)element {
-    dept_id=(dept_idArray)[(NSUInteger) [selectedIndex intValue]];
-    // self.selectedIndex = [selectedIndex intValue];
-    
-    //may have originated from textField or barButtonItem, use an IBOutlet instead of element
-    self.deptTextField.text = (_deptArray)[(NSUInteger) [selectedIndex intValue]];
-}
+//- (void)deptWasSelected:(NSNumber *)selectedIndex element:(id)element {
+//    dept_id=(dept_idArray)[(NSUInteger) [selectedIndex intValue]];
+//    // self.selectedIndex = [selectedIndex intValue];
+//
+//    //may have originated from textField or barButtonItem, use an IBOutlet instead of element
+//    self.deptTextField.text = (_deptArray)[(NSUInteger) [selectedIndex intValue]];
+//}
 - (void)priorityWasSelected:(NSNumber *)selectedIndex element:(id)element {
     priority_id=(pri_idArray)[(NSUInteger) [selectedIndex intValue]];
     

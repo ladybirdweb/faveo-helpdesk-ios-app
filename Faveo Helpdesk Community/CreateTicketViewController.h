@@ -68,12 +68,6 @@
  */
 @property (weak, nonatomic) IBOutlet UITextField *helpTopicTextField;
 
-/*!
- @property slaTextField
- 
- @brief It is textfiled that allows a user to enter SLA plan.
- */
-@property (weak, nonatomic) IBOutlet UITextField *slaTextField;
 
 /*!
  @property deptTextField
@@ -204,21 +198,6 @@
 
 - (IBAction)helpTopicClicked:(id)sender;
 
-/*!
- @method slaClicked
- 
- @brief This will gives List of SLA plans.
- 
- @discussion After clicking this button it will shows list of SLA plans.The SLA plan can be Emergency, High, Low or normal.
- 
- @code
- 
- - (IBAction)slaClicked:(id)sender;
- 
- @endcode
- 
- */
-- (IBAction)slaClicked:(id)sender;
 
 /*!
  @method deptClicked
@@ -234,7 +213,7 @@
  @endcode
  
  */
-- (IBAction)deptClicked:(id)sender;
+//- (IBAction)deptClicked:(id)sender;
 
 /*!
  @method priorityClicked
@@ -281,9 +260,11 @@
  */
 
 
-- (IBAction)staffClicked:(id)sender;
-
 - (IBAction)countryCodeClicked:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UITextField *slaTextField;
+
+- (IBAction)slaClicked:(id)sender;
 
 
 @end

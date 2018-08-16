@@ -113,11 +113,38 @@
             [webservices httpResponseGET:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
                 
                 
+                NSLog(@"Message : %@",msg);
                 
                 if (error || [msg containsString:@"Error"]) {
                     [refresh endRefreshing];
                     [[AppDelegate sharedAppdelegate] hideProgressView];
                     if (msg) {
+                        
+                        if([msg isEqualToString:@"Error-404"])
+                        {
+                            NSLog(@"Message is : %@",msg);
+                            [self->utils showAlertWithMessage:[NSString stringWithFormat:@"The requested URL was not found on this server."] sendViewController:self];
+                            [[AppDelegate sharedAppdelegate] hideProgressView];
+                        }
+                        else if([msg isEqualToString:@"Error-405"] ||[msg isEqualToString:@"405"])
+                        {
+                            NSLog(@"Message is : %@",msg);
+                            [self->utils showAlertWithMessage:[NSString stringWithFormat:@"The requested URL was not found on this server."] sendViewController:self];
+                            [[AppDelegate sharedAppdelegate] hideProgressView];
+                        }
+                        else if([msg isEqualToString:@"Error-500"] ||[msg isEqualToString:@"500"])
+                        {
+                            NSLog(@"Message is : %@",msg);
+                            [self->utils showAlertWithMessage:[NSString stringWithFormat:@"Internal Server Error.Something has gone wrong on the website's server."] sendViewController:self];
+                            [[AppDelegate sharedAppdelegate] hideProgressView];
+                        }
+                        
+                        else{
+                            
+                            NSLog(@"Message is : %@",msg);
+                            [self->utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
+                            [[AppDelegate sharedAppdelegate] hideProgressView];
+                        }
                         
                         [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
                         

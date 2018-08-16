@@ -10,23 +10,19 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *slaTextField;
 
-@property (weak, nonatomic) IBOutlet UITextField *deptTextField;
+//@property (weak, nonatomic) IBOutlet UITextField *deptTextField;
 
-@property (weak, nonatomic) IBOutlet UITextField *subjectTextField;
+//@property (weak, nonatomic) IBOutlet UITextField *subjectTextField;
 
-@property (weak, nonatomic) IBOutlet UITextField *statusTextField;
+//@property (weak, nonatomic) IBOutlet UITextField *statusTextField;
 
-@property (weak, nonatomic) IBOutlet UITextField *typeTextField;
+//@property (weak, nonatomic) IBOutlet UITextField *typeTextField;
 
 @property (weak, nonatomic) IBOutlet UITextField *priorityTextField;
 
 @property (weak, nonatomic) IBOutlet UITextField *sourceTextField;
 
-@property (weak, nonatomic) IBOutlet UITextField *dueDateTextField;
 
-@property (weak, nonatomic) IBOutlet UITextField *createdDateTextField;
-
-@property (weak, nonatomic) IBOutlet UITextField *lastResponseDateTextField;
 
 
 @property (nonatomic, strong) NSArray * helptopicsArray;
@@ -52,16 +48,18 @@
 
 - (IBAction)sourceClicked:(id)sender;
 
-- (IBAction)typeClicked:(id)sender;
+//- (IBAction)typeClicked:(id)sender;
 
-- (IBAction)statusClicked:(id)sender;
+//- (IBAction)statusClicked:(id)sender;
 - (IBAction)helpTopicClicked:(id)sender;
+
 
 - (IBAction)slaClicked:(id)sender;
 
-- (IBAction)deptClicked:(id)sender;
 
-- (IBAction)assignClicked:(id)sender;
+//- (IBAction)deptClicked:(id)sender;
+
+//- (IBAction)assignClicked:(id)sender;
 
 - (IBAction)saveClicked:(id)sender;
 
@@ -70,10 +68,10 @@
 
 
 
-@property (nonatomic, strong) NSMutableArray * assignArray;
+//@property (nonatomic, strong) NSMutableArray * assignArray;
 
 
-@property (weak, nonatomic) IBOutlet UITextField *assinTextField;
+//@property (weak, nonatomic) IBOutlet UITextField *assinTextField;
 
 @property (weak, nonatomic) IBOutlet UITextView *subjectTextView;
 
