@@ -46,7 +46,8 @@
     userDefaults=[NSUserDefaults standardUserDefaults];
     globalVariables=[GlobalVariables sharedInstance];
     
-    [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting user List",nil)];
+    
+    
     [self reload];
     
     // Do any additional setup after loading the view.
@@ -56,7 +57,8 @@
 -(void)reload{
     
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
-    { [refresh endRefreshing];
+    {
+        [refresh endRefreshing];
         //connection unavailable
         [[AppDelegate sharedAppdelegate] hideProgressView];
         //  [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
@@ -85,7 +87,11 @@
         
         //        [[AppDelegate sharedAppdelegate] showProgressView];
         NSString *url=[NSString stringWithFormat:@"%@helpdesk/customers-custom?api_key=%@&ip=%@&token=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"]];
+        
+        [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting user List",nil)];
+        
         @try{
+            
             MyWebservices *webservices=[MyWebservices sharedInstance];
             [webservices httpResponseGET:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
                 
@@ -120,11 +126,11 @@
                     _currentPage=[[json objectForKey:@"current_page"] integerValue];
                     _totalTickets=[[json objectForKey:@"total"] integerValue];
                     _totalPages=[[json objectForKey:@"last_page"] integerValue];
+                    
                     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                         dispatch_async(dispatch_get_main_queue(), ^{
                             
                             
-                           
                             [self.tableView reloadData];
                              [refresh endRefreshing];
                             [[AppDelegate sharedAppdelegate] hideProgressView];
