@@ -373,8 +373,8 @@
     globalVariables.Ticket_status= [finaldic objectForKey:@"ticket_status_name"];
     
     //requesterTempDict
-    globalVariables.First_name= [requesterTempDict objectForKey:@"first_name"];
-    globalVariables.Last_name= [requesterTempDict objectForKey:@"last_name"];
+ //   globalVariables.First_name= [requesterTempDict objectForKey:@"first_name"];
+  //  globalVariables.Last_name= [requesterTempDict objectForKey:@"last_name"];
     
     TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
     [self.navigationController pushViewController:td animated:YES];

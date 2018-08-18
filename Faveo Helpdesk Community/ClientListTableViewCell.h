@@ -1,8 +1,7 @@
 //
 //  ClientListTableViewCell.h
 //  SideMEnuDemo
-//
-//  Created by Narendra on 02/09/16.
+
 //  Copyright © 2016 Ladybird websolutions pvt ltd. All rights reserved.
 //
 

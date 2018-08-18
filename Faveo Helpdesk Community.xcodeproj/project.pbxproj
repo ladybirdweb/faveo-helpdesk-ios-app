@@ -183,7 +183,6 @@
 		D95D26E31F2C859500C54B9C /* UITextField+PasswordField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+PasswordField.h"; sourceTree = "<group>"; };
 		D95D26E41F2C859500C54B9C /* UITextField+PasswordField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+PasswordField.m"; sourceTree = "<group>"; };
 		D95D26EC1F2C874800C54B9C /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
-		D95D26EE1F2C887E00C54B9C /* Faveo Helpdesk Community.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Faveo Helpdesk Community.entitlements"; sourceTree = "<group>"; };
 		D95D26F21F2C8CEC00C54B9C /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D95D26F41F2C8EB000C54B9C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D9787A8D1DF800B6009C745F /* Faveo Helpdesk Community.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Faveo Helpdesk Community.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -461,7 +460,6 @@
 			isa = PBXGroup;
 			children = (
 				D95D26EC1F2C874800C54B9C /* countries.json */,
-				D95D26EE1F2C887E00C54B9C /* Faveo Helpdesk Community.entitlements */,
 				D95D26F41F2C8EB000C54B9C /* Main.storyboard */,
 				D9787A9C1DF800B6009C745F /* Assets.xcassets */,
 				D9B5A9381EB0D1F80054D15C /* Faveo Helpdesk Community.pch */,

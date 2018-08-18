@@ -25,13 +25,15 @@
     NSUserDefaults *userDefaults;
     GlobalVariables *globalVariables;
     
+    NSString*statusValue;
+    
     NSNumber *sla_id;
 //    NSNumber *type_id;
     NSNumber *help_topic_id;
 //    NSNumber *dept_id;
     NSNumber *priority_id;
     NSNumber *source_id;
-//    NSNumber *status_id;
+    NSNumber *status_id;
 //    NSNumber *staff_id;
     
     
@@ -40,7 +42,7 @@
  //   NSMutableArray * dept_idArray;
     NSMutableArray * pri_idArray;
     NSMutableArray * helpTopic_idArray;
- //   NSMutableArray * status_idArray;
+    NSMutableArray * status_idArray;
     NSMutableArray * source_idArray;
  //   NSMutableArray * staff_idArray;
     
@@ -71,7 +73,7 @@
     help_topic_id=[[NSNumber alloc]init];
     priority_id=[[NSNumber alloc]init];
     source_id=[[NSNumber alloc]init];
- //   status_id=[[NSNumber alloc]init];
+    status_id=[[NSNumber alloc]init];
  //   type_id=[[NSNumber alloc]init];
  //   staff_id=[[NSNumber alloc]init];
     
@@ -100,6 +102,9 @@
     globalVariables=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
 
+    statusValue=globalVariables.Ticket_status;
+    
+    
     [self reload];
     [self readFromPlist];
     
@@ -361,7 +366,7 @@
         NSArray *slaArray=[resultDic objectForKey:@"sla"];
         NSArray *sourcesArray=[resultDic objectForKey:@"sources"];
    //     NSMutableArray *staffsArray=[resultDic objectForKey:@"staffs"];
-   //     NSArray *statusArray=[resultDic objectForKey:@"status"];
+        NSArray *statusArray=[resultDic objectForKey:@"status"];
    //     NSArray *typeArray=[resultDic objectForKey:@"type"];
         
         //    NSLog(@"resultDic2--%@,%@,%@,%@,%@,%@,%@,%@",deptArray,helpTopicArray,prioritiesArray,slaArray,sourcesArray,staffsArray,statusArray,teamArray);
@@ -370,7 +375,7 @@
         NSMutableArray *slaMU=[[NSMutableArray alloc]init];
         NSMutableArray *helptopicMU=[[NSMutableArray alloc]init];
         NSMutableArray *priMU=[[NSMutableArray alloc]init];
-   //     NSMutableArray *statusMU=[[NSMutableArray alloc]init];
+        NSMutableArray *statusMU=[[NSMutableArray alloc]init];
         NSMutableArray *sourceMU=[[NSMutableArray alloc]init];
    //     NSMutableArray *typeMU=[[NSMutableArray alloc]init];
      //   NSMutableArray *staffMU=[[NSMutableArray alloc]init];
@@ -380,7 +385,7 @@
         sla_idArray=[[NSMutableArray alloc]init];
         helpTopic_idArray=[[NSMutableArray alloc]init];
         pri_idArray=[[NSMutableArray alloc]init];
-  //      status_idArray=[[NSMutableArray alloc]init];
+        status_idArray=[[NSMutableArray alloc]init];
         source_idArray=[[NSMutableArray alloc]init];
   //      type_idArray=[[NSMutableArray alloc]init];
    //     staff_idArray=[[NSMutableArray alloc]init];
@@ -435,13 +440,26 @@
 //            }
 //        }
         
-//        for (NSDictionary *dicc in statusArray) {
-//            if ([dicc objectForKey:@"name"]) {
-//                [statusMU addObject:[dicc objectForKey:@"name"]];
-//                [status_idArray addObject:[dicc objectForKey:@"id"]];
-//            }
-//        }
-//
+        for (NSDictionary *dicc in statusArray) {
+            if ([dicc objectForKey:@"name"]) {
+                [statusMU addObject:[dicc objectForKey:@"name"]];
+                [status_idArray addObject:[dicc objectForKey:@"id"]];
+            }
+        }
+
+        //getting ststus id
+                for (NSDictionary *dic in statusArray)
+                {
+                    NSString *idOfStatus = dic[@"name"];
+        
+                    if([idOfStatus isEqual:statusValue])
+                    {
+                        status_id= dic[@"id"];
+        
+                        NSLog(@"status id is : %@",status_id);
+                    }
+                }
+        
         
         for (NSDictionary *dicc in sourcesArray) {
             if ([dicc objectForKey:@"name"]) {
@@ -450,14 +468,21 @@
             }
         }
         
+        
+        
     //    _deptArray=[deptMU copy];
         _helptopicsArray=[helptopicMU copy];
         _slaPlansArray=[slaMU copy];
         _priorityArray=[priMU copy];
-    //    _statusArray=[statusMU copy];
+        _statusArray=[statusMU copy];
         _sourceArray=[sourceMU copy];
     //    _typeArray=[typeMU copy];
     //    _assignArray=[staffMU copy];
+        
+        
+      
+
+        
         
     }@catch (NSException *exception)
     {
@@ -641,7 +666,7 @@
         
         
         
-        NSString *url=[NSString stringWithFormat:@"%@helpdesk/edit?api_key=%@&ip=%@&token=%@&ticket_id=%@&help_topic=%@&ticket_priority=%@&ticket_source=%@&subject=%@&sla=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],globalVariables.iD,help_topic_id,priority_id,source_id,_subjectTextView.text,sla_id];
+        NSString *url=[NSString stringWithFormat:@"%@helpdesk/edit?api_key=%@&ip=%@&token=%@&ticket_id=%@&help_topic=%@&ticket_priority=%@&ticket_source=%@&subject=%@&sla_plan=%@&status_id=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],globalVariables.iD,help_topic_id,priority_id,source_id,_subjectTextView.text,sla_id,status_id];
         
         NSLog(@"URL is : %@",url);
         
