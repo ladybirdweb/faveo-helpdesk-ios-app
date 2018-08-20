@@ -1,0 +1,52 @@
+/*
+ Localization.strings
+ Faveo Helpdesk Pro
+ 
+ Created by Narendra on 03/04/17.
+ Copyright © 2017 Ladybird websolutions pvt ltd. All rights reserved.
+ */
+
+"Please Enter the URL"="Пожалуйста, введите URL";
+"Verifying URL"="Проверка URL";
+"Error verifying URL"="Ошибка проверки URL";
+"Please Enter a valid URL"="Пожалуйста, введите действительный URL";
+"Verified URL"="Проверено URL";
+"Access denied, to use pro version!"="Доступ запрещен, использовать про версию!";
+"Please Enter Username & Password"="Введите имя пользователя и пароль";
+"Please Enter Password"="Пожалуйста, введите пароль";
+"You have logged in successfully."="Bы успешно вошли в систему.";
+"Getting Data"="Получение данных";
+"Refreshing"="Обновление";
+"CreateTicket"="Создать билет";
+"Inbox"="Входящие";
+"Trash Tickets"="Корзина";
+"Client List"="Список клиентов";
+"Closed Tickets"="Закрытые билеты";
+"Unassigned Tickets"="Нераспределенные билеты";
+"MyTickets"="Мои билеты";
+"About"="O";
+"Not Available"="Недоступно";
+"Select Helptopic"="Выберите Helptopic";
+"Select CountryCode"="Выберите CountryCode";
+"Please enter EMAIL-ID"="Пожалуйста, введите EMAIL-ID";
+"Please enter First Name"="Пожалуйста, введите Имя";
+"Please select HELP-TOPIC"="Пожалуйста, выберите HELP-TOPIC";
+"Please select SLA"="Пожалуйста, выберите SLA";
+"Please select DEPARTMENT"="Пожалуйста, выберите ОТДЕЛ";
+"Please select PRIORITY"="Пожалуйста, выберите ПРИОРИТЕТ";
+"Please enter SUBJECT"="Пожалуйста, введите SUBJECT";
+"SUBJECT requires at least 5 characters"="SUBJECT требует не менее 5 символов";
+"Please enter ticket MESSAGE"="Пожалуйста, введите билет MESSAGE";
+"MESSAGE requires at least 10 characters"="СООБЩЕНИЕ требует не менее 10 символов";
+"Invalid EMAIL_ID" ="Неверный EMAIL_ID";
+"FirstName should have more than 2 characters"="Имя должно содержать более 2 символов";
+"Ticket created successfully!"="Билет успешно создан!";
+"Internal Note"="Внутренняя заметка";
+"Message"="Сообщение";
+"Done"="Готово";
+"Ticket Reply"="Ответ по билетам";
+"Message*"="Сообщение*";
+"Empty!!!"="Пустой!!!";
+"Cc"="Cc";
+"Please wait"="пожалуйста, подождите";
+

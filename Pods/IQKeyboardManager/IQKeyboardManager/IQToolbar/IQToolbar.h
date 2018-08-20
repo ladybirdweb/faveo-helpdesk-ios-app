@@ -1,5 +1,5 @@
 //
-// IQToolbar.h
+//  IQToolbar.h
 // https://github.com/hackiftekhar/IQKeyboardManager
 // Copyright (c) 2013-16 Iftekhar Qurashi.
 //
@@ -21,10 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "IQTitleBarButtonItem.h"
-
 #import <UIKit/UIToolbar.h>
-#import <UIKit/UIDevice.h>
 
 /**
  IQToolbar for IQKeyboardManager.
@@ -32,24 +29,37 @@
 @interface IQToolbar : UIToolbar <UIInputViewAudioFeedback>
 
 /**
- Previous bar button of toolbar.
+ Title font for toolbar.
  */
-@property(nonnull, nonatomic, strong) IQBarButtonItem *previousBarButton;
+@property(nullable, nonatomic, strong) UIFont *titleFont;
 
 /**
- Next bar button of toolbar.
+ Toolbar done title
  */
-@property(nonnull, nonatomic, strong) IQBarButtonItem *nextBarButton;
+@property(nullable, nonatomic, strong) NSString *doneTitle;
 
 /**
- Title bar button of toolbar.
+ Toolbar done image
  */
-@property(nonnull, nonatomic, strong, readonly) IQTitleBarButtonItem *titleBarButton;
+@property(nullable, nonatomic, strong) UIImage *doneImage;
 
 /**
- Done bar button of toolbar.
+ Toolbar title
  */
-@property(nonnull, nonatomic, strong) IQBarButtonItem *doneBarButton;
+@property(nullable, nonatomic, strong) NSString *title;
+
+/**
+ Optional target & action to behave toolbar title button as clickable button
+ 
+ @param target Target object.
+ @param action Target Selector.
+ */
+-(void)setTitleTarget:(nullable id)target action:(nullable SEL)action;
+
+/**
+ Customized Invocation to be called on title button action. titleInvocation is internally created using setTitleTarget:action: method.
+ */
+@property (nullable, strong, nonatomic) NSInvocation *titleInvocation;
 
 @end
 

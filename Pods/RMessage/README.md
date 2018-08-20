@@ -21,11 +21,11 @@ Welcome to RMessage! RMessage is a reworking of the original [TSMessages](https:
   * Title and Subtitle labels no longer need to have the same shadows applied.
 * Custom Design icon image no longer needs to be a fixed size. Notification sizes itself accordingly.
 * No need to worry about missing a key in your design file. If not specified the default design takes over.
-* Replaced old blur code which was broken when iOS7 was introduced.
+* Removed Old Blur code which was broken when iOS7 was introduced - There is no proper way to properly implement this currently so please dont submit features asking for this to be added until Apple adds an API enabling it.
 * Better default view controller detection with use of PPTopMostController. TSMessages would assume the window root view controller would be the default view controller. This could cause issues with showing in modals for example.
 * Removed the forcing of a specific design - TSMessages forced an iOS7 design or iOS6. Here there is no distinction - though the library is styled for iOS7 by default.
 * Much more im sure :).
-
+*
 
 Note: Buttons within RMessage are not currently fully supported as in TSMessages but will be soon.
 
@@ -134,7 +134,7 @@ return YES;
 }
 ```
 
-The following arguments can be passed in programmatically when creating a new notification:
+The following properties can be set when creating a new notification:
 
 * **viewController**: The view controller to show the notification in. This might be the navigation controller.
 * **title**: The title of the notification view
@@ -148,12 +148,6 @@ The following arguments can be passed in programmatically when creating a new no
 Except the title and the notification type, all of the listed values are optional
 
 If you don't want a detailed description (the text underneath the title) you don't need to set one. The notification will automatically resize itself properly.
-
-## Custom Design File Properties
-
-For a list/description of custom design file properties see: [CustomDesignFilePropertySpecs.md](https://github.com/donileo/RMessage/blob/master/CustomDesignFilePropertySpecs.md)
-
-For version compatibility of custom design file properties see: [CustomDesignFilePropertyCompatibility.md](https://github.com/donileo/RMessage/blob/master/CustomDesignFilePropertyCompatibility.md)
 
 ## Screenshots
 

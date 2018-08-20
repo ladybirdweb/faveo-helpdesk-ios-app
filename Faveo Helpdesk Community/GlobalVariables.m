@@ -1,10 +1,6 @@
 //
 //  GlobalVariables.m
 //  SideMEnuDemo
-//
-//  Created by Narendra on 30/11/16.
-//  Copyright © 2016 Ladybird websolutions pvt ltd. All rights reserved.
-//
 
 #import "GlobalVariables.h"
 
