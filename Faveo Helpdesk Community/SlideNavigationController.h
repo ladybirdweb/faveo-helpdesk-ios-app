@@ -37,8 +37,8 @@
 @end
 
 typedef  enum{
-	MenuLeft = 1,
-	MenuRight = 2
+    MenuLeft = 1,
+    MenuRight = 2
 }Menu;
 
 @protocol SlideNavigationContorllerAnimator;
@@ -63,16 +63,18 @@ extern NSString  *const SlideNavigationControllerDidReveal;
 @property (nonatomic, strong) id <SlideNavigationContorllerAnimator> menuRevealAnimator;
 
 + (SlideNavigationController *)sharedInstance;
-- (void)switchToViewController:(UIViewController *)viewController withCompletion:(void (^)())completion __deprecated;
-- (void)popToRootAndSwitchToViewController:(UIViewController *)viewController withSlideOutAnimation:(BOOL)slideOutAnimation andCompletion:(void (^)())completion;
-- (void)popToRootAndSwitchToViewController:(UIViewController *)viewController withCompletion:(void (^)())completion;
-- (void)popAllAndSwitchToViewController:(UIViewController *)viewController withSlideOutAnimation:(BOOL)slideOutAnimation andCompletion:(void (^)())completion;
-- (void)popAllAndSwitchToViewController:(UIViewController *)viewController withCompletion:(void (^)())completion;
-- (void)bounceMenu:(Menu)menu withCompletion:(void (^)())completion;
-- (void)openMenu:(Menu)menu withCompletion:(void (^)())completion;
-- (void)closeMenuWithCompletion:(void (^)())completion;
+
+- (void)switchToViewController:(UIViewController *)viewController withCompletion:(void (^)(void))completion __deprecated;
+- (void)popToRootAndSwitchToViewController:(UIViewController *)viewController withSlideOutAnimation:(BOOL)slideOutAnimation andCompletion:(void (^)(void))completion;
+- (void)popToRootAndSwitchToViewController:(UIViewController *)viewController withCompletion:(void (^)(void))completion;
+- (void)popAllAndSwitchToViewController:(UIViewController *)viewController withSlideOutAnimation:(BOOL)slideOutAnimation andCompletion:(void (^)(void))completion;
+- (void)popAllAndSwitchToViewController:(UIViewController *)viewController withCompletion:(void (^)(void))completion;
+- (void)bounceMenu:(Menu)menu withCompletion:(void (^)(void))completion;
+- (void)openMenu:(Menu)menu withCompletion:(void (^)(void))completion;
+- (void)closeMenuWithCompletion:(void (^)(void))completion;
 - (void)toggleLeftMenu;
 - (void)toggleRightMenu;
 - (BOOL)isMenuOpen;
 
 @end
+

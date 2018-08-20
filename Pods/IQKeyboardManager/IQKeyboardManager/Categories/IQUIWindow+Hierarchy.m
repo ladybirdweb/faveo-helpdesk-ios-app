@@ -1,5 +1,5 @@
 //
-// IQUIWindow+Hierarchy.m
+//  UIWindow+Hierarchy.m
 // https://github.com/hackiftekhar/IQKeyboardManager
 // Copyright (c) 2013-16 Iftekhar Qurashi.
 //
@@ -26,7 +26,7 @@
 
 @implementation UIWindow (IQ_UIWindow_Hierarchy)
 
-- (UIViewController*)topMostWindowController
+- (UIViewController*)topMostController
 {
     UIViewController *topController = [self rootViewController];
     
@@ -39,7 +39,7 @@
 
 - (UIViewController*)currentViewController;
 {
-    UIViewController *currentViewController = [self topMostWindowController];
+    UIViewController *currentViewController = [self topMostController];
     
     while ([currentViewController isKindOfClass:[UINavigationController class]] && [(UINavigationController*)currentViewController topViewController])
         currentViewController = [(UINavigationController*)currentViewController topViewController];

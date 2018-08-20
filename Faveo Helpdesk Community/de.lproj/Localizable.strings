@@ -1,0 +1,51 @@
+/*
+ Localization.strings
+ Faveo Helpdesk Pro
+ 
+ Created by Narendra on 03/04/17.
+ Copyright © 2017 Ladybird websolutions pvt ltd. All rights reserved.
+ */
+
+"Please Enter the URL"="Bitte die URL eingeben";
+"Verifying URL"="URL überprüfen";
+"Error verifying URL"="Fehler beim Überprüfen der URL";
+"Please Enter a valid URL"="Bitte geben Sie eine gültige URL ein";
+"Verified URL"="Bestätigte URL";
+"Access denied, to use pro version!"="Zugriff verweigert, um Pro-Version zu verwenden!";
+"Please Enter Username & Password"="Bitte geben Sie Benutzername und Passwort ein";
+"Please Enter Password"="Bitte Passwort eingeben";
+"You have logged in successfully."="Du hast dich erfolgreich angemeldet.";
+"Getting Data"="Daten erhalten";
+"Refreshing"="Erfrischung";
+"CreateTicket"="CreateTicket";
+"Inbox"="Posteingang";
+"Trash Tickets"="Trash Tickets";
+"Client List"="Client-Liste";
+"Closed Tickets"="Geschlossene Tickets";
+"Unassigned Tickets"="Nicht zugeordnet Tickets";
+"MyTickets"="MyTickets";
+"About"="Über";
+"Not Available"="Nicht verfügbar";
+"Select Helptopic"="Wählen Sie Helptopic";
+"Select CountryCode"="LandCode auswählen";
+"Please enter EMAIL-ID"="Bitte E-MAIL-ID eingeben";
+"Please enter First Name"="Bitte Vorname eingeben";
+"Please select HELP-TOPIC"="Bitte wählen Sie HELP-THEMA";
+"Please select SLA"="Bitte wählen Sie SLA";
+"Please select DEPARTMENT"="Bitte wählen Sie ABTEILUNG";
+"Please select PRIORITY"="Bitte wählen Sie PRIORITY";
+"Please enter SUBJECT"="Bitte geben Sie SUBJECT";
+"SUBJECT requires at least 5 characters"="SUBJECT benötigt mindestens 5 Zeichen";
+"Please enter ticket MESSAGE"="Bitte Ticket eingeben MESSAGE";
+"MESSAGE requires at least 10 characters"="MESSAGE benötigt mindestens 10 Zeichen";
+"Invalid EMAIL_ID" ="Ungültige EMAIL_ID";
+"FirstName should have more than 2 characters"="Name sollte mehr als 2 Zeichen haben";
+"Ticket created successfully!"="Ticket erfolgreich erstellt!";
+"Internal Note"="Interner Hinweis";
+"Message"="Nachricht";
+"Done"="Fertig";
+"Ticket Reply"="Ticket Reply";
+"Message*"="Nachricht*";
+"Empty!!!"="Leer!!!";
+"Cc"="Cc";
+"Please wait"="Warten Sie mal";

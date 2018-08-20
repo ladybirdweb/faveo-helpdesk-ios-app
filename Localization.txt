@@ -1,0 +1,93 @@
+Company’s URL
+Verifying URL
+Access Checking!
+API Key (Optional)
+Username
+Password
+Signing in
+Welcome!
+Fetching Tickets
+Inbox
+Create Ticket
+Ticket list
+Inbox tickets
+My tickets
+Unassigned tickets
+Closed tickets
+Trash
+Client list
+Settings
+About
+Logout
+Email
+First name
+Last name
+Phone (Optional)
+Help topics
+SLA plans
+Departments
+Subject
+Message
+Priority
+Submit
+Fetching tickets
+Conversation
+Detail
+Reply
+Internal note
+Source
+Created date
+Last response date
+Due date
+Status
+Save
+Loading
+All tickets loaded 
+Fetching detail
+Crash reports
+Send crash reports
+Website
+Faveo helpdesk
+Fetching clients
+Fetching tickets
+No records
+Inactive
+Open tickets
+Closed tickets
+Profile
+Save
+Forgot password?
+Sign in
+Done loading
+Press again to exit
+Something went wrong
+Invalid URL
+Oops! No, internet
+Error verifying URL
+ Wrong credentials
+Connected to internet
+Sorry! Not connected to internet
+Please insert username
+Please insert password
+Please enter a valid URL
+Fetching conversation
+Update successfully
+Failed to update ticket 
+Subject should be minimum 5 characters 
+Please fill the field
+Updating ticket
+Invalid email
+Firstname should be minimum 3 characters
+Fill first name
+Fill lastname
+Message should be minimum 10 characters 
+Invalid assignment
+Invalid assign
+Creating ticket
+Ticket created 
+Notifications
+
+
+App Description:
+
+        Headquartered in Bangalore, Faveo HELPDESK provides Businesses with an automated Helpdesk system to manage customer support. The word Faveo comes from Latin which means to be favourable. Which truly highlights vision and the scope as well as the functionality of the product that Faveo is. It is specifically designed to cater the needs of startups and SME’s empowering them with state of art, ticket based support system. In today’s competitive startup scenario customer retention is one of the major challenges. Handling client query diligently is all the difference between retaining or losing a long lasting relationship. The company is driven with passion of providing tools for managing consumer queries for strategic insights and helping companies take those decisive decisions.     

@@ -1,5 +1,5 @@
 //
-// IQUIScrollView+Additions.h
+//  IQUIScrollView+Additions.h
 // https://github.com/hackiftekhar/IQKeyboardManager
 // Copyright (c) 2013-16 Iftekhar Qurashi.
 //
@@ -21,15 +21,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIScrollView.h>
+#import <UIKit/UIKit.h>
 
 
 @interface UIScrollView (Additions)
-
-/**
- If YES, then scrollview will ignore scrolling (simply not scroll it) for adjusting textfield position. Default is NO.
- */
-@property(nonatomic, assign) BOOL shouldIgnoreScrollingAdjustment;
 
 /**
  Restore scrollViewContentOffset when resigning from scrollView. Default is NO.

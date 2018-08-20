@@ -10,7 +10,6 @@
 #import "RMessageView.h"
 
 static UIViewController *_defaultViewController;
-static NSLock *mLock, *nLock;
 
 @interface RMessage () <RMessageViewProtocol>
 
@@ -27,52 +26,38 @@ static NSLock *mLock, *nLock;
 
 + (instancetype)sharedMessage
 {
-  static RMessage *sharedMessage;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    sharedMessage = [RMessage new];
-    mLock = [NSLock new];
-    nLock = [NSLock new];
-  });
-  return sharedMessage;
+    static RMessage *sharedMessage;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedMessage = [RMessage new];
+    });
+    return sharedMessage;
 }
 
 + (void)showNotificationWithTitle:(NSString *)title
                              type:(RMessageType)type
                    customTypeName:(NSString *)customTypeName
-                         callback:(void (^)(void))callback
+                         callback:(void (^)())callback
 {
-  [self showNotificationWithTitle:title subtitle:nil type:type customTypeName:customTypeName callback:callback];
-}
-
-+ (void)showNotificationWithTitle:(NSString *)title
-                         subtitle:(NSString *)subtitle
-                             type:(RMessageType)type
-                   customTypeName:(NSString *)customTypeName
-                         callback:(void (^)(void))callback
-{
-  [self showNotificationInViewController:_defaultViewController
-                                   title:title
-                                subtitle:subtitle
-                                    type:type
-                          customTypeName:customTypeName
-                                callback:callback];
+    [self showNotificationWithTitle:title
+                           subtitle:nil
+                               type:type
+                     customTypeName:customTypeName
+                           callback:callback];
 }
 
 + (void)showNotificationWithTitle:(NSString *)title
                          subtitle:(NSString *)subtitle
                              type:(RMessageType)type
                    customTypeName:(NSString *)customTypeName
-                         duration:(NSTimeInterval)duration
-                         callback:(void (^)(void))callback
+                         callback:(void (^)())callback
 {
-  [self showNotificationInViewController:_defaultViewController
-                                   title:title
-                                subtitle:subtitle
-                                    type:type
-                          customTypeName:customTypeName
-                                duration:duration
-                                callback:callback];
+    [self showNotificationInViewController:_defaultViewController
+                                     title:title
+                                  subtitle:subtitle
+                                      type:type
+                            customTypeName:customTypeName
+                                  callback:callback];
 }
 
 + (void)showNotificationWithTitle:(NSString *)title
@@ -80,17 +65,33 @@ static NSLock *mLock, *nLock;
                              type:(RMessageType)type
                    customTypeName:(NSString *)customTypeName
                          duration:(NSTimeInterval)duration
-                         callback:(void (^)(void))callback
+                         callback:(void (^)())callback
+{
+    [self showNotificationInViewController:_defaultViewController
+                                     title:title
+                                  subtitle:subtitle
+                                      type:type
+                            customTypeName:customTypeName
+                                  duration:duration
+                                  callback:callback];
+}
+
++ (void)showNotificationWithTitle:(NSString *)title
+                         subtitle:(NSString *)subtitle
+                             type:(RMessageType)type
+                   customTypeName:(NSString *)customTypeName
+                         duration:(NSTimeInterval)duration
+                         callback:(void (^)())callback
              canBeDismissedByUser:(BOOL)dismissingEnabled
 {
-  [self showNotificationInViewController:_defaultViewController
-                                   title:title
-                                subtitle:subtitle
-                                    type:type
-                          customTypeName:customTypeName
-                                duration:duration
-                                callback:callback
-                    canBeDismissedByUser:dismissingEnabled];
+    [self showNotificationInViewController:_defaultViewController
+                                     title:title
+                                  subtitle:subtitle
+                                      type:type
+                            customTypeName:customTypeName
+                                  duration:duration
+                                  callback:callback
+                      canBeDismissedByUser:dismissingEnabled];
 }
 
 + (void)showNotificationWithTitle:(NSString *)title
@@ -99,24 +100,24 @@ static NSLock *mLock, *nLock;
                              type:(RMessageType)type
                    customTypeName:(NSString *)customTypeName
                          duration:(NSTimeInterval)duration
-                         callback:(void (^)(void))callback
+                         callback:(void (^)())callback
                       buttonTitle:(NSString *)buttonTitle
-                   buttonCallback:(void (^)(void))buttonCallback
+                   buttonCallback:(void (^)())buttonCallback
                        atPosition:(RMessagePosition)messagePosition
              canBeDismissedByUser:(BOOL)dismissingEnabled
 {
-  [self showNotificationInViewController:_defaultViewController
-                                   title:title
-                                subtitle:subtitle
-                               iconImage:iconImage
-                                    type:type
-                          customTypeName:customTypeName
-                                duration:duration
-                                callback:callback
-                             buttonTitle:buttonTitle
-                          buttonCallback:buttonCallback
-                              atPosition:messagePosition
-                    canBeDismissedByUser:dismissingEnabled];
+    [self showNotificationInViewController:_defaultViewController
+                                     title:title
+                                  subtitle:subtitle
+                                 iconImage:iconImage
+                                      type:type
+                            customTypeName:customTypeName
+                                  duration:duration
+                                  callback:callback
+                               buttonTitle:buttonTitle
+                            buttonCallback:buttonCallback
+                                atPosition:messagePosition
+                      canBeDismissedByUser:dismissingEnabled];
 }
 
 + (void)showNotificationInViewController:(UIViewController *)viewController
@@ -125,20 +126,20 @@ static NSLock *mLock, *nLock;
                                     type:(RMessageType)type
                           customTypeName:(NSString *)customTypeName
                                 duration:(NSTimeInterval)duration
-                                callback:(void (^)(void))callback
+                                callback:(void (^)())callback
 {
-  [self showNotificationInViewController:viewController
-                                   title:title
-                                subtitle:subtitle
-                               iconImage:nil
-                                    type:type
-                          customTypeName:customTypeName
-                                duration:duration
-                                callback:callback
-                             buttonTitle:nil
-                          buttonCallback:nil
-                              atPosition:RMessagePositionTop
-                    canBeDismissedByUser:YES];
+    [self showNotificationInViewController:viewController
+                                     title:title
+                                  subtitle:subtitle
+                                 iconImage:nil
+                                      type:type
+                            customTypeName:customTypeName
+                                  duration:duration
+                                  callback:callback
+                               buttonTitle:nil
+                            buttonCallback:nil
+                                atPosition:RMessagePositionTop
+                      canBeDismissedByUser:YES];
 }
 
 + (void)showNotificationInViewController:(UIViewController *)viewController
@@ -147,21 +148,21 @@ static NSLock *mLock, *nLock;
                                     type:(RMessageType)type
                           customTypeName:(NSString *)customTypeName
                                 duration:(NSTimeInterval)duration
-                                callback:(void (^)(void))callback
+                                callback:(void (^)())callback
                     canBeDismissedByUser:(BOOL)dismissingEnabled
 {
-  [self showNotificationInViewController:viewController
-                                   title:title
-                                subtitle:subtitle
-                               iconImage:nil
-                                    type:type
-                          customTypeName:customTypeName
-                                duration:duration
-                                callback:callback
-                             buttonTitle:nil
-                          buttonCallback:nil
-                              atPosition:RMessagePositionTop
-                    canBeDismissedByUser:dismissingEnabled];
+    [self showNotificationInViewController:viewController
+                                     title:title
+                                  subtitle:subtitle
+                                 iconImage:nil
+                                      type:type
+                            customTypeName:customTypeName
+                                  duration:duration
+                                  callback:callback
+                               buttonTitle:nil
+                            buttonCallback:nil
+                                atPosition:RMessagePositionTop
+                      canBeDismissedByUser:dismissingEnabled];
 }
 
 + (void)showNotificationInViewController:(UIViewController *)viewController
@@ -169,21 +170,22 @@ static NSLock *mLock, *nLock;
                                 subtitle:(NSString *)subtitle
                                     type:(RMessageType)type
                           customTypeName:(NSString *)customTypeName
-                                callback:(void (^)(void))callback
+                                callback:(void (^)())callback
 {
-  [self showNotificationInViewController:viewController
-                                   title:title
-                                subtitle:subtitle
-                               iconImage:nil
-                                    type:type
-                          customTypeName:customTypeName
-                                duration:RMessageDurationAutomatic
-                                callback:callback
-                             buttonTitle:nil
-                          buttonCallback:nil
-                              atPosition:RMessagePositionTop
-                    canBeDismissedByUser:YES];
+    [self showNotificationInViewController:viewController
+                                     title:title
+                                  subtitle:subtitle
+                                 iconImage:nil
+                                      type:type
+                            customTypeName:customTypeName
+                                  duration:RMessageDurationAutomatic
+                                  callback:callback
+                               buttonTitle:nil
+                            buttonCallback:nil
+                                atPosition:RMessagePositionTop
+                      canBeDismissedByUser:YES];
 }
+
 
 + (void)showNotificationInViewController:(UIViewController *)viewController
                                    title:(NSString *)title
@@ -192,195 +194,169 @@ static NSLock *mLock, *nLock;
                                     type:(RMessageType)type
                           customTypeName:(NSString *)customTypeName
                                 duration:(NSTimeInterval)duration
-                                callback:(void (^)(void))callback
+                                callback:(void (^)())callback
                              buttonTitle:(NSString *)buttonTitle
-                          buttonCallback:(void (^)(void))buttonCallback
+                          buttonCallback:(void (^)())buttonCallback
                               atPosition:(RMessagePosition)messagePosition
                     canBeDismissedByUser:(BOOL)dismissingEnabled
 {
-  RMessageView *messageView = [[RMessageView alloc] initWithDelegate:[RMessage sharedMessage]
-                                                               title:title
-                                                            subtitle:subtitle
-                                                           iconImage:iconImage
-                                                                type:type
-                                                      customTypeName:customTypeName
-                                                            duration:duration
-                                                    inViewController:viewController
-                                                            callback:callback
-                                                         buttonTitle:buttonTitle
-                                                      buttonCallback:buttonCallback
-                                                          atPosition:messagePosition
-                                                canBeDismissedByUser:dismissingEnabled];
-  [self prepareNotificationForPresentation:messageView];
+    // Create the RMessageView
+    RMessageView *messageView = [[RMessageView alloc] initWithDelegate:[RMessage sharedMessage]
+                                                                 title:title
+                                                              subtitle:subtitle
+                                                             iconImage:iconImage
+                                                                  type:type
+                                                        customTypeName:customTypeName
+                                                              duration:duration
+                                                      inViewController:viewController
+                                                              callback:callback
+                                                           buttonTitle:buttonTitle
+                                                        buttonCallback:buttonCallback
+                                                            atPosition:messagePosition
+                                                  canBeDismissedByUser:dismissingEnabled];
+    [self prepareNotificationForPresentation:messageView];
 }
+
 
 + (void)prepareNotificationForPresentation:(RMessageView *)messageView
 {
-  [mLock lock];
-  [[RMessage sharedMessage].messages addObject:messageView];
-  [mLock unlock];
+    NSString *title = messageView.title;
+    NSString *subtitle = messageView.subtitle;
 
-  [nLock lock];
-  if (![RMessage sharedMessage].notificationActive) {
-    [nLock unlock];
-    [[RMessage sharedMessage] presentMessageView];
-    return;
-  }
-  [nLock unlock];
+    for (RMessageView *messageView in [RMessage sharedMessage].messages) {
+        if (([messageView.title isEqualToString:title] || (!messageView.title && !title)) && ([messageView.subtitle isEqualToString:subtitle] || (!messageView.subtitle && !subtitle))) {
+            return; // avoid showing the same messages twice in a row
+        }
+    }
+
+    [[RMessage sharedMessage].messages addObject:messageView];
+
+    if (![RMessage sharedMessage].notificationActive) {
+        [[RMessage sharedMessage] presentMessageView];
+    }
 }
 
 + (BOOL)dismissActiveNotification
 {
-  return [self dismissActiveNotificationWithCompletion:nil];
+    return [self dismissActiveNotificationWithCompletion:nil];
 }
 
 + (BOOL)dismissActiveNotificationWithCompletion:(void (^)(void))completionBlock
 {
-  [mLock lock];
-  if ([RMessage sharedMessage].messages.count == 0 || ![RMessage sharedMessage].messages) {
-    [mLock unlock];
-    return NO;
-  }
+    if ([RMessage sharedMessage].messages.count == 0 || ![RMessage sharedMessage].messages) return NO;
 
-  RMessageView *currentMessage = [RMessage sharedMessage].messages[0];
-
-  if (currentMessage && currentMessage.messageIsFullyDisplayed) {
-    [currentMessage dismissWithCompletion:completionBlock];
-  }
-
-  [mLock unlock];
-  return YES;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        RMessageView *currentMessage = [RMessage sharedMessage].messages[0];
+        if (currentMessage && currentMessage.messageIsFullyDisplayed) {
+            [[RMessage sharedMessage] dismissMessageView:currentMessage completion:completionBlock];
+        }
+    });
+    return YES;
 }
+
 
 #pragma mark Customizing RMessage
 
 + (void)setDefaultViewController:(UIViewController *)defaultViewController
 {
-  _defaultViewController = defaultViewController;
+    _defaultViewController = defaultViewController;
 }
 
 + (void)setDelegate:(id<RMessageProtocol>)delegate
 {
-  [RMessage sharedMessage].delegate = delegate;
+    [RMessage sharedMessage].delegate = delegate;
 }
 
 + (void)addDesignsFromFileWithName:(NSString *)filename inBundle:(NSBundle *)bundle
 {
-  [RMessageView addDesignsFromFileWithName:filename inBundle:bundle];
+    [RMessageView addDesignsFromFileWithName:filename inBundle:bundle];
 }
 
 #pragma mark - Misc Methods
 
 + (BOOL)isNotificationActive
 {
-  [nLock lock];
-  BOOL notificationActive = [RMessage sharedMessage].notificationActive;
-  [nLock unlock];
-  return notificationActive;
+    return [RMessage sharedMessage].notificationActive;
 }
 
 + (NSArray *)queuedMessages
 {
-  [mLock lock];
-  NSArray *messagesCopy = [[RMessage sharedMessage].messages copy];
-  [mLock unlock];
-  return messagesCopy;
+    return [[RMessage sharedMessage].messages copy];
 }
 
-#pragma mark - Instance Methods
+# pragma mark - Instance Methods
 
 - (instancetype)init
 {
-  self = [super init];
-  if (self) {
-    [mLock lock];
-    _messages = [NSMutableArray new];
-    [mLock unlock];
-  }
-  return self;
+    self = [super init];
+    if (self) {
+        _messages = [NSMutableArray new];
+    }
+    return self;
 }
 
 - (void)presentMessageView
 {
-  [mLock lock];
-  if (self.messages.count == 0) {
-    [mLock unlock];
-    return;
-  }
+    if (self.messages.count == 0) return;
+    RMessageView *messageView = self.messages[0];
 
-  RMessageView *messageView = self.messages[0];
-  [mLock unlock];
-
-  if (self.delegate && [self.delegate respondsToSelector:@selector(customizeMessageView:)]) {
-    [self.delegate customizeMessageView:messageView];
-  }
-  [messageView present];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(customizeMessageView:)]) {
+        [self.delegate customizeMessageView:messageView];
+    }
+    [messageView present];
 }
 
-#pragma mark - RMessageView Delegate Methods
-
-- (void)messageViewIsPresenting:(RMessageView *)messageView
+- (void)dismissMessageView:(RMessageView *)messageView completion:(void (^) (void))completionBlock
 {
-  [nLock lock];
-  self.notificationActive = YES;
-  [nLock unlock];
+    [messageView dismissWithCompletion:^{
+        //execute the completion block once the messageView has been truly dismissed
+        if (completionBlock) {
+            completionBlock();
+        }
+    }];
+}
+
+# pragma mark - RMessageView Delegate Methods
+
+- (void)messageViewDidPresent:(RMessageView *)messageView
+{
+    self.notificationActive = YES;
 }
 
 - (void)messageViewDidDismiss:(RMessageView *)messageView
 {
-  [mLock lock];
-  if (self.messages.count > 0) {
-    [self.messages removeObjectAtIndex:0];
-  }
-  [mLock unlock];
-
-  [nLock lock];
-  self.notificationActive = NO;
-  [nLock unlock];
-
-  [mLock lock];
-  if (self.messages.count > 0) {
-    [mLock unlock];
-    [self presentMessageView];
-    return;
-  }
-  [mLock unlock];
+    if (self.messages.count > 0) {
+        [self.messages removeObjectAtIndex:0];
+    }
+    self.notificationActive = NO;
+    if (self.messages.count > 0) {
+        [self presentMessageView];
+    }
 }
 
 - (CGFloat)customVerticalOffsetForMessageView:(RMessageView *)messageView
 {
-  if (self.delegate && [self.delegate respondsToSelector:@selector(customVerticalOffsetForMessageView:)]) {
-    return [self.delegate customVerticalOffsetForMessageView:messageView];
-  }
-  return 0.f;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(customVerticalOffsetForMessageView:)]) {
+        return [self.delegate customVerticalOffsetForMessageView:messageView];
+    }
+    return 0.f;
 }
 
 - (void)windowRemovedForEndlessDurationMessageView:(RMessageView *)messageView
 {
-  [messageView dismissWithCompletion:nil];
+    [self dismissMessageView:messageView completion:nil];
 }
 
 - (void)didSwipeToDismissMessageView:(RMessageView *)messageView
 {
-  [messageView dismissWithCompletion:nil];
+    [self dismissMessageView:messageView completion:nil];
 }
 
 - (void)didTapMessageView:(RMessageView *)messageView
 {
-  [messageView dismissWithCompletion:^{
-    [messageView executeMessageViewCallBack];
-  }];
-}
-
-+ (void)interfaceDidRotate
-{
-  [mLock lock];
-  if ([RMessage sharedMessage].messages.count == 0) {
-    [mLock unlock];
-    return;
-  }
-  [[RMessage sharedMessage].messages[0] interfaceDidRotate];
-  [mLock unlock];
+    [self dismissMessageView:messageView completion:^{
+        [messageView executeMessageViewCallBack];
+    }];
 }
 
 @end

@@ -1,9 +1,25 @@
-platform :ios, '9.0'
+platform:ios,'9.3'
 
 target 'Faveo Helpdesk Community' do
-
-pod "RMessage"
-pod 'FTIndicator/FTProgressIndicator'
-pod 'IQKeyboardManager'
-
+    pod 'Fabric'
+    pod 'Crashlytics'
+    pod 'NSDate-Time-Ago'
+    pod 'HexColors'
+    pod 'IQKeyboardManager'
+    pod 'MBProgressHUD', '~> 1.0.0'
+    pod 'CNPPopupController'
+    pod 'ActionSheetPicker-3.0'
+    pod 'Firebase/Core'
+    pod 'Firebase/Messaging'
+    pod 'M13ProgressSuite'
+    pod 'SDWebImage'
+    pod 'DZNEmptyDataSet'
+    pod 'RKDropdownAlert'
+    pod 'XLForm', '~> 3.0'
+    pod 'RMessage'
+    pod 'LGPlusButtonsView', '~> 1.1.0'
+  
 end
+
+
+

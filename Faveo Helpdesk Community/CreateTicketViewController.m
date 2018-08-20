@@ -1,10 +1,5 @@
 //
 //  CreateTicketViewController.m
-//  SideMEnuDemo
-//
-//  Created by Narendra on 19/08/16.
-//  Copyright © 2016 Ladybird websolutions pvt ltd. All rights reserved.
-//
 
 #import "InboxViewController.h"
 #import "CreateTicketViewController.h"
@@ -16,30 +11,41 @@
 #import "AppConstanst.h"
 #import "MyWebservices.h"
 #import "AppDelegate.h"
-#import "FTProgressIndicator.h"
+#import "RKDropdownAlert.h"
+#import "IQKeyboardManager.h"
+#import "Dat.h"
 #import "RMessage.h"
 #import "RMessageView.h"
+#import "GlobalVariables.h"
+
 
 @interface CreateTicketViewController ()<RMessageProtocol>{
     
     Utils *utils;
     NSUserDefaults *userDefaults;
+    GlobalVariables *globalVariables;
+    
     NSNumber *sla_id;
     NSNumber *help_topic_id;
-    NSNumber *dept_id;
+//    NSNumber *dept_id;
     NSNumber *priority_id;
+ //   NSNumber *staff_id;
     
     NSMutableArray * sla_idArray;
-    NSMutableArray * dept_idArray;
+//    NSMutableArray * dept_idArray;
     NSMutableArray * pri_idArray;
     NSMutableArray * helpTopic_idArray;
+//    NSMutableArray * staff_idArray;
+    
+    NSDictionary *priDicc1;
 }
 
 - (void)helpTopicWasSelected:(NSNumber *)selectedIndex element:(id)element;
 - (void)slaWasSelected:(NSNumber *)selectedIndex element:(id)element;
-- (void)deptWasSelected:(NSNumber *)selectedIndex element:(id)element;
+//- (void)deptWasSelected:(NSNumber *)selectedIndex element:(id)element;
 - (void)priorityWasSelected:(NSNumber *)selectedIndex element:(id)element;
 - (void)countryCodeWasSelected:(NSNumber *)selectedIndex element:(id)element;
+//- (void)staffWasSelected:(NSNumber *)selectedIndex element:(id)element;
 - (void)actionPickerCancelled:(id)sender;
 
 @end
@@ -50,295 +56,719 @@
     [super viewDidLoad];
     [self split];
     
+    UIToolbar *toolBar= [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    UIBarButtonItem *removeBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain  target:self action:@selector(removeKeyBoard)];
+    
+    UIBarButtonItem *space=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    [toolBar setItems:[NSArray arrayWithObjects:space,removeBtn, nil]];
+    [self.textViewMsg setInputAccessoryView:toolBar];
+    [self.mobileView setInputAccessoryView:toolBar];
+    [self.subjectView setInputAccessoryView:toolBar];
+    [self.firstNameView setInputAccessoryView:toolBar];
+    [self.lastNameView setInputAccessoryView:toolBar];
+    [self.emailTextView setInputAccessoryView:toolBar];
+    
+    
+    
+    
+    
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:false];
     sla_id=[[NSNumber alloc]init];
-    dept_id=[[NSNumber alloc]init];
+ //   dept_id=[[NSNumber alloc]init];
     help_topic_id=[[NSNumber alloc]init];
     priority_id=[[NSNumber alloc]init];
+ //   staff_id =[[NSNumber alloc]init];
+    
     utils=[[Utils alloc]init];
+    
     userDefaults=[NSUserDefaults standardUserDefaults];
-    _codeTextField.text=[self setDefaultCountryCode];
+    globalVariables=[GlobalVariables sharedInstance];
+    //_codeTextField.text=[self setDefaultCountryCode];
     
     [self readFromPlist];
-    [self setTitle:@"CreateTicket"];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _submitButton.backgroundColor=[UIColor hx_colorWithHexString:@"#00aeef"];
     
+    [self setTitle:NSLocalizedString(@"CreateTicket",nil)];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _submitButton.backgroundColor=[UIColor hx_colorWithHexRGBAString:@"#00aeef"];
+    self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     // Do any additional setup after loading the view.
 }
 
--(void)readFromPlist{
-    // Read plist from bundle and get Root Dictionary out of it
-    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"faveoData.plist"];
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    // _submitButton.userInteractionEnabled = false;
     
-    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath])
-    {
-        plistPath = [[NSBundle mainBundle] pathForResource:@"faveoData" ofType:@"plist"];
-    }
-    NSDictionary *resultDic = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-    NSLog(@"resultDic--%@",resultDic);
-    NSArray *deptArray=[resultDic objectForKey:@"departments"];
-    NSArray *helpTopicArray=[resultDic objectForKey:@"helptopics"];
-    NSArray *prioritiesArray=[resultDic objectForKey:@"priorities"];
-    NSArray *slaArray=[resultDic objectForKey:@"sla"];
-    NSArray *sourcesArray=[resultDic objectForKey:@"sources"];
-    NSArray *staffsArray=[resultDic objectForKey:@"staffs"];
-    NSArray *statusArray=[resultDic objectForKey:@"status"];
-    NSArray *teamArray=[resultDic objectForKey:@"teams"];
-    NSLog(@"resultDic2--%@,%@,%@,%@,%@,%@,%@,%@",deptArray,helpTopicArray,prioritiesArray,slaArray,sourcesArray,staffsArray,statusArray,teamArray);
-    
-    NSMutableArray *deptMU=[[NSMutableArray alloc]init];
-    NSMutableArray *slaMU=[[NSMutableArray alloc]init];
-    NSMutableArray *helptopicMU=[[NSMutableArray alloc]init];
-    NSMutableArray *priMU=[[NSMutableArray alloc]init];
-    
-    dept_idArray=[[NSMutableArray alloc]init];
-    sla_idArray=[[NSMutableArray alloc]init];
-    helpTopic_idArray=[[NSMutableArray alloc]init];
-    pri_idArray=[[NSMutableArray alloc]init];
-    
-    for (NSDictionary *dicc in deptArray) {
-        if ([dicc objectForKey:@"name"]) {
-            [deptMU addObject:[dicc objectForKey:@"name"]];
-            [dept_idArray addObject:[dicc objectForKey:@"id"]];
-        }
-        
-    }
-    
-    for (NSDictionary *dicc in prioritiesArray) {
-        if ([dicc objectForKey:@"priority"]) {
-            [priMU addObject:[dicc objectForKey:@"priority"]];
-            [pri_idArray addObject:[dicc objectForKey:@"priority_id"]];
-        }
-        
-    }
-    
-    for (NSDictionary *dicc in slaArray) {
-        if ([dicc objectForKey:@"name"]) {
-            [slaMU addObject:[dicc objectForKey:@"name"]];
-            [sla_idArray addObject:[dicc objectForKey:@"id"]];
-            
-        }
-        
-    }
-    
-    for (NSDictionary *dicc in helpTopicArray) {
-        if ([dicc objectForKey:@"topic"]) {
-            [helptopicMU addObject:[dicc objectForKey:@"topic"]];
-            [helpTopic_idArray addObject:[dicc objectForKey:@"id"]];
-            
-        }
-    }
-    
-    _deptArray=[deptMU copy];
-    _helptopicsArray=[helptopicMU copy];
-    _slaPlansArray=[slaMU copy];
-    _priorityArray=[priMU copy];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:true];
     
 }
-
-//-(NSMutableArray*)loop:(NSArray*)arr{
+-(void)readFromPlist{
+//    // Read plist from bundle and get Root Dictionary out of it
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsPath = [paths objectAtIndex:0];
+//    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"faveoData.plist"];
 //
-//    NSMutableArray *resARR=[[NSMutableArray alloc]init];
-//    for (NSDictionary *dicc in arr) {
+    @try{
+//        if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath])
+//        {
+//            plistPath = [[NSBundle mainBundle] pathForResource:@"faveoData" ofType:@"plist"];
+//        }
+    
+     //   NSDictionary *resultDic = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+        NSDictionary *resultDic = globalVariables.dependencyDataDict;
+        
+        NSLog(@"resultDic--%@",resultDic);
+     //   NSArray *deptArray=[resultDic objectForKey:@"departments"];
+        NSArray *helpTopicArray=[resultDic objectForKey:@"helptopics"];
+        NSArray *prioritiesArray=[resultDic objectForKey:@"priorities"];
+        NSArray *slaArray=[resultDic objectForKey:@"sla"];
+     //   NSArray *sourcesArray=[resultDic objectForKey:@"sources"];
+     //   NSMutableArray *staffsArray=[resultDic objectForKey:@"staffs"];
+     //   NSArray *statusArray=[resultDic objectForKey:@"status"];
+     //   NSArray *teamArray=[resultDic objectForKey:@"teams"];
+  
+        //     NSLog(@"resultDic2--%@,%@,%@,%@,%@,%@,%@,%@",deptArray,helpTopicArray,prioritiesArray,slaArray,sourcesArray,staffsArray,statusArray,teamArray);
+        
+    //    NSMutableArray *deptMU=[[NSMutableArray alloc]init];
+        NSMutableArray *slaMU=[[NSMutableArray alloc]init];
+        NSMutableArray *helptopicMU=[[NSMutableArray alloc]init];
+        NSMutableArray *priMU=[[NSMutableArray alloc]init];
+     //   NSMutableArray *staffMU=[[NSMutableArray alloc]init];
+        
+    //    dept_idArray=[[NSMutableArray alloc]init];
+        sla_idArray=[[NSMutableArray alloc]init];
+        helpTopic_idArray=[[NSMutableArray alloc]init];
+        pri_idArray=[[NSMutableArray alloc]init];
+     //   staff_idArray=[[NSMutableArray alloc]init];
+        
+        
+        
+     //   [staffMU insertObject:@"Select Assignee" atIndex:0];
+     //   [staff_idArray insertObject:@"" atIndex:0];
+        
+        
+//        for (NSMutableDictionary *dicc in staffsArray) {
+//            if ([dicc objectForKey:@"email"]) {
 //
-//        [resARR addObject:[dicc objectForKey:@"name"]];
-//    }
-//    return resARR;
-//}
+//                // [staffMU insertObject:@"" atIndex:0];
+//                [staffMU addObject:[dicc objectForKey:@"email"]];
+//                [staff_idArray addObject:[dicc objectForKey:@"id"]];
+//
+//            }
+//
+//        }
+        
+        
+//        for (NSDictionary *dicc in deptArray) {
+//            if ([dicc objectForKey:@"name"]) {
+//
+//                [deptMU addObject:[dicc objectForKey:@"name"]];
+//                [dept_idArray addObject:[dicc objectForKey:@"id"]];
+//            }
+//
+//        }
+//
+        priDicc1=[NSDictionary dictionaryWithObjects:priMU forKeys:pri_idArray];
+        
+        
+        for (NSDictionary *dicc in prioritiesArray) {
+            if ([dicc objectForKey:@"priority"]) {
+                [priMU addObject:[dicc objectForKey:@"priority"]];
+                [pri_idArray addObject:[dicc objectForKey:@"priority_id"]];
+            }
+            
+        }
+        
+        for (NSDictionary *dicc in slaArray) {
+            if ([dicc objectForKey:@"name"]) {
+                [slaMU addObject:[dicc objectForKey:@"name"]];
+                [sla_idArray addObject:[dicc objectForKey:@"id"]];
+                
+            }
+            
+        }
+        
+        for (NSDictionary *dicc in helpTopicArray) {
+            if ([dicc objectForKey:@"topic"]) {
+                [helptopicMU addObject:[dicc objectForKey:@"topic"]];
+                [helpTopic_idArray addObject:[dicc objectForKey:@"id"]];
+                
+            }
+        }
+        
+      //  _deptArray=[deptMU copy];
+        _helptopicsArray=[helptopicMU copy];
+        _slaPlansArray=[slaMU copy];
+        _priorityArray=[priMU copy];
+      //  _staffArray=[staffMU copy];
+        
+    }@catch (NSException *exception)
+    {
+        // Print exception information
+        NSLog( @"NSException caught in readFromPlist method in CreateTicket ViewController" );
+        NSLog( @"Name: %@", exception.name);
+        NSLog( @"Reason: %@", exception.reason );
+        return;
+    }
+    @finally
+    {
+        // Cleanup, in both success and fail cases
+        NSLog( @"In finally block");
+        
+    }
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-//// returns the number of 'columns' to display.
-//- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-//    return 1;
-//}
+
+-(void)removeKeyboard{
+    [_emailTextView resignFirstResponder];
+    // [_mobileTextField resignFirstResponder];
+    //  [_msgTextField resignFirstResponder];
+    [_subjectView resignFirstResponder];
+    [_firstNameView resignFirstResponder];
+    
+    
+}
+-(void)removeKeyBoard
+{
+    
+    [self.textViewMsg resignFirstResponder];
+    [_mobileView resignFirstResponder];
+    [_emailTextView resignFirstResponder];
+    [_firstNameView resignFirstResponder];
+    [_lastNameView resignFirstResponder];
+    [_subjectView resignFirstResponder];
+    [_codeTextField resignFirstResponder];
+    [_helpTopicTextField resignFirstResponder];
+    [_priorityTextField resignFirstResponder];
+    [_slaTextField resignFirstResponder];
+    
+}
+
+
+//- (IBAction)staffClicked:(id)sender
+//{
+//    [self removeKeyboard];
 //
-//// returns the # of rows in each component..
-//- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-//    return _helptopicsArray.count;
+//    if (!_staffArray||!_staffArray.count) {
+//        _assignTextField.text=NSLocalizedString(@"Not Available",nil);
+//        staff_id=0;
+//    }else{
+//
+//        [ActionSheetStringPicker showPickerWithTitle:NSLocalizedString(@"Select Assignee",nil) rows:_staffArray initialSelection:0 target:self successAction:@selector(staffWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+//    }
+//
 //}
 
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+//- (IBAction)staffClicked:(id)sender {
+//    [self.view endEditing:YES];
+//    if (!_staffArray||!_staffArray.count) {
+//        _assignTextField.text=NSLocalizedString(@"Not Available",nil);
+//        staff_id=0;
+//    }else{
 //
-//    return NO;
+//        [ActionSheetStringPicker showPickerWithTitle:NSLocalizedString(@"Select Assignee",nil) rows:_staffArray initialSelection:0 target:self successAction:@selector(staffWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+//    }
 //}
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+- (IBAction)countryCodeClicked:(id)sender {
+    [self.view endEditing:YES];
+    [ActionSheetStringPicker showPickerWithTitle:NSLocalizedString(@"Select CountryCode",nil) rows:_countryArray initialSelection:0 target:self successAction:@selector(countryCodeWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+}
+
+//- (IBAction)countryCodeClicked:(id)sender {
+//    [self removeKeyboard];
+//
+//    [ActionSheetStringPicker showPickerWithTitle:NSLocalizedString(@"Select CountryCode",nil) rows:_countryArray initialSelection:0 target:self successAction:@selector(countryCodeWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+//}
 
 - (IBAction)helpTopicClicked:(id)sender {
-    [self removeKeyboard];
-    
+    [self.view endEditing:YES];
     if (!_helptopicsArray||!_helptopicsArray.count) {
-        _helpTopicTextField.text=@"Not Available";
+        _helpTopicTextField.text=NSLocalizedString(@"Not Available",nil);
         help_topic_id=0;
     }else{
         [ActionSheetStringPicker showPickerWithTitle:@"Select Helptopic" rows:_helptopicsArray initialSelection:0 target:self successAction:@selector(helpTopicWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
     }
-    
 }
+- (IBAction)priorityClicked:(id)sender {
+    [self.view endEditing:YES];
+    if (!_priorityArray||![_priorityArray count]) {
+        _priorityTextField.text=NSLocalizedString(@"Not Available",nil);
+        priority_id=0;
+        
+    }else{
+        [ActionSheetStringPicker showPickerWithTitle:NSLocalizedString(@"Select Priority",nil) rows:_priorityArray initialSelection:0 target:self successAction:@selector(priorityWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+    }
+}
+
+
+//- (IBAction)countryCodeClicked:(id)sender {
+//    [self removeKeyboard];
+//
+//    [ActionSheetStringPicker showPickerWithTitle:NSLocalizedString(@"Select CountryCode",nil) rows:_countryArray initialSelection:0 target:self successAction:@selector(countryCodeWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+//}
+
+
+//- (IBAction)helpTopicClicked:(id)sender {
+//    [self removeKeyboard];
+//
+//    if (!_helptopicsArray||!_helptopicsArray.count) {
+//        _helpTopicTextField.text=NSLocalizedString(@"Not Available",nil);
+//        help_topic_id=0;
+//    }else{
+//        [ActionSheetStringPicker showPickerWithTitle:@"Select Helptopic" rows:_helptopicsArray initialSelection:0 target:self successAction:@selector(helpTopicWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+//    }
+//
+//}
+
 
 - (IBAction)slaClicked:(id)sender {
     [self removeKeyboard];
     
     if (!_slaPlansArray||!_slaPlansArray.count) {
-        _slaTextField.text=@"Not Available";
+        _slaTextField.text=NSLocalizedString(@"Not Available",nil);
         sla_id=0;
     }else{
-        [ActionSheetStringPicker showPickerWithTitle:@"Select SLA" rows:_slaPlansArray initialSelection:0 target:self successAction:@selector(slaWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+        [ActionSheetStringPicker showPickerWithTitle:NSLocalizedString(@"Select SLA",nil) rows:_slaPlansArray initialSelection:0 target:self successAction:@selector(slaWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
     }
     
 }
 
-- (IBAction)deptClicked:(id)sender {
-    [self removeKeyboard];
-    
-    if (!_deptArray||!_deptArray.count) {
-        _deptTextField.text=@"Not Available";
-        dept_id=0;
-    }else{
-        [ActionSheetStringPicker showPickerWithTitle:@"Select Department" rows:_deptArray initialSelection:0 target:self successAction:@selector(deptWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
-    }
-    
-}
+//- (IBAction)deptClicked:(id)sender {
+//    [self removeKeyboard];
+//
+//    if (!_deptArray||!_deptArray.count) {
+//        _deptTextField.text=NSLocalizedString(@"Not Available",nil);
+//        dept_id=0;
+//    }else{
+//        [ActionSheetStringPicker showPickerWithTitle:NSLocalizedString(@"Select Department",nil) rows:_deptArray initialSelection:0 target:self successAction:@selector(deptWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+//    }
+//
+//}
 
--(void)removeKeyboard{
-    [_emailTextField resignFirstResponder];
-    [_phoneTextField resignFirstResponder];
-    [_msgTextField resignFirstResponder];
-    [_subjectTextField resignFirstResponder];
-    [_nameTextField resignFirstResponder];
-    
-}
 
-- (IBAction)priorityClicked:(id)sender {
-    [self removeKeyboard];
-    if (!_priorityArray||![_priorityArray count]) {
-        _priorityTextField.text=@"Not Available";
-        priority_id=0;
-        
-    }else{
-        [ActionSheetStringPicker showPickerWithTitle:@"Select Priority" rows:_priorityArray initialSelection:0 target:self successAction:@selector(priorityWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
-    }
-    
-}
+//
+//- (IBAction)priorityClicked:(id)sender {
+//    [self removeKeyboard];
+//    if (!_priorityArray||![_priorityArray count]) {
+//        _priorityTextField.text=NSLocalizedString(@"Not Available",nil);
+//        priority_id=0;
+//
+//    }else{
+//        [ActionSheetStringPicker showPickerWithTitle:NSLocalizedString(@"Select Priority",nil) rows:_priorityArray initialSelection:0 target:self successAction:@selector(priorityWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+//    }
+//
+//}
 
-- (IBAction)countryCodeClicked:(id)sender {
-    [self removeKeyboard];
-    
-    [ActionSheetStringPicker showPickerWithTitle:@"Select CountryCode" rows:_countryArray initialSelection:0 target:self successAction:@selector(countryCodeWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
-}
+
+
 
 - (IBAction)submitClicked:(id)sender {
     
-    if (self.emailTextField.text.length==0){
-        [utils showAlertWithMessage:@"Please enter EMAIL-ID" sendViewController:self];
-    }else if (self.nameTextField.text.length==0) {
-        [utils showAlertWithMessage:@"Please enter NAME" sendViewController:self];
-    }else if (self.helpTopicTextField.text.length==0) {
-        [utils showAlertWithMessage:@"Please select HELP-TOPIC" sendViewController:self];
-    }else if (self.slaTextField.text.length==0){
-        [utils showAlertWithMessage:@"Please select SLA" sendViewController:self];
-    }else if (self.deptTextField.text.length==0) {
-        [utils showAlertWithMessage:@"Please select DEPARTMENT" sendViewController:self];
-    }else if (self.subjectTextField.text.length==0) {
-        [utils showAlertWithMessage:@"Please enter SUBJECT" sendViewController:self];
-    }else if (self.msgTextField.text.length==0){
-        [utils showAlertWithMessage:@"Please enter ticket MESSAGE" sendViewController:self];
-    }else if (self.priorityTextField.text.length==0){
-        [utils showAlertWithMessage:@"Please select PRIORITY" sendViewController:self];
-    }else if(![Utils emailValidation:self.emailTextField.text]){
-        [utils showAlertWithMessage:@"Invalid EMAIL_ID" sendViewController:self];
-    }else if(![Utils userNameValidation:self.nameTextField.text]){
-        [utils showAlertWithMessage:@"Name should have more than 2 characters" sendViewController:self];
-    }else {
-        NSLog(@"ticketCreated dept_id-%@, help_id-%@ ,sla_id-%@, pri_id-%@",dept_id,help_topic_id,sla_id,priority_id);
-        [self reload];
+    @try{
+        
+        if(self.emailTextView.text.length==0 && self.firstNameView.text.length==0 && self.helpTopicTextField.text.length==0 && self.subjectView.text.length==0 && self.priorityTextField.text.length==0 && self.textViewMsg.text.length==0 && self.slaTextField.text.length==0)
+        {
+            if (self.navigationController.navigationBarHidden) {
+                [self.navigationController setNavigationBarHidden:NO];
+            }
+            
+            [RMessage showNotificationInViewController:self.navigationController
+                                                 title:NSLocalizedString(@"Warning !", nil)
+                                              subtitle:NSLocalizedString(@"Please fill all mandatory fields.", nil)
+                                             iconImage:nil
+                                                  type:RMessageTypeWarning
+                                        customTypeName:nil
+                                              duration:RMessageDurationAutomatic
+                                              callback:nil
+                                           buttonTitle:nil
+                                        buttonCallback:nil
+                                            atPosition:RMessagePositionNavBarOverlay
+                                  canBeDismissedByUser:YES];
+            
+            
+        }else if (self.emailTextView.text.length==0){
+            //[RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"Please enter EMAIL-ID",nil) backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+            if (self.navigationController.navigationBarHidden) {
+                [self.navigationController setNavigationBarHidden:NO];
+            }
+            
+            [RMessage showNotificationInViewController:self.navigationController
+                                                 title:NSLocalizedString(@"Warning !", nil)
+                                              subtitle:NSLocalizedString(@"Please enter Email.", nil)
+                                             iconImage:nil
+                                                  type:RMessageTypeWarning
+                                        customTypeName:nil
+                                              duration:RMessageDurationAutomatic
+                                              callback:nil
+                                           buttonTitle:nil
+                                        buttonCallback:nil
+                                            atPosition:RMessagePositionNavBarOverlay
+                                  canBeDismissedByUser:YES];
+            
+            
+        }else if(![Utils emailValidation:self.emailTextView.text]){
+            // [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"Invalid EMAIL_ID",nil) backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+            
+            if (self.navigationController.navigationBarHidden) {
+                [self.navigationController setNavigationBarHidden:NO];
+            }
+            
+            [RMessage showNotificationInViewController:self.navigationController
+                                                 title:NSLocalizedString(@"Error !", nil)
+                                              subtitle:NSLocalizedString(@"Please enter valid email id.", nil)
+                                             iconImage:nil
+                                                  type:RMessageTypeWarning
+                                        customTypeName:nil
+                                              duration:RMessageDurationAutomatic
+                                              callback:nil
+                                           buttonTitle:nil
+                                        buttonCallback:nil
+                                            atPosition:RMessagePositionNavBarOverlay
+                                  canBeDismissedByUser:YES];
+            
+        } else if (self.emailTextView.text.length<2) {
+            
+            //[RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"FirstName should have more than 2 characters",nil) backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+            
+            if (self.navigationController.navigationBarHidden) {
+                [self.navigationController setNavigationBarHidden:NO];
+            }
+            
+            [RMessage showNotificationInViewController:self.navigationController
+                                                 title:NSLocalizedString(@"Warning !", nil)
+                                              subtitle:NSLocalizedString(@"FirstName should have more than 2 characters.", nil)
+                                             iconImage:nil
+                                                  type:RMessageTypeWarning
+                                        customTypeName:nil
+                                              duration:RMessageDurationAutomatic
+                                              callback:nil
+                                           buttonTitle:nil
+                                        buttonCallback:nil
+                                            atPosition:RMessagePositionNavBarOverlay
+                                  canBeDismissedByUser:YES];
+            
+            
+        }else /*if (self.mobileTextField.text.length==0) {
+               // [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"Please select HELP-TOPIC",nil) backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+               
+               if (self.navigationController.navigationBarHidden) {
+               [self.navigationController setNavigationBarHidden:NO];
+               }
+               
+               [RMessage showNotificationInViewController:self.navigationController
+               title:NSLocalizedString(@"Warning !", nil)
+               subtitle:NSLocalizedString(@"Please enter Mobile...!", nil)
+               iconImage:nil
+               type:RMessageTypeWarning
+               customTypeName:nil
+               duration:RMessageDurationAutomatic
+               callback:nil
+               buttonTitle:nil
+               buttonCallback:nil
+               atPosition:RMessagePositionNavBarOverlay
+               canBeDismissedByUser:YES];
+               
+               
+               }else */ if (self.helpTopicTextField.text.length==0) {
+                   // [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"Please select HELP-TOPIC",nil) backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+                   
+                   if (self.navigationController.navigationBarHidden) {
+                       [self.navigationController setNavigationBarHidden:NO];
+                   }
+                   
+                   [RMessage showNotificationInViewController:self.navigationController
+                                                        title:NSLocalizedString(@"Warning !", nil)
+                                                     subtitle:NSLocalizedString(@"Please select HELP-TOPIC.", nil)
+                                                    iconImage:nil
+                                                         type:RMessageTypeWarning
+                                               customTypeName:nil
+                                                     duration:RMessageDurationAutomatic
+                                                     callback:nil
+                                                  buttonTitle:nil
+                                               buttonCallback:nil
+                                                   atPosition:RMessagePositionNavBarOverlay
+                                         canBeDismissedByUser:YES];
+                   
+                   
+               }else if (self.subjectView.text.length==0) {
+                   // [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"Please enter SUBJECT",nil) backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+                   
+                   if (self.navigationController.navigationBarHidden) {
+                       [self.navigationController setNavigationBarHidden:NO];
+                   }
+                   
+                   [RMessage showNotificationInViewController:self.navigationController
+                                                        title:NSLocalizedString(@"Warning !", nil)
+                                                     subtitle:NSLocalizedString(@"Please enter SUBJECT.", nil)
+                                                    iconImage:nil
+                                                         type:RMessageTypeWarning
+                                               customTypeName:nil
+                                                     duration:RMessageDurationAutomatic
+                                                     callback:nil
+                                                  buttonTitle:nil
+                                               buttonCallback:nil
+                                                   atPosition:RMessagePositionNavBarOverlay
+                                         canBeDismissedByUser:YES];
+                   
+               }else if (self.subjectView.text.length<5) {
+                   // [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"SUBJECT requires at least 5 characters",nil) backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+                   if (self.navigationController.navigationBarHidden) {
+                       [self.navigationController setNavigationBarHidden:NO];
+                   }
+                   
+                   [RMessage showNotificationInViewController:self.navigationController
+                                                        title:NSLocalizedString(@"Warning !", nil)
+                                                     subtitle:NSLocalizedString(@"SUBJECT requires at least 5 characters.", nil)
+                                                    iconImage:nil
+                                                         type:RMessageTypeWarning
+                                               customTypeName:nil
+                                                     duration:RMessageDurationAutomatic
+                                                     callback:nil
+                                                  buttonTitle:nil
+                                               buttonCallback:nil
+                                                   atPosition:RMessagePositionNavBarOverlay
+                                         canBeDismissedByUser:YES];
+                   
+               }else if (self.textViewMsg.text.length==0){
+                   // [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"Please enter ticket MESSAGE" ,nil)backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+                   
+                   if (self.navigationController.navigationBarHidden) {
+                       [self.navigationController setNavigationBarHidden:NO];
+                   }
+                   
+                   [RMessage showNotificationInViewController:self.navigationController
+                                                        title:NSLocalizedString(@"Warning !", nil)
+                                                     subtitle:NSLocalizedString(@"Please enter MESSAGE.", nil)
+                                                    iconImage:nil
+                                                         type:RMessageTypeWarning
+                                               customTypeName:nil
+                                                     duration:RMessageDurationAutomatic
+                                                     callback:nil
+                                                  buttonTitle:nil
+                                               buttonCallback:nil
+                                                   atPosition:RMessagePositionNavBarOverlay
+                                         canBeDismissedByUser:YES];
+                   
+               }else if (self.textViewMsg.text.length<10){
+                   // [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"MESSAGE requires at least 10 characters" ,nil)backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+                   
+                   if (self.navigationController.navigationBarHidden) {
+                       [self.navigationController setNavigationBarHidden:NO];
+                   }
+                   
+                   [RMessage showNotificationInViewController:self.navigationController
+                                                        title:NSLocalizedString(@"Warning !", nil)
+                                                     subtitle:NSLocalizedString(@"MESSAGE requires at least 10 characters.", nil)
+                                                    iconImage:nil
+                                                         type:RMessageTypeWarning
+                                               customTypeName:nil
+                                                     duration:RMessageDurationAutomatic
+                                                     callback:nil
+                                                  buttonTitle:nil
+                                               buttonCallback:nil
+                                                   atPosition:RMessagePositionNavBarOverlay
+                                         canBeDismissedByUser:YES];
+                   
+               }
+        /*else if (self.msgTextField.text.length==0){
+         [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"Please enter ticket MESSAGE" ,nil)backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+         // [utils showAlertWithMessage:@"Please enter ticket MESSAGE" sendViewController:self];
+         }else if (self.msgTextField.text.length<10){
+         [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"MESSAGE requires at least 10 characters" ,nil)backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+         // [utils showAlertWithMessage:@"Please enter ticket MESSAGE" sendViewController:self];
+         }*/ else if (self.priorityTextField.text.length==0){
+             // [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"Please select PRIORITY" ,nil)backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+             
+             if (self.navigationController.navigationBarHidden) {
+                 [self.navigationController setNavigationBarHidden:NO];
+             }
+             
+             [RMessage showNotificationInViewController:self.navigationController
+                                                  title:NSLocalizedString(@"Warning !", nil)
+                                               subtitle:NSLocalizedString(@"Please select PRIORITY.", nil)
+                                              iconImage:nil
+                                                   type:RMessageTypeWarning
+                                         customTypeName:nil
+                                               duration:RMessageDurationAutomatic
+                                               callback:nil
+                                            buttonTitle:nil
+                                         buttonCallback:nil
+                                             atPosition:RMessagePositionNavBarOverlay
+                                   canBeDismissedByUser:YES];
+             
+         }else if (self.slaTextField.text.length==0){
+           // [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"Please select PRIORITY" ,nil)backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
+           
+           if (self.navigationController.navigationBarHidden) {
+           [self.navigationController setNavigationBarHidden:NO];
+           }
+           
+           [RMessage showNotificationInViewController:self.navigationController
+           title:NSLocalizedString(@"Warning !", nil)
+           subtitle:NSLocalizedString(@"Please select SLA Plan", nil)
+           iconImage:nil
+           type:RMessageTypeWarning
+           customTypeName:nil
+           duration:RMessageDurationAutomatic
+           callback:nil
+           buttonTitle:nil
+           buttonCallback:nil
+           atPosition:RMessagePositionNavBarOverlay
+           canBeDismissedByUser:YES];
+           
+           }
+         else {
+                   [self createTicket];
+             
+         }
+        
+    }@catch (NSException *exception)
+    {
+        // Print exception information
+        NSLog( @"NSException caught" );
+        NSLog( @"Name: %@", exception.name);
+        NSLog( @"Reason: %@", exception.reason );
+        return;
     }
-    
+    @finally
+    {
+        // Cleanup, in both success and fail cases
+        NSLog( @"In finally block");
+        
+    }
 }
 
 
--(void)reload{
+-(void)createTicket{
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        [utils showAlertWithMessage:NO_INTERNET sendViewController:self];
+        //[utils showAlertWithMessage:NO_INTERNET sendViewController:self];
+        [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
         
     }else{
         
-      //  [[AppDelegate sharedAppdelegate] showProgressView];
-        
-      [FTProgressIndicator showProgressWithMessage:@"Loading" userInteractionEnable:NO];
-        
-        NSString *url=[NSString stringWithFormat:@"%@helpdesk/create?api_key=%@&ip=%@&token=%@&user_id=%@&subject=%@&body=%@&first_name=%@&last_name=%@&phone=%@&code=%@&email=%@&helptopic=%@&sla=%@&priority=%@&dept=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],[userDefaults objectForKey:@"user_id"],_subjectTextField.text,_msgTextField.text,_nameTextField.text,@"",_phoneTextField.text,[_codeTextField.text substringFromIndex:1],_emailTextField.text,help_topic_id,sla_id,priority_id,dept_id];
+        [[AppDelegate sharedAppdelegate] showProgressView];
         
         
-        MyWebservices *webservices=[MyWebservices sharedInstance];
+        NSString *code=@"";
+        if(_codeTextField.text.length>0){
+            code=[_codeTextField.text substringFromIndex:1];
+        }
         
-        [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
-          //  [[AppDelegate sharedAppdelegate] hideProgressView];
-              [FTProgressIndicator dismiss];
+//        NSString *staffID= [NSString stringWithFormat:@"%@",staff_id];
+//
+//        if([staffID isEqualToString:@"(null)"])
+//        {
+//
+//            staffID=@"";
+//        }
+  
+        NSString *url=[NSString stringWithFormat:@"%@helpdesk/create?api_key=%@&ip=%@&token=%@&user_id=%@&subject=%@&body=%@&first_name=%@&last_name=%@&phone=%@&code=%@&email=%@&helptopic=%@&priority=%@&sla=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],[userDefaults objectForKey:@"user_id"],_subjectView.text,_textViewMsg.text,_firstNameView.text,_lastNameView.text,_mobileView.text,code,_emailTextView.text,help_topic_id,priority_id,sla_id];
+        
+//        NSString *url=[NSString stringWithFormat:@"%@helpdesk/create?api_key=%@&token=%@&subject=%@&body=%@&first_name=%@&last_name=%@&mobile=%@&code=%@&email=%@&helptopic=%@&priority=%@&user_id=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,[userDefaults objectForKey:@"token"],_subjectView.text,_textViewMsg.text,_firstNameView.text,_lastNameView.text,_mobileView.text,code,_emailTextView.text,help_topic_id,priority_id,globalVariables.iD];
+        
+        @try{
+            MyWebservices *webservices=[MyWebservices sharedInstance];
             
-            if (error || [msg containsString:@"Error"]) {
+            [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg) {
+                [[AppDelegate sharedAppdelegate] hideProgressView];
                 
-                [utils showAlertWithMessage:msg sendViewController:self];
-                NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
-                return ;
-            }
-            
-            if ([msg isEqualToString:@"tokenRefreshed"]) {
-                
-                [self reload];
-                NSLog(@"Thread--NO4-call-postCreateTicket");
-                return;
-            }
-            
-            if (json) {
-                NSLog(@"JSON-CreateTicket-%@",json);
-                if ([json objectForKey:@"response"]) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        //[utils showAlertWithMessage:@"Ticket created successfully!" sendViewController:self];
+                if (error || [msg containsString:@"Error"]) {
+                    
+                    if (msg) {
+                        if([msg isEqualToString:@"Error-403"])
+                        {
+                            [utils showAlertWithMessage:NSLocalizedString(@"Access Denied - You don't have permission.", nil) sendViewController:self];
+                        }else{
+                            [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
+                            NSLog(@"Error is : %@",msg);
+                        }
                         
-                        [RMessage showNotificationInViewController:self.navigationController
-                                                             title:NSLocalizedString(@"success", nil)
-                                                          subtitle:NSLocalizedString(@"Ticket created successfully.", nil)
-                                                         iconImage:nil
-                                                              type:RMessageTypeSuccess
-                                                    customTypeName:nil
-                                                          duration:RMessageDurationAutomatic
-                                                          callback:nil
-                                                       buttonTitle:nil
-                                                    buttonCallback:nil
-                                                        atPosition:RMessagePositionBottom
-                                              canBeDismissedByUser:YES];
-                        InboxViewController *inboxVC=[self.storyboard instantiateViewControllerWithIdentifier:@"InboxID"];
-                        [self.navigationController pushViewController:inboxVC animated:YES];
-                        [FTProgressIndicator dismiss];
-                    });
+                    }else if(error)  {
+                        [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
+                        NSLog(@"Thread-NO4-getInbox-Refresh-error == %@",error.localizedDescription);
+                    }
+                    
+                    return ;
                 }
-            }
-            NSLog(@"Thread-NO5-postCreateTicket-closed");
+                
+                if ([msg isEqualToString:@"tokenRefreshed"]) {
+                    
+                    [self createTicket];
+                    NSLog(@"Thread--NO4-call-postCreateTicket");
+                    return;
+                }
+                
+                if (json) {
+                    NSLog(@"JSON-CreateTicket-%@",json);
+                    if ([json objectForKey:@"response"]) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            // [RKDropdownAlert title:APP_NAME message:NSLocalizedString(@"Ticket created successfully!",nil) backgroundColor:[UIColor hx_colorWithHexRGBAString:SUCCESS_COLOR] textColor:[UIColor whiteColor]];
+                            
+                            if (self.navigationController.navigationBarHidden) {
+                                [self.navigationController setNavigationBarHidden:NO];
+                            }
+                        
+                            [RMessage showNotificationInViewController:self.navigationController
+                                                                 title:NSLocalizedString(@"Sucess", nil)
+                                                              subtitle:NSLocalizedString(@"Ticket created successfully.", nil)
+                                                             iconImage:nil
+                                                                  type:RMessageTypeSuccess
+                                                        customTypeName:nil
+                                                              duration:RMessageDurationAutomatic
+                                                              callback:nil
+                                                           buttonTitle:nil
+                                                        buttonCallback:nil
+                                                           atPosition:RMessagePositionNavBarOverlay
+                                                  canBeDismissedByUser:YES];
+                            
+                            
+                            InboxViewController *inboxVC=[self.storyboard instantiateViewControllerWithIdentifier:@"InboxID"];
+                            [self.navigationController pushViewController:inboxVC animated:YES];
+                        });
+                    }
+                }
+                NSLog(@"Thread-NO5-postCreateTicket-closed");
+                
+            }];
+        }@catch (NSException *exception)
+        {
+            //[utils showAlertWithMessage:@"APP IS STOPPED WORKING" sendViewController:self];
+            // Print exception information
+            NSLog( @"NSException caught in createTicket in CrateTicket ViewController" );
+            NSLog( @"Name: %@", exception.name);
+            NSLog( @"Reason: %@", exception.reason );
+            return;
+        }
+        @finally
+        {
+            // Cleanup, in both success and fail cases
+            NSLog( @"In finally block");
             
-        }];
+        }
     }
 }
 
 - (void)actionPickerCancelled:(id)sender {
     NSLog(@"Delegate has been informed that ActionSheetPicker was cancelled");
 }
+
+
+//- (void)staffWasSelected:(NSNumber *)selectedIndex element:(id)element
+//{
+//    staff_id=(staff_idArray)[(NSUInteger) [selectedIndex intValue]];
+//    self.assignTextField.text = (_staffArray)[(NSUInteger) [selectedIndex intValue]];
+//}
+
 
 - (void)countryCodeWasSelected:(NSNumber *)selectedIndex element:(id)element{
     // self.selectedIndex = [selectedIndex intValue];
@@ -349,73 +779,200 @@
 - (void)helpTopicWasSelected:(NSNumber *)selectedIndex element:(id)element {
     help_topic_id=(helpTopic_idArray)[(NSUInteger) [selectedIndex intValue]];
     // self.selectedIndex = [selectedIndex intValue];
-    
-    //may have originated from textField or barButtonItem, use an IBOutlet instead of element
     self.helpTopicTextField.text = (_helptopicsArray)[(NSUInteger) [selectedIndex intValue]];
 }
 
 - (void)slaWasSelected:(NSNumber *)selectedIndex element:(id)element {
     sla_id=(sla_idArray)[(NSUInteger) [selectedIndex intValue]];
     // self.selectedIndex = [selectedIndex intValue];
-    
     //may have originated from textField or barButtonItem, use an IBOutlet instead of element
     self.slaTextField.text = (_slaPlansArray)[(NSUInteger) [selectedIndex intValue]];
 }
-- (void)deptWasSelected:(NSNumber *)selectedIndex element:(id)element {
-    dept_id=(dept_idArray)[(NSUInteger) [selectedIndex intValue]];
-    // self.selectedIndex = [selectedIndex intValue];
-    
-    //may have originated from textField or barButtonItem, use an IBOutlet instead of element
-    self.deptTextField.text = (_deptArray)[(NSUInteger) [selectedIndex intValue]];
-}
+//- (void)deptWasSelected:(NSNumber *)selectedIndex element:(id)element {
+//    dept_id=(dept_idArray)[(NSUInteger) [selectedIndex intValue]];
+//    // self.selectedIndex = [selectedIndex intValue];
+//    //may have originated from textField or barButtonItem, use an IBOutlet instead of element
+//    self.deptTextField.text = (_deptArray)[(NSUInteger) [selectedIndex intValue]];
+//}
 - (void)priorityWasSelected:(NSNumber *)selectedIndex element:(id)element {
+    
+    //Dat *dat=(Dat *)[priDicc1 objectForKey:[NSString stringWithFormat:@"%@", selectedIndex]];
+    // NSLog(@"id %@", dat.id1);
     priority_id=(pri_idArray)[(NSUInteger) [selectedIndex intValue]];
     // self.selectedIndex = [selectedIndex intValue];
-    
-    //may have originated from textField or barButtonItem, use an IBOutlet instead of element
     self.priorityTextField.text = (_priorityArray)[(NSUInteger) [selectedIndex intValue]];
 }
+
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    
+   
+    
+    if (textView == _emailTextView)
+    {
+        
+        //do not allow the first character to be space | do not allow more than one space
+        if ([text isEqualToString:@" "]) {
+            if (!textView.text.length)
+                return NO;
+            //                        if ([[textField.text stringByReplacingCharactersInRange:range withString:string] rangeOfString:@"  "].length)
+            //                            return NO;
+        }
+        
+        // allow backspace
+        if ([textView.text stringByReplacingCharactersInRange:range withString:text].length < textView.text.length) {
+            return YES;
+        }
+        
+        // in case you need to limit the max number of characters
+        if ([textView.text stringByReplacingCharactersInRange:range withString:text].length > 40) {
+            return NO;
+        }
+        
+        // limit the input to only the stuff in this character set, so no emoji or cirylic or any other insane characters
+        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@-_. "];
+        
+        if ([text rangeOfCharacterFromSet:set].location == NSNotFound) {
+            return NO;
+        }
+
+        
+    }else if(textView==_firstNameView || textView==_lastNameView){
+        
+        //do not allow the first character to be space | do not allow more than one space
+        if ([text isEqualToString:@" "]) {
+            if (!textView.text.length)
+                return NO;
+        }
+        // allow backspace
+        if ([textView.text stringByReplacingCharactersInRange:range withString:text].length < textView.text.length) {
+            return YES;
+        }
+        
+        if (textView==_firstNameView || textView==_lastNameView) {
+            // limit the input to only the stuff in this character set, so no emoji or cirylic or any other insane characters
+            
+            //        // in case you need to limit the max number of characters
+            if ([textView.text stringByReplacingCharactersInRange:range withString:text].length > 15) {
+                return NO;
+            }
+            
+            NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.-_"];
+            
+            if ([text rangeOfCharacterFromSet:set].location == NSNotFound) {
+                return NO;
+            }
+        }
+        
+    } else  if (textView == _mobileView) {
+        
+        //do not allow the first character to be space | do not allow more than one space
+        if ([text isEqualToString:@" "]) {
+            if (!textView.text.length)
+                return NO;
+            //                        if ([[textField.text stringByReplacingCharactersInRange:range withString:string] rangeOfString:@"  "].length)
+            //                            return NO;
+        }
+        
+        // allow backspace
+        if ([textView.text stringByReplacingCharactersInRange:range withString:text].length < textView.text.length) {
+            return YES;
+        }
+        
+        // in case you need to limit the max number of characters
+        if ([textView.text stringByReplacingCharactersInRange:range withString:text].length > 15) {
+            return NO;
+        }
+        
+        // limit the input to only the stuff in this character set, so no emoji or cirylic or any other insane characters
+        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"];
+        
+        if ([text rangeOfCharacterFromSet:set].location == NSNotFound) {
+            return NO;
+        }
+        
+    } else if(textView == _subjectView)
+    {
+        
+        if([text isEqualToString:@" "])
+        {
+            if(!textView.text.length)
+            {
+                return NO;
+            }
+        }
+        
+        if([textView.text stringByReplacingCharactersInRange:range withString:text].length < textView.text.length)
+        {
+            
+            return  YES;
+        }
+        
+        if([textView.text stringByReplacingCharactersInRange:range withString:text].length >100)
+        {
+            return NO;
+        }
+        
+        NSCharacterSet *set=[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.-_/';;:?()*&%, "];
+        
+        
+        if([text rangeOfCharacterFromSet:set].location == NSNotFound)
+        {
+            return NO;
+        }
+    }
+    
+    else if(textView == _textViewMsg)
+    {
+        
+        if([text isEqualToString:@" "])
+        {
+            if(!textView.text.length)
+            {
+                return NO;
+            }
+        }
+        
+        if([textView.text stringByReplacingCharactersInRange:range withString:text].length < textView.text.length)
+        {
+            
+            return  YES;
+        }
+        
+        if([textView.text stringByReplacingCharactersInRange:range withString:text].length >100)
+        {
+            return NO;
+        }
+        
+        NSCharacterSet *set=[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.=-_';;:?()*&%, "];
+        
+        
+        if([text rangeOfCharacterFromSet:set].location == NSNotFound)
+        {
+            return NO;
+        }
+    }
+    
+    
+    return YES;
+}
+
 
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    
-    if (textField.tag==100) {
-        
-        //[textField resignFirstResponder];
-        //[self.view endEditing:YES];
-        return NO;
-    }else{
-        // [self.view endEditing:NO];
-        return YES;
-    }
-    
-    //        if (textField==_helpTopicTextField || textField== _slaTextField || textField == _deptTextField || textField == _priorityTextField||textField==_codeTextField) {
-    //            [self.view endEditing:YES];
-    //            return NO;
-    //        }else {
-    //            return YES;
-    //        }
+    return NO;
 }
 
-//tap on return key to hide the keyboard
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
+
+
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {
     return YES;
 }
 
-#pragma mark - Custom Method
--(NSString*)setDefaultCountryCode{
-    NSString *countryIdentifier = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
-    NSLog(@"%@",[NSString stringWithFormat:@"+%@",[[self getCountryCodeDictionary] objectForKey:countryIdentifier]]);
-    return [NSString stringWithFormat:@"+%@",[[self getCountryCodeDictionary] objectForKey:countryIdentifier]];
-}
 
 -(void)split{
     
@@ -743,4 +1300,6 @@
             @"84", @"VN", @"1", @"VG", @"1", @"VI", nil];
 }
 
+
 @end
+
