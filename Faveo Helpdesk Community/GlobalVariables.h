@@ -111,5 +111,7 @@
 
 @property (strong, nonatomic) NSDictionary *dependencyDataDict;
 
+@property (strong, nonatomic) NSString *roleFromAuthenticateAPI;
+
 @end
 

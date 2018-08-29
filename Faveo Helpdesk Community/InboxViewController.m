@@ -16,7 +16,7 @@
 #import "RMessageView.h"
 #import "UIImageView+Letters.h"
 #import "TableViewAnimationKitHeaders.h"
-
+#import "LoginViewController.h"
 
 @interface InboxViewController ()<RMessageProtocol>{
     Utils *utils;
@@ -56,12 +56,23 @@
    
     _animationType = 5;
     
-                                              
+    if([[userDefaults objectForKey:@"msgFromRefreshToken"] isEqualToString:@"credentialchanged"] || [globalVariables.roleFromAuthenticateAPI isEqualToString:@"user"] )
+    {
+        NSString *msg=@"";
+        globalVariables.roleFromAuthenticateAPI=@"";
+        // [utils showAlertWithMessage:@"Access Denied.  Your credentials has been changed. Contact to Admin and try to login again." sendViewController:self];
+        [self->userDefaults setObject:msg forKey:@"msgFromRefreshToken"];
+        
+        [self showMessageForLogout:@"Access Denied.  Your credentials has been changed OR Your Role has been changed to user. Contact to Admin and try to login again." sendViewController:self];
+        [[AppDelegate sharedAppdelegate] hideProgressView];
+    }
+    else{
+    
     [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting Tickets",nil)];
     [self reload];
     
     [self getDependencies];
-
+    }
 }
 
 - (void)loadAnimation {
@@ -161,6 +172,18 @@
                     NSLog(@"Thread--NO4-call-getInbox");
                     return;
                 }
+                
+                if ([msg isEqualToString:@"tokenNotRefreshed"]) {
+                    
+                    NSString *msg=@"";
+                    // [utils showAlertWithMessage:@"Access Denied.  Your credentials has been changed. Contact to Admin and try to login again." sendViewController:self];
+                    [self->userDefaults setObject:msg forKey:@"msgFromRefreshToken"];
+                    [self showMessageForLogout:@"Access Denied.  Your credentials has been changed OR Your Role has been changed to user. Contact to Admin and try to login again." sendViewController:self];
+                    [[AppDelegate sharedAppdelegate] hideProgressView];
+                    
+                    return;
+                }
+                
                 
                 if (json) {
                     //NSError *error;
@@ -813,6 +836,68 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)showMessageForLogout:(NSString*)message sendViewController:(UIViewController *)viewController
+{
+    UIAlertController *alertController = [UIAlertController   alertControllerWithTitle:APP_NAME message:message  preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction  actionWithTitle:@"Logout"
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction *action)
+                                   {
+                                       [self logout];
+                                       
+                                       if (self.navigationController.navigationBarHidden) {
+                                           [self.navigationController setNavigationBarHidden:NO];
+                                       }
+                                       
+                                       [RMessage showNotificationInViewController:self.navigationController
+                                                                            title:NSLocalizedString(@" Faveo Helpdesk ", nil)
+                                                                         subtitle:NSLocalizedString(@"You've logged out, successfully...!", nil)
+                                                                        iconImage:nil
+                                                                             type:RMessageTypeSuccess
+                                                                   customTypeName:nil
+                                                                         duration:RMessageDurationAutomatic
+                                                                         callback:nil
+                                                                      buttonTitle:nil
+                                                                   buttonCallback:nil
+                                                                       atPosition:RMessagePositionNavBarOverlay
+                                                             canBeDismissedByUser:YES];
+                                       
+                                       LoginViewController *login=[self.storyboard instantiateViewControllerWithIdentifier:@"Login"];
+                                       [self.navigationController pushViewController: login animated:YES];
+                                   }];
+    
+    [alertController addAction:cancelAction];
+    
+    [viewController presentViewController:alertController animated:YES completion:nil];
+    
+}
+
+-(void)logout
+{
+    
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    // get documents path
+    NSString *documentsPath = [paths objectAtIndex:0];
+    // get the path to our Data/plist file
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"faveoData.plist"];
+    NSError *error;
+    
+    if(![[NSFileManager defaultManager] removeItemAtPath:plistPath error:&error])
+    {
+        NSLog(@"Error while removing the plist %@", error.localizedDescription);
+        //TODO: Handle/Log error
+    }
+    
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *each in cookieStorage.cookies) {
+        [cookieStorage deleteCookie:each];
+    }
+    
+    
 }
 
 

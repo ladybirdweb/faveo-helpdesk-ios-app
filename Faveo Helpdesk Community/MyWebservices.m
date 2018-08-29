@@ -9,10 +9,13 @@
 #import "MyWebservices.h"
 #import "AppConstanst.h"
 #import "AppDelegate.h"
+#import "GlobalVariables.h"
+
 
 @interface MyWebservices(){
     
     NSString *tokenRefreshed;
+    GlobalVariables *globalVariables;
 }
 
 @property (nonatomic,strong) NSUserDefaults *userDefaults;
@@ -37,7 +40,9 @@
     dispatch_semaphore_t sem;
     __block NSString *result=nil;
     sem = dispatch_semaphore_create(0);
+    
     _userDefaults=[NSUserDefaults standardUserDefaults];
+    globalVariables=[GlobalVariables sharedInstance];
     
     NSString *url=[NSString stringWithFormat:@"%@authenticate",[_userDefaults objectForKey:@"companyURL"]];
     
@@ -77,6 +82,22 @@
             
             NSLog(@"Thread--refreshToken--Get your response == %@", replyStr);
             
+            if([replyStr containsString:@"error"]){
+                
+                NSError *error=nil;
+                NSDictionary *jsonData=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                if (error) {
+                    return;
+                }
+                
+                if([[jsonData objectForKey:@"error"] isEqualToString:@"invalid_credentials"]){
+                    
+                    NSString * msg = @"credentialchanged";
+                    
+                    [self->_userDefaults setObject:msg forKey:@"msgFromRefreshToken"];
+                }
+            }
+            else
             if ([replyStr containsString:@"token"]) {
                 
                 NSError *error=nil;
@@ -89,6 +110,15 @@
                 [_userDefaults setObject:[jsonData1 objectForKey:@"id"] forKey:@"user_id"];
                 [_userDefaults setObject:[jsonData1 objectForKey:@"role"] forKey:@"role"];
                 
+                
+                NSString *role123=[NSString stringWithFormat:@"%@",[jsonData1 objectForKey:@"role"]];//role
+                NSLog(@"Role from Web Services class : %@",role123);
+                
+                self->globalVariables.roleFromAuthenticateAPI=role123;
+                [self->_userDefaults setObject:role123 forKey:@"msgFromRefreshToken"];
+
+                
+                
                 NSString *clientName=[jsonData1 objectForKey:@"first_name"];
                 
                 if ([clientName isEqualToString:@""]) {
@@ -99,6 +129,7 @@
             
                 
                 [_userDefaults setObject:clientName forKey:@"profile_name"];
+                
                 
                //  [_userDefaults setObject:baseURL forKey:@"baseURL"];
                 
