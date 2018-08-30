@@ -58,6 +58,9 @@
     
     // end solution
     
+    // setting go button instead of next or donw on keyboard
+    [_urlTextfield setReturnKeyType:UIReturnKeyGo];
+    
     //this for password eye icon
     [self.passcodeTextField addPasswordField];
     //end
@@ -75,6 +78,17 @@
     // [sender resignFirstResponder];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    if(textField == _urlTextfield)
+    {
+        [self URLValidationMethod];
+        NSLog(@"Clicked on go");
+    }
+    
+    return YES;
+}
 
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -98,7 +112,8 @@
 
 
 
-- (IBAction)urlButton:(id)sender {
+-(void)URLValidationMethod{
+    
     [self.urlTextfield resignFirstResponder];
     
     
@@ -121,7 +136,7 @@
             
             if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
             {
-            
+                
                 [RMessage
                  showNotificationWithTitle:NSLocalizedString(@"Something failed", nil)
                  subtitle:NSLocalizedString(@"The internet connection seems to be down. Please check it.", nil)
@@ -193,7 +208,7 @@
                     }
                     
                     
-                   // NSString *replyStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    // NSString *replyStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                     
                     NSDictionary *jsonData=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                     
@@ -203,17 +218,17 @@
                         if ([respMessage containsString:@"success"]) {
                             
                             NSLog(@"Success");
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            
-                            [self.companyURLview setHidden:YES];
-                            [self.loginView setHidden:NO];
-                            [self->utils viewSlideInFromRightToLeft:self.loginView];
-                            [[AppDelegate sharedAppdelegate] hideProgressView];
-                            
-                            [self->userdefaults setObject:[self->baseURL stringByAppendingString:@"api/v1/"] forKey:@"companyURL"];
-                            [self->userdefaults synchronize];
-                            
-                        });
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                                [self.companyURLview setHidden:YES];
+                                [self.loginView setHidden:NO];
+                                [self->utils viewSlideInFromRightToLeft:self.loginView];
+                                [[AppDelegate sharedAppdelegate] hideProgressView];
+                                
+                                [self->userdefaults setObject:[self->baseURL stringByAppendingString:@"api/v1/"] forKey:@"companyURL"];
+                                [self->userdefaults synchronize];
+                                
+                            });
                         }else{
                             
                             [[AppDelegate sharedAppdelegate] hideProgressView];
@@ -242,6 +257,12 @@
         }else
             [utils showAlertWithMessage:NSLocalizedString(@"Please Enter a valid URL",nil) sendViewController:self];
     }
+    
+}
+- (IBAction)urlButton:(id)sender {
+    
+    [self URLValidationMethod];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{
