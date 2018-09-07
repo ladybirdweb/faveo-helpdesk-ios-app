@@ -29,3 +29,6 @@ podfile: Faveo Helpdesk Community/Podfile
 #before_install:
 #  - brew update
 #  - brew uninstall xctool && brew install --HEAD xctool
+
+notifications:
+    slack: faveohelpdesk:YdqFdalZ9eA9lbJLsgkk4mzz
