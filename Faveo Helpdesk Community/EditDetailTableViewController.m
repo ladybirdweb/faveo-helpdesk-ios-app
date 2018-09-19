@@ -344,19 +344,9 @@
 
 
 -(void)readFromPlist{
-//    // Read plist from bundle and get Root Dictionary out of it
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsPath = [paths objectAtIndex:0];
-//    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"faveoData.plist"];
-//
+
     @try{
-//        if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath])
-//        {
-//            plistPath = [[NSBundle mainBundle] pathForResource:@"faveoData" ofType:@"plist"];
-//        }
-      //  NSDictionary *resultDic = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-        //    NSLog(@"resultDic--%@",resultDic);
-        
+
         NSDictionary *resultDic = globalVariables.dependencyDataDict;
 
         
@@ -447,7 +437,7 @@
             }
         }
 
-        //getting ststus id
+        //getting status id
                 for (NSDictionary *dic in statusArray)
                 {
                     NSString *idOfStatus = dic[@"name"];
@@ -580,6 +570,7 @@
         [ActionSheetStringPicker showPickerWithTitle:@"Select Source" rows:_sourceArray initialSelection:0 target:self successAction:@selector(sourceWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
     }
 }
+
 //- (IBAction)typeClicked:(id)sender {
 //
 //    [self.view endEditing:YES];
@@ -660,13 +651,13 @@
         //staff_id = [NSNumber numberWithInteger:1+[_assignArray indexOfObject:_assinTextField.text]];
         
         
-        sla_id=[NSNumber numberWithInt:1];
+       // sla_id=[NSNumber numberWithInt:1];
         [[AppDelegate sharedAppdelegate] showProgressView];
         
         
         
         
-        NSString *url=[NSString stringWithFormat:@"%@helpdesk/edit?api_key=%@&ip=%@&token=%@&ticket_id=%@&help_topic=%@&ticket_priority=%@&ticket_source=%@&subject=%@&sla_plan=%@&status_id=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],globalVariables.iD,help_topic_id,priority_id,source_id,_subjectTextView.text,sla_id,status_id];
+        NSString *url=[NSString stringWithFormat:@"%@helpdesk/edit?api_key=%@&ip=%@&token=%@&ticket_id=%@&help_topic=%@&ticket_priority=%@&ticket_source=%@&subject=%@&sla_plan=%@&status=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"],globalVariables.iD,help_topic_id,priority_id,source_id,_subjectTextView.text,sla_id,status_id];
         
         NSLog(@"URL is : %@",url);
         
