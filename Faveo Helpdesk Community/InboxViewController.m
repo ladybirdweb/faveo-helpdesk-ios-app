@@ -258,7 +258,9 @@
         @try{
             MyWebservices *webservices=[MyWebservices sharedInstance];
             [webservices httpResponseGET:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg){
-                NSLog(@"Thread-NO3-getDependencies-start-error-%@-json-%@-msg-%@",error,json,msg);
+                
+              //  NSLog(@"Thread-NO3-getDependencies-start-error-%@-json-%@-msg-%@",error,json,msg);
+              
                 if (error || [msg containsString:@"Error"]) {
                     
                     NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
@@ -277,9 +279,11 @@
                 
                 if (json) {
                     
-                    NSLog(@"Thread-NO4-getDependencies-dependencyAPI--%@",json);
+                 //   NSLog(@"Thread-NO4-getDependencies-dependencyAPI--%@",json);
+                  
                     NSDictionary *resultDic = [json objectForKey:@"result"];
                     NSArray *ticketCountArray=[resultDic objectForKey:@"tickets_count"];
+                   
                     
                     for (int i = 0; i < ticketCountArray.count; i++) {
                         NSString *name = [[ticketCountArray objectAtIndex:i]objectForKey:@"name"];

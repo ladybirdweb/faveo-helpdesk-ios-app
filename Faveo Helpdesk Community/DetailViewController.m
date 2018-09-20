@@ -171,21 +171,16 @@
                     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                         dispatch_async(dispatch_get_main_queue(), ^{
                             
-                            //                        _clientNameTextField.text=[NSString stringWithFormat:@"%@ %@",[dic objectForKey:@"first_name"],[dic objectForKey:@"last_name"]];
+                            
                             _createdDateTextField.text= [utils getLocalDateTimeFromUTC:[dic objectForKey:@"created_at"]];
                             
                             if (([[dic objectForKey:@"first_name"] isEqual:[NSNull null]] ) || ( [[dic objectForKey:@"first_name"] length] == 0 )) {
                                 _firstnameTextField.text=NSLocalizedString(@"Not Available",nil);
                             }else _firstnameTextField.text=[dic objectForKey:@"first_name"];
                             
-                            //                        if (([[dic objectForKey:@"last_name"] isEqual:[NSNull null]] ) || ( [[dic objectForKey:@"last_name"] length] == 0 )) {
-                            //                            _lastnameTextField.text=NSLocalizedString(@"Not Available",nil);
-                            //                        }else _lastnameTextField.text= [dic objectForKey:@"last_name"];
-                            
+                          
                             globalVariables.ticket_number=[dic objectForKey:@"ticket_number"];
-                            //globalVariables.title=[dic objectForKey:@"title"];
-                            
-                            //_subjectTextField.text=[dic objectForKey:@"title"];
+                        
                             
                             //______________________________________________________________________________________________________
                             ////////////////for UTF-8 data encoding ///////
@@ -263,11 +258,10 @@
                             
                             
                             _emailTextField.text=[dic objectForKey:@"email"];
+                            
                             _lastResponseDateTextField.text=[utils getLocalDateTimeFromUTC:[dic objectForKey:@"updated_at"]];
                             
-                            
-                            // _deptTextField.text= [dic objectForKey:@"dept_name"];
-                            // _slaTextField.text=[dic objectForKey:@"sla_name"];
+                        
                             
                             if (([[dic objectForKey:@"type_name"] isEqual:[NSNull null]] ) || ( [[dic objectForKey:@"type_name"] length] == 0 )) {
                                 _typeTextField.text= NSLocalizedString(@"Not Available",nil);
@@ -299,12 +293,13 @@
                             
                             // _statusTextField.text= [dic objectForKey:@"status_name"];
                             
-                            _dueDateTextField.text= [utils getLocalDateTimeFromUTCDueDate:[dic objectForKey:@"duedate"]];
+                         //   _dueDateTextField1.text= [utils getLocalDateTimeFromUTCDueDate:[dic objectForKey:@"duedate"]];
                             
-                            [self.refreshControl endRefreshing];
-                            [_imgViewLoading setHidden:YES];
-                            //[_activityIndicatorObject stopAnimating];
-                            [self.tableView reloadData];
+                             [self.tableView reloadData];
+                             [self.refreshControl endRefreshing];
+                             [_imgViewLoading setHidden:YES];
+                           
+                           
                             
                         });
                     });
