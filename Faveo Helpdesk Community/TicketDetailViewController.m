@@ -16,7 +16,7 @@
 #import "LGPlusButtonsView.h"
 #import "ConversationViewController.h"
 #import "EditDetailTableViewController.h"
-
+#import "LoginViewController.h"
 
 //#import "ReplyViewController.h"
 
@@ -71,7 +71,24 @@
     
     NSLog(@"Ticket is isssss : %@",globalVariables.iD);
     
-    [self getDependencies];
+    if([[userDefaults objectForKey:@"msgFromRefreshToken"] isEqualToString:@"credentialchanged"] || [globalVariables.roleFromAuthenticateAPI isEqualToString:@"user"] )
+    {
+        NSString *msg=@"";
+        globalVariables.roleFromAuthenticateAPI=@"";
+        // [utils showAlertWithMessage:@"Access Denied.  Your credentials has been changed. Contact to Admin and try to login again." sendViewController:self];
+        [self->userDefaults setObject:msg forKey:@"msgFromRefreshToken"];
+        
+        [self showMessageForLogout:@"Access Denied.  Your credentials has been changed OR Your Role has been changed to user. Contact to Admin and try to login again." sendViewController:self];
+        [[AppDelegate sharedAppdelegate] hideProgressView];
+    }
+    else{
+        
+      //  [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting Tickets",nil)];
+        
+        [self getDependencies];
+    }
+    
+   
     
 }
 
@@ -762,6 +779,7 @@
                 
                 if (json) {
                     NSLog(@"JSON-CreateTicket-%@",json);
+                    
                     if ([json objectForKey:@"result"]) {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [RKDropdownAlert title:NSLocalizedString(@"Sucess", nil) message:NSLocalizedString(@"Posted your reply.", nil)backgroundColor:[UIColor hx_colorWithHexRGBAString:SUCCESS_COLOR] textColor:[UIColor whiteColor]];
@@ -770,7 +788,7 @@
                             [[NSNotificationCenter defaultCenter] postNotificationName:@"reload_data" object:self];
                             
                             [self.view setNeedsDisplay];
-                             [self viewDidLoad];
+                            [self viewDidLoad];
                             
 //                            TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
 //                            [self.navigationController pushViewController:td animated:YES];
@@ -829,5 +847,69 @@
 //
 //    return [emailTest evaluateWithObject:candidate];
 //}
+
+
+-(void)showMessageForLogout:(NSString*)message sendViewController:(UIViewController *)viewController
+{
+    UIAlertController *alertController = [UIAlertController   alertControllerWithTitle:APP_NAME message:message  preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction  actionWithTitle:@"Logout"
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction *action)
+                                   {
+                                       [self logout];
+                                       
+                                       if (self.navigationController.navigationBarHidden) {
+                                           [self.navigationController setNavigationBarHidden:NO];
+                                       }
+                                       
+                                       [RMessage showNotificationInViewController:self.navigationController
+                                                                            title:NSLocalizedString(@" Faveo Helpdesk ", nil)
+                                                                         subtitle:NSLocalizedString(@"You've logged out, successfully...!", nil)
+                                                                        iconImage:nil
+                                                                             type:RMessageTypeSuccess
+                                                                   customTypeName:nil
+                                                                         duration:RMessageDurationAutomatic
+                                                                         callback:nil
+                                                                      buttonTitle:nil
+                                                                   buttonCallback:nil
+                                                                       atPosition:RMessagePositionNavBarOverlay
+                                                             canBeDismissedByUser:YES];
+                                       
+                                       LoginViewController *login=[self.storyboard instantiateViewControllerWithIdentifier:@"Login"];
+                                       [self.navigationController pushViewController: login animated:YES];
+                                   }];
+    
+    [alertController addAction:cancelAction];
+    
+    [viewController presentViewController:alertController animated:YES completion:nil];
+    
+}
+
+-(void)logout
+{
+    
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    // get documents path
+    NSString *documentsPath = [paths objectAtIndex:0];
+    // get the path to our Data/plist file
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"faveoData.plist"];
+    NSError *error;
+    
+    if(![[NSFileManager defaultManager] removeItemAtPath:plistPath error:&error])
+    {
+        NSLog(@"Error while removing the plist %@", error.localizedDescription);
+        //TODO: Handle/Log error
+    }
+    
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *each in cookieStorage.cookies) {
+        [cookieStorage deleteCookie:each];
+    }
+    
+    
+}
+
 
 @end

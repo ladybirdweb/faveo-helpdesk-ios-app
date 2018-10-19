@@ -215,6 +215,7 @@
             NSLog( @"NSException caught in reload method in Inbox ViewController " );
             NSLog( @"Name: %@", exception.name);
             NSLog( @"Reason: %@", exception.reason );
+            [[AppDelegate sharedAppdelegate] hideProgressView];
             return;
         }
         @finally
