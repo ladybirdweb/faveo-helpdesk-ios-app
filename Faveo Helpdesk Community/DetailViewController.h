@@ -91,7 +91,7 @@
  
  @brief This property defines a textfield that shows due date of a ticket.
  */
-@property (weak, nonatomic) IBOutlet UITextField *dueDateTextField;
+@property (weak, nonatomic) IBOutlet UITextField *dueDateTextField1;
 
 /*!
  @property createdDateTextField

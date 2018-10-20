@@ -56,6 +56,7 @@
     globalVariables=[GlobalVariables sharedInstance];
     userDefaults=[NSUserDefaults standardUserDefaults];
     
+     _animationType = 5;
     
     [[AppDelegate sharedAppdelegate] showProgressViewWithText:NSLocalizedString(@"Getting Data",nil)];
     [self reload];

@@ -364,9 +364,26 @@
                     @try{
                         
                         NSDictionary *jsonData=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            
                         
                         [userdefaults setObject:[jsonData objectForKey:@"token"] forKey:@"token"];
+                        
                         NSDictionary *jsonData1=[jsonData objectForKey:@"user_id"];
+                        
+                        if([[jsonData1 objectForKey:@"role"] isEqualToString:@"user"]){
+                            
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                                [self->utils showAlertWithMessage:@"Invalid entry for user. This app is used by Agent and Admin only." sendViewController:self];
+                                [[AppDelegate sharedAppdelegate] hideProgressView];
+                                
+                            });
+                            
+                           
+                        }
+                        else{
+                            
+                        
                         [userdefaults setObject:[jsonData1 objectForKey:@"id"] forKey:@"user_id"];
                         [userdefaults setObject:[jsonData1 objectForKey:@"profile_pic"] forKey:@"profile_pic"];
                         NSLog(@"Role : %@",[jsonData1 objectForKey:@"role"]);
@@ -384,8 +401,16 @@
                         
                         [userdefaults setObject:clientName forKey:@"profile_name"];
                         [userdefaults setObject:baseURL forKey:@"baseURL"];
-                        [userdefaults setObject:self.userNameTextField.text forKey:@"username"];
-                        [userdefaults setObject:self.passcodeTextField.text forKey:@"password"];
+                            
+                            
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                               
+                                [userdefaults setObject:self.userNameTextField.text forKey:@"username"];
+                                [userdefaults setObject:self.passcodeTextField.text forKey:@"password"];
+                                
+                                
+                            });
+                            
                         [userdefaults setBool:YES forKey:@"loginSuccess"];
                         [userdefaults synchronize];
                         
@@ -405,20 +430,25 @@
                             [[self navigationController] setNavigationBarHidden:NO];
                         });
                     }
+                    }
                     @catch(NSException *ne) {
                         NSLog(@"exception %@",ne);
                     }
                     
                 }else {
-                    [[AppDelegate sharedAppdelegate] hideProgressView];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                      [[AppDelegate sharedAppdelegate] hideProgressView];
                     
-                    if ([replyStr containsString:@"invalid_credentials"]) {
+                      if ([replyStr containsString:@"invalid_credentials"]) {
                         
                         [utils showAlertWithMessage:@"Enter valid username or password" sendViewController:self];
-                    }else{
+                      }else{
                         
                         [utils showAlertWithMessage:@"invalid_credentials" sendViewController:self];
-                    }
+                      }
+                        
+                    });
                 }
                 
                 

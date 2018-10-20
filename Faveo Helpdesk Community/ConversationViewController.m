@@ -263,7 +263,7 @@
     }
     
     NSDictionary *finaldic=[mutableArray objectAtIndex:indexPath.row];
-    NSLog(@"Ticket Thread Dict is : %@",finaldic);
+  
 
     //create at label
     cell.timeStampLabel.text=[utils getLocalDateTimeFromUTC:[finaldic objectForKey:@"created_at"]];
