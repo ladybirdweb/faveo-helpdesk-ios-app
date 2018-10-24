@@ -1,6 +1,7 @@
 platform:ios,'9.3'
 
 target 'Faveo Helpdesk Community' do
+
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'NSDate-Time-Ago'
@@ -10,7 +11,6 @@ target 'Faveo Helpdesk Community' do
     pod 'CNPPopupController'
     pod 'ActionSheetPicker-3.0'
     pod 'Firebase/Core'
-    pod 'Firebase/Messaging'
     pod 'M13ProgressSuite'
     pod 'SDWebImage'
     pod 'DZNEmptyDataSet'
@@ -19,6 +19,7 @@ target 'Faveo Helpdesk Community' do
     pod 'RMessage'
     pod 'LGPlusButtonsView', '~> 1.1.0'
   
+   
 end
 
 
