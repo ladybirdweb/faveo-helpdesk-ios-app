@@ -17,6 +17,7 @@
     return YES;
 }
 
+//This method is called after the view controller has loaded its view hierarchy into memory. This method is called regardless of whether the view hierarchy was loaded from a nib file or created programmatically in the loadView method. You usually override this method to perform additional initialization on views that were loaded from nib files.
 - (void)viewDidLoad {
     [super viewDidLoad];
     _textview.editable = NO;

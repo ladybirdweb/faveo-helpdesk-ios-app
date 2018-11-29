@@ -1,1 +1,1 @@
-../../../Firebase/CoreOnly/Sources/Firebase.h
+../../../Firebase/Core/Sources/Firebase.h

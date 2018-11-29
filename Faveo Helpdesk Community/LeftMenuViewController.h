@@ -106,22 +106,79 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *trash_countLabel;
 
-
+/*!
+ @property c1, c2, c3, c4, c5
+ 
+ @brief This is an property used for creating label.
+ 
+ @discussion They are used to create view for showing count label of the ticket.
+ */
 @property (weak, nonatomic) IBOutlet UILabel *c1;
 @property (weak, nonatomic) IBOutlet UILabel *c2;
 @property (weak, nonatomic) IBOutlet UILabel *c3;
 @property (weak, nonatomic) IBOutlet UILabel *c4;
 @property (weak, nonatomic) IBOutlet UILabel *c5;
 
--(void)update;
--(void)reloadd;
--(void)addUIRefresh;
+/*!
+ @property view1, view2, view3, view4, view5
+ 
+ @brief This is an property used for creating view.
+ 
+ @discussion They are used to create view for showing count label of the ticket.
+ */
 @property (weak, nonatomic) IBOutlet UIView *view1;
 @property (weak, nonatomic) IBOutlet UIView *view2;
 @property (weak, nonatomic) IBOutlet UIView *view3;
 @property (weak, nonatomic) IBOutlet UIView *view4;
-
 @property (weak, nonatomic) IBOutlet UIView *view5;
+
+/*!
+ @method update
+ 
+ @brief This method used for updating the data into side-menu view.
+ 
+ @discussion This method used to show data like ticket count, user profile, user name on side-menu when viewDidLoad method is called.
+ 
+ @code
+ 
+ -(void)update;
+ 
+ @endcode
+ 
+ */
+-(void)update;
+
+/*!
+ @method reloadd
+ 
+ @brief This method used for reloading the tableView
+ 
+ @discussion Using this method, we can able to update the values in tableView.
+ 
+ @code
+ 
+ -(void)reloadd;
+ 
+ @endcode
+ 
+ */
+-(void)reloadd;
+
+/*!
+ @method addUIRefresh
+ 
+ @brief This method used to show refresh view behind the tableView.
+ 
+ @discussion Using this method, we can able user can able to refresh the tableView so that the data inside the tableView will update while updating this values in tableView background it show an loader with text "Refreshing"
+ 
+ @code
+ 
+ -(void)addUIRefresh;
+ 
+ @endcode
+ 
+ */
+-(void)addUIRefresh;
 
 @end
 

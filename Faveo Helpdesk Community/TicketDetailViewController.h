@@ -50,14 +50,30 @@
  */
 @property(nonatomic,strong) NSString *ticketNumber;
 
+/*!
+ @property ticketLabel
+ 
+ @brief This property used for dislaying ticket subject.
+ */
 @property (weak, nonatomic) IBOutlet UILabel *ticketLabel;
 
+/*!
+ @property nameLabel
+ 
+ @brief This property used for dislaying ticket owner name.
+ */
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
+/*!
+ @property statusLabel
+ 
+ @brief This property used for dislaying ticket ticket status.
+ */
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 
 /*!
- @method addBtnPressed
+ @method indexChanged
  
  @brief This in an Button. After clicking perticluar ticket it redirect to redirect to Ticket Detail page.
  

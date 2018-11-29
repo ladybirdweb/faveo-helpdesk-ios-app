@@ -26,6 +26,7 @@
     NSUserDefaults *userDefaults;
     GlobalVariables *globalVariables;
 }
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *mutableArray;
 @property (nonatomic, assign) NSInteger totalPages;
@@ -39,7 +40,7 @@
 
 @implementation MyTicketsViewController
 
-
+// It Called after the controller's view is loaded into memory.
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:NSLocalizedString(@"MyTickets",nil)];
@@ -141,8 +142,7 @@
                     _currentPage=[[json objectForKey:@"current_page"] integerValue];
                     _totalTickets=[[json objectForKey:@"total"] integerValue];
                     _totalPages=[[json objectForKey:@"last_page"] integerValue];
-                 //   NSLog(@"Thread-NO4.1getInbox-dic--%@", _mutableArray);
-                    
+                 
                     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                         dispatch_async(dispatch_get_main_queue(), ^{
                            
@@ -173,7 +173,7 @@
     }
 }
 
-
+// It Asks the data source to return the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     //    return 1;
@@ -197,7 +197,7 @@
     return numOfSections;
 }
 
-
+// It Tells the data source to return the number of rows in a given section of a table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.currentPage == self.totalPages
         || self.totalTickets == _mutableArray.count) {
@@ -206,6 +206,7 @@
     return _mutableArray.count + 1;
 }
 
+// It cells the delegate the table view is about to draw a cell for a particular row.
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
@@ -217,8 +218,7 @@
             [self loadMore:[userDefaults objectForKey:@"user_id"]];
         }
         else{
-            // [RKDropdownAlert title:@"" message:@"All Caught Up...!" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-            
+        
             [RMessage showNotificationInViewController:self
                                                  title:nil
                                               subtitle:NSLocalizedString(@"All Caught Up)", nil)
@@ -233,21 +233,15 @@
                                   canBeDismissedByUser:YES];
         }
         
-        /*if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
-         
-         [RKDropdownAlert title:@"" message:@"All Caught Up...!" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-         } */
     }
 }
 
-
+// nextPageURL api is called for getting next tickets
 -(void)loadMore:(NSString*)user_id{
     
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
-        //connection unavailable
-        // [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
-        
+    
         if (self.navigationController.navigationBarHidden) {
             [self.navigationController setNavigationBarHidden:NO];
         }
@@ -333,7 +327,7 @@
     }
 }
 
-
+// It Asks the data source for a cell to insert in a particular location of the table view.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
@@ -566,6 +560,7 @@
     }
 }
 
+// It Tells the delegate that the specified row is now selected.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];

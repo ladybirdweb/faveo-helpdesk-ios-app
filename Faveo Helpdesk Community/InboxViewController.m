@@ -39,6 +39,7 @@
 
 @implementation InboxViewController
 
+// It called after the controller's view is loaded into memory.
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -60,7 +61,6 @@
     {
         NSString *msg=@"";
         globalVariables.roleFromAuthenticateAPI=@"";
-        // [utils showAlertWithMessage:@"Access Denied.  Your credentials has been changed. Contact to Admin and try to login again." sendViewController:self];
         [self->userDefaults setObject:msg forKey:@"msgFromRefreshToken"];
         
         [self showMessageForLogout:@"Access Denied.  Your credentials has been changed OR Your Role has been changed to user. Contact to Admin and try to login again." sendViewController:self];
@@ -116,7 +116,6 @@
         
     }else{
         
-        //        [[AppDelegate sharedAppdelegate] showProgressView];
         NSString *url=[NSString stringWithFormat:@"%@helpdesk/inbox?api_key=%@&ip=%@&token=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"]];
         
         @try{
@@ -176,7 +175,6 @@
                 if ([msg isEqualToString:@"tokenNotRefreshed"]) {
                     
                     NSString *msg=@"";
-                    // [utils showAlertWithMessage:@"Access Denied.  Your credentials has been changed. Contact to Admin and try to login again." sendViewController:self];
                     [self->userDefaults setObject:msg forKey:@"msgFromRefreshToken"];
                     [self showMessageForLogout:@"Access Denied.  Your credentials has been changed OR Your Role has been changed to user. Contact to Admin and try to login again." sendViewController:self];
                     [[AppDelegate sharedAppdelegate] hideProgressView];
@@ -186,14 +184,14 @@
                 
                 
                 if (json) {
-                    //NSError *error;
-                    NSLog(@"Thread-NO4--getInboxAPI--%@",json);
+
+                    NSLog(@"Inbox is -%@",json);
                     _mutableArray = [json objectForKey:@"data"];
                     _nextPageUrl =[json objectForKey:@"next_page_url"];
                     _currentPage=[[json objectForKey:@"current_page"] integerValue];
                     _totalTickets=[[json objectForKey:@"total"] integerValue];
                     _totalPages=[[json objectForKey:@"last_page"] integerValue];
-                  //  NSLog(@"Thread-NO4.1getInbox-dic--%@", _mutableArray);
+                  
                     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                         dispatch_async(dispatch_get_main_queue(), ^{
                             
@@ -227,6 +225,7 @@
     }
 }
 
+//This method used to get some values like Agents list, Ticket Status, Ticket counts, Ticket Source, SLA ..etc which are used in various places in project.
 -(void)getDependencies{
     
     NSLog(@"Thread-NO1-getDependencies()-start");
@@ -260,8 +259,7 @@
             MyWebservices *webservices=[MyWebservices sharedInstance];
             [webservices httpResponseGET:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg){
                 
-              //  NSLog(@"Thread-NO3-getDependencies-start-error-%@-json-%@-msg-%@",error,json,msg);
-              
+            
                 if (error || [msg containsString:@"Error"]) {
                     
                     NSLog(@"Thread-NO4-postCreateTicket-Refresh-error == %@",error.localizedDescription);
@@ -269,19 +267,15 @@
                 }
                 
                 if ([msg isEqualToString:@"tokenRefreshed"]) {
-                    //               dispatch_async(dispatch_get_main_queue(), ^{
-                    //                  [self getDependencies];
-                    //               });
-                    
+            
                     [self getDependencies];
-                    NSLog(@"Thread--NO4-call-getDependecies");
+    
                     return;
                 }
                 
                 if (json) {
                     
-                 //   NSLog(@"Thread-NO4-getDependencies-dependencyAPI--%@",json);
-                  
+            
                     NSDictionary *resultDic = [json objectForKey:@"result"];
                     NSArray *ticketCountArray=[resultDic objectForKey:@"tickets_count"];
                    
@@ -322,30 +316,10 @@
                             globalVariables.SpamStausId=statusId;
                         }
                     }
-                    
-                    
-                    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-                    
-                    // get documents path
-                    NSString *documentsPath = [paths objectAtIndex:0];
-                    
-                    // get the path to our Data/plist file
-                    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"faveoData.plist"];
-                    NSError *writeError = nil;
-                    
-                    NSData *plistData = [NSPropertyListSerialization dataWithPropertyList:resultDic format:NSPropertyListXMLFormat_v1_0 options:NSPropertyListImmutable error:&writeError];
-                    
-                    if(plistData)
-                    {
-                        [plistData writeToFile:plistPath atomically:YES];
-                        NSLog(@"Data saved sucessfully");
-                    }
-                    else
-                    {
-                        NSLog(@"Error in saveData: %@", writeError.localizedDescription);               }
+                
                     
                 }
-                NSLog(@"Thread-NO5-getDependencies-closed");
+        
             }
              ];
         }@catch (NSException *exception)
@@ -363,10 +337,10 @@
             
         }
     }
-    NSLog(@"Thread-NO2-getDependencies()-closed");
+    
 }
 
-
+// It Asks the data source to return the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSInteger numOfSections = 0;
@@ -389,7 +363,7 @@
     return numOfSections;
 }
 
-
+// It Tells the data source to return the number of rows in a given section of a table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.currentPage == self.totalPages
         || self.totalTickets == _mutableArray.count) {
@@ -400,6 +374,7 @@
     return _mutableArray.count + 1;
 }
 
+// It Tells the delegate the table view is about to draw a cell for a particular row.
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
@@ -411,7 +386,6 @@
             [self loadMore];
         }
         else{
-            // [RKDropdownAlert title:@"" message:@"All Caught Up...!" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
             
             [RMessage showNotificationInViewController:self
                                                  title:nil
@@ -429,13 +403,12 @@
     }
 }
 
+// It will call getNextPageURL api for getting next tickets
 -(void)loadMore{
     
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        
-        //   [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
         
         if (self.navigationController.navigationBarHidden) {
             [self.navigationController setNavigationBarHidden:NO];
@@ -483,8 +456,6 @@
                 
                 if (json) {
                     NSLog(@"Thread-NO4--getInboxAPI--%@",json);
-                    //_indexPaths=[[NSArray alloc]init];
-                    //_indexPaths = [json objectForKey:@"data"];
                     _nextPageUrl =[json objectForKey:@"next_page_url"];
                     _currentPage=[[json objectForKey:@"current_page"] integerValue];
                     _totalTickets=[[json objectForKey:@"total"] integerValue];
@@ -495,13 +466,12 @@
                     
                     [_mutableArray addObjectsFromArray:[json objectForKey:@"data"]];
                     
-                    //                NSLog(@"Thread-NO4.1getInbox-dic--%@", _mutableArray);
+        
                     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                         dispatch_async(dispatch_get_main_queue(), ^{
+                            
                             [self.tableView reloadData];
-                            //                        [self.tableView beginUpdates];
-                            //                        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[_mutableArray count]-[_indexPaths count] inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
-                            //                        [self.tableView endUpdates];
+                        
                         });
                     });
                     
@@ -527,7 +497,7 @@
 }
 
 
-
+// It Asks the data source for a cell to insert in a particular location of the table view.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
@@ -784,6 +754,7 @@
     }
 }
 
+// It Tells the delegate that the specified row is now selected.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];
@@ -809,7 +780,7 @@
     return YES;
 }
 
-
+// It Notifies the view controller that its view is about to be added to a view hierarchy.
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     [[self navigationController] setNavigationBarHidden:NO];

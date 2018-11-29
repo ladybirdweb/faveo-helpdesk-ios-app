@@ -79,15 +79,53 @@
  placeholderImage:[UIImage imageNamed:@"default_pic.png"]];
  */
 -(void)setUserProfileimage:(NSString*)imageUrl;
+
+/*!
+ @property today
+ 
+ @brief This is an label property
+ 
+ @discussion It used show an due today label on the ticket view.
+ */
 @property (weak, nonatomic) IBOutlet UILabel *today;
 
+/*!
+ @property sourceImgView
+ 
+ @brief This is an imageView property
+ 
+ @discussion It used show source of the ticket.
+ */
 @property (weak, nonatomic) IBOutlet UIImageView *sourceImgView;
 
+/*!
+ @property ccImgView
+ 
+ @brief This is an imageView property
+ 
+ @discussion It used show collaborator icon to the ticket.
+ */
 @property (weak, nonatomic) IBOutlet UIImageView *ccImgView;
 
+/*!
+ @property attachImgView
+ 
+ @brief This is an imageView property
+ 
+ @discussion It used show attachment icon to the ticket.
+ */
 @property (weak, nonatomic) IBOutlet UIImageView *attachImgView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *img;
 @property (weak, nonatomic) IBOutlet UIView *viewMain;
+
+/*!
+ @property agentLabel
+ 
+ @brief This is an label property
+ 
+ @discussion It used show/display agent name.
+ */
 @property (weak, nonatomic) IBOutlet UILabel *agentLabel;
 
 @end

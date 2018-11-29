@@ -14,15 +14,13 @@
 #import "UIImageView+Letters.h"
 
 @import Firebase;
+
 @interface LeftMenuViewController ()<RMessageProtocol>{
     NSUserDefaults *userDefaults;
     GlobalVariables *globalVariables;
     Utils *utils;
     UIRefreshControl *refresh;
 }
-
-
-
 
 @end
 
@@ -35,6 +33,7 @@
     return [super initWithCoder:aDecoder];
 }
 
+// It called after the controller's view is loaded into memory.
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -56,9 +55,7 @@
     
 
 }
-
-
-
+// It notifies the view controller that its view is about to be added to a view hierarchy.
 -(void)viewWillAppear:(BOOL)animated{
     
     [self.tableView reloadData];
@@ -177,6 +174,8 @@
     [self.tableView reloadData];
     
 }
+
+// This method used to get some values like Agents list, Ticket Status, Ticket counts, Ticket Source, SLA ..etc which are used in various places in project.
 -(void)getDependencies{
     
     NSLog(@"Thread-NO1-getDependencies()-start");
@@ -295,18 +294,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return 0;
-//}
-//
-//// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-//// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return ;
-//}
-
-
+// It tells the delegate that the specified row is now selected.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
@@ -355,10 +343,7 @@
             case 11:
                 
                 [self wipeDataInLogout];
-                //[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-                //[[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:NO];
-                
-                // [RKDropdownAlert title:@"Faveo Helpdesk" message:@"You've logged out, successfully." backgroundColor:[UIColor hx_colorWithHexRGBAString:SUCCESS_COLOR] textColor:[UIColor whiteColor]];
+
                 
                 if (self.navigationController.navigationBarHidden) {
                     [self.navigationController setNavigationBarHidden:NO];
@@ -377,22 +362,11 @@
                                                 atPosition:RMessagePositionNavBarOverlay
                                       canBeDismissedByUser:YES];
                 
-                
-                /*[RMessage showNotificationWithTitle:NSLocalizedString(@"Faveo Helpdesk", nil)
-                 subtitle:NSLocalizedString(@"You've logged out, successfully...!", nil)
-                 type:RMessageTypeSuccess
-                 customTypeName:nil
-                 callback:nil]; */
+            
                 vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"Login"];
-                // (vc.view.window!.rootViewController?).dismissViewControllerAnimated(false, completion: nil);
+                
                 break;
-                
-                //        case 3:
-                //            [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-                //            [[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:YES];
-                //            return;
-                //            break;
-                
+                       //
             default:
                 break;
         }
@@ -416,6 +390,7 @@
                                                                      andCompletion:nil];
 }
 
+// It asks the delegate for the height to use for a row in a specified location.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -427,37 +402,11 @@
     
 }
 
+// Logout method is called
 -(void)wipeDataInLogout{
     
-    [self sendDeviceToken];
+   // [self sendDeviceToken];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
-    // get documents path
-    NSString *documentsPath = [paths objectAtIndex:0];
-    // get the path to our Data/plist file
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"faveoData.plist"];
-    NSError *error;
-    @try{
-        if(![[NSFileManager defaultManager] removeItemAtPath:plistPath error:&error])
-        {
-            NSLog(@"Error while removing the plist %@", error.localizedDescription);
-            //TODO: Handle/Log error
-        }
-    }@catch (NSException *exception)
-    {
-        // Print exception information
-        NSLog( @"NSException caught in Logout Process in LeftMenu ViewController" );
-        NSLog( @"Name: %@", exception.name);
-        NSLog( @"Reason: %@", exception.reason );
-        return;
-    }
-    @finally
-    {
-        // Cleanup, in both success and fail cases
-        NSLog( @"In finally block");
-        
-    }
     
     NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *each in cookieStorage.cookies) {
@@ -466,52 +415,54 @@
     
 }
 
--(void)sendDeviceToken{
-    
-    // NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-    NSString *url=[NSString stringWithFormat:@"%@fcmtoken?user_id=%@&fcm_token=%s&os=%@",[userDefaults objectForKey:@"companyURL"],[userDefaults objectForKey:@"user_id"],"0",@"ios"];
-    @try{
-        MyWebservices *webservices=[MyWebservices sharedInstance];
-        [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg){
-            if (error || [msg containsString:@"Error"]) {
-                if (msg) {
-                    
-                    // [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
-                    NSLog(@"Thread-postAPNS-toserver-error == %@",error.localizedDescription);
-                }else if(error)  {
-                    //                [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
-                    NSLog(@"Thread-postAPNS-toserver-error == %@",error.localizedDescription);
-                }
-                return ;
-            }
-            if (json) {
-                
-                NSLog(@"Thread-sendAPNS-token-json-%@",json);
-            }
-            
-        }];
-    }@catch (NSException *exception)
-    {
-        // Print exception information
-        NSLog( @"NSException caught In sendDeviceToken method in LeftMenu ViewController" );
-        NSLog( @"Name: %@", exception.name);
-        NSLog( @"Reason: %@", exception.reason );
-        return;
-    }
-    @finally
-    {
-        // Cleanup, in both success and fail cases
-        NSLog( @"In finally block");
-        
-    }
-}
+//-(void)sendDeviceToken{
+//
+//    // NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
+//    NSString *url=[NSString stringWithFormat:@"%@fcmtoken?user_id=%@&fcm_token=%s&os=%@",[userDefaults objectForKey:@"companyURL"],[userDefaults objectForKey:@"user_id"],"0",@"ios"];
+//    @try{
+//        MyWebservices *webservices=[MyWebservices sharedInstance];
+//        [webservices httpResponsePOST:url parameter:@"" callbackHandler:^(NSError *error,id json,NSString* msg){
+//            if (error || [msg containsString:@"Error"]) {
+//                if (msg) {
+//
+//                    // [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",msg] sendViewController:self];
+//                    NSLog(@"Thread-postAPNS-toserver-error == %@",error.localizedDescription);
+//                }else if(error)  {
+//                    //                [utils showAlertWithMessage:[NSString stringWithFormat:@"Error-%@",error.localizedDescription] sendViewController:self];
+//                    NSLog(@"Thread-postAPNS-toserver-error == %@",error.localizedDescription);
+//                }
+//                return ;
+//            }
+//            if (json) {
+//
+//                NSLog(@"Thread-sendAPNS-token-json-%@",json);
+//            }
+//
+//        }];
+//    }@catch (NSException *exception)
+//    {
+//        // Print exception information
+//        NSLog( @"NSException caught In sendDeviceToken method in LeftMenu ViewController" );
+//        NSLog( @"Name: %@", exception.name);
+//        NSLog( @"Reason: %@", exception.reason );
+//        return;
+//    }
+//    @finally
+//    {
+//        // Cleanup, in both success and fail cases
+//        NSLog( @"In finally block");
+//
+//    }
+//}
 
+// It tells the delegate the table view is about to draw a cell for a particular row.
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
 }
 
+// It tells the delegate that a specified row is about to be selected.
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // rows in section 0 should not be selectable
     // if ( indexPath.section == 0 ) return nil;

@@ -31,7 +31,7 @@
     
     
     
-    [self setApplicationApperance];
+   // [self setApplicationApperance];
     
     mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     
@@ -69,12 +69,12 @@
     return YES;
 }
 
--(void)setApplicationApperance
-{
-    [[UINavigationBar appearance] setTintColor:[UIColor hx_colorWithHexRGBAString:@"#00aeef"]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor hx_colorWithHexRGBAString:@"#00aeef"]}];
-    
-}
+//-(void)setApplicationApperance
+//{
+//    [[UINavigationBar appearance] setTintColor:[UIColor hx_colorWithHexRGBAString:@"#00aeef"]];
+//    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor hx_colorWithHexRGBAString:@"#00aeef"]}];
+//
+//}
 
 #pragma mark - Singlton class instance
 +(AppDelegate*)sharedAppdelegate

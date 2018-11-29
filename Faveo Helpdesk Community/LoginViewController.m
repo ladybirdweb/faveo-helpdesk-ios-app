@@ -35,6 +35,8 @@
 @end
 
 @implementation LoginViewController
+
+//It called after the controller's view is loaded into memory.
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -78,6 +80,7 @@
     // [sender resignFirstResponder];
 }
 
+// It asks the delegate if the text field should process the pressing of the return button
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     
@@ -90,7 +93,7 @@
     return YES;
 }
 
-
+// It Notifies the view controller that its view is about to be added to a view hierarchy.
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     [[self navigationController] setNavigationBarHidden:YES];
@@ -105,13 +108,7 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-
+// It validates the URL entered by the user
 -(void)URLValidationMethod{
     
     [self.urlTextfield resignFirstResponder];
@@ -259,12 +256,15 @@
     }
     
 }
+
+// Validation of URL is called
 - (IBAction)urlButton:(id)sender {
     
     [self URLValidationMethod];
 
 }
 
+// It Notifies the view controller that its view was added to a view hierarchy.
 -(void)viewDidAppear:(BOOL)animated{
     [self.urlTextfield becomeFirstResponder];
     
@@ -276,7 +276,7 @@
  return YES;
  }*/
 
-
+// Login Button is clicked here and authentication API will call after validating the textField data
 - (IBAction)btnLogin:(id)sender {
     
     
