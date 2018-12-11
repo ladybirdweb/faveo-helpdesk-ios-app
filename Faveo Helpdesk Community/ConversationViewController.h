@@ -21,6 +21,21 @@
  */
 @property (nonatomic,retain) UIActivityIndicatorView *activityIndicatorObject;
 
+
+/*!
+ @method reloadd
+ 
+ @brief This method used for reloading the tableView
+ 
+ @discussion Using this method, we can able to update the values in tableView.
+ 
+ @code
+ 
+ -(void)reloadd;
+ 
+ @endcode
+ 
+ */
 -(void)reload;
 
 @end

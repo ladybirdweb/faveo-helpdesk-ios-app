@@ -37,6 +37,7 @@
 @implementation ClientListViewController
 
 
+//This method is called after the view controller has loaded its view hierarchy into memory. This method is called regardless of whether the view hierarchy was loaded from a nib file or created programmatically in the loadView method. You usually override this method to perform additional initialization on views that were loaded from nib files.
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:NSLocalizedString(@"Client List",nil)];
@@ -61,8 +62,7 @@
         [refresh endRefreshing];
         //connection unavailable
         [[AppDelegate sharedAppdelegate] hideProgressView];
-        //  [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
-        
+       
         if (self.navigationController.navigationBarHidden) {
             [self.navigationController setNavigationBarHidden:NO];
         }
@@ -170,9 +170,7 @@
             [self loadMore];
         }
         else{
-            // [RKDropdownAlert title:@"" message:@"All Caught Up...!" backgroundColor:[UIColor hx_colorWithHexRGBAString:ALERT_COLOR] textColor:[UIColor whiteColor]];
-            
-            [RMessage showNotificationInViewController:self
+           [RMessage showNotificationInViewController:self
                                                  title:nil
                                               subtitle:NSLocalizedString(@"All Caught Up)", nil)
                                              iconImage:nil
@@ -194,7 +192,6 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
     {
         //connection unavailable
-        // [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
         
         if (self.navigationController.navigationBarHidden) {
             [self.navigationController setNavigationBarHidden:NO];

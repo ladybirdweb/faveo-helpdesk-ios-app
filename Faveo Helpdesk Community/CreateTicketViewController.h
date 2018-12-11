@@ -258,13 +258,31 @@
  
  @endocde
  */
-
-
 - (IBAction)countryCodeClicked:(id)sender;
 
+/*!
+ @method slaClicked
+ 
+ @brief This will gives List of all SLA from the Helpdesk.
+ 
+ @code
+ 
+ - (IBAction)slaClicked:(id)sender;
+ 
+ @endocde
+ */
+- (IBAction)slaClicked:(id)sender;
+
+
+/*!
+ @property slaTextField
+ 
+ @brief This is an textField property
+ 
+ @discussion This property used to accept the SLA value from the user in order to create a ticket.
+ */
 @property (weak, nonatomic) IBOutlet UITextField *slaTextField;
 
-- (IBAction)slaClicked:(id)sender;
 
 
 @end

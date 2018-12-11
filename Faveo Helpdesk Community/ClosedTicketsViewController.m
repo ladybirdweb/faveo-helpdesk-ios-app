@@ -39,6 +39,7 @@
 
 @implementation ClosedTicketsViewController
 
+// It called after the controller's view is loaded into memory.
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:NSLocalizedString(@"Closed Tickets",nil)];
@@ -57,6 +58,7 @@
     
     // Do any additional setup after loading the view.
 }
+
 
 - (void)loadAnimation {
     
@@ -170,6 +172,7 @@
     }
 }
 
+// It Tells the data source to return the number of rows in a given section of a table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.currentPage == self.totalPages
         || self.totalTickets == _mutableArray.count) {
@@ -177,6 +180,8 @@
     }
     return _mutableArray.count + 1;
 }
+
+// It Asks the data source to return the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSInteger numOfSections = 0;
@@ -199,6 +204,7 @@
     return numOfSections;
 }
 
+// It tells the delegate the table view is about to draw a cell for a particular row.
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
@@ -319,6 +325,7 @@
     }
 }
 
+// It asks the data source for a cell to insert in a particular location of the table view.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
@@ -547,6 +554,7 @@
     }
 }
 
+// It tells the delegate that the specified row is now selected.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TicketDetailViewController *td=[self.storyboard instantiateViewControllerWithIdentifier:@"TicketDetailVCID"];

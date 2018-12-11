@@ -26,6 +26,7 @@
  @method btnClicked
  
  @brief This in an Button.
+ 
  @discussion After clicking this button acton is performed i.e It will goto http://www.faveohelpdesk.com url. This link contains website of Faveo Helpdesk. Here we see details information of Faveo Helpdesk.
  
  @code
@@ -38,6 +39,14 @@
  */
 
 - (IBAction)btnClicked:(id)sender;
+
+/*!
+ @property textview
+ 
+ @brief This is an textField property
+ 
+ @discussion It used show show some company details which is not editable.
+ */
 @property (weak, nonatomic) IBOutlet UITextView *textview;
 
 

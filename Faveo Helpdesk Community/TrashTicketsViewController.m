@@ -47,6 +47,7 @@
     return YES;
 }
 
+// It called after the controller's view is loaded into memory.
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:NSLocalizedString(@"Trash Tickets",nil)];
@@ -82,8 +83,7 @@
     { [refresh endRefreshing];
         //connection unavailable
         [[AppDelegate sharedAppdelegate] hideProgressView];
-        // [RKDropdownAlert title:APP_NAME message:NO_INTERNET backgroundColor:[UIColor hx_colorWithHexRGBAString:FAILURE_COLOR] textColor:[UIColor whiteColor]];
-        
+    
         if (self.navigationController.navigationBarHidden) {
             [self.navigationController setNavigationBarHidden:NO];
         }
@@ -103,7 +103,6 @@
         
     }else{
         
-        //        [[AppDelegate sharedAppdelegate] showProgressView];
         NSString *url=[NSString stringWithFormat:@"%@helpdesk/trash?api_key=%@&ip=%@&token=%@",[userDefaults objectForKey:@"companyURL"],API_KEY,IP,[userDefaults objectForKey:@"token"]];
         
         @try{

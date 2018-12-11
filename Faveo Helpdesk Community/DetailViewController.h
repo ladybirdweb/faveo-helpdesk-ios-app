@@ -302,12 +302,47 @@
  */
 - (IBAction)saveClicked:(id)sender;
 
-
-@property (nonatomic, strong) NSMutableArray * assignArray;
+/*!
+ @method assignClicked
+ 
+ @brief This is an textField property.
+ 
+ @discussion It used to select/add the assignee for the ticket using picker view.
+ 
+ @code
+ 
+- (IBAction)assignClicked:(id)sender;
+ 
+ @endocde
+ 
+ */
 - (IBAction)assignClicked:(id)sender;
 
+
+/*!
+ @property assinTextField
+ 
+ @brief This array property used to store assignne/agent details.
+ */
+@property (nonatomic, strong) NSMutableArray * assignArray;
+
+/*!
+ @property user_role
+ 
+ @brief This is an textField property
+ 
+ @discussion This property used to accept assignee value.
+ */
 @property (weak, nonatomic) IBOutlet UITextField *assinTextField;
 
+
+/*!
+ @property subjectTextView
+ 
+ @brief This is an textField property
+ 
+ @discussion This property used to accept ticket subject value.
+ */
 @property (weak, nonatomic) IBOutlet UITextView *subjectTextView;
 
 @end
