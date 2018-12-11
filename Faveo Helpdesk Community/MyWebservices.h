@@ -17,6 +17,8 @@ typedef void (^ApiResponse)(NSError* , id);
  
  @discussion A server with a database responds to remote queries for data, where the client specifies a particular city, stock symbol, or book title, for example. The client application sends queries to the server, parses the response, and processes the returned data.
  
+ All web service schemes utilize a web-based transport mode, such as HTTP, HTTPS, or SMTP, and a method for packaging the queries and responses, typically some sort of XML schema.
+ 
  */
 @interface MyWebservices : NSObject
 
