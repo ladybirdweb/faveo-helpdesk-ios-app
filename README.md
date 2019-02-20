@@ -12,16 +12,16 @@ Website
 Visit our website for more information on services offered by us <a href="http://www.faveohelpdesk.com/" target="_blank">www.faveohelpdesk.com</a>
 
 Faveo Community
---------------------------
+----------------
 Join Faveo discussion group and stay tuned to latest updates. 
 <a href="https://www.linkedin.com/groups/8429668" target="_blank">Join here</a>
 
 Support the community edition
---------------------------
+------------------------------
 If you are using our product and want to support us <a href="https://github.com/ladybirdweb/faveo-helpdesk/wiki/Support-the-community-edition" target="_blank">Click here</a>
 
 Contribute
---------------------------
+------------
 If you are a developer and want to contribute towards Faveo's development. Follow these instructions.
 
 Create your own fork of Faveo master repository and use <a href="https://github.com/nvie/gitflow">git-flow</a> to create a new feature. Once the feature is published in your fork, send a pull request to begin the conversation of integrating your new feature into Faveo.
